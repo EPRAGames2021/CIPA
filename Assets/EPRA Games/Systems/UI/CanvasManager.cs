@@ -15,6 +15,13 @@ namespace EPRA.Utilities
 
         [SerializeField] private MenuController _currentMenu;
 
+        [SerializeField] private FloatingJoystick _floatingJoystick;
+
+        [SerializeField] private GameScreen _gameScreen;
+
+        public FloatingJoystick FloatingJoystick => _floatingJoystick;
+        public GameScreen GameScreen => _gameScreen;
+
 
         private void Awake()
         {

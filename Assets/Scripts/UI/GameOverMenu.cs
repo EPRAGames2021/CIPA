@@ -39,7 +39,7 @@ namespace EPRA.Utilities
 
         private void RestartGame()
         {
-            SceneLoader.Instance.LoadLevel(2, LoadMode.Replace);
+            SceneLoader.Instance.ReloadLevel();
 
             CanvasManager.Instance.CloseMenu(Menu);
         }
@@ -51,6 +51,8 @@ namespace EPRA.Utilities
             CanvasManager.Instance.CloseMenu(Menu);
 
             CanvasManager.Instance.OpenMenu(MenuType.MainMenu);
+
+            GameManager.Instance.UpdateGameState(GameState.MainMenuState);
         }
     }
 }

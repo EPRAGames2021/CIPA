@@ -70,6 +70,28 @@ namespace EPRA.Utilities
             _targetLanguage = DataManager.HasData("TargetLanguage") ? DataManager.LoadData<SystemLanguage>("TargetLanguage") : SystemLanguage.English;
         }
 
+        private void SaveData()
+        {
+            //Debug.Log("CanVibrate" + _canVibrate);
+            DataManager.SaveData("CanVibrate", _canVibrate);
+
+            //Debug.Log("CanSound" + _canPlaySFX);
+            DataManager.SaveData("CanSound", _canPlaySFX);
+            //Debug.Log("SFXVolume" + _SFXVolume);
+            DataManager.SaveData("SFXVolume", _SFXVolume);
+
+            //Debug.Log("CanMusic" + _canPlayMusic);
+            DataManager.SaveData("CanMusic", _canPlayMusic);
+            //Debug.Log("MusicVolume" + _musicVolume);
+            DataManager.SaveData("MusicVolume", _musicVolume);
+
+            //Debug.Log("TargetFrameRate" + _targetFramerate);
+            DataManager.SaveData("TargetFrameRate", _targetFramerate);
+
+            //Debug.Log("TargetLanguage" + _targetLanguage);
+            DataManager.SaveData("TargetLanguage", _targetLanguage);
+        }
+
 
         public void SetVibration(bool canVibrate)
         {
@@ -77,14 +99,14 @@ namespace EPRA.Utilities
 
             Vibrator.CanVibrate = _canVibrate;
 
-            DataManager.SaveData("CanVibrate", _canVibrate);
+            SaveData();
         }
 
         public void EnableSFX(bool canPlaySound)
         {
             _canPlaySFX = canPlaySound;
 
-            DataManager.SaveData("CanSound", _canPlaySFX);
+            SaveData();
 
             UpdateMixer(_SFXMixer, _canPlaySFX);
         }
@@ -93,7 +115,7 @@ namespace EPRA.Utilities
         {
             _SFXVolume = volume;
 
-            DataManager.SaveData("SFXVolume", _SFXVolume);
+            SaveData();
 
             UpdateMixer(_SFXMixer, _SFXVolume);
         }
@@ -102,7 +124,7 @@ namespace EPRA.Utilities
         {
             _canPlayMusic = canPlayMusic;
 
-            DataManager.SaveData("CanMusic", _canPlayMusic);
+            SaveData();
 
             UpdateMixer(_musicMixer, _canPlayMusic);
         }
@@ -111,7 +133,7 @@ namespace EPRA.Utilities
         {
             _musicVolume = volume;
 
-            DataManager.SaveData("MusicVolume", _musicVolume);
+            SaveData();
 
             UpdateMixer(_musicMixer, _musicVolume);
         }
@@ -120,7 +142,7 @@ namespace EPRA.Utilities
         {
             _targetFramerate = target;
 
-            DataManager.SaveData("TargetFrameRate", _targetFramerate);
+            SaveData();
 
             Application.targetFrameRate = target;
         }
@@ -129,7 +151,7 @@ namespace EPRA.Utilities
         {
             _targetLanguage = systemLanguage;
 
-            DataManager.SaveData("TargetLanguage", _targetLanguage);
+            SaveData();
 
             LanguageManager.Instance.ChangeLanguage(_targetLanguage);
         }

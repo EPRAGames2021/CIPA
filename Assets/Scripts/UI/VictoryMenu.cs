@@ -9,7 +9,7 @@ namespace EPRA.Utilities
     public class VictoryMenu : MenuController
     {
         [SerializeField] private Button _mainMenuButton;
-        [SerializeField] private Button _restartButton;
+        [SerializeField] private Button _nextDayButton;
     
         private void Start()
         {
@@ -27,19 +27,19 @@ namespace EPRA.Utilities
             Menu = MenuType.VictoryMenu;
     
             _mainMenuButton.onClick.AddListener(GoToMainMenu);
-            _restartButton.onClick.AddListener(RestartGame);
+            _nextDayButton.onClick.AddListener(GoToNextDay);
         }
     
         private void Finish()
         {
             _mainMenuButton.onClick.RemoveAllListeners();
-            _restartButton.onClick.RemoveAllListeners();
+            _nextDayButton.onClick.RemoveAllListeners();
         }
     
     
-        private void RestartGame()
+        private void GoToNextDay()
         {
-            SceneLoader.Instance.LoadLevel(2, LoadMode.Replace);
+            SceneLoader.Instance.ReloadLevel();
     
             CanvasManager.Instance.CloseMenu(Menu);
         }
@@ -51,6 +51,8 @@ namespace EPRA.Utilities
             CanvasManager.Instance.CloseMenu(Menu);
     
             CanvasManager.Instance.OpenMenu(MenuType.MainMenu);
+
+            GameManager.Instance.UpdateGameState(GameState.MainMenuState);
         }
     }
 }

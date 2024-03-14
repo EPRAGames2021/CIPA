@@ -62,6 +62,8 @@ public class MovementSystem : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _animator = GetComponent<Animator>();
+
+        _joystick = CanvasManager.Instance.FloatingJoystick;
     }
 
 

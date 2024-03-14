@@ -47,6 +47,11 @@ public class SceneLoader : MonoBehaviour
     }
 
 
+    public void ReloadLevel()
+    {
+        LoadLevel(_currentSceneID, LoadMode.Replace);
+    }
+
     public bool LoadLevel(int sceneID, LoadMode loadMode)
     {
         if (sceneID >= SceneManager.sceneCountInBuildSettings)

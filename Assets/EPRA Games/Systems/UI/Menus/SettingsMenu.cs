@@ -27,6 +27,8 @@ namespace EPRA.Utilities
 
         [Min(1), SerializeField] private int _targetFramerate = 60;
 
+        [SerializeField] private Button _mainMenuButton;
+
         [Header("Other")]
         [SerializeField] private TextMeshProUGUI _gameVersion;
 
@@ -37,6 +39,11 @@ namespace EPRA.Utilities
             ShowSlidersOnly = 2,
         }
 
+
+        private void OnEnable()
+        {
+            _mainMenuButton.gameObject.SetActive(GameManager.Instance.State != GameState.MainMenuState);
+        }
 
         private void Start()
         {
@@ -74,6 +81,8 @@ namespace EPRA.Utilities
             _musicVolume.onValueChanged.AddListener(MusicVolume);
             _languageDropdown.onValueChanged.AddListener(SetLanguage);
 
+            _mainMenuButton.onClick.AddListener(ReturnToMainMenu);
+
             _vibrationEnabled.isOn = Settings.Instance.Configuration.CanVibrate;
             _SFXEnabled.isOn = Settings.Instance.Configuration.CanPlaySFX;
             _musicEnabled.isOn = Settings.Instance.Configuration.CanPlayMusic;
@@ -103,6 +112,8 @@ namespace EPRA.Utilities
             _musicEnabled.onValueChanged.RemoveAllListeners();
             _musicVolume.onValueChanged.RemoveAllListeners();
             _languageDropdown.onValueChanged.RemoveAllListeners();
+
+            _mainMenuButton.onClick.RemoveAllListeners();
         }
 
 
@@ -172,6 +183,18 @@ namespace EPRA.Utilities
         private void SetFramerate()
         {
             Settings.Instance?.SetFramerate(_targetFramerate);
+        }
+
+
+        private void ReturnToMainMenu()
+        {
+            SceneLoader.Instance.LoadLevel(1, LoadMode.Replace);
+
+            Back();
+
+            CanvasManager.Instance.OpenMenu(MenuType.MainMenu);
+
+            GameManager.Instance.UpdateGameState(GameState.MainMenuState);
         }
 
 

@@ -53,6 +53,8 @@ namespace EPRA.Utilities
             SceneLoader.Instance.LoadLevel(2, LoadMode.Replace);
 
             CanvasManager.Instance.CloseAllMenus();
+
+            GameManager.Instance.UpdateGameState(GameState.GameState);
         }
 
         private void GoToSteelIndustry()
@@ -60,6 +62,8 @@ namespace EPRA.Utilities
             SceneLoader.Instance.LoadLevel(3, LoadMode.Replace);
 
             CanvasManager.Instance.CloseAllMenus();
+
+            GameManager.Instance.UpdateGameState(GameState.GameState);
         }
     }
 }

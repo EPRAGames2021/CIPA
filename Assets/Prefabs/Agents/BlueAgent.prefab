@@ -100,15 +100,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f51010100793824b8d43b2a0e42808c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _team: 2
   _state: -1
   _previousState: -1
   _validEnemy: 0
   _animator: {fileID: 6853027721232337915}
-  _searchSystem: {fileID: 0}
   _healthSystem: {fileID: 6853027721232337913}
   _movementSystem: {fileID: 6853027721232337912}
-  _attackSystem: {fileID: 0}
 --- !u!114 &6853027721232337913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,14 +134,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fcdb7d841c46344487df8880f93a792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemy: {fileID: 8773940894981897254}
-  _canMove: 0
-  _speed: 0
-  _walkingSpeed: 2
-  _sprintingSpeed: 5
-  _target: {fileID: 0}
-  _targetPosition: {x: 0, y: 0, z: 0}
-  _distanceToTarget: 0
+  _joystick: {fileID: 0}
+  _moveSpeed: 0
+  _smoothSpeed: 0
+  _inputDirection: {x: 0, y: 0, z: 0}
+  _turnSpeed: 0
+  _rb: {fileID: 0}
 --- !u!1001 &2867130023848180445
 PrefabInstance:
   m_ObjectHideFlags: 0
