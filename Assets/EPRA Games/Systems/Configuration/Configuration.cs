@@ -19,6 +19,7 @@ namespace EPRA.Utilities
         [Range(-80, 0), SerializeField] private float _musicVolume;
         [Range(1, 240), SerializeField] private int _targetFramerate;
         [SerializeField] private SystemLanguage _targetLanguage;
+        [SerializeField] private int _languageIndex;
 
         [Header("Build Settings")]
         [Header("iOS")]
@@ -32,6 +33,7 @@ namespace EPRA.Utilities
         public float MusicVolume => _musicVolume;
         public int TargetFramerate => _targetFramerate;
         public SystemLanguage TargetLanguage => _targetLanguage;
+        public int LanguageIndex => _languageIndex;
 
 
         private void OnEnable()
@@ -59,15 +61,16 @@ namespace EPRA.Utilities
         {
             _canVibrate = DataManager.HasData("CanVibrate") ? DataManager.LoadData<bool>("CanVibrate") : true;
 
-            _canPlaySFX = DataManager.HasData("CanSound") ? DataManager.LoadData<bool>("CanSound") : true;
+            _canPlaySFX = DataManager.HasData("CanPlaySFX") ? DataManager.LoadData<bool>("CanPlaySFX") : true;
             _SFXVolume = DataManager.HasData("SFXVolume") ? DataManager.LoadData<float>("SFXVolume") : 1f;
 
-            _canPlayMusic = DataManager.HasData("CanMusic") ? DataManager.LoadData<bool>("CanMusic") : true;
+            _canPlayMusic = DataManager.HasData("CanPlayMusic") ? DataManager.LoadData<bool>("CanPlayMusic") : true;
             _musicVolume = DataManager.HasData("MusicVolume") ? DataManager.LoadData<float>("MusicVolume") : 1f;
 
             _targetFramerate = DataManager.HasData("TargetFrameRate") ? DataManager.LoadData<int>("TargetFrameRate") : 60;
 
             _targetLanguage = DataManager.HasData("TargetLanguage") ? DataManager.LoadData<SystemLanguage>("TargetLanguage") : SystemLanguage.English;
+            _languageIndex = DataManager.HasData("LanguageIndex") ? DataManager.LoadData<int>("LanguageIndex") : 0;
         }
 
         private void SaveData()
@@ -75,13 +78,13 @@ namespace EPRA.Utilities
             //Debug.Log("CanVibrate" + _canVibrate);
             DataManager.SaveData("CanVibrate", _canVibrate);
 
-            //Debug.Log("CanSound" + _canPlaySFX);
-            DataManager.SaveData("CanSound", _canPlaySFX);
+            //Debug.Log("CanPlaySFX" + _canPlaySFX);
+            DataManager.SaveData("CanPlaySFX", _canPlaySFX);
             //Debug.Log("SFXVolume" + _SFXVolume);
             DataManager.SaveData("SFXVolume", _SFXVolume);
 
-            //Debug.Log("CanMusic" + _canPlayMusic);
-            DataManager.SaveData("CanMusic", _canPlayMusic);
+            //Debug.Log("CanPlayMusic" + _canPlayMusic);
+            DataManager.SaveData("CanPlayMusic", _canPlayMusic);
             //Debug.Log("MusicVolume" + _musicVolume);
             DataManager.SaveData("MusicVolume", _musicVolume);
 
@@ -90,6 +93,7 @@ namespace EPRA.Utilities
 
             //Debug.Log("TargetLanguage" + _targetLanguage);
             DataManager.SaveData("TargetLanguage", _targetLanguage);
+            DataManager.SaveData("LanguageIndex", _languageIndex);
         }
 
 
@@ -154,6 +158,13 @@ namespace EPRA.Utilities
             SaveData();
 
             LanguageManager.Instance.ChangeLanguage(_targetLanguage);
+        }
+
+        public void SetLanguageIndex(int index)
+        {
+            _languageIndex = index;
+
+            SaveData();
         }
 
 

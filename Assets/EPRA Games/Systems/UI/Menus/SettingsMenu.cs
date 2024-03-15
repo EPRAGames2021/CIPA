@@ -30,6 +30,7 @@ namespace EPRA.Utilities
         [SerializeField] private Button _mainMenuButton;
 
         [Header("Other")]
+        [SerializeField] private Configuration _configuration;
         [SerializeField] private TextMeshProUGUI _gameVersion;
 
         private enum Complexity
@@ -72,7 +73,16 @@ namespace EPRA.Utilities
 
             Menu = MenuType.SettingsMenu;
 
-            _backButton.onClick.AddListener(Back);
+            _vibrationEnabled.isOn = _configuration.CanVibrate;
+            _SFXEnabled.isOn = _configuration.CanPlaySFX;
+            _musicEnabled.isOn = _configuration.CanPlayMusic;
+
+            //Mixer goes from -80 to 0, slider goes from 0 to 1
+            //Yes, I could change slider range but if someone ever decides to display slider value on menu it'll show weird numbers
+            _SFXVolume.value = Remap(_configuration.SFXVolume, -80, 0, 0, 1);
+            _musicVolume.value = Remap(_configuration.MusicVolume, -80, 0, 0, 1);
+
+            _languageDropdown.value = _configuration.LanguageIndex;
 
             _vibrationEnabled.onValueChanged.AddListener(ToggleVibration);
             _SFXEnabled.onValueChanged.AddListener(SFXEnabled);
@@ -81,16 +91,8 @@ namespace EPRA.Utilities
             _musicVolume.onValueChanged.AddListener(MusicVolume);
             _languageDropdown.onValueChanged.AddListener(SetLanguage);
 
+            _backButton.onClick.AddListener(Back);
             _mainMenuButton.onClick.AddListener(ReturnToMainMenu);
-
-            _vibrationEnabled.isOn = Settings.Instance.Configuration.CanVibrate;
-            _SFXEnabled.isOn = Settings.Instance.Configuration.CanPlaySFX;
-            _musicEnabled.isOn = Settings.Instance.Configuration.CanPlayMusic;
-
-            //Mixer goes from -80 to 0, slider goes from 0 to 1
-            //Yes, I could change slider range but if someone ever decides to display slider value on menu it'll show weird numbers
-            _SFXVolume.value = Remap(Settings.Instance.Configuration.SFXVolume, -80, 0, 0, 1);
-            _musicVolume.value = Remap(Settings.Instance.Configuration.MusicVolume, -80, 0, 0, 1);
         }
 
         private void ValidateComplexity()
@@ -126,12 +128,12 @@ namespace EPRA.Utilities
 
         private void ToggleVibration(bool value)
         {
-            Settings.Instance?.SetVibration(value);
+            _configuration.SetVibration(value);
         }
 
         private void SFXEnabled(bool value)
         {
-            Settings.Instance?.SetSFX(value);
+            _configuration.EnableSFX(value);
         }
 
         private void SFXVolume(float value)
@@ -143,12 +145,12 @@ namespace EPRA.Utilities
             //Yes, I could change slider range but if someone ever decides to display slider value on menu it'll show weird numbers
             value = Remap(value, 0, 1, -80, 0);
 
-            Settings.Instance?.SetSFXVolume(value);
+            _configuration.SetSFXVolume(value);
         }
 
         private void MusicEnabled(bool value)
         {
-            Settings.Instance?.SetMusic(value);
+            _configuration.EnableMusic(value);
         }
 
         private void MusicVolume(float value)
@@ -160,7 +162,7 @@ namespace EPRA.Utilities
             //Yes, I could change slider range but if someone ever decides to display slider value on menu it'll show weird numbers
             value = Remap(value, 0, 1, -80, 0);
 
-            Settings.Instance?.SetMusicVolume(value);
+            _configuration.SetMusicVolume(value);
         }
 
         private void SetLanguage(int index)
@@ -168,21 +170,23 @@ namespace EPRA.Utilities
             switch (index)
             {
                 case 0:
-                    Settings.Instance?.SetLanguage(SystemLanguage.English);
+                    _configuration.SetLanguage(SystemLanguage.English);
                     break;
                 case 1:
-                    Settings.Instance?.SetLanguage(SystemLanguage.Portuguese);
+                    _configuration.SetLanguage(SystemLanguage.Portuguese);
                     break;
                 default:
-                    Settings.Instance?.SetLanguage(SystemLanguage.English);
+                    _configuration.SetLanguage(SystemLanguage.English);
                     break;
 
             }
+
+            _configuration.SetLanguageIndex(index);
         }
 
         private void SetFramerate()
         {
-            Settings.Instance?.SetFramerate(_targetFramerate);
+            _configuration.SetFramerate(_targetFramerate);
         }
 
 
