@@ -7,19 +7,41 @@ public class MinigameTrigger : MonoBehaviour
 {
     [SerializeField] private JobSectorAreaSO _jobSectorAreaSO;
 
+    [SerializeField] private PlayerDetector _playerDetector;
+
     public JobSectorAreaSO JobSectorAreaSO { get { return _jobSectorAreaSO; } set { _jobSectorAreaSO = value; } }
 
-    private void OnTriggerEnter(Collider other)
+
+    private void Start()
     {
-        if (other.GetComponent<HealthSystem>() != null)
-        {
-            //temporary until the mini games themselves are created
+        Init();
+    }
 
-            _jobSectorAreaSO.FinishDay();
+    private void OnDestroy()
+    {
+        Finish();
+    }
 
-            CanvasManager.Instance.OpenMenu(MenuType.VictoryMenu);
 
-            GameManager.Instance.UpdateGameState(GameState.PausedState);
-        }
+    private void Init()
+    {
+        _playerDetector.OnPlayerDetected += InitiateMinigame;
+    }
+
+    private void Finish()
+    {
+        _playerDetector.OnPlayerDetected -= InitiateMinigame;
+    }
+
+
+    private void InitiateMinigame()
+    {
+        //temporary until the mini games themselves are created
+
+        _jobSectorAreaSO.FinishDay();
+
+        CanvasManager.Instance.OpenMenu(MenuType.VictoryMenu);
+
+        GameManager.Instance.UpdateGameState(GameState.PausedState);
     }
 }
