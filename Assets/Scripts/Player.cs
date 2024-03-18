@@ -5,12 +5,13 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Player : MonoBehaviour
 {
     [SerializeField] private EnemyState _state = EnemyState.None;
-    [SerializeField] private EnemyState _previousState = EnemyState.None;
 
-    [SerializeField] private bool _validEnemy;
+    [SerializeField] private bool _alive;
+    [SerializeField] private bool _wearingEquipment;
+
     [SerializeField] private Animator _animator;
 
     [Header("Systems")]
@@ -21,9 +22,11 @@ public class Enemy : MonoBehaviour
     public MovementSystem MovementSystem => _movementSystem;
 
     public EnemyState State => _state;
+    public bool WearingEquipment => _wearingEquipment;
 
     public event System.Action<EnemyState> OnStateChange;
     public event System.Action OnDied;
+    public event System.Action<bool> OnEquip;
 
     private void Awake()
     {
@@ -44,10 +47,11 @@ public class Enemy : MonoBehaviour
     {
         _healthSystem.OnDied += Die;
 
-        _validEnemy = true;
+        _alive = true;
+        _wearingEquipment = false;
 
         ChangeState(EnemyState.Roaming);
-        _previousState = _state;
+
         //this must not be here but I'm too lazy to fix this properly
         _animator.updateMode = AnimatorUpdateMode.Normal;
     }
@@ -64,7 +68,6 @@ public class Enemy : MonoBehaviour
 
         if (_state != state)
         {
-            _previousState = _state;
             _state = state;
 
             OnStateChange?.Invoke(state);
@@ -73,9 +76,9 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        if (!_validEnemy) return;
+        if (!_alive) return;
 
-        _validEnemy = false;
+        _alive = false;
 
         _movementSystem.StandStill();
         _movementSystem.SetCanMove(false);
@@ -91,11 +94,20 @@ public class Enemy : MonoBehaviour
 
     public void Win()
     {
-        if (!_validEnemy) return;
+        if (!_alive) return;
 
         ChangeState(EnemyState.Dancing);
 
         _animator.SetTrigger("Win");
+    }
+
+    public void Equip(bool equip)
+    {
+        if (_wearingEquipment == equip) return;
+
+        _wearingEquipment = equip;
+
+        OnEquip?.Invoke(equip);
     }
 }
 
@@ -104,11 +116,6 @@ public enum EnemyState
 {
     None = -1,
     Roaming = 0,
-    Attacking = 1,
-    Pursuing = 7,
-    SwappingGuns = 2,
-    LookingForHealth = 3,
-    Airborne = 4,
-    Dying = 5,
-    Dancing = 6,
+    Dying = 1,
+    Dancing = 2,
 }

@@ -9,6 +9,8 @@ public class MinigameTrigger : MonoBehaviour
 
     [SerializeField] private PlayerDetector _playerDetector;
 
+    [SerializeField] private Player _player;
+
     public JobSectorAreaSO JobSectorAreaSO { get { return _jobSectorAreaSO; } set { _jobSectorAreaSO = value; } }
 
 

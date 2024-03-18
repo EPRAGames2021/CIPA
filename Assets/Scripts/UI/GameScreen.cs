@@ -14,6 +14,9 @@ namespace EPRA.Utilities
 
         [SerializeField] private TextMeshProUGUI _dayText;
 
+        [SerializeField] private CurrencySO _dayScore;
+        [SerializeField] private TextMeshProUGUI _dayScoreText;
+
 
         private void Start()
         {
@@ -30,6 +33,8 @@ namespace EPRA.Utilities
         {
             _settingsButton.onClick.AddListener(OpenSettings);
 
+            _dayScore.OnChangeValue += UpdateDayScore;
+
             AdaptToGameState(GameManager.Instance.State);
             GameManager.Instance.OnGameStateChanged += AdaptToGameState;
         }
@@ -38,6 +43,8 @@ namespace EPRA.Utilities
         {
             _settingsButton.onClick.RemoveAllListeners();
 
+            _dayScore.OnChangeValue -= UpdateDayScore;
+
             GameManager.Instance.OnGameStateChanged -= AdaptToGameState;
         }
 
@@ -45,6 +52,11 @@ namespace EPRA.Utilities
         private void OpenSettings()
         {
             CanvasManager.Instance.OpenMenu(MenuType.SettingsMenu);
+        }
+
+        private void UpdateDayScore(int score)
+        {
+            _dayScoreText.text = "score: " + score;
         }
 
         private void AdaptToGameState(GameState gameState)
