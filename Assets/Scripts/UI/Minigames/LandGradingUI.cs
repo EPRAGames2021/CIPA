@@ -17,8 +17,6 @@ public class LandGradingUI : MonoBehaviour
 
     [SerializeField] private bool _minigameFinished;
 
-    [SerializeField] private JobSectorAreaSO _jobSectorAreaSO;
-
     [Header("GD area")]
     [SerializeField] private float _fillIdealValue;
     [SerializeField] private float _fillOffsetTolerance;
@@ -83,19 +81,11 @@ public class LandGradingUI : MonoBehaviour
     {
         if (Mathf.Abs(_fillValue - _fillIdealValue) < _fillOffsetTolerance)
         {
-            Debug.Log("Congrats");
-
-            GameManager.Instance.UpdateGameState(GameState.PausedState);
-            CanvasManager.Instance.OpenMenu(MenuType.VictoryMenu);
-
-            _jobSectorAreaSO.FinishDay();
+            JobAreaManager.Instance.MinigameSuccessed();
         }
         else
         {
-            Debug.Log("Sorry bro");
-
-            GameManager.Instance.UpdateGameState(GameState.PausedState);
-            CanvasManager.Instance.OpenMenu(MenuType.GameOverMenu);
+            JobAreaManager.Instance.MinigameFailed();
         }
 
         gameObject.SetActive(false);

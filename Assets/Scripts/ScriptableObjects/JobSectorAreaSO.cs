@@ -11,9 +11,13 @@ namespace EPRA.Utilities
 
         [SerializeField] private int _day;
 
+        [Header("Because days start on 0, last day will always be Total Days - 1")]
         [SerializeField] private int _totalDays;
 
         public int Day => _day;
+        public int TotalDays => _totalDays;
+        public int FinalDay => _totalDays - 1;
+        public bool IsFinalDay => _day == FinalDay;
 
 
         public event System.Action OnDayEnded;
@@ -27,7 +31,10 @@ namespace EPRA.Utilities
 
         public void FinishDay()
         {
-            _day++;
+            if (!IsFinalDay)
+            {
+                _day++;
+            }
 
             OnDayEnded?.Invoke();
 

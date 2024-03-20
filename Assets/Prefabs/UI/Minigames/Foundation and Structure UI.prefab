@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 484340020832170243}
   - component: {fileID: 645938044210595791}
   m_Layer: 5
-  m_Name: Land Grading UI
+  m_Name: Foundation and Structure UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -212,7 +212,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3558531473107775178}
   - component: {fileID: 3558531473107775180}
-  - component: {fileID: 7887540789149553495}
+  - component: {fileID: 6203673347279883687}
   - component: {fileID: 3558531473107775181}
   m_Layer: 5
   m_Name: MenuName
@@ -249,7 +249,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3558531473107775179}
   m_CullTransparentMesh: 1
---- !u!114 &7887540789149553495
+--- !u!114 &6203673347279883687
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _txtMesh: {fileID: 3558531473107775181}
-  _key: landGradingName
+  _key: foundationAndStructureName
 --- !u!114 &3558531473107775181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,7 +283,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: _land grading
+  m_text: _foundation and structure
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -310,7 +310,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 115.4
+  m_fontSize: 111.65
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

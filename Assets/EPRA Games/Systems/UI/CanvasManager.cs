@@ -180,5 +180,6 @@ namespace EPRA.Utilities
         GameOverMenu = 2,
         VictoryMenu = 3,
         AreaSelectionMenu = 4,
+        DayScoreMenu = 5,
     }
 }

@@ -34,7 +34,7 @@ public class DodgeableTruck : MonoBehaviour
 
     private void InitiateTruckMovement()
     {
-        Debug.Log("Truck movement started");
+        //Debug.Log("Truck movement started");
 
         _animator.SetTrigger("Reverse");
     }
