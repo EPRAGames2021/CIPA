@@ -1,3 +1,4 @@
+using Cinemachine;
 using EPRA.Utilities;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,7 +8,10 @@ public class JobAreaManager : MonoBehaviour
 {
     [SerializeField] private JobSectorAreaSO _jobSectorSO;
 
-    [SerializeField] private MinigameTrigger _miniGameTrigger;
+    [SerializeField] private List<GameObject> _minigameContextObjects;
+    [SerializeField] private List<GameObject> _minigamesUIs;
+    [SerializeField] private CinemachineVirtualCamera _minigameCamera;
+    [SerializeField] private PlayerDetector _playerDetector;
 
     [SerializeField] private Player _player;
 
@@ -34,11 +38,22 @@ public class JobAreaManager : MonoBehaviour
     private void Init()
     {
         _dayScore.SetCurrencyValue(0);
-
-        _miniGameTrigger.JobSectorAreaSO = _jobSectorSO;
-
+        
         GameManager.Instance.UpdateGameState(GameState.GameState);
         CanvasManager.Instance.GameScreen.SetDay(_jobSectorSO.Day);
+
+        for (int i = 0; i < _minigameContextObjects.Count; i++)
+        {
+            _minigameContextObjects[i].SetActive(i == _jobSectorSO.Day);
+        }
+
+        for (int i = 0; i < _minigamesUIs.Count; i++)
+        {
+            _minigamesUIs[i].SetActive(false);
+        }
+
+
+        _playerDetector.OnPlayerDetected += InitiateMinigame;
 
         _player.HealthSystem.OnDied += PlayerDied;
         _player.OnEquip += EquipPlayer;
@@ -51,8 +66,15 @@ public class JobAreaManager : MonoBehaviour
 
     private void Finish()
     {
+        _playerDetector.OnPlayerDetected -= InitiateMinigame;
+
         _player.HealthSystem.OnDied -= PlayerDied;
         _player.OnEquip -= EquipPlayer;
+
+        foreach (TrafficCone trafficCone in _trafficConeList)
+        {
+            trafficCone.OnDisplaced -= PlayerHitTrafficCone;
+        }
     }
 
 
@@ -79,6 +101,18 @@ public class JobAreaManager : MonoBehaviour
             {
                 trafficCone.OnDisplaced -= PlayerHitTrafficCone;
             }
+        }
+    }
+
+    private void InitiateMinigame()
+    {
+        GameManager.Instance.UpdateGameState(GameState.MiniGameState);
+
+        _minigameCamera.Priority = 10;
+
+        for (int i = 0; i < _minigamesUIs.Count; i++)
+        {
+            _minigamesUIs[i].SetActive(i == _jobSectorSO.Day);
         }
     }
 
