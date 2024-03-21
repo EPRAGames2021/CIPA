@@ -12,7 +12,6 @@ public class JobScoreMenu : MenuController
     [SerializeField] private CurrencySO _dayScore;
     [SerializeField] private TextMeshProUGUI _dayScoreText;
 
-    [SerializeField] private DayScoreListSO _dayScoreList;
     [SerializeField] private JobSectorAreaSO _jobSectorArea;
 
     private void OnEnable()
@@ -55,21 +54,23 @@ public class JobScoreMenu : MenuController
         if (JobAreaManager.Instance == null) return;
 
         _jobSectorArea = JobAreaManager.Instance.JobSectorAreaSO;
-        _dayScoreList = JobAreaManager.Instance.DayScoreList;
 
         _dayScoreText.text = "";
 
         if (!_jobSectorArea.IsFinalDay)
         {
-            //_dayScoreText.text = "_score of the day: " + _dayScore.Value.ToString();
             _dayScoreText.text = LanguageManager.GetTranslation("scoreOfTheDay", _dayScore.Value);
         }
         else
         {
             for (int i = 0; i < _jobSectorArea.TotalDays; i++)
             {
-                //_dayScoreText.text += "_score of day " + i + ": " + _dayScoreList.Scores[i].ToString() + "\n";
-                _dayScoreText.text += LanguageManager.GetTranslation("scoreOfTheDayScore", i, _dayScoreList.Scores[i]) + "\n";
+                //_dayScoreText.text += LanguageManager.GetTranslation("scoreOfTheDayScore", i, _jobSectorArea.Jobs[i].JobName + ": " + _jobSectorArea.Jobs[i].Score + "\n");
+                //_dayScoreText.text += LanguageManager.GetTranslation("dayJobScore", i, _jobSectorArea.Jobs[i].KeyName, _jobSectorArea.Jobs[i].Score + "\n");
+
+                _dayScoreText.text += LanguageManager.GetTranslation("gameDay", i) + " | ";
+                _dayScoreText.text += LanguageManager.GetTranslation(_jobSectorArea.Jobs[i].KeyName) + " | ";
+                _dayScoreText.text += LanguageManager.GetTranslation("gameScore", _jobSectorArea.Jobs[i].Score) + "\n";
             }
         }
 

@@ -9,15 +9,14 @@ namespace EPRA.Utilities
     {
         [SerializeField] private JobSector _jobSectorAreaSO;
 
+        [SerializeField] private List<JobSO> _jobs;
+
         [SerializeField] private int _day;
 
-        [Header("Because days start on 0, last day will always be Total Days - 1")]
-        [SerializeField] private int _totalDays;
-
+        public List<JobSO> Jobs => _jobs;
         public int Day => _day;
-        public int TotalDays => _totalDays;
-        public int FinalDay => _totalDays - 1;
-        public bool IsFinalDay => _day == FinalDay;
+        public int TotalDays => _jobs.Count;
+        public bool IsFinalDay => _day == TotalDays - 1;
 
 
         public event System.Action OnDayEnded;
@@ -37,6 +36,13 @@ namespace EPRA.Utilities
             }
 
             OnDayEnded?.Invoke();
+
+            SaveData();
+        }
+
+        public void SetScoreToDay(int day, int score)
+        {
+            _jobs[day].SetScore(score);
 
             SaveData();
         }

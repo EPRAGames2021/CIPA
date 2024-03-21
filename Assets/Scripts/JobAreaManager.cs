@@ -20,7 +20,8 @@ public class JobAreaManager : MonoBehaviour
     [SerializeField] private List<TrafficCone> _trafficConeList;
 
     [SerializeField] private CurrencySO _dayScore;
-    [SerializeField] private DayScoreListSO _dayScoreList;
+
+    [SerializeField] private bool _arrivedAtMinigameLocation;
 
     [Header("Scores and penalties")]
     [SerializeField] private int _equipEquipmentScore;
@@ -32,7 +33,6 @@ public class JobAreaManager : MonoBehaviour
 
 
     public JobSectorAreaSO JobSectorAreaSO => _jobSectorSO;
-    public DayScoreListSO DayScoreList => _dayScoreList;
 
 
     private void Awake()
@@ -66,6 +66,8 @@ public class JobAreaManager : MonoBehaviour
     private void Init()
     {
         _dayScore.SetCurrencyValue(0);
+
+        _arrivedAtMinigameLocation = false;
         
         GameManager.Instance.UpdateGameState(GameState.GameState);
         CanvasManager.Instance.GameScreen.SetDay(_jobSectorSO.Day);
@@ -81,7 +83,7 @@ public class JobAreaManager : MonoBehaviour
         }
 
 
-        _playerDetector.OnPlayerDetected += InitiateMinigame;
+        _playerDetector.OnPlayerDetected += InitiateMinigameProcess;
 
         _player.HealthSystem.OnDied += PlayerDied;
         _player.OnEquip += EquipPlayer;
@@ -94,7 +96,7 @@ public class JobAreaManager : MonoBehaviour
 
     private void Finish()
     {
-        _playerDetector.OnPlayerDetected -= InitiateMinigame;
+        _playerDetector.OnPlayerDetected -= InitiateMinigameProcess;
 
         _player.HealthSystem.OnDied -= PlayerDied;
         _player.OnEquip -= EquipPlayer;
@@ -132,9 +134,10 @@ public class JobAreaManager : MonoBehaviour
         }
     }
 
-    private void InitiateMinigame()
+    private void InitiateMinigameProcess()
     {
-        GameManager.Instance.UpdateGameState(GameState.MiniGameState);
+        _arrivedAtMinigameLocation = true;
+        _minigameCamera.Priority = 10;
 
         if (_player.WearingEquipment)
         {
@@ -145,7 +148,12 @@ public class JobAreaManager : MonoBehaviour
             _dayScore.RemoveFromCurrency(_arriveAtJobAreaUnequippedPenalty);
         }
 
-        _minigameCamera.Priority = 10;
+        InitiateMinigame();
+    }
+
+    private void InitiateMinigame()
+    {
+        GameManager.Instance.UpdateGameState(GameState.MiniGameState);
 
         for (int i = 0; i < _minigamesUIs.Count; i++)
         {
@@ -155,11 +163,9 @@ public class JobAreaManager : MonoBehaviour
 
     public void MinigameSuccessed()
     {
-        Debug.Log("Congrats");
-
         _dayScore.AddToCurrency(_completeJobScore);
 
-        _dayScoreList.SetScoreToDay(_jobSectorSO.Day, _dayScore.Value);
+        _jobSectorSO.SetScoreToDay(_jobSectorSO.Day, _dayScore.Value);
 
         GameManager.Instance.UpdateGameState(GameState.PausedState);
         CanvasManager.Instance.OpenMenu(MenuType.VictoryMenu);
@@ -170,12 +176,22 @@ public class JobAreaManager : MonoBehaviour
 
     public void MinigameFailed()
     {
-        Debug.Log("Sorry bro");
-
         _dayScore.RemoveFromCurrency(_failJobPenalty);
 
         GameManager.Instance.UpdateGameState(GameState.PausedState);
         CanvasManager.Instance.OpenMenu(MenuType.GameOverMenu);
+    }
+
+    public void RestartJob()
+    {
+        if (_arrivedAtMinigameLocation)
+        {
+            InitiateMinigame();
+        }
+        else
+        {
+            SceneLoader.Instance.ReloadLevel();
+        }
     }
 
 }
