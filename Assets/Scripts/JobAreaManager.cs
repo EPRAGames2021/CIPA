@@ -137,7 +137,7 @@ public class JobAreaManager : MonoBehaviour
     private void InitiateMinigameProcess()
     {
         _arrivedAtMinigameLocation = true;
-        _minigameCamera.Priority = 10;
+        _minigameCamera.Priority = 11;
 
         if (_player.WearingEquipment)
         {
