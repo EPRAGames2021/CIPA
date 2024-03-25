@@ -39,7 +39,8 @@ namespace EPRA.Utilities
 
         private void RestartGame()
         {
-            SceneLoader.Instance.ReloadLevel();
+            //SceneLoader.Instance.ReloadLevel();
+            JobAreaManager.Instance.RestartJob();
 
             CanvasManager.Instance.CloseMenu(Menu);
         }

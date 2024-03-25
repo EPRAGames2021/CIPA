@@ -21,9 +21,7 @@ namespace EPRA.Utilities
 
         private void OnEnable()
         {
-#if !UNITY_EDITOR
-        LoadValue();
-#endif
+            LoadValue();
         }
 
 

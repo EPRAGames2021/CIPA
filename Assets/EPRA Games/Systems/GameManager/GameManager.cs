@@ -58,5 +58,6 @@ namespace EPRA.Utilities
         MainMenuState = 0,
         GameState = 1,
         PausedState = 2,
+        MiniGameState = 3,
     }
 }

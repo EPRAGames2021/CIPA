@@ -10,7 +10,7 @@ namespace EPRA.Utilities
     {
         [SerializeField] private Button _mainMenuButton;
         [SerializeField] private Button _nextDayButton;
-    
+
         private void Start()
         {
             Init();

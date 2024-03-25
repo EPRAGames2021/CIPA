@@ -33,6 +33,13 @@ namespace EPRA.Utilities
             CloseAllMenus();
 
             OpenMenu(MenuType.MainMenu);
+
+            GameManager.Instance.OnGameStateChanged += AdaptToGameState;
+        }
+
+        private void OnDestroy()
+        {
+            GameManager.Instance.OnGameStateChanged -= AdaptToGameState;
         }
 
 
@@ -46,6 +53,11 @@ namespace EPRA.Utilities
             {
                 Destroy(gameObject);
             }
+        }
+
+        private void AdaptToGameState(GameState gameState)
+        {
+            FloatingJoystick.gameObject.SetActive(gameState == GameState.GameState);
         }
 
 
@@ -168,5 +180,6 @@ namespace EPRA.Utilities
         GameOverMenu = 2,
         VictoryMenu = 3,
         AreaSelectionMenu = 4,
+        DayScoreMenu = 5,
     }
 }

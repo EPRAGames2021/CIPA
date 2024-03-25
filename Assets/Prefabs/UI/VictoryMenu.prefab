@@ -225,8 +225,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3558531473107775178}
   - component: {fileID: 3558531473107775180}
-  - component: {fileID: 3558531473107775181}
   - component: {fileID: 5132067728072225442}
+  - component: {fileID: 3558531473107775181}
   m_Layer: 5
   m_Name: Menu Name
   m_TagString: Untagged
@@ -262,6 +262,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3558531473107775179}
   m_CullTransparentMesh: 1
+--- !u!114 &5132067728072225442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3558531473107775179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f29791aec5a0c3643b6bed00649257a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _txtMesh: {fileID: 3558531473107775181}
+  _key: victoryMessage
 --- !u!114 &3558531473107775181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,20 +365,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &5132067728072225442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3558531473107775179}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f29791aec5a0c3643b6bed00649257a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _txtMesh: {fileID: 3558531473107775181}
-  _key: victoryMessage
 --- !u!1 &6753931805618043415
 GameObject:
   m_ObjectHideFlags: 0

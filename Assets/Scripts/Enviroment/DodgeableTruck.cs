@@ -20,6 +20,14 @@ public class DodgeableTruck : MonoBehaviour
         Finish();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<HealthSystem>() != null)
+        {
+            other.GetComponent<HealthSystem>().TakeDamage(2000);
+        }
+    }
+
 
     private void Init()
     {
@@ -34,7 +42,7 @@ public class DodgeableTruck : MonoBehaviour
 
     private void InitiateTruckMovement()
     {
-        Debug.Log("Truck movement started");
+        //Debug.Log("Truck movement started");
 
         _animator.SetTrigger("Reverse");
     }

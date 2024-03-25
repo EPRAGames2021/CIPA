@@ -9,11 +9,14 @@ namespace EPRA.Utilities
     {
         [SerializeField] private JobSector _jobSectorAreaSO;
 
+        [SerializeField] private List<JobSO> _jobs;
+
         [SerializeField] private int _day;
 
-        [SerializeField] private int _totalDays;
-
+        public List<JobSO> Jobs => _jobs;
         public int Day => _day;
+        public int TotalDays => _jobs.Count;
+        public bool IsFinalDay => _day == TotalDays - 1;
 
 
         public event System.Action OnDayEnded;
@@ -27,9 +30,19 @@ namespace EPRA.Utilities
 
         public void FinishDay()
         {
-            _day++;
+            if (!IsFinalDay)
+            {
+                _day++;
+            }
 
             OnDayEnded?.Invoke();
+
+            SaveData();
+        }
+
+        public void SetScoreToDay(int day, int score)
+        {
+            _jobs[day].SetScore(score);
 
             SaveData();
         }
