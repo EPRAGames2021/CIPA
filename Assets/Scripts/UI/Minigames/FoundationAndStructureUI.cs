@@ -8,6 +8,9 @@ using UnityEngine.UI;
 public class FoundationAndStructureUI : MonoBehaviour
 {
     [Header("Dev area")]
+    [SerializeField] private GameObject _ingredientsPanel;
+    [SerializeField] private GameObject _mixPanel;
+
     [SerializeField] private Slider _mixSlider;
 
     [SerializeField] private float _averageSpeed;
@@ -72,6 +75,9 @@ public class FoundationAndStructureUI : MonoBehaviour
 
     private void Init()
     {
+        //_ingredientsPanel.SetActive(true);
+        //_mixPanel.SetActive(false);
+
         _averageSpeed = 0;
         _speedLogs.Clear();
 
