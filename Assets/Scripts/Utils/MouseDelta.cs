@@ -30,7 +30,7 @@ public class MouseDelta : MonoBehaviour
 
         _lastMousePosition = currentMousePosition;
 
-        _speed = _distance * Time.deltaTime;
+        _speed = _distance / Time.deltaTime;
     }
 
 
