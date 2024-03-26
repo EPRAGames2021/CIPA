@@ -12,7 +12,7 @@ public class JobAreaManager : MonoBehaviour
 
     [SerializeField] private List<GameObject> _minigameContextObjects;
     [SerializeField] private List<GameObject> _minigamesUIs;
-    [SerializeField] private CinemachineVirtualCamera _minigameCamera;
+    [SerializeField] private CinemachineVirtualCamera _playerCamera;
     [SerializeField] private PlayerDetector _playerDetector;
 
     [SerializeField] private Player _player;
@@ -137,7 +137,7 @@ public class JobAreaManager : MonoBehaviour
     private void InitiateMinigameProcess()
     {
         _arrivedAtMinigameLocation = true;
-        _minigameCamera.Priority = 11;
+        _playerCamera.Priority = 9;
 
         if (_player.WearingEquipment)
         {
