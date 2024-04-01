@@ -1,7 +1,5 @@
-using EPRA.Utilities;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using EPRA.Utilities;
 
 public class DodgeableTruck : MonoBehaviour
 {
@@ -18,14 +16,6 @@ public class DodgeableTruck : MonoBehaviour
     private void OnDestroy()
     {
         Finish();
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.GetComponent<HealthSystem>() != null)
-        {
-            other.GetComponent<HealthSystem>().TakeDamage(2000);
-        }
     }
 
 

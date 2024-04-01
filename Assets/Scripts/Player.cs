@@ -1,13 +1,8 @@
-using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private EnemyState _state = EnemyState.None;
+    [SerializeField] private CharacterState _state = CharacterState.None;
 
     [SerializeField] private bool _alive;
     [SerializeField] private bool _wearingEquipment;
@@ -21,10 +16,10 @@ public class Player : MonoBehaviour
     public HealthSystem HealthSystem => _healthSystem;
     public MovementSystem MovementSystem => _movementSystem;
 
-    public EnemyState State => _state;
+    public CharacterState State => _state;
     public bool WearingEquipment => _wearingEquipment;
 
-    public event System.Action<EnemyState> OnStateChange;
+    public event System.Action<CharacterState> OnStateChange;
     public event System.Action OnDied;
     public event System.Action<bool> OnEquip;
 
@@ -50,7 +45,7 @@ public class Player : MonoBehaviour
         _alive = true;
         _wearingEquipment = false;
 
-        ChangeState(EnemyState.Roaming);
+        ChangeState(CharacterState.Roaming);
 
         //this must not be here but I'm too lazy to fix this properly
         _animator.updateMode = AnimatorUpdateMode.Normal;
@@ -61,10 +56,10 @@ public class Player : MonoBehaviour
         _healthSystem.OnDied -= Die;
     }
 
-    public void ChangeState(EnemyState state)
+    public void ChangeState(CharacterState state)
     {
-        if (State == EnemyState.Dying) return;
-        if (State == EnemyState.Dancing) return;
+        if (State == CharacterState.Dying) return;
+        if (State == CharacterState.Dancing) return;
 
         if (_state != state)
         {
@@ -85,7 +80,7 @@ public class Player : MonoBehaviour
 
         OnDied?.Invoke();
 
-        ChangeState(EnemyState.Dying);
+        ChangeState(CharacterState.Dying);
 
         _animator.SetTrigger("Die");
 
@@ -96,7 +91,7 @@ public class Player : MonoBehaviour
     {
         if (!_alive) return;
 
-        ChangeState(EnemyState.Dancing);
+        ChangeState(CharacterState.Dancing);
 
         _animator.SetTrigger("Win");
     }
@@ -112,7 +107,7 @@ public class Player : MonoBehaviour
 }
 
 
-public enum EnemyState
+public enum CharacterState
 {
     None = -1,
     Roaming = 0,

@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 23997034398582790}
   - component: {fileID: 64250023159880668}
   - component: {fileID: 54021542400560538}
-  - component: {fileID: 4434978112411055055}
   - component: {fileID: 3258169779612626912}
+  - component: {fileID: 2526215062162292304}
   m_Layer: 0
   m_Name: Traffic_Cone_1B
   m_TagString: Untagged
@@ -117,19 +117,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4434978112411055055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1338360841380902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 942bc6d4124da7044bca97c06c9a660b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _displaced: 0
 --- !u!65 &3258169779612626912
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -143,3 +130,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.8800001, y: 1.0787096, z: 0.8800001}
   m_Center: {x: 0.000002861023, y: 0.5393548, z: -0.00000023841858}
+--- !u!114 &2526215062162292304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1338360841380902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c246ac461a6c06641bd2fc63b0b4cc1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hasBeenHit: 0
+  _boxColliderTrigger: {fileID: 3258169779612626912}
+  _dayScore: {fileID: 11400000, guid: 99ccc02f4e9ff5b49b3ee8e31cea93c4, type: 2}
+  _bumpPenalty: 20

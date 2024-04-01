@@ -1,8 +1,7 @@
-using Cinemachine;
-using EPRA.Utilities;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
+using EPRA.Utilities;
 
 public class JobAreaManager : MonoBehaviour
 {
@@ -17,8 +16,6 @@ public class JobAreaManager : MonoBehaviour
 
     [SerializeField] private Player _player;
 
-    [SerializeField] private List<TrafficCone> _trafficConeList;
-
     [SerializeField] private CurrencySO _dayScore;
 
     [SerializeField] private bool _arrivedAtMinigameLocation;
@@ -28,7 +25,6 @@ public class JobAreaManager : MonoBehaviour
     [SerializeField] private int _arriveAtJobAreaScore;
     [SerializeField] private int _completeJobScore;
     [SerializeField] private int _arriveAtJobAreaUnequippedPenalty;
-    [SerializeField] private int _hitTrafficConePenalty;
     [SerializeField] private int _failJobPenalty;
 
 
@@ -87,11 +83,6 @@ public class JobAreaManager : MonoBehaviour
 
         _player.HealthSystem.OnDied += PlayerDied;
         _player.OnEquip += EquipPlayer;
-
-        foreach (TrafficCone trafficCone in _trafficConeList)
-        {
-            trafficCone.OnDisplaced += PlayerHitTrafficCone;
-        }
     }
 
     private void Finish()
@@ -100,11 +91,6 @@ public class JobAreaManager : MonoBehaviour
 
         _player.HealthSystem.OnDied -= PlayerDied;
         _player.OnEquip -= EquipPlayer;
-
-        foreach (TrafficCone trafficCone in _trafficConeList)
-        {
-            trafficCone.OnDisplaced -= PlayerHitTrafficCone;
-        }
     }
 
 
@@ -118,19 +104,6 @@ public class JobAreaManager : MonoBehaviour
         if (equip)
         {
             _dayScore.AddToCurrency(_equipEquipmentScore);
-        }
-    }
-
-    private void PlayerHitTrafficCone(TrafficCone trafficCone)
-    {
-        _dayScore.RemoveFromCurrency(_hitTrafficConePenalty);
-
-        for (int i = 0; i < _trafficConeList.Count; i++)
-        {
-            if (_trafficConeList[i] == trafficCone)
-            {
-                trafficCone.OnDisplaced -= PlayerHitTrafficCone;
-            }
         }
     }
 
