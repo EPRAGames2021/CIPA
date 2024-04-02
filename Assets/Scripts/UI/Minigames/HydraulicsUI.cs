@@ -1,18 +1,57 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
+[RequireComponent(typeof(ScreenTouchController))]
 public class HydraulicsUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Button _confirmButton;
+
+    [Header("Touch handler")]
+    [SerializeField] private ScreenTouchController _screenTouchController;
+
+
+    private void OnValidate()
     {
-        
+        if (_screenTouchController == null)
+        {
+            _screenTouchController = GetComponent<ScreenTouchController>();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        
+        Camera.main.orthographic = true;
+    }
+
+    private void Start()
+    {
+        Init();
+    }
+
+    private void OnDisable()
+    {
+        Camera.main.orthographic = false;
+    }
+
+    private void OnDestroy()
+    {
+        Finish();
+    }
+
+
+    private void Init()
+    {
+        //_confirmButton.onClick.AddListener(CheckPipes);
+    }
+
+    private void Finish()
+    {
+        //_confirmButton.onClick.RemoveAllListeners();
+    }
+
+
+    private void CheckPipes()
+    {
+
     }
 }
