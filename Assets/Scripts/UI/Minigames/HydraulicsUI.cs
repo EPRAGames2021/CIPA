@@ -18,9 +18,19 @@ public class HydraulicsUI : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        Camera.main.orthographic = true;
+    }
+
     private void Start()
     {
         Init();
+    }
+
+    private void OnDisable()
+    {
+        Camera.main.orthographic = false;
     }
 
     private void OnDestroy()
