@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,15 +9,17 @@ public class Pipe : MonoBehaviour
 
     [SerializeField] private int _rotation;
     [SerializeField] private bool _attached;
+    [SerializeField] private bool _fullyConnected;
     [SerializeField] private PipeSlot _slot;
     [SerializeField] private PipeSlot _previousSlot;
+    [SerializeField] private List<PipeConnector> _pipeConnectors;
 
     [Header("Debug")]
-    [SerializeField] private bool _clicked;
     [SerializeField] private float _holdTime;
     [SerializeField] private Vector3 _touchPosition;
 
     public bool Attached { get { return _attached; } set { _attached = value; } }
+    public bool FullyConnected => _fullyConnected;
     public PipeSlot Slot { get { return _slot; } set { _slot = value; } }
     public PipeSlot PreviousSlot { get { return _previousSlot; } set { _previousSlot = value; } }
 
@@ -35,13 +38,10 @@ public class Pipe : MonoBehaviour
         Finish();
     }
 
-    private void OnMouseDown()
-    {
-        _clicked = true;
-    }
-
     private void OnMouseDrag()
     {
+        if (CheckForFixed()) return;
+
         _holdTime += Time.deltaTime;
 
         if (_holdTime > 0.2f)
@@ -59,6 +59,8 @@ public class Pipe : MonoBehaviour
 
     private void OnMouseUp()
     {
+        if (CheckForFixed()) return;
+
         if (Attached && _holdTime <= 0.2f)
         {
             Rotate();
@@ -76,11 +78,10 @@ public class Pipe : MonoBehaviour
             }
         }
 
-        _clicked = false;
         _holdTime = 0.0f;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter(Collider other)
     {
         other.TryGetComponent(out PipeSlot slot);
 
@@ -93,13 +94,47 @@ public class Pipe : MonoBehaviour
 
     private void Init()
     {
-        _clicked = false;
         _holdTime = 0.0f;
+
+        for (int i = 0; i < _pipeConnectors.Count; i++)
+        {
+            _pipeConnectors[i].OnConnected += CheckConnection;
+        }
     }
 
     private void Finish()
     {
+        for (int i = 0; i < _pipeConnectors.Count; i++)
+        {
+            _pipeConnectors[i].OnConnected -= CheckConnection;
+        }
+    }
 
+    private void CheckConnection()
+    {
+        for (int i = 0; i < _pipeConnectors.Count; i++)
+        {
+            if (!_pipeConnectors[i].Connected)
+            {
+                _fullyConnected = false;
+
+                return;
+            }
+        }
+
+        _fullyConnected = true;
+    }
+
+    private bool CheckForFixed()
+    {
+        if (_type == PipeType.Starting || _type == PipeType.Ending)
+        {
+            Debug.Log($"Pipe {this} is fixed.");
+
+            return true;
+        }
+
+        return false;
     }
 
 
@@ -109,6 +144,7 @@ public class Pipe : MonoBehaviour
 
         transform.eulerAngles = new(transform.rotation.x, transform.rotation.y, transform.rotation.z + _rotation);
     }
+
 }
 
 public enum PipeType

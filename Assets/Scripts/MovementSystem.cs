@@ -24,7 +24,7 @@ public class MovementSystem : MonoBehaviour
     private bool _canMove;
     private bool _movimentBlocked;
 
-    private Animator _animator;
+    [SerializeField] private Animator _animator;
     [HideInInspector] public Rigidbody _rb;
 
     private void Start()
@@ -61,7 +61,7 @@ public class MovementSystem : MonoBehaviour
     private void InitializeComponents()
     {
         _rb = GetComponent<Rigidbody>();
-        _animator = GetComponent<Animator>();
+        //_animator = GetComponent<Animator>();
 
         _joystick = CanvasManager.Instance.FloatingJoystick;
     }

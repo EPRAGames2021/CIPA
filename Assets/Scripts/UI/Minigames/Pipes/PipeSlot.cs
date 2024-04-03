@@ -18,18 +18,6 @@ public class PipeSlot : MonoBehaviour
         Finish();
     }
 
-    private void OnMouseDown()
-    {
-        //if (_pipe != null)
-        //{
-        //    _pipe.Rotate();
-        //}
-        //else
-        //{
-        //    Debug.Log("Pipe is null");
-        //}
-    }
-
 
     private void Init()
     {

@@ -41,17 +41,19 @@ public class HydraulicsUI : MonoBehaviour
 
     private void Init()
     {
-        //_confirmButton.onClick.AddListener(CheckPipes);
+        _confirmButton.onClick.AddListener(CheckPipes);
     }
 
     private void Finish()
     {
-        //_confirmButton.onClick.RemoveAllListeners();
+        _confirmButton.onClick.RemoveAllListeners();
     }
 
 
     private void CheckPipes()
     {
+        JobAreaManager.Instance.MinigameSuccessed();
 
+        gameObject.SetActive(false);
     }
 }
