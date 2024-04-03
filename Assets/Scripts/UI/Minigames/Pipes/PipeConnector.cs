@@ -3,20 +3,44 @@ using UnityEngine;
 
 public class PipeConnector : MonoBehaviour
 {
+    [SerializeField] private ConnectionColor _connectionColor;
+    [SerializeField] private MeshRenderer _meshRenderer;
+    [SerializeField] private Material[] _materials;
+
     [SerializeField] private PipeConnector _otherConnector;
 
     [SerializeField] private bool _connected;
 
+    public ConnectionColor ConnectionColor => _connectionColor;
     public bool Connected => _connected;
+    public bool FreeConnection => _connectionColor == ConnectionColor.None;
+
 
     public event System.Action OnConnected;
+
+
+    private void OnValidate()
+    {
+        if (_connectionColor == ConnectionColor.None)
+        {
+            _meshRenderer.enabled = false;
+
+            _meshRenderer.material = null;
+        }
+        else
+        {
+            _meshRenderer.enabled = true;
+
+            _meshRenderer.material = _materials[(int)_connectionColor - 1];
+        }
+    }
 
 
     private void OnTriggerStay(Collider other)
     {
         other.TryGetComponent(out PipeConnector connector);
 
-        if (connector != null)
+        if (connector != null && _connectionColor == connector.ConnectionColor)
         {
             _otherConnector = connector;
 
@@ -77,4 +101,13 @@ public class PipeConnector : MonoBehaviour
             }
         }
     }
+}
+
+public enum ConnectionColor
+{
+    None = 0,
+    Red = 1,
+    Green = 2,
+    Blue = 3,
+    Yellow = 4,
 }

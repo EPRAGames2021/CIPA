@@ -5,11 +5,10 @@ using UnityEngine.UI;
 
 public class Pipe : MonoBehaviour
 {
-    [SerializeField] private PipeType _type;
-
     [SerializeField] private int _rotation;
     [SerializeField] private bool _attached;
     [SerializeField] private bool _fullyConnected;
+    [SerializeField] private bool _static;
     [SerializeField] private PipeSlot _slot;
     [SerializeField] private PipeSlot _previousSlot;
     [SerializeField] private List<PipeConnector> _pipeConnectors;
@@ -21,6 +20,7 @@ public class Pipe : MonoBehaviour
 
     public bool Attached { get { return _attached; } set { _attached = value; } }
     public bool FullyConnected => _fullyConnected;
+    public bool Static => _static;
     public PipeSlot Slot { get { return _slot; } set { _slot = value; } }
     public PipeSlot PreviousSlot { get { return _previousSlot; } set { _previousSlot = value; } }
 
@@ -40,7 +40,7 @@ public class Pipe : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if (CheckForFixed()) return;
+        if (_static) return;
 
         _holdTime += Time.deltaTime;
 
@@ -59,7 +59,7 @@ public class Pipe : MonoBehaviour
 
     private void OnMouseUp()
     {
-        if (CheckForFixed()) return;
+        if (_static) return;
 
         if (Attached && _holdTime <= _timeUntilDrag)
         {
@@ -125,18 +125,6 @@ public class Pipe : MonoBehaviour
         _fullyConnected = true;
     }
 
-    private bool CheckForFixed()
-    {
-        if (_type == PipeType.Starting || _type == PipeType.Ending)
-        {
-            Debug.Log($"Pipe {this} is fixed.");
-
-            return true;
-        }
-
-        return false;
-    }
-
 
     public void Rotate()
     {
@@ -158,13 +146,4 @@ public class Pipe : MonoBehaviour
         //CheckConnection();
     }
 
-}
-
-public enum PipeType
-{
-    Starting = 0,
-    Ending = 1,
-    Straight = 2,
-    LShapedLeft = 3,
-    LShapedRight = 4,
 }

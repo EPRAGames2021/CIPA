@@ -248,13 +248,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 470186601}
     m_Modifications:
+    - target: {fileID: 469266101, guid: 7c68fe207f82a28468dd4becd8c0cebd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4917225471697010114, guid: 7c68fe207f82a28468dd4becd8c0cebd, type: 3}
       propertyPath: m_Name
       value: Electrics
       objectReference: {fileID: 0}
     - target: {fileID: 4917225471697010114, guid: 7c68fe207f82a28468dd4becd8c0cebd, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4917225471697010115, guid: 7c68fe207f82a28468dd4becd8c0cebd, type: 3}
       propertyPath: m_RootOrder
@@ -312,6 +316,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4917225471697010114, guid: 7c68fe207f82a28468dd4becd8c0cebd, type: 3}
   m_PrefabInstance: {fileID: 30004621}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &30004624 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1499570844813692195, guid: 7c68fe207f82a28468dd4becd8c0cebd, type: 3}
+  m_PrefabInstance: {fileID: 30004621}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab2615ac6b1a9d24cb03da68593457c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &36025701
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10981,7 +10996,7 @@ PrefabInstance:
     - target: {fileID: 6464541057741257999, guid: efb887fbe6f13a64ab924b11271f6e7e, type: 3}
       propertyPath: _concreteBarrel
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1682441745}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efb887fbe6f13a64ab924b11271f6e7e, type: 3}
 --- !u!224 &923210903 stripped
@@ -13875,6 +13890,10 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 4494455467084293931, guid: 2fb81f487ecad35439cd8ace6e58d949, type: 3}
+      propertyPath: _wireGrid
+      value: 
+      objectReference: {fileID: 30004624}
     - target: {fileID: 5372683359717795024, guid: 2fb81f487ecad35439cd8ace6e58d949, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -20098,6 +20117,11 @@ Transform:
 --- !u!1 &1682441744 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1104447143475807060, guid: 16a81356ba3380041b0eb887d806c559, type: 3}
+  m_PrefabInstance: {fileID: 1682441742}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1682441745 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7957170524382406994, guid: 16a81356ba3380041b0eb887d806c559, type: 3}
   m_PrefabInstance: {fileID: 1682441742}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1687684861

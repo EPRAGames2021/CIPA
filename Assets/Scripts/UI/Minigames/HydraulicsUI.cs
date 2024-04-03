@@ -1,25 +1,11 @@
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(ScreenTouchController))]
 public class HydraulicsUI : MonoBehaviour
 {
     [SerializeField] private Button _confirmButton;
 
     [SerializeField] private PipeGrid _pipeGrid;
-
-    [Header("Touch handler")]
-    [SerializeField] private ScreenTouchController _screenTouchController;
-
-
-    private void OnValidate()
-    {
-        if (_screenTouchController == null)
-        {
-            _screenTouchController = GetComponent<ScreenTouchController>();
-        }
-    }
 
     private void OnEnable()
     {
