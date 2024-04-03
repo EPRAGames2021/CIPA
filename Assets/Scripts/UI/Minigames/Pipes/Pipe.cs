@@ -26,7 +26,6 @@ public class Pipe : MonoBehaviour
 
 
     public event System.Action OnPipeDragged;
-    public event System.Action<Pipe> OnPipeDropped;
 
 
     private void Start()

@@ -1,3 +1,4 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,6 +24,8 @@ public class HydraulicsUI : MonoBehaviour
     private void OnEnable()
     {
         Camera.main.orthographic = true;
+
+        _pipeGrid.ResetGrid();
     }
 
     private void Start()
@@ -54,9 +57,17 @@ public class HydraulicsUI : MonoBehaviour
 
     private void CheckPipes()
     {
-        //JobAreaManager.Instance.MinigameSuccessed();
-        _pipeGrid.CheckForCorrectGrid();
+        if (_pipeGrid.CheckForCorrectGrid())
+        {
+            JobAreaManager.Instance.MinigameSuccessed();
 
-        //gameObject.SetActive(false);
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            JobAreaManager.Instance.MinigameFailed();
+
+            gameObject.SetActive(false);
+        }
     }
 }

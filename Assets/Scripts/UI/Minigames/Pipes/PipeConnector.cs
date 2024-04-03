@@ -41,7 +41,9 @@ public class PipeConnector : MonoBehaviour
     {
         Vector3 scale = transform.localScale;
 
-        Gizmos.color = Color.yellow;
+        if (_connected) Gizmos.color = Color.green;
+        else Gizmos.color = Color.red;
+
         Gizmos.DrawWireCube(transform.position, scale);
     }
 
@@ -49,7 +51,7 @@ public class PipeConnector : MonoBehaviour
     {
         Vector3 scale = transform.localScale;
 
-        Gizmos.color = Color.green;
+        Gizmos.color = Color.blue;
         Gizmos.DrawWireCube(transform.position, scale);
     }
 

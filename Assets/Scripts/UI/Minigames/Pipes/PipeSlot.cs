@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PipeSlot : MonoBehaviour
 {
+    [SerializeField] private Pipe _startingPipe;
+
     [SerializeField] private Pipe _pipe;
 
     public bool Full => _pipe != null;
@@ -22,13 +24,13 @@ public class PipeSlot : MonoBehaviour
 
     private void Init()
     {
-        //if (_pipe != null) AttachPipe(_pipe);
-
         Pipe pipe = GetComponentInChildren<Pipe>();
 
         if (pipe != null)
         {
             _pipe = pipe;
+
+            _startingPipe = pipe;
 
             AttachPipe(_pipe);
         }
@@ -44,10 +46,6 @@ public class PipeSlot : MonoBehaviour
     {
         _pipe = pipe;
 
-        //_pipe.Attached = true;
-        //_pipe.Slot = this;
-        //_pipe.PreviousSlot = this;
-
         _pipe.Attach(this);
 
         _pipe.transform.SetParent(transform);
@@ -58,14 +56,20 @@ public class PipeSlot : MonoBehaviour
 
     public void DeattachPipe()
     {
-        _pipe.OnPipeDragged -= DeattachPipe;
+        if (_pipe == null) return;
 
-        //_pipe.Attached = false;
-        //_pipe.Slot = null;
+        _pipe.OnPipeDragged -= DeattachPipe;
 
         _pipe.Attach(null);
 
         _pipe = null;
     }
 
+    public void ResetSlot()
+    {
+        if (_startingPipe != null)
+        {
+            AttachPipe(_startingPipe);
+        }
+    }
 }
