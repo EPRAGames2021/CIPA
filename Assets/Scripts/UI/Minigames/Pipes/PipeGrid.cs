@@ -32,4 +32,30 @@ public class PipeGrid : MonoBehaviour
     {
 
     }
+
+
+    public bool CheckForCorrectGrid()
+    {
+        List<Pipe> pipes = new();
+
+        foreach (PipeSlot slot in _slots)
+        {
+            if (slot.Full)
+            {
+                pipes.Add(slot.Pipe);
+            }
+        }
+
+        _gridIsCorrect = true;
+
+        foreach (Pipe pipe in pipes)
+        {
+            if (!pipe.FullyConnected)
+            {
+                _gridIsCorrect = false;
+            }
+        }
+
+        return _gridIsCorrect;
+    }
 }

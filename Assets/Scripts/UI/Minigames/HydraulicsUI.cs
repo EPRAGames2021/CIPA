@@ -6,6 +6,8 @@ public class HydraulicsUI : MonoBehaviour
 {
     [SerializeField] private Button _confirmButton;
 
+    [SerializeField] private PipeGrid _pipeGrid;
+
     [Header("Touch handler")]
     [SerializeField] private ScreenTouchController _screenTouchController;
 
@@ -52,8 +54,9 @@ public class HydraulicsUI : MonoBehaviour
 
     private void CheckPipes()
     {
-        JobAreaManager.Instance.MinigameSuccessed();
+        //JobAreaManager.Instance.MinigameSuccessed();
+        _pipeGrid.CheckForCorrectGrid();
 
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 }

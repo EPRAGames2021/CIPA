@@ -15,6 +15,7 @@ public class Pipe : MonoBehaviour
     [SerializeField] private List<PipeConnector> _pipeConnectors;
 
     [Header("Debug")]
+    [SerializeField] private float _timeUntilDrag;
     [SerializeField] private float _holdTime;
     [SerializeField] private Vector3 _touchPosition;
 
@@ -44,7 +45,7 @@ public class Pipe : MonoBehaviour
 
         _holdTime += Time.deltaTime;
 
-        if (_holdTime > 0.2f)
+        if (_holdTime > _timeUntilDrag)
         {
             if (Attached)
             {
@@ -61,12 +62,12 @@ public class Pipe : MonoBehaviour
     {
         if (CheckForFixed()) return;
 
-        if (Attached && _holdTime <= 0.2f)
+        if (Attached && _holdTime <= _timeUntilDrag)
         {
             Rotate();
         }
 
-        if (_holdTime > 0.2f)
+        if (_holdTime > _timeUntilDrag)
         {
             if (_slot != null)
             {
@@ -143,6 +144,19 @@ public class Pipe : MonoBehaviour
         _rotation = (_rotation - 90) % 360;
 
         transform.eulerAngles = new(transform.rotation.x, transform.rotation.y, transform.rotation.z + _rotation);
+
+        //CheckConnection();
+    }
+
+    public void Attach(PipeSlot pipeSlot)
+    {
+        Attached = pipeSlot != null;
+
+        Slot = pipeSlot;
+
+        if (pipeSlot != null) PreviousSlot = pipeSlot;
+
+        //CheckConnection();
     }
 
 }

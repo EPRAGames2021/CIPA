@@ -1,9 +1,11 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PipeConnector : MonoBehaviour
 {
+    [SerializeField] private PipeConnector _otherConnector;
+
     [SerializeField] private bool _connected;
-    [SerializeField] private bool _connectedInternal;
 
     public bool Connected => _connected;
 
@@ -14,25 +16,23 @@ public class PipeConnector : MonoBehaviour
     {
         other.TryGetComponent(out PipeConnector connector);
 
-        _connectedInternal = connector != null;
-
         if (connector != null)
         {
-            if (!_connected)
-            {
-                _connected = true;
+            _otherConnector = connector;
 
-                OnConnected?.Invoke();
-            }
+            UpdateConnection();
         }
-        else
-        {
-            if (_connected)
-            {
-                _connected = false;
+    }
 
-                OnConnected?.Invoke();
-            }
+    private void OnTriggerExit(Collider other)
+    {
+        other.TryGetComponent(out PipeConnector connector);
+
+        if (_otherConnector == connector)
+        {
+            _otherConnector = null;
+
+            UpdateConnection();
         }
     }
 
@@ -51,5 +51,28 @@ public class PipeConnector : MonoBehaviour
 
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(transform.position, scale);
+    }
+
+
+    private void UpdateConnection()
+    {
+        if (_otherConnector != null)
+        {
+            if (!_connected)
+            {
+                _connected = true;
+
+                OnConnected?.Invoke();
+            }
+        }
+        else
+        {
+            if (_connected)
+            {
+                _connected = false;
+
+                OnConnected?.Invoke();
+            }
+        }
     }
 }

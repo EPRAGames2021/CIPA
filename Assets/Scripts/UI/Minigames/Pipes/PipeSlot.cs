@@ -7,6 +7,7 @@ public class PipeSlot : MonoBehaviour
     [SerializeField] private Pipe _pipe;
 
     public bool Full => _pipe != null;
+    public Pipe Pipe => _pipe;
 
     private void Start()
     {
@@ -21,7 +22,16 @@ public class PipeSlot : MonoBehaviour
 
     private void Init()
     {
-        if (_pipe != null) AttachPipe(_pipe);
+        //if (_pipe != null) AttachPipe(_pipe);
+
+        Pipe pipe = GetComponentInChildren<Pipe>();
+
+        if (pipe != null)
+        {
+            _pipe = pipe;
+
+            AttachPipe(_pipe);
+        }
     }
 
     private void Finish()
@@ -34,9 +44,11 @@ public class PipeSlot : MonoBehaviour
     {
         _pipe = pipe;
 
-        _pipe.Attached = true;
-        _pipe.Slot = this;
-        _pipe.PreviousSlot = this;
+        //_pipe.Attached = true;
+        //_pipe.Slot = this;
+        //_pipe.PreviousSlot = this;
+
+        _pipe.Attach(this);
 
         _pipe.transform.SetParent(transform);
         _pipe.transform.position = new(transform.position.x, transform.position.y, transform.position.z - 0.1f);
@@ -48,8 +60,10 @@ public class PipeSlot : MonoBehaviour
     {
         _pipe.OnPipeDragged -= DeattachPipe;
 
-        _pipe.Attached = false;
-        _pipe.Slot = null;
+        //_pipe.Attached = false;
+        //_pipe.Slot = null;
+
+        _pipe.Attach(null);
 
         _pipe = null;
     }
