@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 5896173363969109026}
   - component: {fileID: 6932712631575823372}
   - component: {fileID: 1269548697962316982}
+  - component: {fileID: 2715640015855742602}
   - component: {fileID: 2347604503688887899}
   - component: {fileID: 2081758143343296426}
   m_Layer: 5
@@ -140,15 +141,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa40237d77eba16498e2cbd860c5f3d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _draggableObject: {fileID: 2715640015855742602}
+  _fullyConnected: 0
+  _pipeConnectors:
+  - {fileID: 646505923928416471}
+--- !u!114 &2715640015855742602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5638929849089109399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efb154a86f670524083c50bfaff9eef9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _rotation: 0
   _attached: 0
-  _fullyConnected: 0
   _static: 0
   _slot: {fileID: 0}
   _previousSlot: {fileID: 0}
-  _pipeConnectors:
-  - {fileID: 646505923928416471}
-  _timeUntilDrag: 0.25
+  _timeUntilDrag: 0
   _holdTime: 0
   _touchPosition: {x: 0, y: 0, z: 0}
 --- !u!65 &2347604503688887899

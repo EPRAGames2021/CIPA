@@ -6,9 +6,9 @@ public class PipeGrid : MonoBehaviour
 {
     [SerializeField] private bool _gridIsCorrect;
 
-    [SerializeField] private List<PipeSlot> _minigameTableSlots = new();
+    [SerializeField] private List<ObjectSlot> _minigameTableSlots = new();
 
-    [SerializeField] private List<PipeSlot> _initialDisplaySlots = new();
+    [SerializeField] private List<ObjectSlot> _initialDisplaySlots = new();
 
 
     public bool GridIsCorrect => _gridIsCorrect;
@@ -27,7 +27,12 @@ public class PipeGrid : MonoBehaviour
 
     public void ResetGrid()
     {
-        foreach (PipeSlot slot in _initialDisplaySlots)
+        foreach (ObjectSlot slot in _minigameTableSlots)
+        {
+            slot.ResetSlot();
+        }
+
+        foreach (ObjectSlot slot in _initialDisplaySlots)
         {
             slot.ResetSlot();
         }
@@ -38,11 +43,11 @@ public class PipeGrid : MonoBehaviour
     {
         List<Pipe> pipes = new();
 
-        foreach (PipeSlot slot in _minigameTableSlots)
+        foreach (ObjectSlot slot in _minigameTableSlots)
         {
             if (slot.Full)
             {
-                pipes.Add(slot.Pipe);
+                pipes.Add(slot.Object.GetComponent<Pipe>());
             }
         }
 
