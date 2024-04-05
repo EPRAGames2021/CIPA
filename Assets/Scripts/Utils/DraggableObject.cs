@@ -5,6 +5,7 @@ public class DraggableObject : MonoBehaviour
     [SerializeField] private int _rotation;
     [SerializeField] private bool _attached;
     [SerializeField] private bool _static;
+    [SerializeField] private bool _lockedRotation;
 
     [SerializeField] private ObjectSlot _slot;
     [SerializeField] private ObjectSlot _previousSlot;
@@ -13,15 +14,20 @@ public class DraggableObject : MonoBehaviour
     [SerializeField] private float _timeUntilDrag;
     [SerializeField] private float _holdTime;
     [SerializeField] private Vector3 _touchPosition;
+    [SerializeField] private bool _moveInZ;
+    [SerializeField] private bool _rotateInY;
 
     public int Rotation => _rotation;
     public bool Attached { get { return _attached; } set { _attached = value; } }
     public bool Static => _static;
+    public bool LockedRotation => _lockedRotation;
     public ObjectSlot Slot { get { return _slot; } set { _slot = value; } }
     public ObjectSlot PreviousSlot { get { return _previousSlot; } set { _previousSlot = value; } }
 
 
     public event System.Action OnObjectDragged;
+    public event System.Action OnObjectAttached;
+    public event System.Action OnObjectRotated;
 
 
     private void Start()
@@ -44,7 +50,8 @@ public class DraggableObject : MonoBehaviour
 
             _touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            transform.position = new Vector3(_touchPosition.x, _touchPosition.y, transform.position.z);
+            if (!_moveInZ) transform.position = new Vector3(_touchPosition.x, _touchPosition.y, transform.position.z);
+            else transform.position = new Vector3(_touchPosition.x, transform.position.y, _touchPosition.z);
         }
     }
 
@@ -90,9 +97,14 @@ public class DraggableObject : MonoBehaviour
 
     public void Rotate()
     {
+        if (_lockedRotation) return;
+
         _rotation = (_rotation - 90) % 360;
 
-        transform.eulerAngles = new(transform.rotation.x, transform.rotation.y, transform.rotation.z + _rotation);
+        if (!_rotateInY) transform.eulerAngles = new(transform.rotation.x, transform.rotation.y, transform.rotation.z + _rotation);
+        else transform.eulerAngles = new(transform.rotation.x, transform.rotation.y + _rotation, transform.rotation.z);
+
+        OnObjectRotated?.Invoke();
     }
 
     public void Attach(ObjectSlot objectSlot)
@@ -102,5 +114,7 @@ public class DraggableObject : MonoBehaviour
         Slot = objectSlot;
 
         if (objectSlot != null) PreviousSlot = objectSlot;
+
+        OnObjectAttached?.Invoke();
     }
 }

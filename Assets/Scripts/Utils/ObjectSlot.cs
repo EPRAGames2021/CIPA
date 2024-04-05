@@ -49,7 +49,7 @@ public class ObjectSlot : MonoBehaviour
         _draggableObject.Attach(this);
 
         _draggableObject.transform.SetParent(transform);
-        _draggableObject.transform.position = new(transform.position.x, transform.position.y, transform.position.z - 0.1f);
+        _draggableObject.transform.position = new(transform.position.x, transform.position.y, transform.position.z);
 
         _draggableObject.OnObjectDragged += DetachObject;
     }
