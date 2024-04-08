@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,8 +16,6 @@ public class ConcreteMixPanel : MonoBehaviour
 
     [SerializeField] private bool _mixFinished;
 
-    [SerializeField] private GameObject _concreteBarrel;
-
     [Header("GD area")]
     [SerializeField] private float _mixMaxTime;
     [SerializeField] private float _mixMaxTimeWrongSpeed;
@@ -31,6 +28,7 @@ public class ConcreteMixPanel : MonoBehaviour
     [SerializeField] private ScreenTouchController _screenTouchController;
     [SerializeField] private MouseDelta _mouseDelta;
 
+    public float AverageSpeed => _averageSpeed;
 
     public event System.Action<bool> OnMixSucceeded;
 
@@ -98,8 +96,6 @@ public class ConcreteMixPanel : MonoBehaviour
         }
 
         _averageSpeed = total / _speedLogs.Count;
-
-        _concreteBarrel.transform.Rotate(0, 0, _averageSpeed);
     }
 
     private void Mix()

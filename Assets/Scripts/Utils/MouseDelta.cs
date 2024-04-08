@@ -20,7 +20,7 @@ public class MouseDelta : MonoBehaviour
         Init();
     }
 
-    void Update()
+    private void Update()
     {
         Vector2 currentMousePosition = Input.mousePosition;
 

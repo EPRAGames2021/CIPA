@@ -28,24 +28,16 @@ public class ScreenTouchController : MonoBehaviour
         {
             _firstPress = true;
         }
-        else
-        {
-            //Debug.Log("Is Pointer Over UI Element: " + IsPointerOverUIElement() + " | " + "Get Mouse Button Down: " + Input.GetMouseButtonDown(0));
-        }
     }
 
     public bool DetectHolding()
     {
         if (Input.GetMouseButton(0) && _firstPress && !IsPointerOverUIElement())
         {
-            //Debug.Log("Touching");
-
             return true;
         }
         else
         {
-            //Debug.Log("Not touching");
-
             return false;
         }
     }
