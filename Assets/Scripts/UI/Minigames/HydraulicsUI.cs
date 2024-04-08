@@ -47,11 +47,15 @@ public class HydraulicsUI : MonoBehaviour
         {
             JobAreaManager.Instance.MinigameSuccessed();
 
+            _pipeGrid.LockGrid();
+
             gameObject.SetActive(false);
         }
         else
         {
             JobAreaManager.Instance.MinigameFailed();
+
+            _pipeGrid.LockGrid();
 
             gameObject.SetActive(false);
         }

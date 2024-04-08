@@ -29,6 +29,7 @@ public class ConcreteMixPanel : MonoBehaviour
     [SerializeField] private MouseDelta _mouseDelta;
 
     public float AverageSpeed => _averageSpeed;
+    public bool MixFinished => _mixFinished;
 
     public event System.Action<bool> OnMixSucceeded;
 

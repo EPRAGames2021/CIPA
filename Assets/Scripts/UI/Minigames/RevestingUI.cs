@@ -12,7 +12,7 @@ public class RevestingUI : MonoBehaviour
     private void OnEnable()
     {
         _virtualCamera.m_Lens.Orthographic = true;
-        _virtualCamera.m_Lens.OrthographicSize = 30;
+        _virtualCamera.m_Lens.OrthographicSize = 25f;
 
         _tileGrid.ResetGrid();
     }
@@ -51,11 +51,15 @@ public class RevestingUI : MonoBehaviour
         {
             JobAreaManager.Instance.MinigameSuccessed();
 
+            _tileGrid.LockGrid();
+
             gameObject.SetActive(false);
         }
         else
         {
             JobAreaManager.Instance.MinigameFailed();
+
+            _tileGrid.LockGrid();
 
             gameObject.SetActive(false);
         }

@@ -6,6 +6,7 @@ public class DraggableObject : MonoBehaviour
     [SerializeField] private bool _attached;
     [SerializeField] private bool _static;
     [SerializeField] private bool _lockedRotation;
+    [SerializeField] private bool _locked;
 
     [SerializeField] private ObjectSlot _slot;
     [SerializeField] private ObjectSlot _previousSlot;
@@ -20,7 +21,8 @@ public class DraggableObject : MonoBehaviour
     public int Rotation => _rotation;
     public bool Attached { get { return _attached; } set { _attached = value; } }
     public bool Static => _static;
-    public bool LockedRotation => _lockedRotation;
+    public bool LockedRotation { get { return _lockedRotation; } set { _lockedRotation = value; } }
+    public bool Locked { get { return _locked; } set { _locked = value; } }
     public ObjectSlot Slot { get { return _slot; } set { _slot = value; } }
     public ObjectSlot PreviousSlot { get { return _previousSlot; } set { _previousSlot = value; } }
 
@@ -37,7 +39,7 @@ public class DraggableObject : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if (_static) return;
+        if (_static || _locked) return;
 
         _holdTime += Time.deltaTime;
 

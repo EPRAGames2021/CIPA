@@ -73,5 +73,12 @@ public class ObjectSlot : MonoBehaviour
         {
             AttachObject(_startingObject);
         }
+
+        if (Full) _draggableObject.Locked = false;
+    }
+
+    public virtual void LockSlot()
+    {
+        if (Full) _draggableObject.Locked = true;
     }
 }

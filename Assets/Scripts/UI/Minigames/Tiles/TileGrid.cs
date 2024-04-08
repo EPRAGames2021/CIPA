@@ -35,6 +35,19 @@ public class TileGrid : MonoBehaviour
         }
     }
 
+    public void LockGrid()
+    {
+        foreach (ObjectSlot slot in _tileSlot)
+        {
+            slot.LockSlot();
+        }
+
+        foreach (ObjectSlot slot in _displaySlots)
+        {
+            slot.LockSlot();
+        }
+    }
+
 
     public bool CheckForCorrectGrid()
     {

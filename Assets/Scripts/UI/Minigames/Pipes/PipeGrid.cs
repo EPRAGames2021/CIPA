@@ -38,6 +38,19 @@ public class PipeGrid : MonoBehaviour
         }
     }
 
+    public void LockGrid()
+    {
+        foreach (ObjectSlot slot in _minigameTableSlots)
+        {
+            slot.LockSlot();
+        }
+
+        foreach (ObjectSlot slot in _initialDisplaySlots)
+        {
+            slot.LockSlot();
+        }
+    }
+
 
     public bool CheckForCorrectGrid()
     {

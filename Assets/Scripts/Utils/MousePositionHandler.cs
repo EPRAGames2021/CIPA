@@ -10,6 +10,9 @@ public class MousePositionHandler : MonoBehaviour
     [SerializeField] private float _heightPercent;
     [SerializeField] private float _widthPercent;
 
+    public float HeightPercent => _heightPercent;
+    public float WidthPercent => _widthPercent;
+
     private void OnValidate()
     {
         if (_mouseDelta == null) _mouseDelta = GetComponent<MouseDelta>();

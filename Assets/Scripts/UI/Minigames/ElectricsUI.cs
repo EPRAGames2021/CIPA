@@ -47,11 +47,15 @@ public class ElectricsUI : MonoBehaviour
         {
             JobAreaManager.Instance.MinigameSuccessed();
 
+            _wireGrid.LockGrid();
+
             gameObject.SetActive(false);
         }
         else
         {
             JobAreaManager.Instance.MinigameFailed();
+
+            _wireGrid.LockGrid();
 
             gameObject.SetActive(false);
         }

@@ -31,9 +31,8 @@ public class FinishingUI : MonoBehaviour
     [SerializeField] private MouseDelta _mouseDelta;
 
     public float AverageSpeed => _averageSpeed;
+    public bool PaintFinished => _paintFinished;
     public float CompletionPercentage => (_paintTime / _paintMaxTime) * 100;
-
-    public event System.Action<bool> OnPaintSucceeded;
 
 
     private void OnValidate()
@@ -121,15 +120,19 @@ public class FinishingUI : MonoBehaviour
     {
         if (_paintTime >= _paintMaxTime)
         {
-            OnPaintSucceeded?.Invoke(true);
+            JobAreaManager.Instance.MinigameSuccessed();
 
             _paintFinished = true;
+
+            gameObject.SetActive(false);
         }
         else if (_paintTimeWrongSpeed >= _paintMaxTimeWrongSpeed)
         {
-            OnPaintSucceeded?.Invoke(false);
+            JobAreaManager.Instance.MinigameFailed();
 
             _paintFinished = true;
+
+            gameObject.SetActive(false);
         }
     }
 
