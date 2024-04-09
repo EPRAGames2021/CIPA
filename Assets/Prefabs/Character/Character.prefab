@@ -429,12 +429,11 @@ GameObject:
   - component: {fileID: 6853027721232337904}
   - component: {fileID: 6853027721232337917}
   - component: {fileID: 6853027721232337916}
-  - component: {fileID: 6853027721232337915}
   - component: {fileID: 8773940894981897254}
   - component: {fileID: 6853027721232337913}
   - component: {fileID: 6853027721232337912}
   m_Layer: 0
-  m_Name: BlueAgent
+  m_Name: Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -487,26 +486,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
---- !u!95 &6853027721232337915
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6853027721232335878}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 10af294a8bdfb3f4bbffceb8f9d685ec, type: 3}
-  m_Controller: {fileID: 9100000, guid: 04c94e4367674994bb8f9cd787105cd2, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &8773940894981897254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -554,10 +533,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _joystick: {fileID: 0}
-  _moveSpeed: 0
+  _moveSpeed: 5
   _smoothSpeed: 0
   _inputDirection: {x: 0, y: 0, z: 0}
-  _turnSpeed: 0
+  _turnSpeed: 15
+  _animator: {fileID: 4997531372555551442}
   _rb: {fileID: 0}
 --- !u!1 &7323023846113124790
 GameObject:

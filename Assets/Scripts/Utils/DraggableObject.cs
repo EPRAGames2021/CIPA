@@ -99,7 +99,7 @@ public class DraggableObject : MonoBehaviour
 
     public void Rotate()
     {
-        if (_lockedRotation) return;
+        if (_lockedRotation || _locked) return;
 
         _rotation = (_rotation - 90) % 360;
 

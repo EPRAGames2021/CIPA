@@ -68,7 +68,7 @@ public class JobScoreMenu : MenuController
                 //_dayScoreText.text += LanguageManager.GetTranslation("scoreOfTheDayScore", i, _jobSectorArea.Jobs[i].JobName + ": " + _jobSectorArea.Jobs[i].Score + "\n");
                 //_dayScoreText.text += LanguageManager.GetTranslation("dayJobScore", i, _jobSectorArea.Jobs[i].KeyName, _jobSectorArea.Jobs[i].Score + "\n");
 
-                _dayScoreText.text += LanguageManager.GetTranslation("gameDay", i) + " | ";
+                _dayScoreText.text += LanguageManager.GetTranslation("gameDay", i + 1) + " | ";
                 _dayScoreText.text += LanguageManager.GetTranslation(_jobSectorArea.Jobs[i].KeyName) + " | ";
                 _dayScoreText.text += LanguageManager.GetTranslation("gameScore", _jobSectorArea.Jobs[i].Score) + "\n";
             }

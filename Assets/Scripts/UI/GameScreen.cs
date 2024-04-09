@@ -86,7 +86,7 @@ namespace EPRA.Utilities
         {
             _day = day;
 
-            _dayText.text = LanguageManager.GetTranslation("gameDay", _day);
+            _dayText.text = LanguageManager.GetTranslation("gameDay", _day + 1);
         }
     }
 }
