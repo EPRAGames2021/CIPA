@@ -108,8 +108,8 @@ public class SceneLoader : MonoBehaviour
 
         OnSceneIDLoaded?.Invoke(sceneID);
                 
-        Progress = 0f;
-        OnProgressChanges?.Invoke(Progress);
+        //Progress = 0f;
+        //OnProgressChanges?.Invoke(Progress);
         OnLoadIsInProgress?.Invoke(false);
     }
 }
