@@ -77,7 +77,14 @@ public class LoadingScreen : MonoBehaviour
     {
         if (display)
         {
-            PickRandomTip();
+            if (LanguageManager.LanguagesLoaded)
+            {
+                PickRandomTip();
+            }
+            else
+            {
+                StartCoroutine(PickRandomTipDelayed());
+            }
 
             _continueButton.interactable = false;
 
@@ -103,17 +110,20 @@ public class LoadingScreen : MonoBehaviour
         _loadingScreenContainer.SetActive(false);
     }
 
+    private IEnumerator PickRandomTipDelayed()
+    {
+        _tips.text = string.Empty;
+
+        yield return new WaitUntil(() => LanguageManager.LanguagesLoaded);
+
+        PickRandomTip();
+    }
+
     private void PickRandomTip()
     {
         int random = Random.Range(0, _tipsAmount);
         string key = "tip" + random;
 
         _tips.text = LanguageManager.GetTranslation(key);
-    }
-
-
-    public void Activate()
-    {
-        _loadingScreenContainer.SetActive(true);
     }
 }

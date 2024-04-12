@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -21,7 +20,15 @@ namespace EPRA.Utilities
         
         private void OnEnable()
         {
-            GetTranslation();
+            if (!LanguageManager.LanguagesLoaded)
+            {
+                StartCoroutine(GetTranslationDelayed());
+            }
+            else
+            {
+                GetTranslation();
+            }
+
 
             LanguageManager.OnLanguageChanged += ChangeLanguage;
         }
@@ -42,6 +49,14 @@ namespace EPRA.Utilities
         {
             _txtMesh.text = LanguageManager.GetTranslation(_key);
         }
+
+        private IEnumerator GetTranslationDelayed()
+        {
+            _txtMesh.text = string.Empty;
+
+            yield return new WaitUntil(() => LanguageManager.LanguagesLoaded);
+
+            GetTranslation();
+        }
     }
 }
-
