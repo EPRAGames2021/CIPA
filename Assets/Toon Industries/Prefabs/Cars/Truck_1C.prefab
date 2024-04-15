@@ -25,12 +25,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1131570447881338}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.0408534, y: 0.54599965, z: 0.0000038146968}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.0408534, y: 0.54599965, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4824098328976188}
+  m_Father: {fileID: 4096193784749992}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33362193889169802
@@ -108,12 +108,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1159716166826742}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.0408534, y: 0.54599965, z: 0.0000038146968}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.0408534, y: 0.54599965, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4824098328976188}
+  m_Father: {fileID: 4096193784749992}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33701520669912904
@@ -196,6 +196,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4227311916683924}
+  - {fileID: 4772024004661910}
+  - {fileID: 4682374899732516}
+  - {fileID: 4534185599763736}
   - {fileID: 4824098328976188}
   - {fileID: 4763356729242422}
   m_Father: {fileID: 0}
@@ -234,6 +238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 5570925567335294262}
+  _controller: {fileID: 0}
 --- !u!1 &1213775674383718
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,12 +264,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1213775674383718}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.0808529, y: 0.5459996, z: 3.1250033}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4824098328976188}
+  m_Father: {fileID: 4096193784749992}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33681703337435854
@@ -342,12 +347,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1292485253878662}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.0808529, y: 0.5459996, z: 3.1250033}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4824098328976188}
+  m_Father: {fileID: 4096193784749992}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33355345163544608
@@ -436,7 +441,7 @@ Transform:
   - {fileID: 1012752818350918586}
   - {fileID: 6688337308758682989}
   m_Father: {fileID: 4096193784749992}
-  m_RootOrder: 1
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33384524340387908
 MeshFilter:
@@ -532,13 +537,9 @@ Transform:
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4227311916683924}
-  - {fileID: 4772024004661910}
-  - {fileID: 4682374899732516}
-  - {fileID: 4534185599763736}
+  m_Children: []
   m_Father: {fileID: 4096193784749992}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33410611029494898
 MeshFilter:
@@ -915,6 +916,10 @@ PrefabInstance:
     - target: {fileID: 111326, guid: 4f41ca4990f496940ab80e19b7e594cd, type: 3}
       propertyPath: m_Name
       value: Sand Fall
+      objectReference: {fileID: 0}
+    - target: {fileID: 111326, guid: 4f41ca4990f496940ab80e19b7e594cd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 455154, guid: 4f41ca4990f496940ab80e19b7e594cd, type: 3}
       propertyPath: m_RootOrder
