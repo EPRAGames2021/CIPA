@@ -9,6 +9,8 @@ namespace EPRA.Utilities
     {
         public static LanguageManager Instance { get; private set; }
 
+        [SerializeField] private static bool _languagesLoaded;
+
         [SerializeField] private Configuration _configuration;
 
         [SerializeField] private SystemLanguage _currentLanguage;
@@ -18,11 +20,17 @@ namespace EPRA.Utilities
         [SerializeField] private TextAsset _defaultLanguage;
 
 
+        public static bool LanguagesLoaded => _languagesLoaded;
+
+
         public static event System.Action<SystemLanguage> OnLanguageChanged;
+        public static event System.Action OnLanguagesLoaded;
 
 
         private void Awake()
         {
+            _languagesLoaded = false;
+
             InitSingleton();
 
             if (_configuration == null)
@@ -35,6 +43,8 @@ namespace EPRA.Utilities
             _currentLanguage = _configuration.TargetLanguage;
 
             ChangeLanguage(_currentLanguage);
+
+            _languagesLoaded = true;
         }
 
         private void OnValidate()
@@ -47,20 +57,6 @@ namespace EPRA.Utilities
             }
 
             ChangeLanguage(_currentLanguage);
-        }
-
-        private void Start()
-        {
-            //if (_configuration == null)
-            //{
-            //    Debug.LogError("Configuration is null");
-            //
-            //    return;
-            //}
-            //
-            //_currentLanguage = _configuration.TargetLanguage;
-            //
-            //ChangeLanguage(_currentLanguage);
         }
 
 
