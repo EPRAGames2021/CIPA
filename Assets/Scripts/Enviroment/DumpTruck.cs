@@ -20,7 +20,7 @@ public class DumpTruck : MonoBehaviour
     {
         if (_controller == null)
         {
-            Debug.Log("Controller is null");
+            //Debug.Log("Controller is null");
 
             return;
         }
