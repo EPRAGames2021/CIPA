@@ -22,17 +22,21 @@ public class LockerTrigger : MonoBehaviour
 
     private void Init()
     {
-        _playerDetector.OnPlayerDetected += InitiateMinigame;
+        _playerDetector.OnPlayerDetected += EquipPlayer;
     }
 
     private void Finish()
     {
-        _playerDetector.OnPlayerDetected -= InitiateMinigame;
+        _playerDetector.OnPlayerDetected -= EquipPlayer;
     }
 
 
-    private void InitiateMinigame()
+    private void EquipPlayer()
     {
-        _player.Equip(true);
+        _player.EquipmentSystem.EquipPlayer(true);
+
+        _playerDetector.gameObject.SetActive(false);
+
+        Vibrator.Vibrate(100);
     }
 }

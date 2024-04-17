@@ -1,4 +1,6 @@
 using UnityEngine;
+using EPRA.Utilities;
+using DG.Tweening;
 
 public class DraggableObject : MonoBehaviour
 {
@@ -10,6 +12,11 @@ public class DraggableObject : MonoBehaviour
 
     [SerializeField] private ObjectSlot _slot;
     [SerializeField] private ObjectSlot _previousSlot;
+
+    [Header("Sound")]
+    [SerializeField] private AudioClipCollection _attachSFX;
+    [SerializeField] private AudioClipCollection _selectSFX;
+    [SerializeField] private AudioClipCollection _rotateSFX;
 
     [Header("Debug")]
     [SerializeField] private float _timeUntilDrag;
@@ -48,6 +55,10 @@ public class DraggableObject : MonoBehaviour
             if (Attached)
             {
                 OnObjectDragged?.Invoke();
+
+                AudioManager.Instance.PlayRandomSFX(_selectSFX);
+
+                transform.DOScale(new Vector3(0.75f, 0.75f, 0.75f), 0.25f);
             }
 
             _touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -79,6 +90,8 @@ public class DraggableObject : MonoBehaviour
         }
 
         _holdTime = 0.0f;
+
+        transform.DOScale(new Vector3(1f, 1f, 1f), 0.25f);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -103,10 +116,13 @@ public class DraggableObject : MonoBehaviour
 
         _rotation = (_rotation - 90) % 360;
 
-        if (!_rotateInY) transform.eulerAngles = new(transform.rotation.x, transform.rotation.y, transform.rotation.z + _rotation);
-        else transform.eulerAngles = new(transform.rotation.x, transform.rotation.y + _rotation, transform.rotation.z);
+        if (!_rotateInY) transform.DORotate(new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z + _rotation), _timeUntilDrag * 0.9f);
+        else transform.DORotate(new Vector3(transform.rotation.x, transform.rotation.y + _rotation, transform.rotation.z), _timeUntilDrag * 0.9f);
 
         OnObjectRotated?.Invoke();
+
+        Vibrator.Vibrate(100);
+        AudioManager.Instance.PlayRandomSFX(_rotateSFX);
     }
 
     public void Attach(ObjectSlot objectSlot)
@@ -118,5 +134,8 @@ public class DraggableObject : MonoBehaviour
         if (objectSlot != null) PreviousSlot = objectSlot;
 
         OnObjectAttached?.Invoke();
+
+        Vibrator.Vibrate(100);
+        AudioManager.Instance.PlayRandomSFX(_attachSFX);
     }
 }

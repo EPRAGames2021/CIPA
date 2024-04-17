@@ -21,6 +21,9 @@ namespace EPRA.Utilities
         [SerializeField] private SystemLanguage _targetLanguage;
         [SerializeField] private int _languageIndex;
 
+        [Header("Default values")]
+        [SerializeField] private SystemLanguage _defaultLanguage;
+
         [Header("Build Settings")]
         [Header("iOS")]
         [SerializeField] private bool _hideHomeButtonOniPhoneX = true;
@@ -69,29 +72,22 @@ namespace EPRA.Utilities
 
             _targetFramerate = DataManager.HasData("TargetFrameRate") ? DataManager.LoadData<int>("TargetFrameRate") : 60;
 
-            _targetLanguage = DataManager.HasData("TargetLanguage") ? DataManager.LoadData<SystemLanguage>("TargetLanguage") : SystemLanguage.English;
+            _targetLanguage = DataManager.HasData("TargetLanguage") ? DataManager.LoadData<SystemLanguage>("TargetLanguage") : _defaultLanguage;
             _languageIndex = DataManager.HasData("LanguageIndex") ? DataManager.LoadData<int>("LanguageIndex") : 0;
         }
 
         private void SaveData()
         {
-            //Debug.Log("CanVibrate" + _canVibrate);
             DataManager.SaveData("CanVibrate", _canVibrate);
 
-            //Debug.Log("CanPlaySFX" + _canPlaySFX);
             DataManager.SaveData("CanPlaySFX", _canPlaySFX);
-            //Debug.Log("SFXVolume" + _SFXVolume);
             DataManager.SaveData("SFXVolume", _SFXVolume);
 
-            //Debug.Log("CanPlayMusic" + _canPlayMusic);
             DataManager.SaveData("CanPlayMusic", _canPlayMusic);
-            //Debug.Log("MusicVolume" + _musicVolume);
             DataManager.SaveData("MusicVolume", _musicVolume);
 
-            //Debug.Log("TargetFrameRate" + _targetFramerate);
             DataManager.SaveData("TargetFrameRate", _targetFramerate);
 
-            //Debug.Log("TargetLanguage" + _targetLanguage);
             DataManager.SaveData("TargetLanguage", _targetLanguage);
             DataManager.SaveData("LanguageIndex", _languageIndex);
         }

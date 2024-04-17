@@ -1741,7 +1741,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6853027721232335878, guid: 413be05e8f44d0345a8b0e7ea9872589, type: 3}
       propertyPath: m_Name
-      value: BlueAgent
+      value: Character
       objectReference: {fileID: 0}
     - target: {fileID: 6853027721232337904, guid: 413be05e8f44d0345a8b0e7ea9872589, type: 3}
       propertyPath: m_RootOrder
@@ -1786,14 +1786,6 @@ PrefabInstance:
     - target: {fileID: 6853027721232337904, guid: 413be05e8f44d0345a8b0e7ea9872589, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6853027721232337912, guid: 413be05e8f44d0345a8b0e7ea9872589, type: 3}
-      propertyPath: _moveSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6853027721232337912, guid: 413be05e8f44d0345a8b0e7ea9872589, type: 3}
-      propertyPath: _turnSpeed
-      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 413be05e8f44d0345a8b0e7ea9872589, type: 3}
@@ -2832,9 +2824,9 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 197474286}
-    - target: {fileID: 836410959565416880, guid: 92050e5bf191e0841a4417fd02ff16b0, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 4.27
+    - target: {fileID: 836410959565667074, guid: 92050e5bf191e0841a4417fd02ff16b0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1659954470072262235, guid: 92050e5bf191e0841a4417fd02ff16b0, type: 3}
       propertyPath: m_RootOrder
@@ -2883,10 +2875,6 @@ PrefabInstance:
     - target: {fileID: 6241158891157392089, guid: 92050e5bf191e0841a4417fd02ff16b0, type: 3}
       propertyPath: m_Name
       value: Reception Area
-      objectReference: {fileID: 0}
-    - target: {fileID: 8343932677780252953, guid: 92050e5bf191e0841a4417fd02ff16b0, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 4.27
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92050e5bf191e0841a4417fd02ff16b0, type: 3}
@@ -6997,6 +6985,9 @@ MonoBehaviour:
   _completeJobScore: 100
   _arriveAtJobAreaUnequippedPenalty: 20
   _failJobPenalty: 20
+  _victorySFX: {fileID: 11400000, guid: 426f606b5029d1945b0773da72c6dd1f, type: 2}
+  _defeatSFX: {fileID: 11400000, guid: a34a6de987ed904438ff3136ed3b7b2b, type: 2}
+  _deathSFX: {fileID: 11400000, guid: 9ef9e84ae60299a4b97e5288ccda057f, type: 2}
 --- !u!1001 &801094818
 PrefabInstance:
   m_ObjectHideFlags: 0

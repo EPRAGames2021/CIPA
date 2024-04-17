@@ -27,6 +27,11 @@ public class JobAreaManager : MonoBehaviour
     [SerializeField] private int _arriveAtJobAreaUnequippedPenalty;
     [SerializeField] private int _failJobPenalty;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioClipCollection _victorySFX;
+    [SerializeField] private AudioClipCollection _defeatSFX;
+    [SerializeField] private AudioClipCollection _deathSFX;
+
 
     public JobSectorAreaSO JobSectorAreaSO => _jobSectorSO;
 
@@ -82,7 +87,7 @@ public class JobAreaManager : MonoBehaviour
         _playerDetector.OnPlayerDetected += InitiateMinigameProcess;
 
         _player.HealthSystem.OnDied += PlayerDied;
-        _player.OnEquip += EquipPlayer;
+        _player.EquipmentSystem.OnEquipped += EquipPlayer;
     }
 
     private void Finish()
@@ -90,13 +95,15 @@ public class JobAreaManager : MonoBehaviour
         _playerDetector.OnPlayerDetected -= InitiateMinigameProcess;
 
         _player.HealthSystem.OnDied -= PlayerDied;
-        _player.OnEquip -= EquipPlayer;
+        _player.EquipmentSystem.OnEquipped -= EquipPlayer;
     }
 
 
     private void PlayerDied()
     {
         CanvasManager.Instance.OpenMenu(MenuType.GameOverMenu);
+        AudioManager.Instance.PlayRandomSFX(_deathSFX);
+        AudioManager.Instance.PlayRandomSFX(_defeatSFX);
     }
 
     private void EquipPlayer(bool equip)
@@ -112,7 +119,7 @@ public class JobAreaManager : MonoBehaviour
         _arrivedAtMinigameLocation = true;
         _playerCamera.Priority = 9;
 
-        if (_player.WearingEquipment)
+        if (_player.EquipmentSystem.WearingEquipment)
         {
             _dayScore.AddToCurrency(_arriveAtJobAreaScore);
         }
@@ -144,6 +151,9 @@ public class JobAreaManager : MonoBehaviour
         CanvasManager.Instance.OpenMenu(MenuType.VictoryMenu);
         CanvasManager.Instance.OpenMenu(MenuType.DayScoreMenu);
 
+        Vibrator.Vibrate(100);
+        AudioManager.Instance.PlayRandomSFX(_victorySFX);
+
         _jobSectorSO.FinishDay();
     }
 
@@ -153,6 +163,9 @@ public class JobAreaManager : MonoBehaviour
 
         GameManager.Instance.UpdateGameState(GameState.PausedState);
         CanvasManager.Instance.OpenMenu(MenuType.GameOverMenu);
+
+        Vibrator.Vibrate(100);
+        AudioManager.Instance.PlayRandomSFX(_defeatSFX);
     }
 
     public void RestartJob()
