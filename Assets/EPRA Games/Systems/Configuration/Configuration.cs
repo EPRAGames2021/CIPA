@@ -2,6 +2,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
+using System.Collections.Generic;
 
 namespace EPRA.Utilities
 {
@@ -21,7 +22,8 @@ namespace EPRA.Utilities
         [SerializeField] private SystemLanguage _targetLanguage;
         [SerializeField] private int _languageIndex;
 
-        [Header("Default values")]
+        [Header("Default values and debug")]
+        [SerializeField] private List<SystemLanguage> _languages;
         [SerializeField] private SystemLanguage _defaultLanguage;
 
         [Header("Build Settings")]
@@ -53,6 +55,8 @@ namespace EPRA.Utilities
         {
             Application.targetFrameRate = _targetFramerate;
 
+            _languageIndex = GetLanguageIndex();
+
             //PlayerSettings.iOS.hideHomeButton = _hideHomeButtonOniPhoneX;
             //PlayerSettings.iOS.deferSystemGesturesMode = _gestureDeferMode;
 
@@ -73,7 +77,7 @@ namespace EPRA.Utilities
             _targetFramerate = DataManager.HasData("TargetFrameRate") ? DataManager.LoadData<int>("TargetFrameRate") : 60;
 
             _targetLanguage = DataManager.HasData("TargetLanguage") ? DataManager.LoadData<SystemLanguage>("TargetLanguage") : _defaultLanguage;
-            _languageIndex = DataManager.HasData("LanguageIndex") ? DataManager.LoadData<int>("LanguageIndex") : 0;
+            //_languageIndex = DataManager.HasData("LanguageIndex") ? DataManager.LoadData<int>("LanguageIndex") : GetLanguageIndex();
         }
 
         private void SaveData()
@@ -193,6 +197,19 @@ namespace EPRA.Utilities
             }
 
             _mixer.SetFloat("MixerVolume", volume);
+        }
+
+        private int GetLanguageIndex()
+        {
+            for (int i = 0; i < _languages.Count; i++)
+            {
+                if (_languages[i] == _defaultLanguage)
+                {
+                    return i;
+                }
+            }
+
+            return 0;
         }
     }
 }
