@@ -55,7 +55,8 @@ namespace EPRA.Utilities
         {
             Application.targetFrameRate = _targetFramerate;
 
-            _languageIndex = GetLanguageIndex();
+            _languageIndex = GetLanguageIndex();            
+            DataManager.SaveData("LanguageIndex", _languageIndex);
 
             //PlayerSettings.iOS.hideHomeButton = _hideHomeButtonOniPhoneX;
             //PlayerSettings.iOS.deferSystemGesturesMode = _gestureDeferMode;
@@ -77,7 +78,7 @@ namespace EPRA.Utilities
             _targetFramerate = DataManager.HasData("TargetFrameRate") ? DataManager.LoadData<int>("TargetFrameRate") : 60;
 
             _targetLanguage = DataManager.HasData("TargetLanguage") ? DataManager.LoadData<SystemLanguage>("TargetLanguage") : _defaultLanguage;
-            //_languageIndex = DataManager.HasData("LanguageIndex") ? DataManager.LoadData<int>("LanguageIndex") : GetLanguageIndex();
+            _languageIndex = DataManager.HasData("LanguageIndex") ? DataManager.LoadData<int>("LanguageIndex") : GetLanguageIndex();
         }
 
         private void SaveData()
