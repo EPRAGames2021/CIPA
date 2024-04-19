@@ -1,18 +1,27 @@
 using UnityEngine;
+using DG.Tweening;
+using EPRA.Utilities;
 
 public class PaintingRoom : MonoBehaviour
 {
+    [SerializeField] private ScreenTouchController _screenTouchController;
     [SerializeField] private MousePositionHandler _mousePositionHandler;
-
-    [SerializeField] private MeshRenderer _paintRenderer;
-
     [SerializeField] private FinishingUI _finishingUI;
 
+    [SerializeField] private MeshRenderer _paintRenderer;
     [SerializeField] private GameObject _inkRoll;
     private float _inkRollX;
     private float _inkRollZ;
     [SerializeField] private float _inkRollMinHeight;
     [SerializeField] private float _inkRollMaxHeight;
+
+    [SerializeField] private bool _painting;
+
+    [Header("Sound")]
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClipCollection _paintingSFX;
+
+
 
     private void OnEnable()
     {
@@ -24,12 +33,25 @@ public class PaintingRoom : MonoBehaviour
         _paintRenderer.material.color = color;
     }
 
-    private void Update()
+    private void Start()
     {
-        UpdateColor();
-        MoveInkRoll();
+        Init();
     }
 
+    private void Update()
+    {
+        _painting = _screenTouchController.DetectHolding();
+
+        UpdateColor();
+        MoveInkRoll();
+        PlaySound();
+    }
+
+
+    private void Init()
+    {
+        _painting = false;
+    }
 
     private void UpdateColor()
     {
@@ -48,6 +70,20 @@ public class PaintingRoom : MonoBehaviour
 
         float height = Remap.RemapValue(_mousePositionHandler.HeightPercent, 0, 100, _inkRollMinHeight, _inkRollMaxHeight);
 
-        _inkRoll.transform.position = new Vector3(_inkRollX, height, _inkRollZ);
+        //_inkRoll.transform.position = new Vector3(_inkRollX, height, _inkRollZ);
+        _inkRoll.transform.DOMove(new Vector3(_inkRollX, height, _inkRollZ), 0.5f);
+    }
+
+    private void PlaySound()
+    {
+        if (_finishingUI.PaintFinished)
+        {
+            _audioSource.Stop();
+
+            return;
+        }
+
+        if (_painting && !_audioSource.isPlaying) AudioManager.Instance.PlayRandomSFX(_audioSource, _paintingSFX);
+        if (!_painting && _audioSource.isPlaying) _audioSource.Stop();
     }
 }

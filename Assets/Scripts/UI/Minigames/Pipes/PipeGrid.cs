@@ -10,6 +10,7 @@ public class PipeGrid : MonoBehaviour
 
     [SerializeField] private List<ObjectSlot> _initialDisplaySlots = new();
 
+    [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClipCollection _gridFinishedSFX;
 
 
@@ -76,7 +77,7 @@ public class PipeGrid : MonoBehaviour
             }
         }
 
-        if (_gridIsCorrect) AudioManager.Instance.PlayRandomSFX(_gridFinishedSFX);
+        if (_gridIsCorrect) AudioManager.Instance.PlayRandomSFX(_audioSource, _gridFinishedSFX);
 
         return _gridIsCorrect;
     }

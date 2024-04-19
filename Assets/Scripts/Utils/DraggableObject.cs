@@ -127,6 +127,11 @@ public class DraggableObject : MonoBehaviour
 
     public void Attach(ObjectSlot objectSlot)
     {
+        Attach(objectSlot, true);
+    }
+
+    public void Attach(ObjectSlot objectSlot, bool provideFeedback)
+    {
         Attached = objectSlot != null;
 
         Slot = objectSlot;
@@ -135,7 +140,10 @@ public class DraggableObject : MonoBehaviour
 
         OnObjectAttached?.Invoke();
 
-        Vibrator.Vibrate(100);
-        AudioManager.Instance.PlayRandomSFX(_attachSFX);
+        if (Attached && provideFeedback)
+        {
+            Vibrator.Vibrate(100);
+            AudioManager.Instance.PlayRandomSFX(_attachSFX);
+        }
     }
 }
