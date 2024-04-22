@@ -2,6 +2,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
+using System.Collections.Generic;
 
 namespace EPRA.Utilities
 {
@@ -20,6 +21,10 @@ namespace EPRA.Utilities
         [Range(1, 240), SerializeField] private int _targetFramerate;
         [SerializeField] private SystemLanguage _targetLanguage;
         [SerializeField] private int _languageIndex;
+
+        [Header("Default values and debug")]
+        [SerializeField] private List<SystemLanguage> _languages;
+        [SerializeField] private SystemLanguage _defaultLanguage;
 
         [Header("Build Settings")]
         [Header("iOS")]
@@ -50,6 +55,9 @@ namespace EPRA.Utilities
         {
             Application.targetFrameRate = _targetFramerate;
 
+            _languageIndex = GetLanguageIndex();            
+            DataManager.SaveData("LanguageIndex", _languageIndex);
+
             //PlayerSettings.iOS.hideHomeButton = _hideHomeButtonOniPhoneX;
             //PlayerSettings.iOS.deferSystemGesturesMode = _gestureDeferMode;
 
@@ -69,29 +77,22 @@ namespace EPRA.Utilities
 
             _targetFramerate = DataManager.HasData("TargetFrameRate") ? DataManager.LoadData<int>("TargetFrameRate") : 60;
 
-            _targetLanguage = DataManager.HasData("TargetLanguage") ? DataManager.LoadData<SystemLanguage>("TargetLanguage") : SystemLanguage.English;
-            _languageIndex = DataManager.HasData("LanguageIndex") ? DataManager.LoadData<int>("LanguageIndex") : 0;
+            _targetLanguage = DataManager.HasData("TargetLanguage") ? DataManager.LoadData<SystemLanguage>("TargetLanguage") : _defaultLanguage;
+            _languageIndex = DataManager.HasData("LanguageIndex") ? DataManager.LoadData<int>("LanguageIndex") : GetLanguageIndex();
         }
 
         private void SaveData()
         {
-            //Debug.Log("CanVibrate" + _canVibrate);
             DataManager.SaveData("CanVibrate", _canVibrate);
 
-            //Debug.Log("CanPlaySFX" + _canPlaySFX);
             DataManager.SaveData("CanPlaySFX", _canPlaySFX);
-            //Debug.Log("SFXVolume" + _SFXVolume);
             DataManager.SaveData("SFXVolume", _SFXVolume);
 
-            //Debug.Log("CanPlayMusic" + _canPlayMusic);
             DataManager.SaveData("CanPlayMusic", _canPlayMusic);
-            //Debug.Log("MusicVolume" + _musicVolume);
             DataManager.SaveData("MusicVolume", _musicVolume);
 
-            //Debug.Log("TargetFrameRate" + _targetFramerate);
             DataManager.SaveData("TargetFrameRate", _targetFramerate);
 
-            //Debug.Log("TargetLanguage" + _targetLanguage);
             DataManager.SaveData("TargetLanguage", _targetLanguage);
             DataManager.SaveData("LanguageIndex", _languageIndex);
         }
@@ -197,6 +198,19 @@ namespace EPRA.Utilities
             }
 
             _mixer.SetFloat("MixerVolume", volume);
+        }
+
+        private int GetLanguageIndex()
+        {
+            for (int i = 0; i < _languages.Count; i++)
+            {
+                if (_languages[i] == _defaultLanguage)
+                {
+                    return i;
+                }
+            }
+
+            return 0;
         }
     }
 }

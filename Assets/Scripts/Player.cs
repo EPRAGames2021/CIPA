@@ -1,27 +1,27 @@
 using UnityEngine;
+using EPRA.Utilities;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private CharacterState _state = CharacterState.None;
 
     [SerializeField] private bool _alive;
-    [SerializeField] private bool _wearingEquipment;
 
     [SerializeField] private Animator _animator;
 
     [Header("Systems")]
     [SerializeField] private HealthSystem _healthSystem;
     [SerializeField] private MovementSystem _movementSystem;
+    [SerializeField] private EquipmentSystem _equipmentSystem;
 
     public HealthSystem HealthSystem => _healthSystem;
     public MovementSystem MovementSystem => _movementSystem;
+    public EquipmentSystem EquipmentSystem => _equipmentSystem;
 
     public CharacterState State => _state;
-    public bool WearingEquipment => _wearingEquipment;
 
     public event System.Action<CharacterState> OnStateChange;
     public event System.Action OnDied;
-    public event System.Action<bool> OnEquip;
 
     private void Awake()
     {
@@ -43,7 +43,6 @@ public class Player : MonoBehaviour
         _healthSystem.OnDied += Die;
 
         _alive = true;
-        _wearingEquipment = false;
 
         ChangeState(CharacterState.Roaming);
 
@@ -73,6 +72,8 @@ public class Player : MonoBehaviour
     {
         if (!_alive) return;
 
+        Vibrator.Vibrate(300);
+
         _alive = false;
 
         _movementSystem.StandStill();
@@ -94,15 +95,6 @@ public class Player : MonoBehaviour
         ChangeState(CharacterState.Dancing);
 
         _animator.SetTrigger("Win");
-    }
-
-    public void Equip(bool equip)
-    {
-        if (_wearingEquipment == equip) return;
-
-        _wearingEquipment = equip;
-
-        OnEquip?.Invoke(equip);
     }
 }
 

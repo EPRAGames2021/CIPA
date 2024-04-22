@@ -1,6 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EPRA.Utilities;
 
 public class PipeGrid : MonoBehaviour
 {
@@ -9,6 +9,9 @@ public class PipeGrid : MonoBehaviour
     [SerializeField] private List<ObjectSlot> _minigameTableSlots = new();
 
     [SerializeField] private List<ObjectSlot> _initialDisplaySlots = new();
+
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClipCollection _gridFinishedSFX;
 
 
     public bool GridIsCorrect => _gridIsCorrect;
@@ -73,6 +76,8 @@ public class PipeGrid : MonoBehaviour
                 _gridIsCorrect = false;
             }
         }
+
+        if (_gridIsCorrect) AudioManager.Instance.PlayRandomSFX(_audioSource, _gridFinishedSFX);
 
         return _gridIsCorrect;
     }

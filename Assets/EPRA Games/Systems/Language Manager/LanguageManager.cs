@@ -24,7 +24,6 @@ namespace EPRA.Utilities
 
 
         public static event System.Action<SystemLanguage> OnLanguageChanged;
-        public static event System.Action OnLanguagesLoaded;
 
 
         private void Awake()

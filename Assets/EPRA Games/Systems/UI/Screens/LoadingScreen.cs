@@ -25,6 +25,11 @@ public class LoadingScreen : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _tips;
 
 
+    private void OnEnable()
+    {
+        AttemptToPickTip();
+    }
+
     private void Start()
     {
         Init();
@@ -68,25 +73,22 @@ public class LoadingScreen : MonoBehaviour
         _slider.value = progressInteger;
         _percentage.text = progressInteger.ToString() + "%";
 
-        _loading.gameObject.SetActive(progressInteger < 100);
-        _slider.gameObject.SetActive(progressInteger < 100);
-        _percentage.gameObject.SetActive(progressInteger < 100);
+        _loading.gameObject.SetActive(progressInteger <= 100);
+        _slider.gameObject.SetActive(progressInteger <= 100);
+        _percentage.gameObject.SetActive(progressInteger <= 100);
     }
 
-    private void DisplayLoadingScreen(bool display)
+    private void DisplayLoadingScreen(bool loadIsInProgress)
     {
-        if (display)
+        if (loadIsInProgress)
         {
-            if (LanguageManager.LanguagesLoaded)
-            {
-                PickRandomTip();
-            }
-            else
-            {
-                StartCoroutine(PickRandomTipDelayed());
-            }
+            AttemptToPickTip();
 
             _continueButton.interactable = false;
+
+            _loading.gameObject.SetActive(true);
+            _slider.gameObject.SetActive(true);
+            _percentage.gameObject.SetActive(true);
 
             _loadingScreenContainer.SetActive(true);
         }
@@ -98,8 +100,25 @@ public class LoadingScreen : MonoBehaviour
             }
             else
             {
+                _loading.gameObject.SetActive(false);
+                _slider.gameObject.SetActive(false);
+                _percentage.gameObject.SetActive(false);
+
                 _continueButton.interactable = true;
             }
+        }
+    }
+
+
+    private void AttemptToPickTip()
+    {
+        if (LanguageManager.LanguagesLoaded)
+        {
+            PickRandomTip();
+        }
+        else
+        {
+            StartCoroutine(PickRandomTipDelayed());
         }
     }
 

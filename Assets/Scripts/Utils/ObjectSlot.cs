@@ -32,7 +32,7 @@ public class ObjectSlot : MonoBehaviour
 
             _startingObject = draggableObject;
 
-            AttachObject(_draggableObject);
+            AttachObject(_draggableObject, false);
         }
     }
 
@@ -44,9 +44,14 @@ public class ObjectSlot : MonoBehaviour
 
     public virtual void AttachObject(DraggableObject draggableObject)
     {
+        AttachObject(draggableObject, true);
+    }
+
+    public virtual void AttachObject(DraggableObject draggableObject, bool provideFeedback)
+    {
         _draggableObject = draggableObject;
 
-        _draggableObject.Attach(this);
+        _draggableObject.Attach(this, provideFeedback);
 
         _draggableObject.transform.SetParent(transform);
         _draggableObject.transform.position = new(transform.position.x, transform.position.y, transform.position.z);
@@ -71,7 +76,7 @@ public class ObjectSlot : MonoBehaviour
 
         if (_startingObject != null)
         {
-            AttachObject(_startingObject);
+            AttachObject(_startingObject, false);
         }
 
         if (Full) _draggableObject.Locked = false;
