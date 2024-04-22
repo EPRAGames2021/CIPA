@@ -47,6 +47,8 @@ public class FoundationAndStructureUI : MonoBehaviour
     {
         if (correct)
         {
+            MissionManager.Instance.MissionCompleted();
+
             _ingredientSelectionPanel.gameObject.SetActive(false);
             _concreteMixPanel.gameObject.SetActive(true);
         }

@@ -19,6 +19,8 @@ namespace EPRA.Utilities
         [SerializeField] private CurrencySO _dayScore;
         [SerializeField] private TextMeshProUGUI _dayScoreText;
 
+        [SerializeField] private TextMeshProUGUI _currentMission;
+
         private int _score;
         private int _day;
 
@@ -41,6 +43,7 @@ namespace EPRA.Utilities
             _dayScore.OnChangeValue += UpdateDayScore;
 
             LanguageManager.OnLanguageChanged += AdaptToLanguage;
+            MissionManager.OnMissionChanged += DisplayMission;
 
             AdaptToGameState(GameManager.Instance.State);
             GameManager.Instance.OnGameStateChanged += AdaptToGameState;
@@ -52,7 +55,8 @@ namespace EPRA.Utilities
 
             _dayScore.OnChangeValue -= UpdateDayScore;
 
-            LanguageManager.OnLanguageChanged += AdaptToLanguage;
+            LanguageManager.OnLanguageChanged -= AdaptToLanguage;
+            MissionManager.OnMissionChanged -= DisplayMission;
 
             GameManager.Instance.OnGameStateChanged -= AdaptToGameState;
         }
@@ -79,6 +83,18 @@ namespace EPRA.Utilities
         {
             UpdateDayScore(_score);
             SetDay(_day);
+
+            int missionIndex = MissionManager.Instance.CurrentMissionIndex;
+            DisplayMission(missionIndex);
+        }
+
+        private void DisplayMission(int missionIndex)
+        {
+            int dayIndex = JobAreaManager.Instance.JobSectorAreaSO.Day;
+
+            string key = "day" + dayIndex + "mission" + missionIndex;
+
+            _currentMission.text = "-" + LanguageManager.GetTranslation(key);
         }
 
 

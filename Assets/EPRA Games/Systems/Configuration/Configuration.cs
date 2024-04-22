@@ -26,9 +26,9 @@ namespace EPRA.Utilities
         [SerializeField] private List<SystemLanguage> _languages;
         [SerializeField] private SystemLanguage _defaultLanguage;
 
-        [Header("Build Settings")]
-        [Header("iOS")]
-        [SerializeField] private bool _hideHomeButtonOniPhoneX = true;
+        //[Header("Build Settings")]
+        //[Header("iOS")]
+        //[SerializeField] private bool _hideHomeButtonOniPhoneX = true;
         //[SerializeField] private UnityEngine.iOS.SystemGestureDeferMode _gestureDeferMode = UnityEngine.iOS.SystemGestureDeferMode.All;
 
         public bool CanVibrate => _canVibrate;
