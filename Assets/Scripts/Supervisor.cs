@@ -12,9 +12,10 @@ public class Supervisor : MonoBehaviour
     [Header("Dev area")]
     [SerializeField] private Player _player;
 
-    [SerializeField] private GameObject _speechBubble;
     [SerializeField] private TextMeshProUGUI _missionLineReminder;
+    [SerializeField] private GameObject _speechBubble;
     [SerializeField] private GameObject _exclamationMark;
+    [SerializeField] private GameObject _canvas;
 
     [Header("Debug")]
     [SerializeField] private float _distance;
@@ -33,7 +34,7 @@ public class Supervisor : MonoBehaviour
 
     private void LateUpdate()
     {
-        _speechBubble.transform.LookAt(Camera.main.transform.position);
+        _canvas.transform.LookAt(Camera.main.transform.position);
     }
 
 
@@ -56,7 +57,7 @@ public class Supervisor : MonoBehaviour
         _displaying = display;
 
         _exclamationMark.SetActive(!_displaying);
-        _missionLineReminder.gameObject.SetActive(_displaying);
+        _speechBubble.SetActive(_displaying);
 
         if (_player.EquipmentSystem.WearingEquipment)
         {
