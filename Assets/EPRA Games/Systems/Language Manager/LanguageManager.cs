@@ -115,7 +115,8 @@ namespace EPRA.Utilities
         {
             if (!_fields.ContainsKey(key))
             {
-                Debug.LogError("There is no key with name: [" + key + "] in your text files.");
+                Debug.LogWarning("There is no key with name: [" + key + "] in your text files.");
+
                 return "MISSING_STRING";
             }
 

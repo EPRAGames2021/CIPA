@@ -9,7 +9,11 @@ namespace EPRA.Utilities
     {
         [SerializeField] private TextMeshProUGUI _txtMesh;
 
+        [Tooltip("If this field is null, the translation probably comes from another script")]
         [SerializeField] private string _key;
+
+
+        public string Key { get { return _key; } set { _key = value; } }
 
 
         private void OnValidate()
@@ -20,15 +24,7 @@ namespace EPRA.Utilities
         
         private void OnEnable()
         {
-            if (!LanguageManager.LanguagesLoaded)
-            {
-                StartCoroutine(GetTranslationDelayed());
-            }
-            else
-            {
-                GetTranslation();
-            }
-
+            Translate();
 
             LanguageManager.OnLanguageChanged += ChangeLanguage;
         }
@@ -42,8 +38,28 @@ namespace EPRA.Utilities
 
         private void ChangeLanguage(SystemLanguage t_targetLanguage)
         {
-            GetTranslation();
+            Translate();
         }
+
+        private void Translate()
+        {
+            if (_key == null)
+            {
+                Debug.Log("Translation key is null in " + gameObject, gameObject);
+            }
+            else
+            {
+                if (!LanguageManager.LanguagesLoaded)
+                {
+                    StartCoroutine(GetTranslationDelayed());
+                }
+                else
+                {
+                    GetTranslation();
+                }
+            }
+        }
+
 
         private void GetTranslation()
         {
@@ -57,6 +73,14 @@ namespace EPRA.Utilities
             yield return new WaitUntil(() => LanguageManager.LanguagesLoaded);
 
             GetTranslation();
+        }
+
+
+        public void SetKey(string key)
+        {
+            _key = key;
+
+            Translate();
         }
     }
 }

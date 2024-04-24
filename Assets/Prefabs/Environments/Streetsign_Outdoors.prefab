@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 2643081755943531801}
   - component: {fileID: 1369594904641764028}
   - component: {fileID: 3811505465646091894}
+  - component: {fileID: 5625871344850819288}
   m_Layer: 0
   m_Name: Streetsign_Outdoors
   m_TagString: Untagged
@@ -285,6 +286,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5625871344850819288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3451389500618715043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 505e469f18b57d84d8478f7c9b8a9e97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _translatePanel: {fileID: 4610298791643726269}
+  _tipsAmount: 10
 --- !u!1 &7073331420733114148
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,7 +360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _txtMesh: {fileID: 8187628029525661041}
-  _key: mandatoryItemsSign
+  _key: 
 --- !u!114 &8187628029525661041
 MonoBehaviour:
   m_ObjectHideFlags: 0
