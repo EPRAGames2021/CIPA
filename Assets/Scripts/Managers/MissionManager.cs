@@ -48,9 +48,16 @@ public class MissionManager : MonoBehaviour
         OnMissionChanged?.Invoke(_currentMissionIndex);
     }
 
-    public void MissionCompleted()
+    public void GoToNextMission()
     {
         _currentMissionIndex++;
+
+        OnMissionChanged?.Invoke(_currentMissionIndex);
+    }
+
+    public void GoToMission(int missions)
+    {
+        _currentMissionIndex = missions;
 
         OnMissionChanged?.Invoke(_currentMissionIndex);
     }

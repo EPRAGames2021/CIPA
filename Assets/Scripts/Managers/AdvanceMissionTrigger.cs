@@ -10,6 +10,11 @@ namespace EPRA.Utilities
 
         [SerializeField] private bool _triggered;
 
+        [Tooltip("Should it just go to the next mission?")]
+        [SerializeField] private bool _simpleAdvance;
+
+        [SerializeField] private int _missionToGoTo;
+
 
         private void OnEnable()
         {
@@ -42,7 +47,14 @@ namespace EPRA.Utilities
                 return;
             }
 
-            MissionManager.Instance.MissionCompleted();
+            if (_simpleAdvance)
+            {
+                MissionManager.Instance.GoToNextMission();
+            }
+            else
+            {
+                MissionManager.Instance.GoToMission(_missionToGoTo);
+            }
 
             _triggered = true;
         }
