@@ -14,6 +14,7 @@ namespace EPRA.Utilities
 
 
         public string Key { get { return _key; } set { _key = value; } }
+        public string Text => _txtMesh.text;
 
 
         private void OnValidate()
@@ -43,19 +44,15 @@ namespace EPRA.Utilities
 
         private void Translate()
         {
-            if (_key == null)
-            {
-                Debug.Log("Translation key is null in " + gameObject, gameObject);
-            }
-            else
-            {
-                if (!LanguageManager.LanguagesLoaded)
+            if (_key != string.Empty)
+            {             
+                if (LanguageManager.LanguagesLoaded)
                 {
-                    StartCoroutine(GetTranslationDelayed());
+                    GetTranslation();
                 }
                 else
                 {
-                    GetTranslation();
+                    StartCoroutine(GetTranslationDelayed());
                 }
             }
         }
@@ -81,6 +78,11 @@ namespace EPRA.Utilities
             _key = key;
 
             Translate();
+        }
+
+        public void Clear()
+        {
+            _txtMesh.text = string.Empty;
         }
     }
 }

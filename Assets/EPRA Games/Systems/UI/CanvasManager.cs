@@ -32,7 +32,7 @@ namespace EPRA.Utilities
         {
             CloseAllMenus();
 
-            OpenMenu(MenuType.MainMenu);
+            OpenMenu(MenuType.LoginMenu);
 
             GameManager.Instance.OnGameStateChanged += AdaptToGameState;
         }
@@ -181,5 +181,6 @@ namespace EPRA.Utilities
         VictoryMenu = 3,
         AreaSelectionMenu = 4,
         DayScoreMenu = 5,
+        LoginMenu = 6,
     }
 }
