@@ -6,6 +6,9 @@ using System;
 using UnityEngine;
 using System.Text.RegularExpressions;
 using ES3Types;
+using System.Diagnostics.CodeAnalysis;
+using System.Collections.Generic;
+using UnityEngine.Windows;
 
 namespace EPRA.Utilities
 {
@@ -18,6 +21,7 @@ namespace EPRA.Utilities
         [SerializeField] private bool _isConnected;
 
         [SerializeField] private string _loggedID;
+        [SerializeField] private string _companyCode;
         [SerializeField] private string _companyDisplayName;
         [SerializeField] private bool _isAdminAccount;
 
@@ -181,6 +185,16 @@ namespace EPRA.Utilities
             }
         }
 
+        public static async Task<bool> GetEmployeeExists(string id)
+        {
+            if (await GetEmployeeCompany(id) == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
 
         public static async Task<bool> SetCompanyPassword(string company, string password)
         {
@@ -217,12 +231,17 @@ namespace EPRA.Utilities
             }
         }
 
+        public static async Task<bool> AddNewEmployee(string id)
+        {
+            return await AddNewEmployee(Instance._companyCode, id);
+        }
+
         public static async Task<bool> AddNewEmployee(string company, string id)
         {
-            if (await PushValueToField<string>("Companies" + "/" + company + "/" + "Employees" + "/", id) == default) return false;
+            if (await GetCompanyExists(company) == default) return false;
+            else if (await PushValueToField<string>("Companies" + "/" + company + "/" + "Employees" + "/", id) == default) return false;
             else if (await PushValueToField<string>("Companies" + "/" + company + "/" + "Employees" + "/" + id, "Password") == default) return false;
             
-
             return true;
         }
 
@@ -238,11 +257,87 @@ namespace EPRA.Utilities
             return Regex.IsMatch(code, pattern);
         }
 
-        public static bool GetIsEmployeeID(string code)
+        public static string GetCompanyPrefix()
         {
-            Debug.Log("Is " + code + " a company valid id? " + true);
+            Debug.Log(GetPrefixInternal(Instance._companyCode));
+            return GetPrefixInternal(Instance._companyCode);
+        }
 
-            return true;
+        private static string GetPrefixInternal(string name)
+        {
+            string companyFirstThree = name[..3];
+            string companyLastThree = name[^3..];
+            
+            return companyFirstThree + companyLastThree;
+        }
+
+        public static void SetCompany(string company)
+        {
+            Instance._companyCode = company;
+        }
+
+        public static async Task<List<string>> GetAllCompanies()
+        {
+            DatabaseReference databaseReference = FirebaseDatabase.DefaultInstance.RootReference;
+
+            List<string> companyNames = new List<string>();
+
+            try
+            {
+                // Get the reference to the "Companies" field
+                DatabaseReference companiesRef = databaseReference.Child("Companies");
+
+                // Retrieve the snapshot of the "Companies" field
+                DataSnapshot companiesSnapshot = await companiesRef.GetValueAsync();
+
+                // Check if the snapshot exists and has children
+                if (companiesSnapshot != null && companiesSnapshot.Exists && companiesSnapshot.HasChildren)
+                {
+                    // Iterate through the child nodes under "Companies"
+                    foreach (DataSnapshot companySnapshot in companiesSnapshot.Children)
+                    {
+                        // Get the name of each company and add it to the list
+                        string companyName = companySnapshot.Key;
+                        companyNames.Add(companyName);
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning("No companies found in the database.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError("Error fetching companies: " + ex);
+            }
+
+            return companyNames;
+        }
+
+        public static async Task<string> GetEmployeeCompany(string id)
+        {
+            List<string> companies = await GetAllCompanies();
+
+            Instance._companyCode = null;
+
+            foreach (string company in companies)
+            {
+                Debug.Log(company);
+
+                string parsedCompanyName = GetPrefixInternal(company);
+                string employeePrefix = id[..6];
+
+                if (employeePrefix == parsedCompanyName)
+                {
+                    Debug.Log("Employee " + id + " belongs to company " + company);
+
+                    Instance._companyCode = company;
+
+                    break;
+                }
+            }
+
+            return Instance._companyCode;
         }
 
         public static bool GetIsValidPassword(string password)

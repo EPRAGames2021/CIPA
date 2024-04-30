@@ -113,6 +113,8 @@ namespace EPRA.Utilities
                             {
                                 FirebaseHandler.Instance.IsAdminAccount = true;
 
+                                FirebaseHandler.SetCompany(_company);
+
                                 GoToMainMenu();
                             }
                             else

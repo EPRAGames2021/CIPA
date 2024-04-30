@@ -8,6 +8,7 @@ namespace EPRA.Utilities
     {
         [SerializeField] private Button _settingsButton;
         [SerializeField] private Button _startButton;
+        [SerializeField] private Button _adminButton;
         
         [Header("Other")]
         [SerializeField] private TextMeshProUGUI _gameName;
@@ -15,6 +16,12 @@ namespace EPRA.Utilities
         private void OnValidate()
         {
             _gameName.text = Application.productName;
+        }
+
+        private void OnEnable()
+        {
+            //_adminButton.gameObject.SetActive(FirebaseHandler.Instance.IsAdminAccount);
+            _adminButton.gameObject.SetActive(false);
         }
 
         private void Start()
@@ -34,12 +41,14 @@ namespace EPRA.Utilities
 
             _settingsButton.onClick.AddListener(OpenSettings);
             _startButton.onClick.AddListener(StartGame);
+            _adminButton.onClick.AddListener(OpenAdminPanel);
         }
 
         private void Finish()
         {
             _settingsButton.onClick.RemoveAllListeners();
             _startButton.onClick.RemoveAllListeners();
+            _adminButton.onClick.RemoveAllListeners();
         }
 
 
@@ -51,6 +60,11 @@ namespace EPRA.Utilities
         private void OpenSettings()
         {
             CanvasManager.Instance.OpenMenu(MenuType.SettingsMenu);
+        }
+
+        private void OpenAdminPanel()
+        {
+            CanvasManager.Instance.OpenMenu(MenuType.AdminMenu);
         }
     }
 }
