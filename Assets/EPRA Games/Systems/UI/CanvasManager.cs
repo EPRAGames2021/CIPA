@@ -182,5 +182,6 @@ namespace EPRA.Utilities
         AreaSelectionMenu = 4,
         DayScoreMenu = 5,
         LoginMenu = 6,
+        AdminMenu = 7,
     }
 }
