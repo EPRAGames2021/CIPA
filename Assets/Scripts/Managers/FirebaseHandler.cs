@@ -5,11 +5,7 @@ using System.Threading.Tasks;
 using System;
 using UnityEngine;
 using System.Text.RegularExpressions;
-using ES3Types;
-using System.Diagnostics.CodeAnalysis;
 using System.Collections.Generic;
-using UnityEngine.Windows;
-using UnityEditor.Experimental.GraphView;
 
 namespace EPRA.Utilities
 {
