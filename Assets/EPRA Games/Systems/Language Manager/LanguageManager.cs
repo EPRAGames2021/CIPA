@@ -76,8 +76,14 @@ namespace EPRA.Utilities
         {
             if (_fields == null)
             {
-                Debug.LogWarning("Language fields were empty.");
                 _fields = new Dictionary<string, string>();
+
+                if (_fields == null)
+                {
+                    Debug.LogWarning("Language fields are empty.");
+
+                    return;
+                }
             }
 
             _fields.Clear();

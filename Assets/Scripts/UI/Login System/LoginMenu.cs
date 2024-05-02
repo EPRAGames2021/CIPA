@@ -153,8 +153,64 @@ namespace EPRA.Utilities
                     SetFeedback(_idInputFeedbackTranslate, "organizationDoesNotExist");
                 }
             }
+            else if (FirebaseHandler.GetIsEmployeeID(idInput))
+            {
+                _company = await FirebaseHandler.GetEmployeeCompany(idInput);
+
+                if (_company != null)
+                {
+                    if (await FirebaseHandler.GetIsEmployeeFirstLogin(idInput))
+                    {
+                        SetFeedback(_passwordTipTranslate, "createPasswordRequirements");
+                        SetNewPasswordFieldsEnabled(true);
+
+                        if (!FirebaseHandler.GetNewPasswordIsValid(_passwordInput.text, _confirmPasswordInput.text))
+                        {
+                            if (_passwordInput.text == _confirmPasswordInput.text)
+                            {
+                                SetFeedback(_passwordFeedbackTranslate, "passwordIsNotValid");
+                            }
+                            else
+                            {
+                                SetFeedback(_passwordFeedbackTranslate, "passwordsDoNotMatch");
+                            }
+                        }
+                        else
+                        {
+                            if (await FirebaseHandler.SetPassword(idInput, _passwordInput.text))
+                            {
+                                GoToMainMenu();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        SetFeedback(_passwordTipTranslate, "insertPassword");
+                        SetPasswordFieldEnabled(true);
+
+                        if (_passwordInput.text.Length > 0)
+                        {
+                            if (await FirebaseHandler.GetPasswordIsCorrect(idInput, _passwordInput.text))
+                            {
+                                FirebaseHandler.SetCompany(_company);
+
+                                GoToMainMenu();
+                            }
+                            else
+                            {
+                                SetFeedback(_passwordFeedbackTranslate, "passwordOrIDIncorrect");
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    SetFeedback(_passwordFeedbackTranslate, "employeeDoesNotExist");
+                }
+            }
             else
             {
+                SetFeedback(_passwordFeedbackTranslate, "organizationDoesNotExist");
                 SetNewPasswordFieldsEnabled(false);
             }
         }

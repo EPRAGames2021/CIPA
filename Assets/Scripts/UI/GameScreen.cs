@@ -94,7 +94,7 @@ namespace EPRA.Utilities
 
             string key = "day" + dayIndex + "mission" + missionIndex;
 
-            _currentMission.text = "-" + LanguageManager.GetTranslation(key);
+            _currentMission.text = LanguageManager.GetTranslation(key);
         }
 
 

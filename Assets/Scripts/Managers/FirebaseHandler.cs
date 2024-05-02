@@ -9,6 +9,7 @@ using ES3Types;
 using System.Diagnostics.CodeAnalysis;
 using System.Collections.Generic;
 using UnityEngine.Windows;
+using UnityEditor.Experimental.GraphView;
 
 namespace EPRA.Utilities
 {
@@ -22,7 +23,6 @@ namespace EPRA.Utilities
 
         [SerializeField] private string _loggedID;
         [SerializeField] private string _companyCode;
-        [SerializeField] private string _companyDisplayName;
         [SerializeField] private bool _isAdminAccount;
 
 
@@ -31,7 +31,6 @@ namespace EPRA.Utilities
         public bool IsConnected => _isConnected;
 
         public string LoggedID => _loggedID;
-        public string CompanyDisplayName => _companyDisplayName;
         public bool IsAdminAccount { get { return _isAdminAccount; } set { _isAdminAccount = value; } }
 
 
@@ -141,6 +140,25 @@ namespace EPRA.Utilities
             }
         }
 
+        private static async Task<T> AddValueToField<T>(string path, T value)
+        {
+            DatabaseReference database = Instance.Database.Child(path);
+
+            try
+            {
+                // Push a new child node with a unique key
+                await database.Push().SetValueAsync(value);
+
+                return value;
+            }
+            catch (Exception exception)
+            {
+                Debug.LogError("Error adding user: " + exception);
+
+                return default; // Return null to indicate failure
+            }
+        }
+
 
         public static async Task<bool> GetCompanyExists(string company)
         {
@@ -167,21 +185,41 @@ namespace EPRA.Utilities
             }
         }
 
-        public static async Task<bool> GetPasswordIsCorrect(string company, string password)
+        public static async Task<bool> GetPasswordIsCorrect(string id, string password)
         {
-            if (!await CheckIfFieldExists("Companies" + "/" + company + "/" + "AdminCreated"))
+            if (GetIsCompanyID(id))
             {
-                Debug.Log("Password field for " + company + " does not exist. Creating it and setting it to an empty string.");
+                if (!await CheckIfFieldExists("Companies" + "/" + id + "/" + "AdminCreated"))
+                {
+                    Debug.Log("Password field for " + id + " does not exist. Creating it and setting it to an empty string.");
 
-                await SetCompanyPassword(company, string.Empty);
+                    await SetPassword(id, string.Empty);
 
-                return false;
+                    return false;
+                }
+                else
+                {
+                    Debug.Log("Is password of " + id + " correct? " + await GetValueOfField<string>("Companies" + "/" + id + "/" + "Password") == password);
+
+                    return await GetValueOfField<string>("Companies" + "/" + id + "/" + "Password") == password;
+                }
             }
             else
             {
-                Debug.Log("Is password of " + company + " correct? " + await GetValueOfField<string>("Companies" + "/" + company + "/" + "Password") == password);
+                if (!await CheckIfFieldExists("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id))
+                {
+                    Debug.Log("Password field for " + id + " does not exist. Creating it and setting it to an empty string.");
 
-                return await GetValueOfField<string>("Companies" + "/" + company + "/" + "Password") == password;
+                    await SetPassword(id, string.Empty);
+
+                    return false;
+                }
+                else
+                {
+                    Debug.Log("Is password of " + id + " correct? " + await GetValueOfField<string>("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id + "/" + "Password") == password);
+
+                    return await GetValueOfField<string>("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id + "/" + "Password") == password;
+                }
             }
         }
 
@@ -189,16 +227,26 @@ namespace EPRA.Utilities
         {
             if (await GetEmployeeCompany(id) == null)
             {
+                Debug.Log("Company not valid");
                 return false;
             }
-
-            return true;
+            else
+            {
+                return await CheckIfFieldExists("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id);
+            }
         }
 
 
-        public static async Task<bool> SetCompanyPassword(string company, string password)
+        public static async Task<bool> SetPassword(string id, string password)
         {
-            return await PushValueToField<string>("Companies" + "/" + company + "/" + "Password", password) != default;
+            if (GetIsCompanyID(id))
+            {
+                return await PushValueToField("Companies" + "/" + id + "/" + "Password", password) != default;
+            }
+            else
+            {
+                return await PushValueToField("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id + "/" + "Password", password) != default;
+            }
         }
 
         public static async Task<bool> SetAdminCreated(string company, bool created)
@@ -208,7 +256,7 @@ namespace EPRA.Utilities
 
         public static async Task<bool> SetNewAdminAccount(string company, string password)
         {
-            if (await SetCompanyPassword(company, password))
+            if (await SetPassword(company, password))
             {
                 if (await SetAdminCreated(company, true))
                 {
@@ -239,44 +287,14 @@ namespace EPRA.Utilities
         public static async Task<bool> AddNewEmployee(string company, string id)
         {
             if (await GetCompanyExists(company) == default) return false;
-            else if (await PushValueToField<string>("Companies" + "/" + company + "/" + "Employees" + "/", id) == default) return false;
-            else if (await PushValueToField<string>("Companies" + "/" + company + "/" + "Employees" + "/" + id, "Password") == default) return false;
+            else if (await AddValueToField<string>("Companies" + "/" + company + "/" + "Employees" + "/", id) == default) return false;
+            else if (await AddValueToField<string>("Companies" + "/" + company + "/" + "Employees" + "/" + id, "") == default) return false;
             
             return true;
         }
 
 
-
-        public static bool GetIsCompanyID(string code)
-        {
-            //14 CNPJ            //3 letters            
-            string pattern = @"^\d{14}[A-Za-z]{3}";
-
-            Debug.Log("Is " + code + " a company valid id? " + Regex.IsMatch(code, pattern));
-
-            return Regex.IsMatch(code, pattern);
-        }
-
-        public static string GetCompanyPrefix()
-        {
-            Debug.Log(GetPrefixInternal(Instance._companyCode));
-            return GetPrefixInternal(Instance._companyCode);
-        }
-
-        private static string GetPrefixInternal(string name)
-        {
-            string companyFirstThree = name[..3];
-            string companyLastThree = name[^3..];
-            
-            return companyFirstThree + companyLastThree;
-        }
-
-        public static void SetCompany(string company)
-        {
-            Instance._companyCode = company;
-        }
-
-        public static async Task<List<string>> GetAllCompanies()
+        private static async Task<List<string>> GetAllCompanies()
         {
             DatabaseReference databaseReference = FirebaseDatabase.DefaultInstance.RootReference;
 
@@ -322,8 +340,6 @@ namespace EPRA.Utilities
 
             foreach (string company in companies)
             {
-                Debug.Log(company);
-
                 string parsedCompanyName = GetPrefixInternal(company);
                 string employeePrefix = id[..6];
 
@@ -339,6 +355,72 @@ namespace EPRA.Utilities
 
             return Instance._companyCode;
         }
+
+
+        public static async Task<bool> GetIsEmployeeFirstLogin(string id)
+        {
+            Debug.Log(await GetValueOfField<string>("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id));
+            return (await GetValueOfField<string>("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id) == null ||
+                await GetValueOfField<string>("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id) == "");
+        }
+
+        public static async Task<bool> SetEmployeePassword(string id, string password)
+        {
+            return await PushValueToField<string>("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id, password) != default;
+        }
+
+
+        public static bool GetIsCompanyID(string code)
+        {
+            //14 CNPJ            //3 letters            
+            string pattern = @"^\d{14}[A-Za-z]{3}";
+
+            Debug.Log("Is " + code + " a company valid id? " + Regex.IsMatch(code, pattern));
+
+            return Regex.IsMatch(code, pattern);
+        }
+
+        public static bool GetIsEmployeeID(string code)
+        {
+            bool valid = false;
+
+            if (code.Length < 6) return valid;
+
+            for (int i = 0; i < 3; i++)
+            {
+                if (!char.IsDigit(code[i])) return valid;
+            }
+
+            for (int i = 3; i < 6; i++)
+            {
+                if (!char.IsLetter(code[i])) return valid;
+            }
+
+            valid = true;
+
+            Debug.Log("Is " + code + " an employee valid id? " + valid);
+            return valid;
+        }
+
+        public static string GetCompanyPrefix()
+        {
+            Debug.Log(GetPrefixInternal(Instance._companyCode));
+            return GetPrefixInternal(Instance._companyCode);
+        }
+
+        private static string GetPrefixInternal(string name)
+        {
+            string companyFirstThree = name[..3];
+            string companyLastThree = name[^3..];
+            
+            return companyFirstThree + companyLastThree;
+        }
+
+        public static void SetCompany(string company)
+        {
+            Instance._companyCode = company;
+        }
+
 
         public static bool GetIsValidPassword(string password)
         {

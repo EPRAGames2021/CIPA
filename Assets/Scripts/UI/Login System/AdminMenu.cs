@@ -71,7 +71,7 @@ namespace EPRA.Utilities
 
         private async void AddNewEmployee()
         {
-            if (await FirebaseHandler.GetEmployeeExists(_employeeIDInput.text))
+            if (await FirebaseHandler.GetEmployeeExists(_employeeIDPrefix.text + _employeeIDInput.text))
             {
                 _subMenuFeedback.text = "Employee code already exists";
             }
