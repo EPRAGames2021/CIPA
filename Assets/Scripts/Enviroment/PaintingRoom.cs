@@ -21,6 +21,14 @@ public class PaintingRoom : MonoBehaviour
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClipCollection _paintingSFX;
 
+    //DEBUG
+    public float InkRollX => _inkRollX;
+    public float InkRollZ => _inkRollZ;
+    public float InkRollMinHeight => _inkRollMinHeight;
+    public float InkRollMaxHeight => _inkRollMaxHeight;
+    public float HeightPercent => _mousePositionHandler.HeightPercent;
+    public float Height => Remap.RemapValue(_mousePositionHandler.HeightPercent, 0, 100, _inkRollMinHeight, _inkRollMaxHeight);
+    //DEBUG
 
 
     private void OnEnable()
