@@ -18,7 +18,7 @@ public class MousePositionHandler : MonoBehaviour
         if (_mouseDelta == null) _mouseDelta = GetComponent<MouseDelta>();
     }
 
-    private void LateUpdate()
+    private void Update()
     {
         Vector2 innerBoxSize = _areaToHandle.rect.size;
         Vector2 innerBoxPosition = _areaToHandle.position;

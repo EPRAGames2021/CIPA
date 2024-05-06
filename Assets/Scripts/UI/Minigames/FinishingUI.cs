@@ -32,10 +32,6 @@ public class FinishingUI : MonoBehaviour
 
     [Header("Debug")]
     [SerializeField] private PaintingRoom _paintingRoom;
-    [SerializeField] private TMPro.TextMeshProUGUI _inkRollX;
-    [SerializeField] private TMPro.TextMeshProUGUI _inkRollZ;
-    [SerializeField] private TMPro.TextMeshProUGUI _inkRollMinHeight;
-    [SerializeField] private TMPro.TextMeshProUGUI _inkRollMaxHeight;
     [SerializeField] private TMPro.TextMeshProUGUI _heightPercent;
     [SerializeField] private TMPro.TextMeshProUGUI _height;
 
@@ -155,10 +151,6 @@ public class FinishingUI : MonoBehaviour
 
     private void DisplayDebug()
     {
-        _inkRollX.text = "Ink Roll X: " + _paintingRoom.InkRollX.ToString();
-        _inkRollZ.text = "Ink Roll Z: " + _paintingRoom.InkRollZ.ToString();
-        _inkRollMinHeight.text = "Ink Roll Min Height: " + _paintingRoom.InkRollMinHeight.ToString();
-        _inkRollMaxHeight.text = "Ink Roll Max Height: " + _paintingRoom.InkRollMaxHeight.ToString();
         _heightPercent.text = "Height Percent: " + _paintingRoom.HeightPercent.ToString();
         _height.text = "Height: " + _paintingRoom.Height.ToString();
     }
