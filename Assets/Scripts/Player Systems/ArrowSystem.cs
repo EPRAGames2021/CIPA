@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class ArrowSystem : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class ArrowSystem : MonoBehaviour
 
     private void LateUpdate()
     {
-        _arrow.transform.LookAt(_target);
+        _arrow.transform.DOLookAt(_target.position, 0.5f);
         CheckDistance();
     }
 
