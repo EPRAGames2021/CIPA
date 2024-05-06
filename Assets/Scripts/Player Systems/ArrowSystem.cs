@@ -5,7 +5,11 @@ using UnityEngine;
 public class ArrowSystem : MonoBehaviour
 {
     [SerializeField] private GameObject _arrow;
+
+    [Header("Dev area")]
     [SerializeField] private Transform _target;
+    [SerializeField] private int _index;
+    [SerializeField] private List<Transform> _targets;
 
 
     private void Start()
@@ -16,6 +20,7 @@ public class ArrowSystem : MonoBehaviour
     private void LateUpdate()
     {
         _arrow.transform.LookAt(_target);
+        CheckDistance();
     }
 
     private void OnDestroy()
@@ -26,6 +31,8 @@ public class ArrowSystem : MonoBehaviour
 
     private void Init()
     {
+        _index = 0;
+        _target = _targets[_index];
         _arrow.SetActive(false);
 
         MissionManager.OnMissionChanged += CheckArrow;
@@ -36,6 +43,18 @@ public class ArrowSystem : MonoBehaviour
         MissionManager.OnMissionChanged -= CheckArrow;
     }
 
+
+    
+    private void CheckDistance()
+    {
+        float distance = Vector3.Distance(transform.position, _targets[_index].position);
+
+        if (distance < 3 && _index < _targets.Count - 1)
+        {
+            _index++;
+            _target = _targets[_index];
+        }
+    }
 
     private void CheckArrow(int missionIndex)
     {

@@ -112,12 +112,9 @@ public class MovementSystem : MonoBehaviour
         StartCoroutine(ReenableDelay());
         IEnumerator ReenableDelay()
         {
-            _animator.SetBool("InAir", true);
-
             yield return new WaitForSeconds(disableTime);
 
             _canMove = true;
-            _animator.SetBool("InAir", false);
         }
     }
 

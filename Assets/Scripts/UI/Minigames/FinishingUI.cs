@@ -34,6 +34,10 @@ public class FinishingUI : MonoBehaviour
     [SerializeField] private PaintingRoom _paintingRoom;
     [SerializeField] private TMPro.TextMeshProUGUI _heightPercent;
     [SerializeField] private TMPro.TextMeshProUGUI _height;
+    [SerializeField] private TMPro.TextMeshProUGUI _lastMousePosition;
+    [SerializeField] private TMPro.TextMeshProUGUI _mousePositionDelta;
+    [SerializeField] private TMPro.TextMeshProUGUI _distance;
+    [SerializeField] private TMPro.TextMeshProUGUI _speed;
 
 
     public float AverageSpeed => _averageSpeed;
@@ -153,5 +157,9 @@ public class FinishingUI : MonoBehaviour
     {
         _heightPercent.text = "Height Percent: " + _paintingRoom.HeightPercent.ToString();
         _height.text = "Height: " + _paintingRoom.Height.ToString();
+        _lastMousePosition.text = "Last Mouse Position: " + _mouseDelta.LastMousePosition.ToString();
+        _mousePositionDelta.text = "Mouse Position Delta: " + _mouseDelta.MousePositionDelta.ToString();
+        _distance.text = "Distance: " + _mouseDelta.Distance.ToString();
+        _speed.text = "Speed: " + _mouseDelta.Speed.ToString();
     }
 }

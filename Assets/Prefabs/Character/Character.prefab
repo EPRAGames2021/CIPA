@@ -766,6 +766,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 8773940894981897254}
+  _animator: {fileID: 4997531372555551442}
+  _particleSystem: {fileID: 3268034036589515942}
+  _movementSystem: {fileID: 6853027721232337912}
   _wearingEquipment: 0
   _equipment:
   - {fileID: 5291710772119642222}
@@ -1518,6 +1521,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Poof
       objectReference: {fileID: 0}
+    - target: {fileID: 1046733363732004, guid: d7a1380441a57044eba390476d4eff72, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4738790163770152, guid: d7a1380441a57044eba390476d4eff72, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1576,6 +1583,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7a1380441a57044eba390476d4eff72, type: 3}
+--- !u!198 &3268034036589515942 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198767994055189830, guid: d7a1380441a57044eba390476d4eff72, type: 3}
+  m_PrefabInstance: {fileID: 3429572255803093472}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3425159230864087752 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4738790163770152, guid: d7a1380441a57044eba390476d4eff72, type: 3}
