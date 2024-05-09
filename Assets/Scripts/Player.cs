@@ -105,4 +105,5 @@ public enum CharacterState
     Roaming = 0,
     Dying = 1,
     Dancing = 2,
+    Talking = 3,
 }

@@ -11,9 +11,10 @@ public class PatrolSystem : MonoBehaviour
     [SerializeField] private int _currentTargetIndex;
 
     public Transform CurrentTarget => _currentTarget;
+    public bool HasTargets => _patrolPoints.Count > 0;
 
 
-    private void Start()
+    private void Awake()
     {
         Init();
     }
@@ -22,7 +23,11 @@ public class PatrolSystem : MonoBehaviour
     private void Init()
     {
         _currentTargetIndex = 0;
-        _currentTarget = _patrolPoints[_currentTargetIndex];
+
+        if (_patrolPoints.Count > 0)
+        {
+            _currentTarget = _patrolPoints[_currentTargetIndex];
+        }
     }
 
 

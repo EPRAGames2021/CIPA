@@ -33,15 +33,17 @@ public class NPC : MonoBehaviour
 
     private void Init()
     {
-        if (_patrolSystem.CurrentTarget == null)
+        if (_patrolSystem.HasTargets)
         {
-            Debug.Log("Character has no patrol points");
-
-            _characterState = CharacterState.None;
+            _characterState = CharacterState.Roaming;
         }
         else
         {
-            _characterState = CharacterState.Roaming;
+            Debug.Log("Character has no patrol points");
+
+            _characterState = CharacterState.Talking;
+
+            Talk();
         }
     }
 
@@ -60,5 +62,12 @@ public class NPC : MonoBehaviour
         {
             _patrolSystem.NextPatrolPoint();
         }        
+    }
+
+    private void Talk()
+    {
+        int random = Random.Range(0, 2);
+
+        _animator.SetBool("IsTalking" + random.ToString(), _characterState == CharacterState.Talking);
     }
 }
