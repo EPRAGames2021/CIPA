@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PatrolSystem : MonoBehaviour
@@ -8,6 +9,8 @@ public class PatrolSystem : MonoBehaviour
 
     [SerializeField] private Transform _currentTarget;
     [SerializeField] private int _currentTargetIndex;
+
+    public Transform CurrentTarget => _currentTarget;
 
 
     private void Start()
@@ -23,7 +26,7 @@ public class PatrolSystem : MonoBehaviour
     }
 
 
-    private void NextPatrolPoint()
+    public void NextPatrolPoint()
     {
         _currentTargetIndex++;
         
@@ -35,7 +38,7 @@ public class PatrolSystem : MonoBehaviour
         _currentTarget = _patrolPoints[_currentTargetIndex];
     }
 
-    private void PreviousPatrolPoint()
+    public void PreviousPatrolPoint()
     {
         _currentTargetIndex--;
 
