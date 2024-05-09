@@ -31,13 +31,10 @@ public class FinishingUI : MonoBehaviour
     [SerializeField] private MouseDelta _mouseDelta;
 
     [Header("Debug")]
-    [SerializeField] private PaintingRoom _paintingRoom;
-    [SerializeField] private TMPro.TextMeshProUGUI _heightPercent;
-    [SerializeField] private TMPro.TextMeshProUGUI _height;
-    [SerializeField] private TMPro.TextMeshProUGUI _lastMousePosition;
-    [SerializeField] private TMPro.TextMeshProUGUI _mousePositionDelta;
-    [SerializeField] private TMPro.TextMeshProUGUI _distance;
-    [SerializeField] private TMPro.TextMeshProUGUI _speed;
+    [SerializeField] private MousePositionHandler _mousePositionHandler;
+    [SerializeField] private TMPro.TextMeshProUGUI _innerBoxSize;
+    [SerializeField] private TMPro.TextMeshProUGUI _innerBoxPosition;
+    [SerializeField] private TMPro.TextMeshProUGUI _touchPositionRelativeToInnerBox;
 
 
     public float AverageSpeed => _averageSpeed;
@@ -155,11 +152,8 @@ public class FinishingUI : MonoBehaviour
 
     private void DisplayDebug()
     {
-        _heightPercent.text = "Height Percent: " + _paintingRoom.HeightPercent.ToString();
-        _height.text = "Height: " + _paintingRoom.Height.ToString();
-        _lastMousePosition.text = "Last Mouse Position: " + _mouseDelta.LastMousePosition.ToString();
-        _mousePositionDelta.text = "Mouse Position Delta: " + _mouseDelta.MousePositionDelta.ToString();
-        _distance.text = "Distance: " + _mouseDelta.Distance.ToString();
-        _speed.text = "Speed: " + _mouseDelta.Speed.ToString();
+        _innerBoxSize.text = "Inner box size: " + _mousePositionHandler.InnerBoxSize.ToString();
+        _innerBoxPosition.text = "Inner box position: " + _mousePositionHandler.InnerBoxPosition.ToString();
+        _touchPositionRelativeToInnerBox.text = "Touch position: " + _mousePositionHandler.TouchPosition.ToString();
     }
 }

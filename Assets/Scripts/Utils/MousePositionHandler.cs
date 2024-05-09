@@ -10,8 +10,16 @@ public class MousePositionHandler : MonoBehaviour
     [SerializeField] private float _heightPercent;
     [SerializeField] private float _widthPercent;
 
+    [SerializeField] private Vector2 _innerBoxSize;
+    [SerializeField] private Vector2 _innerBoxPosition;
+    [SerializeField] private Vector2 _touchPositionRelativeToInnerBox;
+
     public float HeightPercent => _heightPercent;
     public float WidthPercent => _widthPercent;
+
+    public Vector2 InnerBoxSize => _innerBoxSize;
+    public Vector2 InnerBoxPosition => _innerBoxPosition;
+    public Vector2 TouchPosition => _touchPositionRelativeToInnerBox;
 
     private void OnValidate()
     {
@@ -20,13 +28,13 @@ public class MousePositionHandler : MonoBehaviour
 
     private void Update()
     {
-        Vector2 innerBoxSize = _areaToHandle.rect.size;
-        Vector2 innerBoxPosition = _areaToHandle.position;
+        _innerBoxSize = _areaToHandle.rect.size;
+        _innerBoxPosition = _areaToHandle.position;
 
-        Vector2 touchPositionRelativeToInnerBox = new Vector2(_mouseDelta.LastMousePosition.x, _mouseDelta.LastMousePosition.y) - innerBoxPosition;
+        _touchPositionRelativeToInnerBox = new Vector2(_mouseDelta.LastMousePosition.x, _mouseDelta.LastMousePosition.y) - _innerBoxPosition;
 
-        _widthPercent = (touchPositionRelativeToInnerBox.x / innerBoxSize.x * 100) + 50;
-        _heightPercent = (touchPositionRelativeToInnerBox.y / innerBoxSize.y * 100) + 50;
+        _widthPercent = (_touchPositionRelativeToInnerBox.x / _innerBoxSize.x * 100) + 50;
+        _heightPercent = (_touchPositionRelativeToInnerBox.y / _innerBoxSize.y * 100) + 50;
 
         _widthPercent = Mathf.Clamp(_widthPercent, 0, 100);
         _heightPercent = Mathf.Clamp(_heightPercent, 0, 100);
