@@ -2651,7 +2651,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4209410240995543625}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -23.74, y: 0, z: 18.78}
+  m_LocalPosition: {x: -20.82, y: 0, z: 18.22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3692,7 +3692,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6261400023064976169}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -23.74, y: 0, z: 4.55}
+  m_LocalPosition: {x: -23.1, y: 0, z: 4.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11163,7 +11163,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 306710141963832678, guid: da34833d7c8d06a43b146fdaa2656a05, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1.2
       objectReference: {fileID: 0}
     - target: {fileID: 306710141963832678, guid: da34833d7c8d06a43b146fdaa2656a05, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11867,7 +11867,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5388895172569245290, guid: 9bbe0a8ab1a5e04478e4f4b895dd4b02, type: 3}
       propertyPath: _patrolPoints.Array.size
-      value: 5
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -5388895172569245290, guid: 9bbe0a8ab1a5e04478e4f4b895dd4b02, type: 3}
       propertyPath: _patrolPoints.Array.data[0]
@@ -11889,6 +11889,22 @@ PrefabInstance:
       propertyPath: _patrolPoints.Array.data[4]
       value: 
       objectReference: {fileID: 5981717020906863116}
+    - target: {fileID: -5388895172569245290, guid: 9bbe0a8ab1a5e04478e4f4b895dd4b02, type: 3}
+      propertyPath: _patrolPoints.Array.data[5]
+      value: 
+      objectReference: {fileID: 1229092214919073999}
+    - target: {fileID: -5388895172569245290, guid: 9bbe0a8ab1a5e04478e4f4b895dd4b02, type: 3}
+      propertyPath: _patrolPoints.Array.data[6]
+      value: 
+      objectReference: {fileID: 7246291679263570150}
+    - target: {fileID: -5388895172569245290, guid: 9bbe0a8ab1a5e04478e4f4b895dd4b02, type: 3}
+      propertyPath: _patrolPoints.Array.data[7]
+      value: 
+      objectReference: {fileID: 7532847396656656310}
+    - target: {fileID: -5388895172569245290, guid: 9bbe0a8ab1a5e04478e4f4b895dd4b02, type: 3}
+      propertyPath: _patrolPoints.Array.data[8]
+      value: 
+      objectReference: {fileID: 26817972595984535}
     - target: {fileID: 353278365276120730, guid: 9bbe0a8ab1a5e04478e4f4b895dd4b02, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -11896,6 +11912,10 @@ PrefabInstance:
     - target: {fileID: 2874982477554678577, guid: 9bbe0a8ab1a5e04478e4f4b895dd4b02, type: 3}
       propertyPath: m_Name
       value: NPC 03
+      objectReference: {fileID: 0}
+    - target: {fileID: 3654105604787843502, guid: 9bbe0a8ab1a5e04478e4f4b895dd4b02, type: 3}
+      propertyPath: _speed
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5261071859554659271, guid: 9bbe0a8ab1a5e04478e4f4b895dd4b02, type: 3}
       propertyPath: m_Controller
@@ -22034,6 +22054,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7975092269217589002, guid: eebea632a2847ea47a7ef6f4eedf492b, type: 3}
+      propertyPath: _currentTargetIndex
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7975092269217589002, guid: eebea632a2847ea47a7ef6f4eedf492b, type: 3}
       propertyPath: _patrolPoints.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -26203,6 +26227,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 143078203948078112}
     m_Modifications:
+    - target: {fileID: -2095517289254415272, guid: 24f9a34a87f424b49917ee33f83117f9, type: 3}
+      propertyPath: _currentTargetIndex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -2095517289254415272, guid: 24f9a34a87f424b49917ee33f83117f9, type: 3}
       propertyPath: _patrolPoints.Array.size
       value: 4
