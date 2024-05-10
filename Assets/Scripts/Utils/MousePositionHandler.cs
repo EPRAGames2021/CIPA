@@ -24,17 +24,24 @@ public class MousePositionHandler : MonoBehaviour
     private void OnValidate()
     {
         if (_mouseDelta == null) _mouseDelta = GetComponent<MouseDelta>();
+
+        _innerBoxSize = _areaToHandle.rect.size;
+        _innerBoxPosition = _areaToHandle.position;
+    }
+
+    private void Start()
+    {
+        _innerBoxSize = _areaToHandle.rect.size;
+        _innerBoxPosition = _areaToHandle.position;
     }
 
     private void Update()
     {
-        _innerBoxSize = _areaToHandle.rect.size;
-        _innerBoxPosition = _areaToHandle.position;
+        //_touchPositionRelativeToInnerBox = new Vector2(_mouseDelta.LastMousePosition.x, _mouseDelta.LastMousePosition.y) - _innerBoxPosition;
+        _touchPositionRelativeToInnerBox = _mouseDelta.LastMousePosition - _innerBoxSize;
 
-        _touchPositionRelativeToInnerBox = new Vector2(_mouseDelta.LastMousePosition.x, _mouseDelta.LastMousePosition.y) - _innerBoxPosition;
-
-        _widthPercent = (_touchPositionRelativeToInnerBox.x / _innerBoxSize.x * 100) + 50;
-        _heightPercent = (_touchPositionRelativeToInnerBox.y / _innerBoxSize.y * 100) + 50;
+        _widthPercent = ((_touchPositionRelativeToInnerBox.x / _innerBoxSize.x) * 100) + 50;
+        _heightPercent = ((_touchPositionRelativeToInnerBox.y / _innerBoxSize.y) * 100) + 50;
 
         _widthPercent = Mathf.Clamp(_widthPercent, 0, 100);
         _heightPercent = Mathf.Clamp(_heightPercent, 0, 100);
