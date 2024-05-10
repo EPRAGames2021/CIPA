@@ -60,6 +60,7 @@ public class EquipmentSystem : MonoBehaviour
         {
             _particleSystem.Play();
             _animator.SetTrigger("Spin");
+            _movementSystem.StandStill();
             _movementSystem.TemporarilyDisableMovement(4);
         }
 
