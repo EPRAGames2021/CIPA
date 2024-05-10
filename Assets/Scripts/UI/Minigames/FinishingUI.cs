@@ -30,12 +30,6 @@ public class FinishingUI : MonoBehaviour
     [SerializeField] private ScreenTouchController _screenTouchController;
     [SerializeField] private MouseDelta _mouseDelta;
 
-    [Header("Debug")]
-    [SerializeField] private MousePositionHandler _mousePositionHandler;
-    [SerializeField] private TMPro.TextMeshProUGUI _innerBoxSize;
-    [SerializeField] private TMPro.TextMeshProUGUI _innerBoxPosition;
-    [SerializeField] private TMPro.TextMeshProUGUI _touchPositionRelativeToInnerBox;
-
 
     public float AverageSpeed => _averageSpeed;
     public bool PaintFinished => _paintFinished;
@@ -66,8 +60,6 @@ public class FinishingUI : MonoBehaviour
         }
 
         CheckForMiniGameCompletion();
-
-        DisplayDebug();
     }
 
 
@@ -148,12 +140,5 @@ public class FinishingUI : MonoBehaviour
     private void UpdatePaintBar()
     {
         _paintSlider.value = _averageSpeed;
-    }
-
-    private void DisplayDebug()
-    {
-        _innerBoxSize.text = "Inner box size: " + _mousePositionHandler.InnerBoxSize.ToString();
-        _innerBoxPosition.text = "Inner box position: " + _mousePositionHandler.InnerBoxPosition.ToString();
-        _touchPositionRelativeToInnerBox.text = "Touch position: " + _mousePositionHandler.TouchPosition.ToString();
     }
 }
