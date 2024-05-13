@@ -48,8 +48,6 @@ public class DumpTruck : MonoBehaviour
 
     private void PlaySound()
     {
-
-
         if (_dumping && !_audioSource.isPlaying) AudioManager.Instance.PlayRandomSFX(_audioSource, _dumpSFX);
         if (!_dumping && _audioSource.isPlaying) _audioSource.Stop();
     }

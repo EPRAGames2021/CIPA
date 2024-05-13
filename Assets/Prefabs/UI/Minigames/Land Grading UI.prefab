@@ -289,7 +289,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 63.45
+  m_fontSize: 54.25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -344,6 +344,7 @@ GameObject:
   - component: {fileID: 3558531472543658795}
   - component: {fileID: 484340020832170243}
   - component: {fileID: 645938044210595791}
+  - component: {fileID: 3461521109262464725}
   m_Layer: 5
   m_Name: Land Grading UI
   m_TagString: Untagged
@@ -422,13 +423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407423d690265b74089defae534a8dc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fillSlider: {fileID: 6747972752043216060}
-  _fillValue: 0
-  _maxFill: 10
-  _minigameFinished: 0
-  _fillIdealValue: 5
-  _fillOffsetTolerance: 1
-  _screenTouchController: {fileID: 645938044210595791}
+  _pouringPanel: {fileID: 3461521109262464725}
 --- !u!114 &645938044210595791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -442,6 +437,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _firstPress: 0
+--- !u!114 &3461521109262464725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3558531472543658966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d278c553b8756d40beb38e898aeb85f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fillSlider: {fileID: 6747972752043216060}
+  _fillValue: 0
+  _maxFill: 10
+  _pouringFinished: 0
+  _fillIdealValue: 5
+  _fillOffsetTolerance: 1
+  _screenTouchController: {fileID: 645938044210595791}
 --- !u!1 &3558531473107775179
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,7 +564,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 146.95
+  m_fontSize: 119.4
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

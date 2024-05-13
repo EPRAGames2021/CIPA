@@ -5,76 +5,31 @@ using UnityEngine.UI;
 public class LandGradingUI : MonoBehaviour
 {
     [Header("Dev area")]
-    [SerializeField] private Slider _fillSlider;
+    [SerializeField] private PouringPanel _pouringPanel;
 
-    [SerializeField] private float _fillValue;
-    [SerializeField] private float _maxFill;
-
-    [SerializeField] private bool _minigameFinished;
-
-    [Header("GD area")]
-    [SerializeField] private float _fillIdealValue;
-    [SerializeField] private float _fillOffsetTolerance;
-
-    [Header("Touch handler")]
-    [SerializeField] private ScreenTouchController _screenTouchController;
-
-    private void OnValidate()
-    {
-        if (_screenTouchController == null)
-        {
-            _screenTouchController = GetComponent<ScreenTouchController>();
-        }
-    }
-
-    private void OnEnable()
+    private void Start()
     {
         Init();
     }
 
-    private void Update()
+    private void OnDestroy()
     {
-        if (_minigameFinished) return;
-
-        if (_screenTouchController.DetectHolding())
-        {
-            Fill();
-        }
-        else if (_screenTouchController.FirstPress)
-        {
-            _minigameFinished = true;
-
-            CalculateScore();
-        }
+        Finish();
     }
-
 
     private void Init()
     {
-        _minigameFinished = false;
-
-        _fillValue = 0;
-
-        _fillSlider.minValue = 0;
-        _fillSlider.value = _fillValue;
-        _fillSlider.maxValue = _maxFill;
+        _pouringPanel.OnPouringSucceeded += FinishMinigame;
     }
 
-    private void Fill()
+    private void Finish()
     {
-        _fillValue += Time.deltaTime;
-
-        UpdateFillBar();
+        _pouringPanel.OnPouringSucceeded -= FinishMinigame;
     }
 
-    private void UpdateFillBar()
+    private void FinishMinigame(bool succeeded)
     {
-        _fillSlider.value = _fillValue;
-    }
-
-    private void CalculateScore()
-    {
-        if (Mathf.Abs(_fillValue - _fillIdealValue) < _fillOffsetTolerance)
+        if (succeeded)
         {
             JobAreaManager.Instance.MinigameSuccessed();
         }
