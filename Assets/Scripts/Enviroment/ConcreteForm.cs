@@ -8,7 +8,6 @@ public class ConcreteForm : MonoBehaviour
     [SerializeField] private Animator _animator;
 
     [SerializeField] private bool _shouldPlayAnimation;
-    [SerializeField] private bool _isAnimationPlaying;
     [SerializeField] private string _animationParameterName;
 
     [Header("Sound")]
@@ -32,29 +31,25 @@ public class ConcreteForm : MonoBehaviour
 
     private void Init()
     {
-        _shouldPlayAnimation = false;
-        _isAnimationPlaying = false;
+        SetActive(false);
     }
+
 
     public void SetActive(bool active)
     {
         _shouldPlayAnimation = active;
     }
 
+    public void Restart()
+    {
+        SetActive(false);
+        _animator.SetBool(_animationParameterName, _shouldPlayAnimation);
+        _animator.SetTrigger("Reset");
+    }
+
     private void HandleAnimation()
     {
-        if (_shouldPlayAnimation && !_isAnimationPlaying)
-        {
-            _animator.SetBool(_animationParameterName, true);
-
-            _isAnimationPlaying = true;
-        }
-        else if (!_shouldPlayAnimation && _isAnimationPlaying)
-        {
-            _animator.speed = 0f;
-
-            _isAnimationPlaying = false;
-        }
+        _animator.SetBool(_animationParameterName, _shouldPlayAnimation);
     }
 
     private void PlaySound()

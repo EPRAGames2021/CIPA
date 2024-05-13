@@ -17,14 +17,10 @@ public class FoundationAndStructureUI : MonoBehaviour
 
     [SerializeField] private List<GameObject> _stagePanels;
 
-
     public int StageIndex => _stageIndex;
 
 
-    private void OnValidate()
-    {
-        if (_screenTouchController == null) _screenTouchController = GetComponent<ScreenTouchController>();
-    }
+    public event System.Action OnMinigameFailed;
 
     private void OnEnable()
     {
@@ -40,7 +36,6 @@ public class FoundationAndStructureUI : MonoBehaviour
     {
         Finish();
     }
-
 
     private void Refresh()
     {
@@ -103,6 +98,10 @@ public class FoundationAndStructureUI : MonoBehaviour
         else
         {
             JobAreaManager.Instance.MinigameFailed();
+
+            OnMinigameFailed?.Invoke();
+
+            MissionManager.Instance.GoToMission(2);
 
             gameObject.SetActive(false);
         }
