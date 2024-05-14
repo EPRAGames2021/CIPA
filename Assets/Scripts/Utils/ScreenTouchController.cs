@@ -13,7 +13,7 @@ public class ScreenTouchController : MonoBehaviour
     {
         Input.simulateMouseWithTouches = true;
 
-        _firstPress = false;
+        ReInit();
     }
 
     private void Update()
@@ -40,6 +40,12 @@ public class ScreenTouchController : MonoBehaviour
         {
             return false;
         }
+    }
+
+
+    public void ReInit()
+    {
+        _firstPress = false;
     }
 
 

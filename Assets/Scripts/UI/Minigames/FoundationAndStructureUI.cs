@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(ScreenTouchController))]
@@ -5,8 +6,21 @@ using UnityEngine;
 public class FoundationAndStructureUI : MonoBehaviour
 {
     [Header("Dev area")]
-    [SerializeField] private IngredientSelectionPanel _ingredientSelectionPanel;
+    [SerializeField] private ScreenTouchController _screenTouchController;
+
+    [SerializeField] private IngredientSelectionPanel _formSelectionPanel;
+    [SerializeField] private IngredientSelectionPanel _concreteSelectionPanel;
     [SerializeField] private ConcreteMixPanel _concreteMixPanel;
+    [SerializeField] private PouringPanel _pouringPanel;
+
+    [SerializeField] private int _stageIndex;
+
+    [SerializeField] private List<GameObject> _stagePanels;
+
+    public int StageIndex => _stageIndex;
+
+
+    public event System.Action OnMinigameFailed;
 
     private void OnEnable()
     {
@@ -23,54 +37,71 @@ public class FoundationAndStructureUI : MonoBehaviour
         Finish();
     }
 
-
     private void Refresh()
     {
-        _ingredientSelectionPanel.gameObject.SetActive(true);
-        _concreteMixPanel.gameObject.SetActive(false);
+        _stageIndex = 0;
+        EnablePanel(_stageIndex);
     }
 
     private void Init()
     {
-        _ingredientSelectionPanel.OnIngredientsAreCorrect += CheckIngredients;
-        _concreteMixPanel.OnMixSucceeded += CheckConcreteMix;
+        Refresh();
+
+        _formSelectionPanel.OnIngredientsAreCorrect += CheckAdvanceStage;
+        _concreteSelectionPanel.OnIngredientsAreCorrect += CheckAdvanceStage;
+        _concreteMixPanel.OnMixSucceeded += CheckAdvanceStage;
+        _pouringPanel.OnPouringSucceeded += CheckAdvanceStage;
     }
 
     private void Finish()
     {
-        _ingredientSelectionPanel.OnIngredientsAreCorrect -= CheckIngredients;
-        _concreteMixPanel.OnMixSucceeded -= CheckConcreteMix;
+        _formSelectionPanel.OnIngredientsAreCorrect -= CheckAdvanceStage;
+        _concreteSelectionPanel.OnIngredientsAreCorrect -= CheckAdvanceStage;
+        _concreteMixPanel.OnMixSucceeded -= CheckAdvanceStage;
+        _pouringPanel.OnPouringSucceeded -= CheckAdvanceStage;
     }
 
 
-    private void CheckIngredients(bool correct)
+    private void EnablePanel(int index)
     {
-        if (correct)
+        for (int i = 0; i < _stagePanels.Count; i++)
         {
-            MissionManager.Instance.GoToNextMission();
+            _stagePanels[i].SetActive(i == index);
+        }
+    }
 
-            _ingredientSelectionPanel.gameObject.SetActive(false);
-            _concreteMixPanel.gameObject.SetActive(true);
+    private void NextPanel()
+    {
+        _stageIndex++;
+        EnablePanel(_stageIndex);
+    }
+
+    private void CheckAdvanceStage(bool canAdvance)
+    {
+        if (canAdvance)
+        {
+            if (_stageIndex < _stagePanels.Count - 1)
+            {
+                NextPanel();
+
+                MissionManager.Instance.GoToNextMission();
+
+                _screenTouchController.ReInit();
+            }
+            else
+            {
+                JobAreaManager.Instance.MinigameSuccessed();
+
+                gameObject.SetActive(false);
+            }
         }
         else
         {
             JobAreaManager.Instance.MinigameFailed();
 
-            gameObject.SetActive(false);
-        }
-    }
+            OnMinigameFailed?.Invoke();
 
-    private void CheckConcreteMix(bool succeeded)
-    {
-        if (succeeded)
-        {
-            JobAreaManager.Instance.MinigameSuccessed();
-
-            gameObject.SetActive(false);
-        }
-        else
-        {
-            JobAreaManager.Instance.MinigameFailed();
+            MissionManager.Instance.GoToMission(2);
 
             gameObject.SetActive(false);
         }
