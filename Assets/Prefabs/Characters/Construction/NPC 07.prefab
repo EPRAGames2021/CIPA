@@ -135,6 +135,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b20b399473fc8ed4eb6fc87528ebee51, type: 2}
+    - target: {fileID: 5311387272232042546, guid: dc1de52678cdb4b45983e4b84b463f24, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6081471977704181693, guid: dc1de52678cdb4b45983e4b84b463f24, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -281,6 +285,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 4691258042623842298}
   _stepSFX: {fileID: 11400000, guid: e969efc25755a1c4b95ad8e2319da708, type: 2}
+--- !u!1 &1646064146270979222 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5311387272232042546, guid: dc1de52678cdb4b45983e4b84b463f24, type: 3}
+  m_PrefabInstance: {fileID: 6873100012823315620}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2874982477554678577 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8685145011950419861, guid: dc1de52678cdb4b45983e4b84b463f24, type: 3}
@@ -336,7 +345,7 @@ MonoBehaviour:
   _distanceToTarget: 0
   _characterState: 0
   _box: {fileID: 353278365276120730}
-  _handcart: {fileID: 6561214217985093286}
+  _handcart: {fileID: 1646064146270979222}
 --- !u!114 &-2095517289254415272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,10 +364,5 @@ MonoBehaviour:
 --- !u!95 &5261071859554659271 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 1612637146229649251, guid: dc1de52678cdb4b45983e4b84b463f24, type: 3}
-  m_PrefabInstance: {fileID: 6873100012823315620}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6561214217985093286 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 318688610858527234, guid: dc1de52678cdb4b45983e4b84b463f24, type: 3}
   m_PrefabInstance: {fileID: 6873100012823315620}
   m_PrefabAsset: {fileID: 0}
