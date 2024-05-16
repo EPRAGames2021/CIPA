@@ -12870,6 +12870,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Moving Truck
       objectReference: {fileID: 0}
+    - target: {fileID: 7765020769805902160, guid: da34833d7c8d06a43b146fdaa2656a05, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7765020769805902160, guid: da34833d7c8d06a43b146fdaa2656a05, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 52.51
+      objectReference: {fileID: 0}
     - target: {fileID: 7765020769805902163, guid: da34833d7c8d06a43b146fdaa2656a05, type: 3}
       propertyPath: m_Size.x
       value: 0.7178932
@@ -12889,6 +12897,10 @@ PrefabInstance:
     - target: {fileID: 7765576433635731147, guid: da34833d7c8d06a43b146fdaa2656a05, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9019941460912862103, guid: da34833d7c8d06a43b146fdaa2656a05, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 16.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da34833d7c8d06a43b146fdaa2656a05, type: 3}
@@ -22001,7 +22013,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 353278365276120730, guid: eebea632a2847ea47a7ef6f4eedf492b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167095989686054592, guid: eebea632a2847ea47a7ef6f4eedf492b, type: 3}
+      propertyPath: _carryingBox
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2874982477554678577, guid: eebea632a2847ea47a7ef6f4eedf492b, type: 3}
       propertyPath: m_Name
@@ -22162,6 +22178,41 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7955827736757476179, guid: eebea632a2847ea47a7ef6f4eedf492b, type: 3}
   m_PrefabInstance: {fileID: 6522950606397600104}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &9035294321793895001 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2874982477554678577, guid: eebea632a2847ea47a7ef6f4eedf492b, type: 3}
+  m_PrefabInstance: {fileID: 6522950606397600104}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &7693964638717091649
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9035294321793895001}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4283428654380646126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9035294321793895001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c246ac461a6c06641bd2fc63b0b4cc1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hasBeenHit: 0
+  _hitIsFatal: 1
+  _boxColliderTrigger: {fileID: 0}
+  _dayScore: {fileID: 11400000, guid: 99ccc02f4e9ff5b49b3ee8e31cea93c4, type: 2}
+  _bumpPenalty: 0
 --- !u!1001 &6553952244514200958
 PrefabInstance:
   m_ObjectHideFlags: 0
