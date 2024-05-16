@@ -33,8 +33,6 @@ public class PatrolSystem : MonoBehaviour
         else
         {
             Debug.LogWarning(this + " has no targets. Setting target to itself.");
-
-            _currentTarget = transform;
         }
     }
 
