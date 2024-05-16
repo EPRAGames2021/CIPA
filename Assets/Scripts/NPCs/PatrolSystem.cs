@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class PatrolSystem : MonoBehaviour
 {
+    [Header("GD area")]
     [SerializeField] private List<Transform> _patrolPoints;
 
+    [Header("Dev area")]
     [SerializeField] private Transform _currentTarget;
     [SerializeField] private int _currentTargetIndex;
 
@@ -24,9 +26,15 @@ public class PatrolSystem : MonoBehaviour
     {
         _currentTargetIndex = 0;
 
-        if (_patrolPoints.Count > 0)
+        if (HasTargets)
         {
             _currentTarget = _patrolPoints[_currentTargetIndex];
+        }
+        else
+        {
+            Debug.LogWarning(this + " has no targets. Setting target to itself.");
+
+            _currentTarget = transform;
         }
     }
 
