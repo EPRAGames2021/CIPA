@@ -4,6 +4,12 @@ using UnityEngine;
 [RequireComponent(typeof(PatrolSystem))]
 public class NPC : MonoBehaviour
 {
+    [Header("GD area")]
+    [SerializeField] private float _speed;
+    [SerializeField] private bool _carryingBox;
+    [SerializeField] private bool _pushingHandCart;
+
+    [Header("Dev area")]
     [SerializeField] private Animator _animator;
 
     [SerializeField] private PatrolSystem _patrolSystem;
@@ -11,13 +17,17 @@ public class NPC : MonoBehaviour
 
     [SerializeField] private CharacterState _characterState;
 
-    [SerializeField] private float _speed;
+
+    [SerializeField] private GameObject _box;
+    [SerializeField] private GameObject _handcart;
 
 
     private void OnValidate()
     {
         if (_patrolSystem == null) _patrolSystem = GetComponent<PatrolSystem>();
         if (_animator == null) _animator = GetComponentInChildren<Animator>();
+
+        CheckCarrying();
     }
 
     private void Start()
@@ -33,6 +43,8 @@ public class NPC : MonoBehaviour
 
     private void Init()
     {
+        CheckCarrying();
+
         if (_patrolSystem.HasTargets)
         {
             _characterState = CharacterState.Roaming;
@@ -69,5 +81,13 @@ public class NPC : MonoBehaviour
         int random = Random.Range(0, 2);
 
         _animator.SetBool("IsTalking" + random.ToString(), _characterState == CharacterState.Talking);
+    }
+
+    private void CheckCarrying()
+    {
+        _box.SetActive(_carryingBox);
+        _handcart.SetActive(_pushingHandCart);
+
+        _animator.SetBool("IsCarrying", _carryingBox || _pushingHandCart);
     }
 }

@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 318688610858527234, guid: dc1de52678cdb4b45983e4b84b463f24, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 402332757106525135, guid: dc1de52678cdb4b45983e4b84b463f24, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -135,6 +139,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 39f685f2a81279d47bb26d26a886c763, type: 2}
+    - target: {fileID: 6594730859789296190, guid: dc1de52678cdb4b45983e4b84b463f24, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7638495979443493927, guid: dc1de52678cdb4b45983e4b84b463f24, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -153,6 +161,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc1de52678cdb4b45983e4b84b463f24, type: 3}
+--- !u!1 &353278365276120730 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6594730859789296190, guid: dc1de52678cdb4b45983e4b84b463f24, type: 3}
+  m_PrefabInstance: {fileID: 6873100012823315620}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1488695327279196935 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5461389191228403619, guid: dc1de52678cdb4b45983e4b84b463f24, type: 3}
@@ -315,11 +328,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 079108a83678a5d4b922b76732434884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _speed: 2
+  _carryingBox: 0
+  _pushingHandCart: 0
   _animator: {fileID: 5261071859554659271}
   _patrolSystem: {fileID: -2095517289254415272}
   _distanceToTarget: 0
   _characterState: 0
-  _speed: 2
+  _box: {fileID: 353278365276120730}
+  _handcart: {fileID: 6561214217985093286}
 --- !u!114 &-2095517289254415272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,5 +355,10 @@ MonoBehaviour:
 --- !u!95 &5261071859554659271 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 1612637146229649251, guid: dc1de52678cdb4b45983e4b84b463f24, type: 3}
+  m_PrefabInstance: {fileID: 6873100012823315620}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6561214217985093286 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 318688610858527234, guid: dc1de52678cdb4b45983e4b84b463f24, type: 3}
   m_PrefabInstance: {fileID: 6873100012823315620}
   m_PrefabAsset: {fileID: 0}
