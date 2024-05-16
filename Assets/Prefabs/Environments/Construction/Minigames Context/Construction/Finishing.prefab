@@ -10893,46 +10893,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4033726463639202, guid: 58a4cdd8cca299e4688c876d03b2df52, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.25751957
-      objectReference: {fileID: 0}
-    - target: {fileID: 4033726463639202, guid: 58a4cdd8cca299e4688c876d03b2df52, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.28571427
-      objectReference: {fileID: 0}
-    - target: {fileID: 4033726463639202, guid: 58a4cdd8cca299e4688c876d03b2df52, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.14010704
-      objectReference: {fileID: 0}
-    - target: {fileID: 4033726463639202, guid: 58a4cdd8cca299e4688c876d03b2df52, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 4033726463639202, guid: 58a4cdd8cca299e4688c876d03b2df52, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.42571425
-      objectReference: {fileID: 0}
-    - target: {fileID: 4033726463639202, guid: 58a4cdd8cca299e4688c876d03b2df52, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.14
-      objectReference: {fileID: 0}
-    - target: {fileID: 4033726463639202, guid: 58a4cdd8cca299e4688c876d03b2df52, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.00000004470348
-      objectReference: {fileID: 0}
-    - target: {fileID: 4033726463639202, guid: 58a4cdd8cca299e4688c876d03b2df52, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4033726463639202, guid: 58a4cdd8cca299e4688c876d03b2df52, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4033726463639202, guid: 58a4cdd8cca299e4688c876d03b2df52, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4033726463639202, guid: 58a4cdd8cca299e4688c876d03b2df52, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
@@ -15373,24 +15333,16 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7955827736757476179, guid: eebea632a2847ea47a7ef6f4eedf492b, type: 3}
   m_PrefabInstance: {fileID: 4615948683669508687}
   m_PrefabAsset: {fileID: 0}
+--- !u!136 &4871494155913257880 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 257869290841338327, guid: eebea632a2847ea47a7ef6f4eedf492b, type: 3}
+  m_PrefabInstance: {fileID: 4615948683669508687}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7488036524325595518 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2874982477554678577, guid: eebea632a2847ea47a7ef6f4eedf492b, type: 3}
   m_PrefabInstance: {fileID: 4615948683669508687}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &4792642530815645613
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7488036524325595518}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1854887371917553368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15405,7 +15357,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hasBeenHit: 0
   _hitIsFatal: 1
-  _boxColliderTrigger: {fileID: 0}
+  _collider: {fileID: 4871494155913257880}
   _dayScore: {fileID: 11400000, guid: 99ccc02f4e9ff5b49b3ee8e31cea93c4, type: 2}
   _bumpPenalty: 0
 --- !u!1001 &4674143012122201234
@@ -15859,52 +15811,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4033726463639202, guid: 58a4cdd8cca299e4688c876d03b2df52, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.25751957
-      objectReference: {fileID: 0}
-    - target: {fileID: 4033726463639202, guid: 58a4cdd8cca299e4688c876d03b2df52, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.28571427
-      objectReference: {fileID: 0}
-    - target: {fileID: 4033726463639202, guid: 58a4cdd8cca299e4688c876d03b2df52, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.14010704
-      objectReference: {fileID: 0}
-    - target: {fileID: 4033726463639202, guid: 58a4cdd8cca299e4688c876d03b2df52, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.088
-      objectReference: {fileID: 0}
-    - target: {fileID: 4033726463639202, guid: 58a4cdd8cca299e4688c876d03b2df52, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.42571425
-      objectReference: {fileID: 0}
-    - target: {fileID: 4033726463639202, guid: 58a4cdd8cca299e4688c876d03b2df52, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.093
-      objectReference: {fileID: 0}
-    - target: {fileID: 4033726463639202, guid: 58a4cdd8cca299e4688c876d03b2df52, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.00000004470348
-      objectReference: {fileID: 0}
-    - target: {fileID: 4033726463639202, guid: 58a4cdd8cca299e4688c876d03b2df52, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4033726463639202, guid: 58a4cdd8cca299e4688c876d03b2df52, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4033726463639202, guid: 58a4cdd8cca299e4688c876d03b2df52, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4033726463639202, guid: 58a4cdd8cca299e4688c876d03b2df52, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4033726463639202, guid: 58a4cdd8cca299e4688c876d03b2df52, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4033726463639202, guid: 58a4cdd8cca299e4688c876d03b2df52, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z

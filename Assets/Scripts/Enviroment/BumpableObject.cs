@@ -1,16 +1,21 @@
 using UnityEngine;
 using EPRA.Utilities;
 
-[RequireComponent(typeof(BoxCollider))]
+[RequireComponent(typeof(Collider))]
 public class BumpableObject : MonoBehaviour
 {
     [SerializeField] private bool _hasBeenHit;
     [SerializeField] private bool _hitIsFatal;
-    [SerializeField] private BoxCollider _boxColliderTrigger;
+    [SerializeField] private Collider _collider;
 
     [SerializeField] private CurrencySO _dayScore;
     [SerializeField] private int _bumpPenalty;
 
+
+    private void OnValidate()
+    {
+        if (_collider == null) _collider = GetComponent<Collider>();
+    }
 
     private void Awake()
     {
@@ -41,7 +46,7 @@ public class BumpableObject : MonoBehaviour
     {
         _hasBeenHit = false;
 
-        _boxColliderTrigger.isTrigger = true;
+        _collider.isTrigger = true;
     }
 
     public void Refresh()

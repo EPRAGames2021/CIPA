@@ -56,7 +56,7 @@ public class DodgeableTruck : MonoBehaviour
     {
         if (!_moving) return;
 
-        float distance = Vector3.Distance(transform.position, _patrolSystem.transform.position);
+        float distance = Vector3.Distance(transform.position, _patrolSystem.CurrentTarget.position);
         float time = distance / _speed;
 
         transform.DOMove(_patrolSystem.CurrentTarget.position, time);

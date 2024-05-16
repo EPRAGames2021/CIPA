@@ -30,10 +30,10 @@ public class PatrolSystem : MonoBehaviour
         {
             _currentTarget = _patrolPoints[_currentTargetIndex];
         }
-        else
-        {
-            Debug.LogWarning(this + " has no targets. Setting target to itself.");
-        }
+        //else
+        //{
+        //    Debug.LogWarning(this + " has no targets.");
+        //}
     }
 
 
@@ -59,5 +59,15 @@ public class PatrolSystem : MonoBehaviour
         }
 
         _currentTarget = _patrolPoints[_currentTargetIndex];
+    }
+
+
+    private void OnDrawGizmosSelected()
+    {
+        foreach (Transform transform in _patrolPoints)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireCube(transform.position, new Vector3(1, 1, 1));
+        }
     }
 }
