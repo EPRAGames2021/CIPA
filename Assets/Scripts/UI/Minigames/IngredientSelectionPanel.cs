@@ -48,18 +48,6 @@ public class IngredientSelectionPanel : MonoBehaviour
     private void Init()
     {
         _confirmButton.onClick.AddListener(CheckIngredients);
-
-        //for (int i = 0; i < _ingredientsList.Count; i++)
-        //{
-        //    GameObject newIngredient = Instantiate(_ingredientTogglePrefab, _ingredientsContainer.transform);
-        //
-        //    newIngredient.TryGetComponent(out IngredientToggle ingredient);
-        //
-        //    if (ingredient != null)
-        //    {
-        //        _ingredientsToggleList.Add(ingredient);
-        //    }
-        //}
     }
 
     private void Finish()

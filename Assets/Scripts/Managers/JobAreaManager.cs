@@ -135,6 +135,8 @@ public class JobAreaManager : MonoBehaviour
     {
         GameManager.Instance.UpdateGameState(GameState.MiniGameState);
 
+        _player.HealthSystem.Invincible = true;
+
         for (int i = 0; i < _minigamesUIs.Count; i++)
         {
             _minigamesUIs[i].SetActive(i == _jobSectorSO.Day);

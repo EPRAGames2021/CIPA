@@ -7,6 +7,7 @@ public class HealthSystem : MonoBehaviour
     [SerializeField] private bool _dead;
     [SerializeField] private int _health;
     [SerializeField, Min(1)] private int _maxHealth = 1;
+    [SerializeField] private bool _invincible;
 
     [Header("Percentage required to make unit injuried")]
     [SerializeField, Range(0, 100)] private float _injuryThreshhold;
@@ -14,7 +15,8 @@ public class HealthSystem : MonoBehaviour
     public bool Dead => _dead;
     public int Health => _health;
     public int MaxHealth => _maxHealth;
-    public bool IsInjuried => ((float)_health / (float)_maxHealth) * 100 < _injuryThreshhold;
+    public bool IsInjuried => (_health / (float)_maxHealth) * 100 < _injuryThreshhold;
+    public bool Invincible { get { return _invincible; } set { _invincible = value; } }
 
 
     public event System.Action OnDied;
@@ -31,26 +33,18 @@ public class HealthSystem : MonoBehaviour
         TakeDamage(0);
     }
 
-    private void OnDestroy()
-    {
-        Finish();
-    }
-
 
     private void Init()
     {
+        _invincible = false;
         _health = _maxHealth;
-    }
-
-    private void Finish()
-    {
-
     }
 
 
     public void TakeDamage(int damage)
     {
         if (_dead) return;
+        if (_invincible) return;
 
         _health = Mathf.Max(_health - damage, 0);
         _dead = _health <= 0;

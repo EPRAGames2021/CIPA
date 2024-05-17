@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class EquipmentSystem : MonoBehaviour
@@ -13,6 +15,8 @@ public class EquipmentSystem : MonoBehaviour
     [SerializeField] private bool _wearingEquipment;
 
     [SerializeField] private List<GameObject> _equipment;
+
+    [SerializeField] private List<EquipmentHandler> _equipmentHandlers;
 
     public bool WearingEquipment => _wearingEquipment;
 
@@ -30,20 +34,10 @@ public class EquipmentSystem : MonoBehaviour
         Init();
     }
 
-    private void OnDestroy()
-    {
-        Finish();
-    }
-
 
     private void Init()
     {
         EquipPlayer(false);
-    }
-
-    private void Finish()
-    {
-        
     }
 
 
@@ -65,5 +59,10 @@ public class EquipmentSystem : MonoBehaviour
         }
 
         OnEquipped?.Invoke(_wearingEquipment);
+    }
+
+    public void EquipEquipment(EquipmentType type, bool enable)
+    {
+        _equipmentHandlers.FirstOrDefault(equipment => equipment.EquipmentType == type)?.Equip(enable);
     }
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using EPRA.Utilities;
+using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "Job", menuName = "Scriptable Objects/Job", order = 1)]
 public class JobSO : ScriptableObject
@@ -12,9 +13,12 @@ public class JobSO : ScriptableObject
 
     [SerializeField] private string _keyName;
 
+    [SerializeField] private List<EquipmentType> _requiredEquipment;
+
     public int Score => _score;
     public string JobName => _jobName;
     public string KeyName => _keyName;
+    public List<EquipmentType> RequiredEquipment => _requiredEquipment;
 
 
     private void OnValidate()

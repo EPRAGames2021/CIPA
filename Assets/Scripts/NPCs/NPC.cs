@@ -1,4 +1,5 @@
 using DG.Tweening;
+using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(PatrolSystem))]
@@ -27,7 +28,7 @@ public class NPC : MonoBehaviour
         if (_patrolSystem == null) _patrolSystem = GetComponent<PatrolSystem>();
         if (_animator == null) _animator = GetComponentInChildren<Animator>();
 
-        CheckCarrying();
+        if (EditorApplication.isPlaying) CheckCarrying();
     }
 
     private void Start()

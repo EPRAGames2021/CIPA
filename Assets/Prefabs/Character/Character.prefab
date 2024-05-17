@@ -400,7 +400,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1694698994323782435
 Transform:
   m_ObjectHideFlags: 0
@@ -733,6 +733,7 @@ MonoBehaviour:
   _dead: 0
   _health: 100
   _maxHealth: 100
+  _invincible: 0
   _injuryThreshhold: 40
 --- !u!114 &6853027721232337912
 MonoBehaviour:
@@ -775,6 +776,31 @@ MonoBehaviour:
   - {fileID: 1611269543939737245}
   - {fileID: 7323023846113124790}
   - {fileID: 1526848989646040017}
+  _equipmentHandlers:
+  - _equipped: 0
+    _object: {fileID: 5291710772119642222}
+    _equipmentType: 1
+  - _equipped: 0
+    _object: {fileID: 1526848989646040017}
+    _equipmentType: 2
+  - _equipped: 0
+    _object: {fileID: 1611269543939737245}
+    _equipmentType: 3
+  - _equipped: 0
+    _object: {fileID: 4973973812413077582}
+    _equipmentType: 4
+  - _equipped: 0
+    _object: {fileID: 6040412929559241636}
+    _equipmentType: 5
+  - _equipped: 0
+    _object: {fileID: 520777807033789482}
+    _equipmentType: 6
+  - _equipped: 0
+    _object: {fileID: 4973973812413077582}
+    _equipmentType: 7
+  - _equipped: 0
+    _object: {fileID: 7600302835041583004}
+    _equipmentType: 8
 --- !u!114 &7508475094570260518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -808,7 +834,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1126903488394209658
 Transform:
   m_ObjectHideFlags: 0
@@ -1443,6 +1469,11 @@ GameObject:
 --- !u!4 &5623937312806759040 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6502182839619065283, guid: ace0d774ada705c4ab8f4da1551be57d, type: 3}
+  m_PrefabInstance: {fileID: 1454761532017344323}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7600302835041583004 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -195366934826991393, guid: ace0d774ada705c4ab8f4da1551be57d, type: 3}
   m_PrefabInstance: {fileID: 1454761532017344323}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2867130023848180445
