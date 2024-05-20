@@ -33,6 +33,8 @@ public class PPESelectionMenu : MenuController
     private void Init()
     {
         _jobSO = JobAreaManager.Instance?.JobSectorAreaSO.CurrentJob;
+        _requiredEquipments = _jobSO.RequiredEquipment;
+        _selectedEquipments = new();
 
         foreach (ResourceToggle resourceToggle in _resourceToggleList)
         {
@@ -44,16 +46,16 @@ public class PPESelectionMenu : MenuController
 
     private void Finish()
     {
+        _jobSO = null;
+        _requiredEquipments = null;
+        _selectedEquipments.Clear();
+
         _confirmButton.onClick.RemoveAllListeners();
     }
 
 
     private void CheckCorrectPPE()
     {
-        _requiredEquipments = _jobSO.RequiredEquipment;
-
-        _selectedEquipments = new();
-
         foreach (ResourceToggle resourceToggle in _resourceToggleList)
         {
             if (resourceToggle.IsSelected)

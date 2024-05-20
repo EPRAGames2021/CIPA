@@ -42,37 +42,29 @@ public class LockerTrigger : MonoBehaviour
         PlayerCameraHandler.Instance.FocusOnPPEBoard(true);
     }
 
-    private void FinishEquipmentSelection()
-    {
-        CanvasManager.Instance.CloseMenu(MenuType.PPESelectionMenu);
-        CanvasManager.Instance.SetHudEnabled(true);
-        CanvasManager.Instance.FloatingJoystick.gameObject.SetActive(true);
-
-        MissionManager.Instance.GoToNextMission();
-
-        PPESelectionMenu.OnSelectionIsCorrect -= EquipPlayer;
-
-        PlayerCameraHandler.Instance.FocusOnPPEBoard(false);
-
-        JobSO job = JobAreaManager.Instance.JobSectorAreaSO.CurrentJob;
-        _player.EquipmentSystem.EquipPlayer(job.RequiredEquipment, true);
-
-        _playerDetector.gameObject.SetActive(false);
-
-        Vibrator.Vibrate(100);
-    }
-
     private void EquipPlayer(bool equip)
     {
         if (equip)
         {
-            FinishEquipmentSelection();
+            CanvasManager.Instance.CloseMenu(MenuType.PPESelectionMenu);
+
+            MissionManager.Instance.GoToNextMission();
+            PlayerCameraHandler.Instance.FocusOnPPEBoard(false);
+
+            JobSO job = JobAreaManager.Instance.JobSectorAreaSO.CurrentJob;
+            _player.EquipmentSystem.EquipPlayer(job.RequiredEquipment, true);
+
+            _playerDetector.gameObject.SetActive(false);
         }
         else
         {
             CanvasManager.Instance.SwitchMenu(MenuType.GameOverMenu);
-
-            Vibrator.Vibrate(100);
         }
+
+        CanvasManager.Instance.SetHudEnabled(true);
+        CanvasManager.Instance.FloatingJoystick.gameObject.SetActive(true);
+
+        PPESelectionMenu.OnSelectionIsCorrect -= EquipPlayer;
+        Vibrator.Vibrate(100);
     }
 }

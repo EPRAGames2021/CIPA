@@ -28,7 +28,9 @@ public class NPC : MonoBehaviour
         if (_patrolSystem == null) _patrolSystem = GetComponent<PatrolSystem>();
         if (_animator == null) _animator = GetComponentInChildren<Animator>();
 
+#if UNITY_EDITOR
         if (EditorApplication.isPlaying) CheckCarrying();
+#endif
     }
 
     private void Start()

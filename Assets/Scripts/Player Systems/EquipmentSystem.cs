@@ -14,8 +14,6 @@ public class EquipmentSystem : MonoBehaviour
 
     [SerializeField] private bool _wearingEquipment;
 
-    [SerializeField] private List<GameObject> _equipment;
-
     [SerializeField] private List<EquipmentHandler> _equipmentHandlers;
 
     public bool WearingEquipment => _wearingEquipment;
@@ -52,11 +50,6 @@ public class EquipmentSystem : MonoBehaviour
             EquipEquipment(equipmentType, enable);
         }
 
-        //foreach (GameObject equipment in _equipment)
-        //{
-        //    equipment.SetActive(equip);
-        //}
-
         _wearingEquipment = enable;
 
         if (_wearingEquipment)
@@ -70,7 +63,7 @@ public class EquipmentSystem : MonoBehaviour
         OnEquipped?.Invoke(_wearingEquipment);
     }
 
-    public void EquipEquipment(EquipmentType type, bool enable)
+    private void EquipEquipment(EquipmentType type, bool enable)
     {
         _equipmentHandlers.FirstOrDefault(equipment => equipment.EquipmentType == type)?.Equip(enable);
     }
