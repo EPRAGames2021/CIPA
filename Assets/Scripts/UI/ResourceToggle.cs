@@ -3,17 +3,17 @@ using UnityEngine.UI;
 using TMPro;
 using EPRA.Utilities;
 
-public class IngredientToggle : MonoBehaviour
+public class ResourceToggle : MonoBehaviour
 {
     [SerializeField] private Toggle _toggle;
 
-    [SerializeField] private IngredientSO _ingredientSO;
+    [SerializeField] private ResourceSO _resourceSO;
 
     [SerializeField] private TextMeshProUGUI _ingredientName;
     [SerializeField] private Image _ingredientIcon;
 
 
-    public IngredientSO IngredientSO => _ingredientSO;
+    public ResourceSO ResourceSO => _resourceSO;
     public bool IsSelected => _toggle.isOn;
 
     private void OnEnable()
@@ -24,19 +24,19 @@ public class IngredientToggle : MonoBehaviour
 
     private void Refresh()
     {
-        if (_ingredientSO != null)
+        if (_resourceSO != null)
         {
-            SetIngredient(_ingredientSO);
+            SetEquipment(_resourceSO);
         }
     }
 
 
-    public void SetIngredient(IngredientSO ingredientSO)
+    public virtual void SetEquipment(ResourceSO resourceSO)
     {
-        _ingredientSO = ingredientSO;
+        _resourceSO = resourceSO;
 
-        _ingredientName.text = LanguageManager.GetTranslation(_ingredientSO.NameKey);
-        _ingredientIcon.sprite = _ingredientSO.Icon;
+        _ingredientName.text = LanguageManager.GetTranslation(_resourceSO.NameKey);
+        _ingredientIcon.sprite = _resourceSO.Icon;
     }
 
     public void ResetToggle()

@@ -14,6 +14,7 @@ namespace EPRA.Utilities
         [SerializeField] private int _day;
 
         public List<JobSO> Jobs => _jobs;
+        public JobSO CurrentJob => _jobs[_day];
         public int Day => _day;
         public int TotalDays => _jobs.Count;
         public bool IsFinalDay => _day == TotalDays - 1;

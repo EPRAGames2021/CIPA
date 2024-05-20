@@ -37,18 +37,27 @@ public class EquipmentSystem : MonoBehaviour
 
     private void Init()
     {
-        EquipPlayer(false);
+        //EquipPlayer(false);
+        foreach (EquipmentHandler equipmentHandler in _equipmentHandlers)
+        {
+            equipmentHandler.Equip(false);
+        }
     }
 
 
-    public void EquipPlayer(bool equip)
+    public void EquipPlayer(List<EquipmentType> equipTypes, bool enable)
     {
-        foreach (GameObject equipment in _equipment)
+        foreach (EquipmentType equipmentType in equipTypes)
         {
-            equipment.SetActive(equip);
+            EquipEquipment(equipmentType, enable);
         }
 
-        _wearingEquipment = equip;
+        //foreach (GameObject equipment in _equipment)
+        //{
+        //    equipment.SetActive(equip);
+        //}
+
+        _wearingEquipment = enable;
 
         if (_wearingEquipment)
         {

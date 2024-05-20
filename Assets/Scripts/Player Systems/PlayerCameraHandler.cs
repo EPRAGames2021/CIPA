@@ -5,8 +5,18 @@ using Cinemachine;
 
 public class PlayerCameraHandler : MonoBehaviour
 {
+    public static PlayerCameraHandler Instance;
+
     [SerializeField] private EquipmentSystem _equipmentSystem;
-    [SerializeField] private CinemachineVirtualCamera _virtualCamera;
+    [SerializeField] private CinemachineVirtualCamera _playerVirtualCamera;
+
+    [SerializeField] private CinemachineVirtualCamera _PPEVirtualCamera;
+
+
+    private void Awake()
+    {
+        InitSingleton();        
+    }
 
     private void Start()
     {
@@ -19,9 +29,23 @@ public class PlayerCameraHandler : MonoBehaviour
     }
 
 
+    private void InitSingleton()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void Init()
     {
         _equipmentSystem.OnEquipped += AnimateCamera;
+
+        FocusOnPPEBoard(false);
     }
 
     private void Finish()
@@ -43,7 +67,7 @@ public class PlayerCameraHandler : MonoBehaviour
 
     private void SetCameraDistance(float distance)
     {
-        CinemachineFramingTransposer framingTransposer = _virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
+        CinemachineFramingTransposer framingTransposer = _playerVirtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
 
         framingTransposer.m_CameraDistance = distance;
     }
@@ -55,5 +79,8 @@ public class PlayerCameraHandler : MonoBehaviour
         SetCameraDistance(15);
     }
 
-
+    public void FocusOnPPEBoard(bool focusOnPPEBoard)
+    {
+        _PPEVirtualCamera.gameObject.SetActive(focusOnPPEBoard);
+    }
 }

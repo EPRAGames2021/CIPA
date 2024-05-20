@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _jobSector: 1
-  _ingredientsList:
+  _resourcesList:
   - {fileID: 11400000, guid: be9e95ea4d551764c854b1d6142b0163, type: 2}
   - {fileID: 11400000, guid: f2e503ba61fbb1f468295238a9c1acc6, type: 2}
   - {fileID: 11400000, guid: a672f9360a6d01347b72b530fe94f9e3, type: 2}
@@ -267,15 +267,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c54cf67232b5cb44d9fccf3850f5f7b3, type: 2}
   - {fileID: 11400000, guid: dbbecadf9919f89468f82f6fa538b836, type: 2}
   - {fileID: 11400000, guid: c09015b20fd864c4ca1dd91db5bd3453, type: 2}
-  _ingredientsToggleList:
-  - {fileID: 3214297653596185777}
-  - {fileID: 2275859839771037186}
-  - {fileID: 6320655441133605592}
-  - {fileID: 7220801176422523106}
-  - {fileID: 739233481418454652}
-  - {fileID: 8778433649225063005}
-  _ingredientTogglePrefab: {fileID: 6889305739398096166, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
-  _ingredientsContainer: {fileID: 8081995555020622796}
+  _resourcesToggleList:
+  - {fileID: 7106685700325995818}
+  - {fileID: 5885646320292519833}
+  - {fileID: 1840851780332094275}
+  - {fileID: 3030375249404014969}
+  - {fileID: 4934035052217116647}
+  - {fileID: 4028536621696207814}
   _confirmButton: {fileID: 5510327823004195055}
 --- !u!222 &3088158741868467084
 CanvasRenderer:
@@ -538,7 +536,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _jobSector: 1
-  _ingredientsList:
+  _resourcesList:
   - {fileID: 11400000, guid: be9e95ea4d551764c854b1d6142b0163, type: 2}
   - {fileID: 11400000, guid: f2e503ba61fbb1f468295238a9c1acc6, type: 2}
   - {fileID: 11400000, guid: a672f9360a6d01347b72b530fe94f9e3, type: 2}
@@ -546,16 +544,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c54cf67232b5cb44d9fccf3850f5f7b3, type: 2}
   - {fileID: 11400000, guid: dbbecadf9919f89468f82f6fa538b836, type: 2}
   - {fileID: 11400000, guid: c09015b20fd864c4ca1dd91db5bd3453, type: 2}
-  _ingredientsToggleList:
-  - {fileID: 1223305952691527959}
-  - {fileID: 2763177228327918662}
-  - {fileID: 1185824339043600960}
-  - {fileID: 7965588234647461515}
-  - {fileID: 9108929154161626131}
-  - {fileID: 802234674789512427}
-  - {fileID: 7033160518662524687}
-  _ingredientTogglePrefab: {fileID: 6889305739398096166, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
-  _ingredientsContainer: {fileID: 2779809353017241672}
+  _resourcesToggleList:
+  - {fileID: 6827861767435268236}
+  - {fileID: 7522059619629305309}
+  - {fileID: 6795820401823538139}
+  - {fileID: 2355393710013730576}
+  - {fileID: 3481868138142719368}
+  - {fileID: 4979119156338877808}
+  - {fileID: 3432218352654818964}
   _confirmButton: {fileID: 8332189440002687190}
 --- !u!222 &5574745152985960443
 CanvasRenderer:
@@ -3118,6 +3114,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3316835308796286495, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
+      propertyPath: _resourceSO
+      value: 
+      objectReference: {fileID: 11400000, guid: c09015b20fd864c4ca1dd91db5bd3453, type: 2}
     - target: {fileID: 6889305739398096166, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
       propertyPath: m_Name
       value: IngredientToggle (6)
@@ -3133,15 +3133,15 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1434267490251247280, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
   m_PrefabInstance: {fileID: 118910309449042059}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7033160518662524687 stripped
+--- !u!114 &3432218352654818964 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6934622523321026436, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3316835308796286495, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
   m_PrefabInstance: {fileID: 118910309449042059}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7704aa965d911294585577ce15a4f3f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f0bf094acd189d42bf9dd46254ba7cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &290985855430567782
@@ -3235,6 +3235,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3316835308796286495, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
+      propertyPath: _resourceSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 05f869fa4f761a1429d013b3e6365644, type: 2}
     - target: {fileID: 6889305739398096166, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
       propertyPath: m_Name
       value: IngredientToggle (3)
@@ -3250,15 +3254,15 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1434267490251247280, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
   m_PrefabInstance: {fileID: 290985855430567782}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7220801176422523106 stripped
+--- !u!114 &3030375249404014969 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6934622523321026436, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3316835308796286495, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
   m_PrefabInstance: {fileID: 290985855430567782}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7704aa965d911294585577ce15a4f3f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f0bf094acd189d42bf9dd46254ba7cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1060542987261991183
@@ -3352,6 +3356,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3316835308796286495, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
+      propertyPath: _resourceSO
+      value: 
+      objectReference: {fileID: 11400000, guid: b88969e92f3a1714b83cc3d2e6fcdb1c, type: 2}
     - target: {fileID: 6889305739398096166, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
       propertyPath: m_Name
       value: IngredientToggle (3)
@@ -3367,15 +3375,15 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1434267490251247280, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
   m_PrefabInstance: {fileID: 1060542987261991183}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7965588234647461515 stripped
+--- !u!114 &2355393710013730576 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6934622523321026436, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3316835308796286495, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
   m_PrefabInstance: {fileID: 1060542987261991183}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7704aa965d911294585577ce15a4f3f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f0bf094acd189d42bf9dd46254ba7cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1868985690484399577
@@ -3469,6 +3477,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3316835308796286495, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
+      propertyPath: _resourceSO
+      value: 
+      objectReference: {fileID: 11400000, guid: a50617111dc991b438bc361830f85ecb, type: 2}
     - target: {fileID: 6889305739398096166, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
       propertyPath: m_Name
       value: IngredientToggle (5)
@@ -3484,15 +3496,15 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1434267490251247280, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
   m_PrefabInstance: {fileID: 1868985690484399577}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8778433649225063005 stripped
+--- !u!114 &4028536621696207814 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6934622523321026436, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3316835308796286495, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
   m_PrefabInstance: {fileID: 1868985690484399577}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7704aa965d911294585577ce15a4f3f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f0bf094acd189d42bf9dd46254ba7cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &2185882701909314455
@@ -3586,6 +3598,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3316835308796286495, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
+      propertyPath: _resourceSO
+      value: 
+      objectReference: {fileID: 11400000, guid: c54cf67232b5cb44d9fccf3850f5f7b3, type: 2}
     - target: {fileID: 6889305739398096166, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
       propertyPath: m_Name
       value: IngredientToggle (4)
@@ -3601,15 +3617,15 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1434267490251247280, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
   m_PrefabInstance: {fileID: 2185882701909314455}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &9108929154161626131 stripped
+--- !u!114 &3481868138142719368 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6934622523321026436, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3316835308796286495, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
   m_PrefabInstance: {fileID: 2185882701909314455}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7704aa965d911294585577ce15a4f3f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f0bf094acd189d42bf9dd46254ba7cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &4002504707218183516
@@ -3703,6 +3719,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3316835308796286495, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
+      propertyPath: _resourceSO
+      value: 
+      objectReference: {fileID: 11400000, guid: eae6ade3f3dd91e44990f61032b3ba13, type: 2}
     - target: {fileID: 6889305739398096166, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
       propertyPath: m_Name
       value: IngredientToggle (2)
@@ -3713,22 +3733,22 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: eae6ade3f3dd91e44990f61032b3ba13, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
---- !u!224 &2624554587218025452 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1434267490251247280, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
-  m_PrefabInstance: {fileID: 4002504707218183516}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6320655441133605592 stripped
+--- !u!114 &1840851780332094275 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6934622523321026436, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3316835308796286495, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
   m_PrefabInstance: {fileID: 4002504707218183516}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7704aa965d911294585577ce15a4f3f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f0bf094acd189d42bf9dd46254ba7cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &2624554587218025452 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1434267490251247280, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
+  m_PrefabInstance: {fileID: 4002504707218183516}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5072317056151854018
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3820,6 +3840,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3316835308796286495, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
+      propertyPath: _resourceSO
+      value: 
+      objectReference: {fileID: 11400000, guid: f2e503ba61fbb1f468295238a9c1acc6, type: 2}
     - target: {fileID: 6889305739398096166, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
       propertyPath: m_Name
       value: IngredientToggle (1)
@@ -3830,22 +3854,22 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: f2e503ba61fbb1f468295238a9c1acc6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
---- !u!114 &2763177228327918662 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6934622523321026436, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
-  m_PrefabInstance: {fileID: 5072317056151854018}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7704aa965d911294585577ce15a4f3f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &6162041204763989362 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1434267490251247280, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
   m_PrefabInstance: {fileID: 5072317056151854018}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7522059619629305309 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3316835308796286495, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
+  m_PrefabInstance: {fileID: 5072317056151854018}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f0bf094acd189d42bf9dd46254ba7cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5523595527926702901
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3937,6 +3961,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3316835308796286495, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
+      propertyPath: _resourceSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 57555c133a57d854287b24842bd7874b, type: 2}
     - target: {fileID: 6889305739398096166, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
       propertyPath: m_Name
       value: IngredientToggle
@@ -3947,22 +3975,22 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 57555c133a57d854287b24842bd7874b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
---- !u!114 &3214297653596185777 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6934622523321026436, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
-  m_PrefabInstance: {fileID: 5523595527926702901}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7704aa965d911294585577ce15a4f3f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &6863567680772828549 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1434267490251247280, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
   m_PrefabInstance: {fileID: 5523595527926702901}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7106685700325995818 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3316835308796286495, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
+  m_PrefabInstance: {fileID: 5523595527926702901}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f0bf094acd189d42bf9dd46254ba7cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7673837579061211640
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4054,6 +4082,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3316835308796286495, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
+      propertyPath: _resourceSO
+      value: 
+      objectReference: {fileID: 11400000, guid: fa1fb7c89ccf6b54d9ac25a8707a406e, type: 2}
     - target: {fileID: 6889305739398096166, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
       propertyPath: m_Name
       value: IngredientToggle (4)
@@ -4064,15 +4096,15 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: fa1fb7c89ccf6b54d9ac25a8707a406e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
---- !u!114 &739233481418454652 stripped
+--- !u!114 &4934035052217116647 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6934622523321026436, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3316835308796286495, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
   m_PrefabInstance: {fileID: 7673837579061211640}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7704aa965d911294585577ce15a4f3f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f0bf094acd189d42bf9dd46254ba7cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &8762166698631348040 stripped
@@ -4171,6 +4203,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3316835308796286495, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
+      propertyPath: _resourceSO
+      value: 
+      objectReference: {fileID: 11400000, guid: dbbecadf9919f89468f82f6fa538b836, type: 2}
     - target: {fileID: 6889305739398096166, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
       propertyPath: m_Name
       value: IngredientToggle (5)
@@ -4181,15 +4217,15 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: dbbecadf9919f89468f82f6fa538b836, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
---- !u!114 &802234674789512427 stripped
+--- !u!114 &4979119156338877808 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6934622523321026436, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3316835308796286495, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
   m_PrefabInstance: {fileID: 7718789734699201391}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7704aa965d911294585577ce15a4f3f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f0bf094acd189d42bf9dd46254ba7cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &8717047966377737695 stripped
@@ -4288,6 +4324,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3316835308796286495, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
+      propertyPath: _resourceSO
+      value: 
+      objectReference: {fileID: 11400000, guid: a672f9360a6d01347b72b530fe94f9e3, type: 2}
     - target: {fileID: 6889305739398096166, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
       propertyPath: m_Name
       value: IngredientToggle (2)
@@ -4298,15 +4338,15 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: a672f9360a6d01347b72b530fe94f9e3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
---- !u!114 &1185824339043600960 stripped
+--- !u!114 &6795820401823538139 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6934622523321026436, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3316835308796286495, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
   m_PrefabInstance: {fileID: 8090820658164780484}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7704aa965d911294585577ce15a4f3f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f0bf094acd189d42bf9dd46254ba7cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &7183193213608182644 stripped
@@ -4405,6 +4445,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3316835308796286495, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
+      propertyPath: _resourceSO
+      value: 
+      objectReference: {fileID: 11400000, guid: be9e95ea4d551764c854b1d6142b0163, type: 2}
     - target: {fileID: 6889305739398096166, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
       propertyPath: m_Name
       value: IngredientToggle
@@ -4415,15 +4459,15 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: be9e95ea4d551764c854b1d6142b0163, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
---- !u!114 &1223305952691527959 stripped
+--- !u!114 &6827861767435268236 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6934622523321026436, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3316835308796286495, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
   m_PrefabInstance: {fileID: 8126380737767515795}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7704aa965d911294585577ce15a4f3f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f0bf094acd189d42bf9dd46254ba7cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &7143059303008872483 stripped
@@ -4522,6 +4566,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3316835308796286495, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
+      propertyPath: _resourceSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 4086ac1be989c714194518a2abb261ea, type: 2}
     - target: {fileID: 6889305739398096166, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
       propertyPath: m_Name
       value: IngredientToggle (1)
@@ -4532,15 +4580,15 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 4086ac1be989c714194518a2abb261ea, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
---- !u!114 &2275859839771037186 stripped
+--- !u!114 &5885646320292519833 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6934622523321026436, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3316835308796286495, guid: 4c612f79fb88d9a4190db516b069a3d4, type: 3}
   m_PrefabInstance: {fileID: 9199094849202571654}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7704aa965d911294585577ce15a4f3f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f0bf094acd189d42bf9dd46254ba7cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &7804257290374694710 stripped

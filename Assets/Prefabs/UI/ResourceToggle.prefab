@@ -451,9 +451,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1434267490251247280}
-  - component: {fileID: 6934622523321026436}
+  - component: {fileID: 3316835308796286495}
   m_Layer: 5
-  m_Name: IngredientToggle
+  m_Name: ResourceToggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -480,7 +480,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 250, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6934622523321026436
+--- !u!114 &3316835308796286495
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -489,11 +489,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6889305739398096166}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7704aa965d911294585577ce15a4f3f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f0bf094acd189d42bf9dd46254ba7cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _toggle: {fileID: 2581787637716133537}
-  _ingredientSO: {fileID: 0}
+  _resourceSO: {fileID: 0}
   _ingredientName: {fileID: 1873995107991173948}
   _ingredientIcon: {fileID: 4143586644102705980}
 --- !u!1 &8481153751165136069
@@ -582,4 +582,4 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_IsOn: 1
+  m_IsOn: 0

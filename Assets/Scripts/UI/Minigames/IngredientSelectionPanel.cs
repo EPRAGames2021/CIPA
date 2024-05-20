@@ -1,5 +1,5 @@
 using EPRA.Utilities;
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,12 +8,8 @@ public class IngredientSelectionPanel : MonoBehaviour
 {
     [SerializeField] private JobSector _jobSector;
 
-    [SerializeField] private List<IngredientSO> _ingredientsList;
-
-    [SerializeField] private List<IngredientToggle> _ingredientsToggleList;
-    [SerializeField] private GameObject _ingredientTogglePrefab;
-
-    [SerializeField] private GameObject _ingredientsContainer;
+    [SerializeField] private List<ResourceSO> _resourcesList;
+    [SerializeField] private List<ResourceToggle> _resourcesToggleList;
 
     [SerializeField] private Button _confirmButton;
 
@@ -37,11 +33,11 @@ public class IngredientSelectionPanel : MonoBehaviour
 
     private void ResetToggles()
     {
-        if (_ingredientsToggleList.Count == 0) return;
+        if (_resourcesToggleList.Count == 0) return;
 
-        foreach (IngredientToggle ingredientToggle in _ingredientsToggleList)
+        foreach (ResourceToggle resourceToggle in _resourcesToggleList)
         {
-            ingredientToggle.ResetToggle();
+            resourceToggle.ResetToggle();
         }
     }
 
@@ -60,10 +56,12 @@ public class IngredientSelectionPanel : MonoBehaviour
     {
         bool canProcceed = true;
 
-        foreach (IngredientToggle ingredientToggle in _ingredientsToggleList)
+        foreach (ResourceToggle resourceToggle in _resourcesToggleList)
         {
-            if (ingredientToggle.IngredientSO.JobSector == _jobSector && !ingredientToggle.IsSelected ||
-                ingredientToggle.IngredientSO.JobSector != _jobSector && ingredientToggle.IsSelected)
+            IngredientSO ingredientSO = resourceToggle.ResourceSO as IngredientSO;
+
+            if (ingredientSO.JobSector == _jobSector && !resourceToggle.IsSelected ||
+                ingredientSO.JobSector != _jobSector && resourceToggle.IsSelected)
             {
                 canProcceed = false;
             }

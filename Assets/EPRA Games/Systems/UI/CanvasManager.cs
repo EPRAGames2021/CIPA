@@ -171,6 +171,12 @@ namespace EPRA.Utilities
                 CloseCurrentMenu();
             }
         }
+
+
+        public void SetHudEnabled(bool enable)
+        {
+            _gameScreen.gameObject.SetActive(enable);
+        }
     }
 
     public enum MenuType
@@ -183,5 +189,6 @@ namespace EPRA.Utilities
         DayScoreMenu = 5,
         LoginMenu = 6,
         AdminMenu = 7,
+        PPESelectionMenu = 8,
     }
 }
