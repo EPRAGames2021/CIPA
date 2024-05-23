@@ -77,7 +77,7 @@ public class Player : MonoBehaviour
         _alive = false;
 
         _movementSystem.StandStill();
-        _movementSystem.SetCanMove(false);
+        _movementSystem.CanMove = false;
 
         OnDied?.Invoke();
 
