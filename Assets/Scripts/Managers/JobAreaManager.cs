@@ -20,13 +20,6 @@ public class JobAreaManager : MonoBehaviour
 
     [SerializeField] private bool _arrivedAtMinigameLocation;
 
-    [Header("Scores and penalties")]
-    [SerializeField] private int _equipEquipmentScore;
-    [SerializeField] private int _arriveAtJobAreaScore;
-    [SerializeField] private int _completeJobScore;
-    [SerializeField] private int _arriveAtJobAreaUnequippedPenalty;
-    [SerializeField] private int _failJobPenalty;
-
     [Header("Sounds")]
     [SerializeField] private AudioClipCollection _victorySFX;
     [SerializeField] private AudioClipCollection _defeatSFX;
@@ -66,10 +59,10 @@ public class JobAreaManager : MonoBehaviour
 
     private void Init()
     {
-        _dayScore.SetCurrencyValue(0);
+        RewardAndPenaltyManager.Instance.ResetScore();
 
         _arrivedAtMinigameLocation = false;
-        
+
         GameManager.Instance.UpdateGameState(GameState.GameState);
         CanvasManager.Instance.GameScreen.SetDay(_jobSectorSO.Day);
 
@@ -84,18 +77,34 @@ public class JobAreaManager : MonoBehaviour
         }
 
 
-        _playerDetector.OnPlayerDetected += InitiateMinigameProcess;
+        if (_playerDetector == null)
+        {
+            Debug.LogWarning("Player detector is null.");
+        }
+        else
+        {
+            _playerDetector.OnPlayerDetected += InitiateMinigameProcess;
+        }
 
-        _player.HealthSystem.OnDied += PlayerDied;
-        _player.EquipmentSystem.OnEquipped += EquipPlayer;
+        if (_player == null)
+        {
+            Debug.LogWarning("Player is null.");
+        }
+        else
+        {
+            InputHandler.Instance.SetPlayer(_player);
+
+            _player.HealthSystem.OnDied += PlayerDied;
+            _player.EquipmentSystem.OnEquipped += EquipPlayer;
+        }
     }
 
     private void Finish()
     {
-        _playerDetector.OnPlayerDetected -= InitiateMinigameProcess;
+        if (_playerDetector != null) _playerDetector.OnPlayerDetected -= InitiateMinigameProcess;
 
-        _player.HealthSystem.OnDied -= PlayerDied;
-        _player.EquipmentSystem.OnEquipped -= EquipPlayer;
+        if (_player != null) _player.HealthSystem.OnDied -= PlayerDied;
+        if (_player != null) _player.EquipmentSystem.OnEquipped -= EquipPlayer;
     }
 
 
@@ -110,7 +119,7 @@ public class JobAreaManager : MonoBehaviour
     {
         if (equip)
         {
-            _dayScore.AddToCurrency(_equipEquipmentScore);
+            RewardAndPenaltyManager.Instance.PlayerHasEquippedEquipment();
         }
     }
 
@@ -121,11 +130,11 @@ public class JobAreaManager : MonoBehaviour
 
         if (_player.EquipmentSystem.WearingEquipment)
         {
-            _dayScore.AddToCurrency(_arriveAtJobAreaScore);
+            RewardAndPenaltyManager.Instance.PlayerHasArrivedAtJob();
         }
         else
         {
-            _dayScore.RemoveFromCurrency(_arriveAtJobAreaUnequippedPenalty);
+            RewardAndPenaltyManager.Instance.PlayerHasArrivedAtJobUnequipped();
         }
 
         InitiateMinigame();
@@ -145,7 +154,7 @@ public class JobAreaManager : MonoBehaviour
 
     public void MinigameSuccessed()
     {
-        _dayScore.AddToCurrency(_completeJobScore);
+        RewardAndPenaltyManager.Instance.PlayerHasCompletedJob();
 
         _jobSectorSO.SetScoreToDay(_jobSectorSO.Day, _dayScore.Value);
 
@@ -161,7 +170,7 @@ public class JobAreaManager : MonoBehaviour
 
     public void MinigameFailed()
     {
-        _dayScore.RemoveFromCurrency(_failJobPenalty);
+        RewardAndPenaltyManager.Instance.PlayerHasFailedJob();
 
         GameManager.Instance.UpdateGameState(GameState.PausedState);
         CanvasManager.Instance.OpenMenu(MenuType.GameOverMenu);

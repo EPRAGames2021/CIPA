@@ -7,94 +7,84 @@ using EPRA.Utilities;
 
 public class MovementSystem : MonoBehaviour
 {
-    [SerializeField] private FloatingJoystick _joystick;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private Rigidbody _rigidbody;
 
     [Header("Movement")]
-    [SerializeField] private float _moveSpeed;
-    [SerializeField] private float _smoothSpeed;
-
     [SerializeField] private Vector3 _inputDirection;
-
-    [Header("Rotation")]
+    [SerializeField] private float _moveSpeed;
     [SerializeField] private float _turnSpeed;
 
-    private float _currentAngle;
-    private float _targetAngle;
+    [Header("Debug")]
+    [SerializeField] private float _currentAngle;
+    [SerializeField] private float _targetAngle;
 
-    private bool _canMove;
-    private bool _movimentBlocked;
+    [SerializeField] private bool _canMove;
+    [SerializeField] private bool _movimentBlocked;
 
-    [SerializeField] private Animator _animator;
-    [HideInInspector] public Rigidbody _rb;
+    public bool CanMove { get { return _canMove; } set { _canMove = value; } }
+    public Vector3 InputDirection { get { return _inputDirection; } set { _inputDirection = value; } }
+
+
+    private void OnValidate()
+    {
+        if (_rigidbody == null) _rigidbody = GetComponent<Rigidbody>();
+    }
 
     private void Start()
     {
-        InitializeVariables();
-        InitializeComponents();
+        Init();
     }
 
-    private void Update()
+    private void LateUpdate()
     {
-        HandleRotation();
-        HandleMovement();
+        HandleRotationInput();
+        HandleMovementInput();
     }
 
     private void FixedUpdate()
     {
         if (_movimentBlocked) return;
-
         if (!_canMove) return;
 
-
-        _rb.MoveRotation(Quaternion.Euler(Vector3.up * _currentAngle));
-        //_rb.MovePosition(_positionToMove);
-        //_rb.velocity = _inputDirection * _moveSpeed;
-        _rb.velocity = new(_inputDirection.x * _moveSpeed, _inputDirection.y, _inputDirection.z * _moveSpeed);
+        _rigidbody.MoveRotation(Quaternion.Euler(Vector3.up * _currentAngle));
+        _rigidbody.velocity = new(_inputDirection.x * _moveSpeed, _rigidbody.velocity.y, _inputDirection.z * _moveSpeed);
     }
 
 
-    private void InitializeVariables()
+    private void Init()
     {
         _canMove = true;
     }
 
-    private void InitializeComponents()
-    {
-        _rb = GetComponent<Rigidbody>();
-        //_animator = GetComponent<Animator>();
 
-        _joystick = CanvasManager.Instance.FloatingJoystick;
-    }
-
-
-    private void HandleMovement()
+    private void HandleMovementInput()
     {
         if (_movimentBlocked) return;
+        if (_animator == null) return;
 
-        float yVelocity = _rb.velocity.y;
 
-        _inputDirection.Set(_joystick.Direction.x, yVelocity, _joystick.Direction.y);
+        float inputMagnitude = Mathf.Abs(_inputDirection.x) + Mathf.Abs(_inputDirection.z);
 
-        if (_animator != null)
-        {
-            float inputMagnitude = Mathf.Abs(_inputDirection.x) + Mathf.Abs(_inputDirection.z);
-
-            _animator.SetBool("IsWalking", inputMagnitude > 0.05f && inputMagnitude < 0.5f && _canMove);
-            _animator.SetBool("IsRunning", inputMagnitude >= 0.5f && _canMove);
-        }
+        _animator.SetBool("IsWalking", inputMagnitude > 0.05f && inputMagnitude < 0.5f && _canMove);
+        _animator.SetBool("IsRunning", inputMagnitude >= 0.5f && _canMove);
     }
 
-    private void HandleRotation()
+    private void HandleRotationInput()
     {
         _targetAngle = Mathf.Atan2(_inputDirection.x, _inputDirection.z) * Mathf.Rad2Deg;
+
         _currentAngle = Mathf.LerpAngle(_currentAngle, _targetAngle, _turnSpeed * _inputDirection.magnitude * Time.deltaTime);
+
+        if (_currentAngle <= -360) _currentAngle *= -1;
+        if (_currentAngle >= 360) _currentAngle %= 360;
     }
 
 
     public void StandStill()
     {
-        _rb.velocity = Vector3.zero;
-        _rb.angularVelocity = Vector3.zero;
+        _rigidbody.velocity = Vector3.zero;
+        _rigidbody.angularVelocity = Vector3.zero;
 
         _inputDirection.Set(0f, 0f, 0f);
 
@@ -116,16 +106,5 @@ public class MovementSystem : MonoBehaviour
 
             _canMove = true;
         }
-    }
-
-    public void Initialize()
-    {
-        InitializeVariables();
-        StandStill();
-    }
-
-    public void SetCanMove(bool value)
-    {
-        _canMove = value;
     }
 }

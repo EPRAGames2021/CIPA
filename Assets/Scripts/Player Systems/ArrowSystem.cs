@@ -20,7 +20,7 @@ public class ArrowSystem : MonoBehaviour
 
     private void LateUpdate()
     {
-        _arrow.transform.DOLookAt(_target.position, 0.5f);
+        PointArrow();
         CheckDistance();
     }
 
@@ -32,9 +32,18 @@ public class ArrowSystem : MonoBehaviour
 
     private void Init()
     {
-        _index = 0;
-        _target = _targets[_index];
         _arrow.SetActive(false);
+
+        _index = 0;
+
+        if (_targets.Count > 0)
+        {
+            _target = _targets[_index];
+        }
+        else
+        {
+            Debug.LogWarning("There are no targets.");
+        }
 
         MissionManager.OnMissionChanged += CheckArrow;
     }
@@ -45,9 +54,17 @@ public class ArrowSystem : MonoBehaviour
     }
 
 
+    private void PointArrow()
+    {
+        if (_target == null) return;
+
+        _arrow.transform.DOLookAt(_target.position, 0.5f);
+    }
     
     private void CheckDistance()
     {
+        if (_target == null) return;
+
         float distance = Vector3.Distance(transform.position, _targets[_index].position);
 
         if (distance < 3 && _index < _targets.Count - 1)

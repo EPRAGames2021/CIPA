@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.30365813, g: 1.71739, b: 1.7359664, a: 1}
+  m_IndirectSpecularColor: {r: 0.30362865, g: 1.7174205, b: 1.7360569, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1125,14 +1125,6 @@ PrefabInstance:
     - target: {fileID: 6853027721232337904, guid: 413be05e8f44d0345a8b0e7ea9872589, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6853027721232337912, guid: 413be05e8f44d0345a8b0e7ea9872589, type: 3}
-      propertyPath: _moveSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6853027721232337912, guid: 413be05e8f44d0345a8b0e7ea9872589, type: 3}
-      propertyPath: _turnSpeed
-      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 413be05e8f44d0345a8b0e7ea9872589, type: 3}
@@ -3561,23 +3553,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5361974917863594068, guid: be1050c7c1b8e8947abee0d39849d994, type: 3}
   m_PrefabInstance: {fileID: 598466352}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &598466354 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5937581888194435405, guid: be1050c7c1b8e8947abee0d39849d994, type: 3}
-  m_PrefabInstance: {fileID: 598466352}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &598466355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 598466354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97f43b516abf16e4db5d8b28ed5137de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &627121983
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4980,24 +4955,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5361974917863594068, guid: be1050c7c1b8e8947abee0d39849d994, type: 3}
   m_PrefabInstance: {fileID: 852500628}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &852500630 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5937581888194435405, guid: be1050c7c1b8e8947abee0d39849d994, type: 3}
-  m_PrefabInstance: {fileID: 852500628}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &852500631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 852500630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97f43b516abf16e4db5d8b28ed5137de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _jobSectorAreaSO: {fileID: 0}
 --- !u!1001 &860212149
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12247,19 +12204,14 @@ MonoBehaviour:
   _jobSectorSO: {fileID: 11400000, guid: 9f0fb54ee60b1304fb4425626baf6f7a, type: 2}
   _minigameContextObjects: []
   _minigamesUIs: []
-  _playerCamera: {fileID: 0}
+  _playerCamera: {fileID: 966383551}
   _playerDetector: {fileID: 0}
   _player: {fileID: 197474286}
-  _dayScore: {fileID: 0}
+  _dayScore: {fileID: 11400000, guid: 99ccc02f4e9ff5b49b3ee8e31cea93c4, type: 2}
   _arrivedAtMinigameLocation: 0
-  _equipEquipmentScore: 0
-  _arriveAtJobAreaScore: 0
-  _completeJobScore: 0
-  _arriveAtJobAreaUnequippedPenalty: 0
-  _failJobPenalty: 0
-  _victorySFX: {fileID: 0}
-  _defeatSFX: {fileID: 0}
-  _deathSFX: {fileID: 0}
+  _victorySFX: {fileID: 11400000, guid: 426f606b5029d1945b0773da72c6dd1f, type: 2}
+  _defeatSFX: {fileID: 11400000, guid: a34a6de987ed904438ff3136ed3b7b2b, type: 2}
+  _deathSFX: {fileID: 11400000, guid: 9ef9e84ae60299a4b97e5288ccda057f, type: 2}
 --- !u!1001 &2089212782
 PrefabInstance:
   m_ObjectHideFlags: 0

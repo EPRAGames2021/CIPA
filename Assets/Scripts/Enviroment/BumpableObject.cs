@@ -8,8 +8,9 @@ public class BumpableObject : MonoBehaviour
     [SerializeField] private bool _hitIsFatal;
     [SerializeField] private Collider _collider;
 
-    [SerializeField] private CurrencySO _dayScore;
-    [SerializeField] private int _bumpPenalty;
+    public bool HitIsFatal => _hitIsFatal;
+
+    public static event System.Action<BumpableObject, Player> OnHasBeenHitByPlayer;
 
 
     private void OnValidate()
@@ -28,14 +29,7 @@ public class BumpableObject : MonoBehaviour
         {
             Player player = other.GetComponent<Player>();
 
-            if (!_hitIsFatal)
-            {
-                _dayScore.RemoveFromCurrency(_bumpPenalty);
-            }
-            else
-            {
-                player.HealthSystem.TakeDamage(int.MaxValue);
-            }
+            OnHasBeenHitByPlayer?.Invoke(this, player);
 
             _hasBeenHit = true;
         }
