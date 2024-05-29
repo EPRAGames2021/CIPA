@@ -834,6 +834,7 @@ MonoBehaviour:
   _currentMenu: {fileID: 0}
   _floatingJoystick: {fileID: 680893744}
   _gameScreen: {fileID: 1251349189242394278}
+  _loadingScreen: {fileID: 1908602211}
 --- !u!1001 &680893742
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1143,6 +1144,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3558531472543658793, guid: b82bbcdbd0e2e14498620346a85f1074, type: 3}
   m_PrefabInstance: {fileID: 811026256}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &825671630 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3171913716045966173, guid: 1d5d82952609efe49a6eb53870c7ba92, type: 3}
+  m_PrefabInstance: {fileID: 1816791623}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &956795410
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1365,6 +1371,31 @@ MonoBehaviour:
   _player: {fileID: 0}
   x: 0
   z: 0
+  _openSettingsAction:
+    m_Name: Open Settings
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 397ea5a3-1583-45dc-b55c-14a0ca132169
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 160a3fe3-554d-4ed8-961a-ec63a97ed87c
+      m_Path: <Gamepad>/start
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Open Settings
+      m_Flags: 0
+    - m_Name: 
+      m_Id: de253289-44c3-4230-809c-83598c109114
+      m_Path: <Keyboard>/escape
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Open Settings
+      m_Flags: 0
+    m_Flags: 0
 --- !u!1 &1019934566
 GameObject:
   m_ObjectHideFlags: 0
@@ -2420,6 +2451,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1908602211 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8043371779030252354, guid: 1d5d82952609efe49a6eb53870c7ba92, type: 3}
+  m_PrefabInstance: {fileID: 1816791623}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13cc73e745ee87740873c4742c90f953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2019442872
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2568,7 +2610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 825671630}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &2073714266
