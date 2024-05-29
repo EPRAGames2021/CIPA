@@ -1,8 +1,10 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using EPRA.Utilities;
+using ES3Types;
 
 public class LoadingScreen : MonoBehaviour
 {
@@ -21,9 +23,6 @@ public class LoadingScreen : MonoBehaviour
     // This isn't ideal but I don't have time to rework this right now. Ideally, this could be parsed from the text document itself.
     [SerializeField] private int _tipsAmount;
     [SerializeField] private TextMeshProUGUI _tips;
-
-
-    public bool IsBeingDisplayed => _loadingScreenContainer.activeInHierarchy;
 
 
     private void OnEnable()
@@ -50,17 +49,24 @@ public class LoadingScreen : MonoBehaviour
         _slider.maxValue = 100;
         _slider.value = 0;
 
+        SceneLoader.Instance.OnLoadIsInProgress += DisplayLoadingScreen;
+        SceneLoader.Instance.OnProgressChanges += SetPercentage;
+
         _continueButton.gameObject.SetActive(!_autoHide);
         _continueButton.onClick.AddListener(() => _loadingScreenContainer.SetActive(false));
     }
 
     private void Finish()
     {
+        SceneLoader.Instance.OnLoadIsInProgress -= DisplayLoadingScreen;
+        SceneLoader.Instance.OnProgressChanges -= SetPercentage;
+
+        _continueButton.gameObject.SetActive(!_autoHide);
         _continueButton.onClick.RemoveAllListeners();
     }
 
 
-    public void SetPercentage(float progress)
+    private void SetPercentage(float progress)
     {
         int progressInteger = Mathf.RoundToInt(progress);
 
@@ -72,7 +78,7 @@ public class LoadingScreen : MonoBehaviour
         _percentage.gameObject.SetActive(progressInteger <= 100);
     }
 
-    public void DisplayLoadingScreen(bool loadIsInProgress)
+    private void DisplayLoadingScreen(bool loadIsInProgress)
     {
         if (loadIsInProgress)
         {
@@ -138,11 +144,5 @@ public class LoadingScreen : MonoBehaviour
         string key = "tip" + random;
 
         _tips.text = LanguageManager.GetTranslation(key);
-    }
-
-
-    public void SelectUI()
-    {
-        _continueButton.Select();
     }
 }

@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
+using System.Text;
 
 namespace EPRA.Utilities
 {
@@ -89,7 +91,7 @@ namespace EPRA.Utilities
             _musicVolume.onValueChanged.AddListener(MusicVolume);
             _languageDropdown.onValueChanged.AddListener(SetLanguage);
 
-            _backButton.onClick.AddListener(CloseMenu);
+            _backButton.onClick.AddListener(Back);
             _mainMenuButton.onClick.AddListener(ReturnToMainMenu);
         }
 
@@ -105,7 +107,6 @@ namespace EPRA.Utilities
         private void Finish()
         {
             _backButton.onClick.RemoveAllListeners();
-            _mainMenuButton.onClick.RemoveAllListeners();
 
             _vibrationEnabled.onValueChanged.RemoveAllListeners();
             _SFXEnabled.onValueChanged.RemoveAllListeners();
@@ -113,6 +114,14 @@ namespace EPRA.Utilities
             _musicEnabled.onValueChanged.RemoveAllListeners();
             _musicVolume.onValueChanged.RemoveAllListeners();
             _languageDropdown.onValueChanged.RemoveAllListeners();
+
+            _mainMenuButton.onClick.RemoveAllListeners();
+        }
+
+
+        private void Back()
+        {
+            CanvasManager.Instance?.CloseMenu(Menu);
         }
 
 
@@ -185,7 +194,7 @@ namespace EPRA.Utilities
         {
             SceneLoader.Instance.LoadLevel(1, LoadMode.Replace);
 
-            CloseMenu();
+            Back();
 
             CanvasManager.Instance.OpenMenu(MenuType.MainMenu);
 
@@ -196,12 +205,6 @@ namespace EPRA.Utilities
         private float Remap(float value, float originalMin, float originalMax, float newMin, float newMax)
         {
             return Mathf.Lerp(newMin, newMax, Mathf.InverseLerp(originalMin, originalMax, value));
-        }
-
-
-        public override void SelectUI()
-        {
-            _vibrationEnabled.Select();
         }
     }
 }

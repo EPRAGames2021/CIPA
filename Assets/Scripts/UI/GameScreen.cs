@@ -84,12 +84,8 @@ namespace EPRA.Utilities
             UpdateDayScore(_score);
             SetDay(_day);
 
-            if (MissionManager.Instance != null)
-            {
-                int missionIndex = MissionManager.Instance.CurrentMissionIndex;
-
-                DisplayMission(missionIndex);
-            }
+            int missionIndex = MissionManager.Instance.CurrentMissionIndex;
+            DisplayMission(missionIndex);
         }
 
         private void DisplayMission(int missionIndex)

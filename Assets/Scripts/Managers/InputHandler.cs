@@ -1,5 +1,3 @@
-using EPRA.Utilities;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,8 +14,6 @@ public class InputHandler : MonoBehaviour
 
     [SerializeField] private float x;
     [SerializeField] private float z;
-
-    [SerializeField] private InputAction _openSettingsAction;
 
     private float X
     { 
@@ -59,17 +55,11 @@ public class InputHandler : MonoBehaviour
     private void OnEnable()
     {
         _movementAction.Enable();
-        _openSettingsAction.Enable();
-
-        _openSettingsAction.performed += OpenSettings;
     }
 
     private void OnDisable()
     {
         _movementAction.Disable();
-        _openSettingsAction.Disable();
-
-        _openSettingsAction.performed -= OpenSettings;
     }
 
     private void Update()
@@ -105,12 +95,5 @@ public class InputHandler : MonoBehaviour
         Z = _joystick.Direction.y + _movementAction.ReadValue<Vector2>().y;
 
         _player.MovementSystem.InputDirection = new(x, 0, z);
-    }
-
-    private void OpenSettings(InputAction.CallbackContext context)
-    {
-        if (!GameManager.Instance.State.Equals(GameState.GameState)) return;
-
-        CanvasManager.Instance.SwitchSettings();
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -17,12 +18,9 @@ namespace EPRA.Utilities
         [SerializeField] private FloatingJoystick _floatingJoystick;
 
         [SerializeField] private GameScreen _gameScreen;
-        [SerializeField] private LoadingScreen _loadingScreen;
-
 
         public FloatingJoystick FloatingJoystick => _floatingJoystick;
         public GameScreen GameScreen => _gameScreen;
-        public LoadingScreen LoadingScreen => _loadingScreen;
 
 
         private void Awake()
@@ -32,21 +30,16 @@ namespace EPRA.Utilities
 
         private void Start()
         {
-            GameManager.Instance.OnGameStateChanged += AdaptToGameState;
-
-            SceneLoader.Instance.OnLoadIsInProgress += DisplayLoadingScreen;
-            SceneLoader.Instance.OnProgressChanges += LoadingScreen.SetPercentage;
-
             CloseAllMenus();
+
             OpenMenu(MenuType.LoginMenu);
+
+            GameManager.Instance.OnGameStateChanged += AdaptToGameState;
         }
 
         private void OnDestroy()
         {
             GameManager.Instance.OnGameStateChanged -= AdaptToGameState;
-
-            SceneLoader.Instance.OnLoadIsInProgress -= DisplayLoadingScreen;
-            SceneLoader.Instance.OnProgressChanges -= LoadingScreen.SetPercentage;
         }
 
 
@@ -65,20 +58,6 @@ namespace EPRA.Utilities
         private void AdaptToGameState(GameState gameState)
         {
             FloatingJoystick.gameObject.SetActive(gameState == GameState.GameState);
-        }
-
-        private void DisplayLoadingScreen(bool display)
-        {
-            _loadingScreen.DisplayLoadingScreen(display);
-
-            if (_loadingScreen.IsBeingDisplayed)
-            {
-                _loadingScreen.SelectUI();
-            }
-            else
-            {
-                _currentMenu?.SelectUI();
-            }
         }
 
 
@@ -139,12 +118,8 @@ namespace EPRA.Utilities
             else
             {
                 _currentMenu = desiredMenu;
-
                 _allActiveMenus.Add(_currentMenu);
-
                 _currentMenu.gameObject.SetActive(true);
-
-                if (!_loadingScreen.IsBeingDisplayed) _currentMenu?.SelectUI();
             }
         }
 
@@ -181,8 +156,6 @@ namespace EPRA.Utilities
                 _currentMenu.gameObject.SetActive(false);
 
                 _currentMenu = _allActiveMenus.LastOrDefault();
-
-                if (!_loadingScreen.IsBeingDisplayed) _currentMenu?.SelectUI();
             }
         }
 
@@ -203,18 +176,6 @@ namespace EPRA.Utilities
         public void SetHudEnabled(bool enable)
         {
             _gameScreen.gameObject.SetActive(enable);
-        }
-
-        public void SwitchSettings()
-        {
-            if (_currentMenu?.Menu == MenuType.SettingsMenu)
-            {
-                CloseCurrentMenu();
-            }
-            else
-            {
-                OpenMenu(MenuType.SettingsMenu);
-            }
         }
     }
 

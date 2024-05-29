@@ -1,7 +1,9 @@
+using EPRA.Utilities;
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using EPRA.Utilities;
-using TMPro;
 
 public class JobScoreMenu : MenuController
 {
@@ -41,6 +43,12 @@ public class JobScoreMenu : MenuController
     }
 
 
+    private void CloseMenu()
+    {
+        CanvasManager.Instance.CloseMenu(Menu);
+    }
+
+
     private void GetScore()
     {
         if (JobAreaManager.Instance == null) return;
@@ -66,11 +74,5 @@ public class JobScoreMenu : MenuController
             }
         }
 
-    }
-
-
-    public override void SelectUI()
-    {
-        _closeMenu.Select();
     }
 }

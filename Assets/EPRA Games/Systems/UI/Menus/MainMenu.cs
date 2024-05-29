@@ -66,11 +66,5 @@ namespace EPRA.Utilities
         {
             CanvasManager.Instance.OpenMenu(MenuType.AdminMenu);
         }
-
-
-        public override void SelectUI()
-        {
-            _startButton.Select();
-        }
     }
 }

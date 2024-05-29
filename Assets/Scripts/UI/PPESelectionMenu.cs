@@ -72,10 +72,4 @@ public class PPESelectionMenu : MenuController
 
         OnSelectionIsCorrect?.Invoke(sameSet);
     }
-
-
-    public override void SelectUI()
-    {
-        _resourceToggleList[0].Toggle.Select();
-    }
 }

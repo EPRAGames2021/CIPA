@@ -1,6 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 namespace EPRA.Utilities
 {
@@ -100,10 +102,5 @@ namespace EPRA.Utilities
             _subMenu.SetActive(false);
         }
 
-
-        public override void SelectUI()
-        {
-            _backButton.Select();
-        }
     }
 }
