@@ -13,6 +13,7 @@ public class ResourceToggle : MonoBehaviour
     [SerializeField] private Image _ingredientIcon;
 
 
+    public Toggle Toggle => _toggle;
     public ResourceSO ResourceSO => _resourceSO;
     public bool IsSelected => _toggle.isOn;
 

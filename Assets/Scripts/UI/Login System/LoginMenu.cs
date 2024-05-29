@@ -1,15 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Firebase;
-using Firebase.Database;
-using System.ComponentModel.Design;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System;
-using UnityEngine.Windows;
+using TMPro;
 
 namespace EPRA.Utilities
 {
@@ -238,6 +229,12 @@ namespace EPRA.Utilities
         private void GoToMainMenu()
         {
             CanvasManager.Instance.SwitchMenu(MenuType.MainMenu);
+        }
+
+
+        public override void SelectUI()
+        {
+            _confirmButton.Select();
         }
     }
 }

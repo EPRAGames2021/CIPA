@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -53,6 +50,12 @@ namespace EPRA.Utilities
             CanvasManager.Instance.OpenMenu(MenuType.MainMenu);
 
             GameManager.Instance.UpdateGameState(GameState.MainMenuState);
+        }
+
+
+        public override void SelectUI()
+        {
+            _nextDayButton.Select();
         }
     }
 }

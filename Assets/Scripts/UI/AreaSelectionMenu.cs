@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 namespace EPRA.Utilities
 {
@@ -43,11 +40,6 @@ namespace EPRA.Utilities
         }
 
 
-        private void CloseMenu()
-        {
-            CanvasManager.Instance.CloseMenu(Menu);
-        }
-
         private void GoToConstruction()
         {
             SceneLoader.Instance.LoadLevel(2, LoadMode.Replace);
@@ -64,6 +56,12 @@ namespace EPRA.Utilities
             CanvasManager.Instance.CloseAllMenus();
 
             GameManager.Instance.UpdateGameState(GameState.GameState);
+        }
+
+
+        public override void SelectUI()
+        {
+            _construction.Select();
         }
     }
 }
