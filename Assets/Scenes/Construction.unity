@@ -1351,6 +1351,7 @@ GameObject:
   m_Component:
   - component: {fileID: 468042946}
   - component: {fileID: 468042945}
+  - component: {fileID: 468042947}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -1369,8 +1370,8 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1.2
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1379,7 +1380,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.8
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -1427,14 +1428,34 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 468042944}
-  m_LocalRotation: {x: -0, y: -0.57646114, z: 0.81712466, w: 0}
+  m_LocalRotation: {x: 0.16636568, y: 0.73994213, z: -0.6208851, w: 0.19826692}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 118194734}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 109.59601, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 80, y: 150, z: 0}
+--- !u!114 &468042947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468042944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &470186600
 GameObject:
   m_ObjectHideFlags: 0
@@ -1919,11 +1940,6 @@ MonoBehaviour:
   _player: {fileID: 197474286}
   _dayScore: {fileID: 11400000, guid: 99ccc02f4e9ff5b49b3ee8e31cea93c4, type: 2}
   _arrivedAtMinigameLocation: 0
-  _equipEquipmentScore: 100
-  _arriveAtJobAreaScore: 100
-  _completeJobScore: 100
-  _arriveAtJobAreaUnequippedPenalty: 20
-  _failJobPenalty: 20
   _victorySFX: {fileID: 11400000, guid: 426f606b5029d1945b0773da72c6dd1f, type: 2}
   _defeatSFX: {fileID: 11400000, guid: a34a6de987ed904438ff3136ed3b7b2b, type: 2}
   _deathSFX: {fileID: 11400000, guid: 9ef9e84ae60299a4b97e5288ccda057f, type: 2}
