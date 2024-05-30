@@ -10,6 +10,8 @@ public class ConcreteBarrel : MonoBehaviour
     [SerializeField] private GameObject _concreteBarrel;
 
     [SerializeField] private bool _spinning;
+    [SerializeField] private float _idleTime;
+    [SerializeField] private float _idleTimeTolarance;
 
     [Header("Sound")]
     [SerializeField] private AudioSource _audioSource;
@@ -23,7 +25,7 @@ public class ConcreteBarrel : MonoBehaviour
 
     private void Update()
     {
-        _spinning = _screenTouchController.DetectHolding();
+        DetermineTouch();
 
         Spin();
         PlaySound();
@@ -33,6 +35,26 @@ public class ConcreteBarrel : MonoBehaviour
     private void Init()
     {
         _spinning = false;
+    }
+
+
+    private void DetermineTouch()
+    {
+        if (_screenTouchController.DetectHolding())
+        {
+            _spinning = true;
+
+            _idleTime = 0f;
+        }
+        else
+        {
+            _idleTime += Time.deltaTime;
+        }
+
+        if (_idleTime >= _idleTimeTolarance)
+        {
+            _spinning = false;
+        }
     }
 
     private void Spin()
@@ -46,7 +68,6 @@ public class ConcreteBarrel : MonoBehaviour
         }
     }
 
-
     private void PlaySound()
     {
         if (_concreteMixPanel.MixFinished)
@@ -56,7 +77,13 @@ public class ConcreteBarrel : MonoBehaviour
             return;
         }
 
-        if (_spinning && !_audioSource.isPlaying) AudioManager.Instance.PlayRandomSFX(_audioSource, _spinningSFX);
-        if (!_spinning && _audioSource.isPlaying) _audioSource.Stop();
+        if (_spinning && !_audioSource.isPlaying)
+        {
+            AudioManager.Instance.PlayRandomSFX(_audioSource, _spinningSFX);
+        }
+        else if (!_spinning && _audioSource.isPlaying)
+        {
+            _audioSource.Stop();
+        }
     }
 }

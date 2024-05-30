@@ -77,6 +77,8 @@ namespace EPRA.Utilities
             }
             else
             {
+                Debug.Log(_currentMenu?.gameObject);
+
                 _currentMenu?.SelectUI();
             }
         }
