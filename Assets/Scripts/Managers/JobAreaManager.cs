@@ -110,6 +110,8 @@ public class JobAreaManager : MonoBehaviour
 
     private void PlayerDied()
     {
+        _jobSectorSO.CurrentJob.AddUniqueAction("playerDisruptedFlow", true);
+
         CanvasManager.Instance.OpenMenu(MenuType.GameOverMenu);
         AudioManager.Instance.PlayRandomSFX(_deathSFX);
         AudioManager.Instance.PlayRandomSFX(_defeatSFX);
@@ -131,11 +133,14 @@ public class JobAreaManager : MonoBehaviour
         if (_player.EquipmentSystem.WearingEquipment)
         {
             RewardAndPenaltyManager.Instance.PlayerHasArrivedAtJob();
+
         }
         else
         {
             RewardAndPenaltyManager.Instance.PlayerHasArrivedAtJobUnequipped();
         }
+
+        _jobSectorSO.CurrentJob.AddUniqueAction("playerUsedPPE", _player.EquipmentSystem.WearingEquipment);
 
         InitiateMinigame();
     }
@@ -154,6 +159,8 @@ public class JobAreaManager : MonoBehaviour
 
     public void MinigameSuccessed()
     {
+        _jobSectorSO.CurrentJob.AddUniqueAction("playerCompletedDay", true);
+
         RewardAndPenaltyManager.Instance.PlayerHasCompletedJob();
 
         _jobSectorSO.SetScoreToDay(_jobSectorSO.Day, _dayScore.Value);
@@ -170,6 +177,8 @@ public class JobAreaManager : MonoBehaviour
 
     public void MinigameFailed()
     {
+        _jobSectorSO.CurrentJob.AddUniqueAction("playerCompletedDay", false);
+
         RewardAndPenaltyManager.Instance.PlayerHasFailedJob();
 
         GameManager.Instance.UpdateGameState(GameState.PausedState);

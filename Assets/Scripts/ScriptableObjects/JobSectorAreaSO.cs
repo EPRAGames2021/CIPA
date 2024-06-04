@@ -39,6 +39,8 @@ namespace EPRA.Utilities
             OnDayEnded?.Invoke();
 
             SaveData();
+
+            //send list of day actions to data base here
         }
 
         public void SetScoreToDay(int day, int score)

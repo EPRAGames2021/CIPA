@@ -68,8 +68,6 @@ public class PPESelectionMenu : MenuController
 
         bool sameSet = ListExtensions.HaveSameElements(_requiredEquipments, _selectedEquipments);
 
-        Debug.Log(sameSet);
-
         OnSelectionIsCorrect?.Invoke(sameSet);
     }
 
