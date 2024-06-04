@@ -15,6 +15,8 @@ public class JobSO : ScriptableObject
 
     [SerializeField] private List<EquipmentType> _requiredEquipment;
 
+    [SerializeField] private List<TrackableAction> _actions;
+
     public int Score => _score;
     public string JobName => _jobName;
     public string KeyName => _keyName;
@@ -28,7 +30,7 @@ public class JobSO : ScriptableObject
 
     private void OnEnable()
     {
-        LoadValue();
+        LoadData();
     }
 
 
@@ -36,16 +38,47 @@ public class JobSO : ScriptableObject
     {
         _score = score;
 
-        SaveValue();
+        SaveData();
     }
 
-    private void LoadValue()
+    public void AddUniqueAction(string action, bool performed)
+    {
+        if (_actions.Count > 0)
+        {
+            for (int i = 0; i < _actions.Count; i++)
+            {
+                if (_actions[i].Action == action)
+                {
+                    Debug.Log("Action has already been added. Updating value.");
+
+                    _actions[i].Performed = performed;
+
+                    return;
+                }
+            }
+        }
+
+        AddNewAction(action, performed);
+    }
+
+    private void AddNewAction(string action, bool performed)
+    {
+        TrackableAction trackableAction = new(action, performed);
+
+        _actions.Add(trackableAction);
+
+        SaveData();
+    }
+
+    private void LoadData()
     {
         _score = DataManager.HasData(_saveName) ? DataManager.LoadData<int>(_saveName) : 0;
+        _actions = DataManager.HasData(_saveName + "_actions") ? DataManager.LoadData<List<TrackableAction>>(_saveName + "_actions") : new();
     }
 
-    private void SaveValue()
+    private void SaveData()
     {
         DataManager.SaveData<int>(_saveName, _score);
+        DataManager.SaveData<List<TrackableAction>>(_saveName + "_actions", _actions);
     }
 }
