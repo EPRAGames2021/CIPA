@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using EPRA.Utilities;
 
-namespace EPRA.Utilities
+namespace CIPA
 {
     public class AdvanceMissionTrigger : MonoBehaviour
     {
@@ -31,12 +30,18 @@ namespace EPRA.Utilities
         {
             _triggered = false;
 
-            _playerDetector.OnPlayerDetected += AdvanceMission;
+            _playerDetector.OnPlayerDetected += HandlePlayerDetection;
         }
 
         private void Finish()
         {
-            _playerDetector.OnPlayerDetected -= AdvanceMission;
+            _playerDetector.OnPlayerDetected -= HandlePlayerDetection;
+        }
+
+
+        private void HandlePlayerDetection(Player player)
+        {
+            AdvanceMission();
         }
 
 

@@ -1,82 +1,82 @@
-using EPRA.Utilities;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using TMPro;
+using EPRA.Utilities;
 
-public class Supervisor : MonoBehaviour
+namespace CIPA
 {
-    [Header("GD area")]
-    [SerializeField] private float _distanceToTriggerSpeech;
-
-    [Header("Dev area")]
-    [SerializeField] private Player _player;
-
-    [SerializeField] private TextMeshProUGUI _missionLineReminder;
-    [SerializeField] private GameObject _speechBubble;
-    [SerializeField] private GameObject _exclamationMark;
-    [SerializeField] private GameObject _canvas;
-
-    [Header("Debug")]
-    [SerializeField] private float _distance;
-    [SerializeField] private bool _displaying;
-
-
-    private void Start()
+    public class Supervisor : MonoBehaviour
     {
-        DisplayMessage(false);
-    }
+        [Header("GD area")]
+        [SerializeField] private float _distanceToTriggerSpeech;
 
-    private void Update()
-    {
-        CheckDistance();
-    }
+        [Header("Dev area")]
+        [SerializeField] private Player _player;
 
-    private void LateUpdate()
-    {
-        _canvas.transform.LookAt(Camera.main.transform.position);
-    }
+        [SerializeField] private TextMeshProUGUI _missionLineReminder;
+        [SerializeField] private GameObject _speechBubble;
+        [SerializeField] private GameObject _exclamationMark;
+        [SerializeField] private GameObject _canvas;
+
+        [Header("Debug")]
+        [SerializeField] private float _distance;
+        [SerializeField] private bool _displaying;
 
 
-    private void CheckDistance()
-    {
-        _distance = Vector3.Distance(transform.position, _player.transform.position);
-
-        if (_distance <= _distanceToTriggerSpeech && !_displaying)
-        {
-            DisplayMessage(true);
-        }
-        else if (_distance > _distanceToTriggerSpeech && _displaying)
+        private void Start()
         {
             DisplayMessage(false);
         }
-    }
 
-    private void DisplayMessage(bool display)
-    {
-        _displaying = display;
-
-        _exclamationMark.SetActive(!_displaying);
-        _speechBubble.SetActive(_displaying);
-
-        if (_player.EquipmentSystem.WearingEquipment)
+        private void Update()
         {
-            int day = JobAreaManager.Instance.JobSectorAreaSO.Day;
-            string key = "day" + day + "supervisor";
-
-            _missionLineReminder.text = LanguageManager.GetTranslation(key);
+            CheckDistance();
         }
-        else
+
+        private void LateUpdate()
         {
-            _missionLineReminder.text = LanguageManager.GetTranslation("supervisorEquipmentReminder");
+            _canvas.transform.LookAt(Camera.main.transform.position);
+        }
+
+
+        private void CheckDistance()
+        {
+            _distance = Vector3.Distance(transform.position, _player.transform.position);
+
+            if (_distance <= _distanceToTriggerSpeech && !_displaying)
+            {
+                DisplayMessage(true);
+            }
+            else if (_distance > _distanceToTriggerSpeech && _displaying)
+            {
+                DisplayMessage(false);
+            }
+        }
+
+        private void DisplayMessage(bool display)
+        {
+            _displaying = display;
+
+            _exclamationMark.SetActive(!_displaying);
+            _speechBubble.SetActive(_displaying);
+
+            if (_player.EquipmentSystem.WearingEquipment)
+            {
+                int day = JobAreaManager.Instance.JobSectorAreaSO.Day;
+                string key = "day" + day + "supervisor";
+
+                _missionLineReminder.text = LanguageManager.GetTranslation(key);
+            }
+            else
+            {
+                _missionLineReminder.text = LanguageManager.GetTranslation("supervisorEquipmentReminder");
+            }
+        }
+
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, _distanceToTriggerSpeech);
         }
     }
-
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, _distanceToTriggerSpeech);
-    }
-
 }

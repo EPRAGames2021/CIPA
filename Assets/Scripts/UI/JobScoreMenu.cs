@@ -1,76 +1,79 @@
 using UnityEngine;
 using UnityEngine.UI;
-using EPRA.Utilities;
 using TMPro;
+using EPRA.Utilities;
 
-public class JobScoreMenu : MenuController
+namespace CIPA
 {
-    [SerializeField] private Button _closeMenu;
-
-    [SerializeField] private CurrencySO _dayScore;
-    [SerializeField] private TextMeshProUGUI _dayScoreText;
-
-    [SerializeField] private JobSectorAreaSO _jobSectorArea;
-
-    private void OnEnable()
+    public class JobScoreMenu : MenuController
     {
-        GetScore();
-    }
+        [SerializeField] private Button _closeMenu;
 
-    private void Start()
-    {
-        Init();
-    }
+        [SerializeField] private CurrencySO _dayScore;
+        [SerializeField] private TextMeshProUGUI _dayScoreText;
 
-    private void OnDestroy()
-    {
-        Finish();
-    }
+        [SerializeField] private JobSectorAreaSO _jobSectorArea;
 
-
-    private void Init()
-    {
-        Menu = MenuType.DayScoreMenu;
-
-        _closeMenu.onClick.AddListener(CloseMenu);
-    }
-
-    private void Finish()
-    {
-        _closeMenu.onClick.RemoveAllListeners();
-    }
-
-
-    private void GetScore()
-    {
-        if (JobAreaManager.Instance == null) return;
-
-        _jobSectorArea = JobAreaManager.Instance.JobSectorAreaSO;
-
-        _dayScoreText.text = "";
-
-        if (!_jobSectorArea.IsFinalDay)
+        private void OnEnable()
         {
-            _dayScoreText.text = LanguageManager.GetTranslation("scoreOfTheDay", _dayScore.Value);
+            GetScore();
         }
-        else
+
+        private void Start()
         {
-            for (int i = 0; i < _jobSectorArea.TotalDays; i++)
+            Init();
+        }
+
+        private void OnDestroy()
+        {
+            Finish();
+        }
+
+
+        private void Init()
+        {
+            Menu = MenuType.DayScoreMenu;
+
+            _closeMenu.onClick.AddListener(CloseMenu);
+        }
+
+        private void Finish()
+        {
+            _closeMenu.onClick.RemoveAllListeners();
+        }
+
+
+        private void GetScore()
+        {
+            if (JobAreaManager.Instance == null) return;
+
+            _jobSectorArea = JobAreaManager.Instance.JobSectorAreaSO;
+
+            _dayScoreText.text = "";
+
+            if (!_jobSectorArea.IsFinalDay)
             {
-                //_dayScoreText.text += LanguageManager.GetTranslation("scoreOfTheDayScore", i, _jobSectorArea.Jobs[i].JobName + ": " + _jobSectorArea.Jobs[i].Score + "\n");
-                //_dayScoreText.text += LanguageManager.GetTranslation("dayJobScore", i, _jobSectorArea.Jobs[i].KeyName, _jobSectorArea.Jobs[i].Score + "\n");
-
-                _dayScoreText.text += LanguageManager.GetTranslation("gameDay", i + 1) + " | ";
-                _dayScoreText.text += LanguageManager.GetTranslation(_jobSectorArea.Jobs[i].KeyName) + " | ";
-                _dayScoreText.text += LanguageManager.GetTranslation("gameScore", _jobSectorArea.Jobs[i].Score) + "\n";
+                _dayScoreText.text = LanguageManager.GetTranslation("scoreOfTheDay", _dayScore.Value);
             }
+            else
+            {
+                for (int i = 0; i < _jobSectorArea.TotalDays; i++)
+                {
+                    //_dayScoreText.text += LanguageManager.GetTranslation("scoreOfTheDayScore", i, _jobSectorArea.Jobs[i].JobName + ": " + _jobSectorArea.Jobs[i].Score + "\n");
+                    //_dayScoreText.text += LanguageManager.GetTranslation("dayJobScore", i, _jobSectorArea.Jobs[i].KeyName, _jobSectorArea.Jobs[i].Score + "\n");
+
+                    _dayScoreText.text += LanguageManager.GetTranslation("gameDay", i + 1) + " | ";
+                    _dayScoreText.text += LanguageManager.GetTranslation(_jobSectorArea.Jobs[i].KeyName) + " | ";
+                    _dayScoreText.text += LanguageManager.GetTranslation("gameScore", _jobSectorArea.Jobs[i].Score) + "\n";
+                }
+            }
+
         }
 
-    }
 
-
-    public override void SelectUI()
-    {
-        _closeMenu.Select();
+        public override void SelectUI()
+        {
+            _closeMenu.Select();
+        }
     }
 }

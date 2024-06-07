@@ -1,43 +1,45 @@
 using UnityEngine;
-using UnityEngine.UI;
 
-[RequireComponent(typeof(ScreenTouchController))]
-public class LandGradingUI : MonoBehaviour
+namespace CIPA
 {
-    [Header("Dev area")]
-    [SerializeField] private PouringPanel _pouringPanel;
-
-    private void Start()
+    [RequireComponent(typeof(ScreenTouchController))]
+    public class LandGradingUI : MonoBehaviour
     {
-        Init();
-    }
+        [Header("Dev area")]
+        [SerializeField] private PouringPanel _pouringPanel;
 
-    private void OnDestroy()
-    {
-        Finish();
-    }
-
-    private void Init()
-    {
-        _pouringPanel.OnPouringSucceeded += FinishMinigame;
-    }
-
-    private void Finish()
-    {
-        _pouringPanel.OnPouringSucceeded -= FinishMinigame;
-    }
-
-    private void FinishMinigame(bool succeeded)
-    {
-        if (succeeded)
+        private void Start()
         {
-            JobAreaManager.Instance.MinigameSuccessed();
-        }
-        else
-        {
-            JobAreaManager.Instance.MinigameFailed();
+            Init();
         }
 
-        gameObject.SetActive(false);
+        private void OnDestroy()
+        {
+            Finish();
+        }
+
+        private void Init()
+        {
+            _pouringPanel.OnPouringSucceeded += FinishMinigame;
+        }
+
+        private void Finish()
+        {
+            _pouringPanel.OnPouringSucceeded -= FinishMinigame;
+        }
+
+        private void FinishMinigame(bool succeeded)
+        {
+            if (succeeded)
+            {
+                JobAreaManager.Instance.MinigameSuccessed();
+            }
+            else
+            {
+                JobAreaManager.Instance.MinigameFailed();
+            }
+
+            gameObject.SetActive(false);
+        }
     }
 }

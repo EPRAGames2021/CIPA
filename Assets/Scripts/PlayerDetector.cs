@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace EPRA.Utilities
 {
     public class PlayerDetector : MonoBehaviour
     {
-        public event System.Action OnPlayerDetected;
+        public event System.Action<Player> OnPlayerDetected;
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.GetComponent<HealthSystem>() != null)
+            if (other.GetComponent<Player>() != null)
             {
-                OnPlayerDetected?.Invoke();
+                Player player = other.GetComponent<Player>();
+
+                OnPlayerDetected?.Invoke(player);
             }
         }
 

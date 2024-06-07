@@ -1,63 +1,66 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HydraulicsUI : MonoBehaviour
+namespace CIPA
 {
-    [SerializeField] private Button _confirmButton;
-
-    [SerializeField] private PipeGrid _pipeGrid;
-
-    private void OnEnable()
+    public class HydraulicsUI : MonoBehaviour
     {
-        Camera.main.orthographic = true;
+        [SerializeField] private Button _confirmButton;
 
-        _pipeGrid.ResetGrid();
-    }
+        [SerializeField] private PipeGrid _pipeGrid;
 
-    private void Start()
-    {
-        Init();
-    }
-
-    private void OnDisable()
-    {
-        Camera.main.orthographic = false;
-    }
-
-    private void OnDestroy()
-    {
-        Finish();
-    }
-
-
-    private void Init()
-    {
-        _confirmButton.onClick.AddListener(CheckPipes);
-    }
-
-    private void Finish()
-    {
-        _confirmButton.onClick.RemoveAllListeners();
-    }
-
-
-    private void CheckPipes()
-    {
-        if (_pipeGrid.CheckForCorrectGrid())
+        private void OnEnable()
         {
-            JobAreaManager.Instance.MinigameSuccessed();
+            Camera.main.orthographic = true;
 
-            _pipeGrid.LockGrid();
-
-            gameObject.SetActive(false);
+            _pipeGrid.ResetGrid();
         }
-        else
+
+        private void Start()
         {
-            JobAreaManager.Instance.MinigameFailed();
+            Init();
+        }
 
-            _pipeGrid.LockGrid();
+        private void OnDisable()
+        {
+            Camera.main.orthographic = false;
+        }
 
-            gameObject.SetActive(false);
+        private void OnDestroy()
+        {
+            Finish();
+        }
+
+
+        private void Init()
+        {
+            _confirmButton.onClick.AddListener(CheckPipes);
+        }
+
+        private void Finish()
+        {
+            _confirmButton.onClick.RemoveAllListeners();
+        }
+
+
+        private void CheckPipes()
+        {
+            if (_pipeGrid.CheckForCorrectGrid())
+            {
+                JobAreaManager.Instance.MinigameSuccessed();
+
+                _pipeGrid.LockGrid();
+
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                JobAreaManager.Instance.MinigameFailed();
+
+                _pipeGrid.LockGrid();
+
+                gameObject.SetActive(false);
+            }
         }
     }
 }

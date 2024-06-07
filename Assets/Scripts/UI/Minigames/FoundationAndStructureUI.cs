@@ -1,109 +1,112 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(ScreenTouchController))]
-[RequireComponent(typeof(MouseDelta))]
-public class FoundationAndStructureUI : MonoBehaviour
+namespace CIPA
 {
-    [Header("Dev area")]
-    [SerializeField] private ScreenTouchController _screenTouchController;
-
-    [SerializeField] private IngredientSelectionPanel _formSelectionPanel;
-    [SerializeField] private IngredientSelectionPanel _concreteSelectionPanel;
-    [SerializeField] private ConcreteMixPanel _concreteMixPanel;
-    [SerializeField] private PouringPanel _pouringPanel;
-
-    [SerializeField] private int _stageIndex;
-
-    [SerializeField] private List<GameObject> _stagePanels;
-
-    public int StageIndex => _stageIndex;
-
-
-    public event System.Action OnMinigameFailed;
-
-    private void OnEnable()
+    [RequireComponent(typeof(ScreenTouchController))]
+    [RequireComponent(typeof(MouseDelta))]
+    public class FoundationAndStructureUI : MonoBehaviour
     {
-        Refresh();
-    }
+        [Header("Dev area")]
+        [SerializeField] private ScreenTouchController _screenTouchController;
 
-    private void Start()
-    {
-        Init();
-    }
+        [SerializeField] private IngredientSelectionPanel _formSelectionPanel;
+        [SerializeField] private IngredientSelectionPanel _concreteSelectionPanel;
+        [SerializeField] private ConcreteMixPanel _concreteMixPanel;
+        [SerializeField] private PouringPanel _pouringPanel;
 
-    private void OnDestroy()
-    {
-        Finish();
-    }
+        [SerializeField] private int _stageIndex;
 
-    private void Refresh()
-    {
-        _stageIndex = 0;
-        EnablePanel(_stageIndex);
-    }
+        [SerializeField] private List<GameObject> _stagePanels;
 
-    private void Init()
-    {
-        Refresh();
-
-        _formSelectionPanel.OnIngredientsAreCorrect += CheckAdvanceStage;
-        _concreteSelectionPanel.OnIngredientsAreCorrect += CheckAdvanceStage;
-        _concreteMixPanel.OnMixSucceeded += CheckAdvanceStage;
-        _pouringPanel.OnPouringSucceeded += CheckAdvanceStage;
-    }
-
-    private void Finish()
-    {
-        _formSelectionPanel.OnIngredientsAreCorrect -= CheckAdvanceStage;
-        _concreteSelectionPanel.OnIngredientsAreCorrect -= CheckAdvanceStage;
-        _concreteMixPanel.OnMixSucceeded -= CheckAdvanceStage;
-        _pouringPanel.OnPouringSucceeded -= CheckAdvanceStage;
-    }
+        public int StageIndex => _stageIndex;
 
 
-    private void EnablePanel(int index)
-    {
-        for (int i = 0; i < _stagePanels.Count; i++)
+        public event System.Action OnMinigameFailed;
+
+        private void OnEnable()
         {
-            _stagePanels[i].SetActive(i == index);
+            Refresh();
         }
-    }
 
-    private void NextPanel()
-    {
-        _stageIndex++;
-        EnablePanel(_stageIndex);
-    }
-
-    private void CheckAdvanceStage(bool canAdvance)
-    {
-        if (canAdvance)
+        private void Start()
         {
-            if (_stageIndex < _stagePanels.Count - 1)
+            Init();
+        }
+
+        private void OnDestroy()
+        {
+            Finish();
+        }
+
+        private void Refresh()
+        {
+            _stageIndex = 0;
+            EnablePanel(_stageIndex);
+        }
+
+        private void Init()
+        {
+            Refresh();
+
+            _formSelectionPanel.OnIngredientsAreCorrect += CheckAdvanceStage;
+            _concreteSelectionPanel.OnIngredientsAreCorrect += CheckAdvanceStage;
+            _concreteMixPanel.OnMixSucceeded += CheckAdvanceStage;
+            _pouringPanel.OnPouringSucceeded += CheckAdvanceStage;
+        }
+
+        private void Finish()
+        {
+            _formSelectionPanel.OnIngredientsAreCorrect -= CheckAdvanceStage;
+            _concreteSelectionPanel.OnIngredientsAreCorrect -= CheckAdvanceStage;
+            _concreteMixPanel.OnMixSucceeded -= CheckAdvanceStage;
+            _pouringPanel.OnPouringSucceeded -= CheckAdvanceStage;
+        }
+
+
+        private void EnablePanel(int index)
+        {
+            for (int i = 0; i < _stagePanels.Count; i++)
             {
-                NextPanel();
+                _stagePanels[i].SetActive(i == index);
+            }
+        }
 
-                MissionManager.Instance.GoToNextMission();
+        private void NextPanel()
+        {
+            _stageIndex++;
+            EnablePanel(_stageIndex);
+        }
 
-                _screenTouchController.ReInit();
+        private void CheckAdvanceStage(bool canAdvance)
+        {
+            if (canAdvance)
+            {
+                if (_stageIndex < _stagePanels.Count - 1)
+                {
+                    NextPanel();
+
+                    MissionManager.Instance.GoToNextMission();
+
+                    _screenTouchController.ReInit();
+                }
+                else
+                {
+                    JobAreaManager.Instance.MinigameSuccessed();
+
+                    gameObject.SetActive(false);
+                }
             }
             else
             {
-                JobAreaManager.Instance.MinigameSuccessed();
+                JobAreaManager.Instance.MinigameFailed();
+
+                OnMinigameFailed?.Invoke();
+
+                MissionManager.Instance.GoToMission(2);
 
                 gameObject.SetActive(false);
             }
-        }
-        else
-        {
-            JobAreaManager.Instance.MinigameFailed();
-
-            OnMinigameFailed?.Invoke();
-
-            MissionManager.Instance.GoToMission(2);
-
-            gameObject.SetActive(false);
         }
     }
 }

@@ -1,64 +1,65 @@
-using EPRA.Utilities;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using EPRA.Utilities;
 
-public class MissionManager : MonoBehaviour
+namespace CIPA
 {
-    public static MissionManager Instance;
-
-    [SerializeField] private JobSectorAreaSO _jobSectorAreaSO;
-
-    [SerializeField] private int _currentMissionIndex;
-
-    public int CurrentMissionIndex => _currentMissionIndex;
-
-    public static event System.Action<int> OnMissionChanged;
-
-
-    private void Awake()
+    public class MissionManager : MonoBehaviour
     {
-        InitSingleton();
-    }
+        public static MissionManager Instance;
 
-    private void Start()
-    {
-        Init();
-    }
+        [SerializeField] private JobSectorAreaSO _jobSectorAreaSO;
+
+        [SerializeField] private int _currentMissionIndex;
+
+        public int CurrentMissionIndex => _currentMissionIndex;
+
+        public static event System.Action<int> OnMissionChanged;
 
 
-    private void InitSingleton()
-    {
-        if (Instance == null)
+        private void Awake()
         {
-            Instance = this;
+            InitSingleton();
         }
-        else
+
+        private void Start()
         {
-            Destroy(gameObject);
+            Init();
         }
-    }
 
-    private void Init()
-    {
-        _jobSectorAreaSO = JobAreaManager.Instance.JobSectorAreaSO;
 
-        _currentMissionIndex = 0;
+        private void InitSingleton()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
 
-        OnMissionChanged?.Invoke(_currentMissionIndex);
-    }
+        private void Init()
+        {
+            _jobSectorAreaSO = JobAreaManager.Instance.JobSectorAreaSO;
 
-    public void GoToNextMission()
-    {
-        _currentMissionIndex++;
+            _currentMissionIndex = 0;
 
-        OnMissionChanged?.Invoke(_currentMissionIndex);
-    }
+            OnMissionChanged?.Invoke(_currentMissionIndex);
+        }
 
-    public void GoToMission(int missions)
-    {
-        _currentMissionIndex = missions;
+        public void GoToNextMission()
+        {
+            _currentMissionIndex++;
 
-        OnMissionChanged?.Invoke(_currentMissionIndex);
+            OnMissionChanged?.Invoke(_currentMissionIndex);
+        }
+
+        public void GoToMission(int missions)
+        {
+            _currentMissionIndex = missions;
+
+            OnMissionChanged?.Invoke(_currentMissionIndex);
+        }
     }
 }

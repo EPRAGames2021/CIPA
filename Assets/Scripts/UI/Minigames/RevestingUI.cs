@@ -1,67 +1,70 @@
-using Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
+using Cinemachine;
 
-public class RevestingUI : MonoBehaviour
+namespace CIPA
 {
-    [SerializeField] private Button _confirmButton;
-
-    [SerializeField] private TileGrid _tileGrid;
-    [SerializeField] private CinemachineVirtualCamera _virtualCamera;
-
-    private void OnEnable()
+    public class RevestingUI : MonoBehaviour
     {
-        _virtualCamera.m_Lens.Orthographic = true;
-        _virtualCamera.m_Lens.OrthographicSize = 25f;
+        [SerializeField] private Button _confirmButton;
 
-        _tileGrid.ResetGrid();
-    }
+        [SerializeField] private TileGrid _tileGrid;
+        [SerializeField] private CinemachineVirtualCamera _virtualCamera;
 
-    private void Start()
-    {
-        Init();
-    }
-
-    private void OnDisable()
-    {
-        _virtualCamera.m_Lens.OrthographicSize = 5;
-        _virtualCamera.m_Lens.Orthographic = true;
-    }
-
-    private void OnDestroy()
-    {
-        Finish();
-    }
-
-
-    private void Init()
-    {
-        _confirmButton.onClick.AddListener(CheckGrid);
-    }
-
-    private void Finish()
-    {
-        _confirmButton.onClick.RemoveAllListeners();
-    }
-
-
-    private void CheckGrid()
-    {
-        if (_tileGrid.CheckForCorrectGrid())
+        private void OnEnable()
         {
-            JobAreaManager.Instance.MinigameSuccessed();
+            _virtualCamera.m_Lens.Orthographic = true;
+            _virtualCamera.m_Lens.OrthographicSize = 25f;
 
-            _tileGrid.LockGrid();
-
-            gameObject.SetActive(false);
+            _tileGrid.ResetGrid();
         }
-        else
+
+        private void Start()
         {
-            JobAreaManager.Instance.MinigameFailed();
+            Init();
+        }
 
-            _tileGrid.LockGrid();
+        private void OnDisable()
+        {
+            _virtualCamera.m_Lens.OrthographicSize = 5;
+            _virtualCamera.m_Lens.Orthographic = true;
+        }
 
-            gameObject.SetActive(false);
+        private void OnDestroy()
+        {
+            Finish();
+        }
+
+
+        private void Init()
+        {
+            _confirmButton.onClick.AddListener(CheckGrid);
+        }
+
+        private void Finish()
+        {
+            _confirmButton.onClick.RemoveAllListeners();
+        }
+
+
+        private void CheckGrid()
+        {
+            if (_tileGrid.CheckForCorrectGrid())
+            {
+                JobAreaManager.Instance.MinigameSuccessed();
+
+                _tileGrid.LockGrid();
+
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                JobAreaManager.Instance.MinigameFailed();
+
+                _tileGrid.LockGrid();
+
+                gameObject.SetActive(false);
+            }
         }
     }
 }

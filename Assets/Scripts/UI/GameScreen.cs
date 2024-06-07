@@ -1,10 +1,7 @@
-using ES3Types;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
+using TMPro;
+using CIPA;
 
 namespace EPRA.Utilities
 {

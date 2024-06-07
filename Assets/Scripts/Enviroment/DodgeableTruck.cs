@@ -32,21 +32,25 @@ public class DodgeableTruck : MonoBehaviour
 
     private void Init()
     {
-        _playerDetector.OnPlayerDetected += InitiateTruckMovement;
+        _playerDetector.OnPlayerDetected += HandlePlayerDetection;
 
         transform.LookAt(_patrolSystem.CurrentTarget);
     }
 
     private void Finish()
     {
-        _playerDetector.OnPlayerDetected -= InitiateTruckMovement;
+        _playerDetector.OnPlayerDetected -= HandlePlayerDetection;
+    }
+
+
+    private void HandlePlayerDetection(Player player)
+    {
+        InitiateTruckMovement();
     }
 
 
     private void InitiateTruckMovement()
     {
-        //_animator.SetTrigger("Reverse");
-
         _moving = true;
 
         Move();

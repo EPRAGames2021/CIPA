@@ -1,70 +1,79 @@
-using EPRA.Utilities;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using EPRA.Utilities;
 
-public class LockerTrigger : MonoBehaviour
+namespace CIPA
 {
-    [SerializeField] private PlayerDetector _playerDetector;
-
-    [SerializeField] private Player _player;
-
-    private void Start()
+    public class LockerTrigger : MonoBehaviour
     {
-        Init();
-    }
+        [SerializeField] private PlayerDetector _playerDetector;
 
-    private void OnDestroy()
-    {
-        Finish();
-    }
+        [SerializeField] private Player _player;
 
-
-    private void Init()
-    {
-        _playerDetector.OnPlayerDetected += InitiateEquipmentSelection;
-    }
-
-    private void Finish()
-    {
-        _playerDetector.OnPlayerDetected -= InitiateEquipmentSelection;
-    }
-
-
-    private void InitiateEquipmentSelection()
-    {
-        CanvasManager.Instance.OpenMenu(MenuType.PPESelectionMenu);
-        CanvasManager.Instance.SetHudEnabled(false);
-        CanvasManager.Instance.FloatingJoystick.gameObject.SetActive(false);
-
-        PPESelectionMenu.OnSelectionIsCorrect += EquipPlayer;
-
-        PlayerCameraHandler.Instance.FocusOnPPEBoard(true);
-    }
-
-    private void EquipPlayer(bool equip)
-    {
-        if (equip)
+        private void Start()
         {
-            CanvasManager.Instance.CloseMenu(MenuType.PPESelectionMenu);
-
-            MissionManager.Instance.GoToNextMission();
-            PlayerCameraHandler.Instance.FocusOnPPEBoard(false);
-
-            JobSO job = JobAreaManager.Instance.JobSectorAreaSO.CurrentJob;
-            _player.EquipmentSystem.EquipPlayer(job.RequiredEquipment, true);
-
-            _playerDetector.gameObject.SetActive(false);
-        }
-        else
-        {
-            CanvasManager.Instance.SwitchMenu(MenuType.GameOverMenu);
+            Init();
         }
 
-        CanvasManager.Instance.SetHudEnabled(true);
-        CanvasManager.Instance.FloatingJoystick.gameObject.SetActive(true);
+        private void OnDestroy()
+        {
+            Finish();
+        }
 
-        PPESelectionMenu.OnSelectionIsCorrect -= EquipPlayer;
-        Vibrator.Vibrate(100);
+
+        private void Init()
+        {
+            _playerDetector.OnPlayerDetected += HandlePlayerDetection;
+        }
+
+        private void Finish()
+        {
+            _playerDetector.OnPlayerDetected -= HandlePlayerDetection;
+        }
+
+
+        private void HandlePlayerDetection(Player player)
+        {
+            _player = player;
+
+            InitiateEquipmentSelection();
+        }
+
+
+        private void InitiateEquipmentSelection()
+        {
+            CanvasManager.Instance.OpenMenu(MenuType.PPESelectionMenu);
+            CanvasManager.Instance.SetHudEnabled(false);
+            CanvasManager.Instance.FloatingJoystick.gameObject.SetActive(false);
+
+            PPESelectionMenu.OnSelectionIsCorrect += EquipPlayer;
+
+            PlayerCameraHandler.Instance.FocusOnPPEBoard(true);
+        }
+
+        private void EquipPlayer(bool equip)
+        {
+            if (equip)
+            {
+                CanvasManager.Instance.CloseMenu(MenuType.PPESelectionMenu);
+
+                MissionManager.Instance.GoToNextMission();
+                PlayerCameraHandler.Instance.FocusOnPPEBoard(false);
+
+                JobSO job = JobAreaManager.Instance.JobSectorAreaSO.CurrentJob;
+                _player.EquipmentSystem.EquipPlayer(job.RequiredEquipment, true);
+
+                _playerDetector.gameObject.SetActive(false);
+            }
+            else
+            {
+                CanvasManager.Instance.SwitchMenu(MenuType.GameOverMenu);
+            }
+
+            CanvasManager.Instance.SetHudEnabled(true);
+            CanvasManager.Instance.FloatingJoystick.gameObject.SetActive(true);
+
+            PPESelectionMenu.OnSelectionIsCorrect -= EquipPlayer;
+            Vibrator.Vibrate(100);
+        }
     }
 }

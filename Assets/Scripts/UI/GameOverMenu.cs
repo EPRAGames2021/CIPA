@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
+using EPRA.Utilities;
 
-namespace EPRA.Utilities
+namespace CIPA
 {
     public class GameOverMenu : MenuController
     {
@@ -36,7 +37,6 @@ namespace EPRA.Utilities
 
         private void RestartGame()
         {
-            //SceneLoader.Instance.ReloadLevel();
             JobAreaManager.Instance.RestartJob();
 
             CanvasManager.Instance.CloseMenu(Menu);

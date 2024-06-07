@@ -1,44 +1,45 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ConcreteFormHandler : MonoBehaviour
+namespace CIPA
 {
-    [SerializeField] private ConcreteForm _concreteForm;
-
-    [SerializeField] private FoundationAndStructureUI _foundation;
-    [SerializeField] private ScreenTouchController _controller;
-
-
-    private void Start()
+    public class ConcreteFormHandler : MonoBehaviour
     {
-        Init();
-    }
+        [SerializeField] private ConcreteForm _concreteForm;
 
-    private void Update()
-    {
-        _concreteForm.SetActive(_controller.DetectHolding() && _foundation.StageIndex == 3);
-    }
-
-    private void OnDestroy()
-    {
-        Finish();
-    }
+        [SerializeField] private FoundationAndStructureUI _foundation;
+        [SerializeField] private ScreenTouchController _controller;
 
 
-    private void Init()
-    {
-        _foundation.OnMinigameFailed += ResetConcrete;
-    }
+        private void Start()
+        {
+            Init();
+        }
 
-    private void Finish()
-    {
-        _foundation.OnMinigameFailed -= ResetConcrete;
-    }
+        private void Update()
+        {
+            _concreteForm.SetActive(_controller.DetectHolding() && _foundation.StageIndex == 3);
+        }
+
+        private void OnDestroy()
+        {
+            Finish();
+        }
 
 
-    private void ResetConcrete()
-    {
-        _concreteForm.Restart();
+        private void Init()
+        {
+            _foundation.OnMinigameFailed += ResetConcrete;
+        }
+
+        private void Finish()
+        {
+            _foundation.OnMinigameFailed -= ResetConcrete;
+        }
+
+
+        private void ResetConcrete()
+        {
+            _concreteForm.Restart();
+        }
     }
 }
