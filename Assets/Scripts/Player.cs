@@ -1,5 +1,6 @@
 using UnityEngine;
 using EPRA.Utilities;
+using CIPA;
 
 public class Player : MonoBehaviour
 {
@@ -13,10 +14,12 @@ public class Player : MonoBehaviour
     [SerializeField] private HealthSystem _healthSystem;
     [SerializeField] private MovementSystem _movementSystem;
     [SerializeField] private EquipmentSystem _equipmentSystem;
+    [SerializeField] private ArrowSystem _arrowSystem;
 
     public HealthSystem HealthSystem => _healthSystem;
     public MovementSystem MovementSystem => _movementSystem;
     public EquipmentSystem EquipmentSystem => _equipmentSystem;
+    public ArrowSystem ArrowSystem => _arrowSystem;
 
     public CharacterState State => _state;
 

@@ -35,6 +35,19 @@ namespace CIPA
         {
             _arrow.SetActive(false);
 
+            ResetArrow();
+
+            MissionManager.OnMissionChanged += CheckArrow;
+        }
+
+        private void Finish()
+        {
+            MissionManager.OnMissionChanged -= CheckArrow;
+        }
+
+
+        private void ResetArrow()
+        {
             _index = 0;
 
             if (_targets.Count > 0)
@@ -45,15 +58,7 @@ namespace CIPA
             {
                 Debug.LogWarning("There are no targets.");
             }
-
-            MissionManager.OnMissionChanged += CheckArrow;
         }
-
-        private void Finish()
-        {
-            MissionManager.OnMissionChanged -= CheckArrow;
-        }
-
 
         private void PointArrow()
         {
@@ -80,6 +85,16 @@ namespace CIPA
             int day = JobAreaManager.Instance.JobSectorAreaSO.Day;
 
             _arrow.SetActive(missionIndex == 1 && day < 2);
+        }
+
+
+        public void SetPath(List<Transform> newPath)
+        {
+            _targets.Clear();
+
+            _targets = newPath;
+
+            ResetArrow();
         }
     }
 }
