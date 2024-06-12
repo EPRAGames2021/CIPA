@@ -42,8 +42,9 @@ namespace CIPA
         private void InitiateEquipmentSelection()
         {
             CanvasManager.Instance.OpenMenu(MenuType.PPESelectionMenu);
-            CanvasManager.Instance.SetHudEnabled(false);
-            CanvasManager.Instance.FloatingJoystick.gameObject.SetActive(false);
+
+            CanvasManager.Instance.EnableVirtualJoystick(false);
+            CanvasManager.Instance.EnableHUD(false);
 
             PPESelectionMenu.OnSelectionIsCorrect += EquipPlayer;
 
@@ -63,14 +64,16 @@ namespace CIPA
                 _player.EquipmentSystem.EquipPlayer(job.RequiredEquipment, true);
 
                 _playerDetector.gameObject.SetActive(false);
+
+                CustomGameEvents.InvokeOnPlayerWorePPEs();
             }
             else
             {
                 CanvasManager.Instance.SwitchMenu(MenuType.GameOverMenu);
             }
 
-            CanvasManager.Instance.SetHudEnabled(true);
-            CanvasManager.Instance.FloatingJoystick.gameObject.SetActive(true);
+            CanvasManager.Instance.EnableVirtualJoystick(true);
+            CanvasManager.Instance.EnableHUD(true);
 
             PPESelectionMenu.OnSelectionIsCorrect -= EquipPlayer;
             Vibrator.Vibrate(100);

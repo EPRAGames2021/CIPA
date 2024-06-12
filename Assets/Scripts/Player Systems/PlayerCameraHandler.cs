@@ -1,86 +1,88 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class PlayerCameraHandler : MonoBehaviour
+namespace CIPA
 {
-    public static PlayerCameraHandler Instance;
-
-    [SerializeField] private EquipmentSystem _equipmentSystem;
-    [SerializeField] private CinemachineVirtualCamera _playerVirtualCamera;
-
-    [SerializeField] private CinemachineVirtualCamera _PPEVirtualCamera;
-
-
-    private void Awake()
+    public class PlayerCameraHandler : MonoBehaviour
     {
-        InitSingleton();        
-    }
+        public static PlayerCameraHandler Instance;
 
-    private void Start()
-    {
-        Init();
-    }
+        [SerializeField] private EquipmentSystem _equipmentSystem;
+        [SerializeField] private CinemachineVirtualCamera _playerVirtualCamera;
 
-    private void OnDestroy()
-    {
-        Finish();
-    }
+        [SerializeField] private CinemachineVirtualCamera _PPEVirtualCamera;
 
 
-    private void InitSingleton()
-    {
-        if (Instance == null)
+        private void Awake()
         {
-            Instance = this;
+            InitSingleton();
         }
-        else
+
+        private void Start()
         {
-            Destroy(gameObject);
+            Init();
         }
-    }
 
-    private void Init()
-    {
-        _equipmentSystem.OnEquipped += AnimateCamera;
-
-        FocusOnPPEBoard(false);
-    }
-
-    private void Finish()
-    {
-        _equipmentSystem.OnEquipped -= AnimateCamera;
-    }
-
-
-    private void AnimateCamera(bool animate)
-    {
-        if (animate)
+        private void OnDestroy()
         {
-            SetCameraDistance(8);
-
-            StartCoroutine(ReturnZoomLevel(3.5f));
+            Finish();
         }
-    }
 
 
-    private void SetCameraDistance(float distance)
-    {
-        CinemachineFramingTransposer framingTransposer = _playerVirtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
+        private void InitSingleton()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
 
-        framingTransposer.m_CameraDistance = distance;
-    }
+        private void Init()
+        {
+            _equipmentSystem.OnEquipped += AnimateCamera;
 
-    private IEnumerator ReturnZoomLevel(float time)
-    {
-        yield return new WaitForSeconds(time);
+            FocusOnPPEBoard(false);
+        }
 
-        SetCameraDistance(15);
-    }
+        private void Finish()
+        {
+            _equipmentSystem.OnEquipped -= AnimateCamera;
+        }
 
-    public void FocusOnPPEBoard(bool focusOnPPEBoard)
-    {
-        _PPEVirtualCamera.gameObject.SetActive(focusOnPPEBoard);
+
+        private void AnimateCamera(bool animate)
+        {
+            if (animate)
+            {
+                SetCameraDistance(8);
+
+                StartCoroutine(ReturnZoomLevel(3.5f));
+            }
+        }
+
+
+        private void SetCameraDistance(float distance)
+        {
+            CinemachineFramingTransposer framingTransposer = _playerVirtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
+
+            framingTransposer.m_CameraDistance = distance;
+        }
+
+        private IEnumerator ReturnZoomLevel(float time)
+        {
+            yield return new WaitForSeconds(time);
+
+            SetCameraDistance(15);
+        }
+
+        public void FocusOnPPEBoard(bool focusOnPPEBoard)
+        {
+            _PPEVirtualCamera.gameObject.SetActive(focusOnPPEBoard);
+        }
     }
 }

@@ -1,68 +1,70 @@
 using UnityEngine;
-using EPRA.Utilities;
 using DG.Tweening;
 
-[RequireComponent(typeof(PatrolSystem))]
-public class DodgeableTruck : MonoBehaviour
+namespace CIPA
 {
-    [SerializeField] private PlayerDetector _playerDetector;
-
-    [SerializeField] private bool _moving;
-    [SerializeField, Min(0.1f)] private float _speed;
-
-    [SerializeField] private Animator _animator;
-
-    [SerializeField] private PatrolSystem _patrolSystem;
-
-    private void OnValidate()
+    [RequireComponent(typeof(PatrolSystem))]
+    public class DodgeableTruck : MonoBehaviour
     {
-        if (_patrolSystem == null) _patrolSystem = GetComponent<PatrolSystem>();
-    }
+        [SerializeField] private PlayerDetector _playerDetector;
 
-    private void Start()
-    {
-        Init();
-    }
+        [SerializeField] private bool _moving;
+        [SerializeField, Min(0.1f)] private float _speed;
 
-    private void OnDestroy()
-    {
-        Finish();
-    }
+        [SerializeField] private Animator _animator;
 
+        [SerializeField] private PatrolSystem _patrolSystem;
 
-    private void Init()
-    {
-        _playerDetector.OnPlayerDetected += HandlePlayerDetection;
+        private void OnValidate()
+        {
+            if (_patrolSystem == null) _patrolSystem = GetComponent<PatrolSystem>();
+        }
 
-        transform.LookAt(_patrolSystem.CurrentTarget);
-    }
+        private void Start()
+        {
+            Init();
+        }
 
-    private void Finish()
-    {
-        _playerDetector.OnPlayerDetected -= HandlePlayerDetection;
-    }
+        private void OnDestroy()
+        {
+            Finish();
+        }
 
 
-    private void HandlePlayerDetection(Player player)
-    {
-        InitiateTruckMovement();
-    }
+        private void Init()
+        {
+            _playerDetector.OnPlayerDetected += HandlePlayerDetection;
+
+            transform.LookAt(_patrolSystem.CurrentTarget);
+        }
+
+        private void Finish()
+        {
+            _playerDetector.OnPlayerDetected -= HandlePlayerDetection;
+        }
 
 
-    private void InitiateTruckMovement()
-    {
-        _moving = true;
+        private void HandlePlayerDetection(Player player)
+        {
+            InitiateTruckMovement();
+        }
 
-        Move();
-    }
 
-    private void Move()
-    {
-        if (!_moving) return;
+        private void InitiateTruckMovement()
+        {
+            _moving = true;
 
-        float distance = Vector3.Distance(transform.position, _patrolSystem.CurrentTarget.position);
-        float time = distance / _speed;
+            Move();
+        }
 
-        transform.DOMove(_patrolSystem.CurrentTarget.position, time);
+        private void Move()
+        {
+            if (!_moving) return;
+
+            float distance = Vector3.Distance(transform.position, _patrolSystem.CurrentTarget.position);
+            float time = distance / _speed;
+
+            transform.DOMove(_patrolSystem.CurrentTarget.position, time);
+        }
     }
 }

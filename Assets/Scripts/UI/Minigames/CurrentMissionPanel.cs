@@ -38,10 +38,11 @@ namespace CIPA
 
         private void DisplayMission()
         {
+            JobSector jobSector = JobAreaManager.Instance.JobSectorAreaSO.JobSector;
             _day = JobAreaManager.Instance.JobSectorAreaSO.Day;
             _mission = MissionManager.Instance.CurrentMissionIndex;
 
-            string key = "day" + _day + "mission" + _mission;
+            string key = jobSector + "Day" + _day + "mission" + _mission;
 
             _currentMission.text = "-" + LanguageManager.GetTranslation(key);
         }

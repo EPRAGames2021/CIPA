@@ -41,9 +41,6 @@ namespace EPRA.Utilities
 
             LanguageManager.OnLanguageChanged += AdaptToLanguage;
             MissionManager.OnMissionChanged += DisplayMission;
-
-            AdaptToGameState(GameManager.Instance.State);
-            GameManager.Instance.OnGameStateChanged += AdaptToGameState;
         }
 
         private void Finish()
@@ -54,8 +51,6 @@ namespace EPRA.Utilities
 
             LanguageManager.OnLanguageChanged -= AdaptToLanguage;
             MissionManager.OnMissionChanged -= DisplayMission;
-
-            GameManager.Instance.OnGameStateChanged -= AdaptToGameState;
         }
 
 
@@ -71,10 +66,12 @@ namespace EPRA.Utilities
             _dayScoreText.text = LanguageManager.GetTranslation("gameScore", score);
         }
 
-        private void AdaptToGameState(GameState gameState)
+
+        public void EnableHUD(bool enable)
         {
-            _gameScreen.SetActive(gameState == GameState.GameState);
+            _gameScreen.SetActive(enable);
         }
+
 
         private void AdaptToLanguage(SystemLanguage systemLanguage)
         {
@@ -91,9 +88,10 @@ namespace EPRA.Utilities
 
         private void DisplayMission(int missionIndex)
         {
+            JobSector jobSector = JobAreaManager.Instance.JobSectorAreaSO.JobSector;
             int dayIndex = JobAreaManager.Instance.JobSectorAreaSO.Day;
 
-            string key = "day" + dayIndex + "mission" + missionIndex;
+            string key = jobSector + "Day" + dayIndex + "mission" + missionIndex;
 
             _currentMission.text = LanguageManager.GetTranslation(key);
         }

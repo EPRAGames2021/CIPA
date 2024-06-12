@@ -49,6 +49,13 @@ namespace CIPA
 
         private void CheckGrid()
         {
+            JobAreaManager.Instance.FinishMinigame(_tileGrid.CheckForCorrectGrid());
+
+            _tileGrid.LockGrid();
+
+            gameObject.SetActive(false);
+
+            /*
             if (_tileGrid.CheckForCorrectGrid())
             {
                 JobAreaManager.Instance.MinigameSuccessed();
@@ -65,6 +72,7 @@ namespace CIPA
 
                 gameObject.SetActive(false);
             }
+            */
         }
     }
 }

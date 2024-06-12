@@ -7,8 +7,6 @@ namespace CIPA
     {
         [SerializeField] private PlayerDetector _playerDetector;
 
-        [SerializeField] private bool _triggered;
-
         [Tooltip("Should it just go to the next mission?")]
         [SerializeField] private bool _simpleAdvance;
 
@@ -28,8 +26,6 @@ namespace CIPA
 
         private void Init()
         {
-            _triggered = false;
-
             _playerDetector.OnPlayerDetected += HandlePlayerDetection;
         }
 
@@ -47,11 +43,6 @@ namespace CIPA
 
         private void AdvanceMission()
         {
-            if (_triggered)
-            {
-                return;
-            }
-
             if (_simpleAdvance)
             {
                 MissionManager.Instance.GoToNextMission();
@@ -60,8 +51,6 @@ namespace CIPA
             {
                 MissionManager.Instance.GoToMission(_missionToGoTo);
             }
-
-            _triggered = true;
         }
     }
 }

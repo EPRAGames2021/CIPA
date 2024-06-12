@@ -1,116 +1,113 @@
-using EPRA.Utilities;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using EPRA.Utilities;
 
-public class InputHandler : MonoBehaviour
+namespace CIPA
 {
-    public static InputHandler Instance;
+    public class InputHandler : MonoBehaviour
+    {
+        public static InputHandler Instance;
 
-    [SerializeField] private FloatingJoystick _joystick;
-    [SerializeField] private InputAction _movementAction;
+        [SerializeField] private FloatingJoystick _joystick;
+        [SerializeField] private InputAction _movementAction;
 
-    [SerializeField] private Player _player;
+        [SerializeField] private MovementSystem _movementSystem;
 
-    [SerializeField] private float x;
-    [SerializeField] private float z;
+        [SerializeField] private float _x;
+        [SerializeField] private float _z;
 
-    [SerializeField] private InputAction _openSettingsAction;
+        [SerializeField] private InputAction _openSettingsAction;
 
-    private float X
-    { 
-        get
-        { 
-            return x; 
-        } 
-        set 
+        private float X
         {
-            if (value > 1f) value = 1f;
-            else if (value < -1f) value = -1f;
+            get
+            {
+                return _x;
+            }
+            set
+            {
+                if (value > 1f) value = 1f;
+                else if (value < -1f) value = -1f;
 
-            x = value; 
+                _x = value;
+            }
         }
-    }
-
-    private float Z
-    {
-        get
+        private float Z
         {
-            return z;
+            get
+            {
+                return _z;
+            }
+            set
+            {
+                if (value > 1f) value = 1f;
+                else if (value < -1f) value = -1f;
+
+                _z = value;
+            }
         }
-        set
+
+
+
+        private void Awake()
         {
-            if (value > 1f) value = 1f;
-            else if (value < -1f) value = -1f;
-
-            z = value;
+            InitSingleton();
         }
-    }
 
-
-
-    private void Awake()
-    {
-        InitSingleton();
-    }
-
-    private void OnEnable()
-    {
-        _movementAction.Enable();
-        _openSettingsAction.Enable();
-
-        _openSettingsAction.performed += OpenSettings;
-    }
-
-    private void OnDisable()
-    {
-        _movementAction.Disable();
-        _openSettingsAction.Disable();
-
-        _openSettingsAction.performed -= OpenSettings;
-    }
-
-    private void Update()
-    {
-        HandleMovement();
-    }
-
-
-    private void InitSingleton()
-    {
-        if (Instance == null)
+        private void OnEnable()
         {
-            Instance = this;
+            _movementAction.Enable();
+            _openSettingsAction.Enable();
+
+            _openSettingsAction.performed += OpenSettings;
         }
-        else
+
+        private void OnDisable()
         {
-            Destroy(gameObject);
+            _movementAction.Disable();
+            _openSettingsAction.Disable();
+
+            _openSettingsAction.performed -= OpenSettings;
         }
-    }
+
+        private void Update()
+        {
+            HandleMovement();
+        }
 
 
-    public void SetPlayer(Player player)
-    {
-        _player = player;
-    }
+        private void InitSingleton()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
 
-    private void HandleMovement()
-    {
-        if (_player == null) return;
-        if (_player.MovementSystem == null) return;
+        public void SetMovementSystem(MovementSystem system)
+        {
+            _movementSystem = system;
+        }
 
-        X = _joystick.Direction.x + _movementAction.ReadValue<Vector2>().x;
-        Z = _joystick.Direction.y + _movementAction.ReadValue<Vector2>().y;
+        private void HandleMovement()
+        {
+            if (_movementSystem == null) return;
 
-        _player.MovementSystem.InputDirection = new(x, 0, z);
-    }
+            X = _joystick.Direction.x + _movementAction.ReadValue<Vector2>().x;
+            Z = _joystick.Direction.y + _movementAction.ReadValue<Vector2>().y;
 
-    private void OpenSettings(InputAction.CallbackContext context)
-    {
-        if (!GameManager.Instance.State.Equals(GameState.GameState)) return;
+            _movementSystem.InputDirection = new(X, 0, Z);
+        }
 
-        CanvasManager.Instance.SwitchSettings();
+        private void OpenSettings(InputAction.CallbackContext context)
+        {
+            if (!GameManager.Instance.State.Equals(GameState.GameState)) return;
+
+            CanvasManager.Instance.SwitchSettings();
+        }
     }
 }

@@ -45,6 +45,13 @@ namespace CIPA
 
         private void CheckPipes()
         {
+            JobAreaManager.Instance.FinishMinigame(_pipeGrid.CheckForCorrectGrid());
+
+            _pipeGrid.LockGrid();
+
+            gameObject.SetActive(false);
+
+            /*
             if (_pipeGrid.CheckForCorrectGrid())
             {
                 JobAreaManager.Instance.MinigameSuccessed();
@@ -61,6 +68,7 @@ namespace CIPA
 
                 gameObject.SetActive(false);
             }
+            */
         }
     }
 }

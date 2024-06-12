@@ -121,6 +121,13 @@ namespace CIPA
 
         private void CheckForMiniGameCompletion()
         {
+            JobAreaManager.Instance.FinishMinigame(_paintTime >= _paintMaxTime);
+
+            _paintFinished = true;
+
+            gameObject.SetActive(false);
+
+            /*
             if (_paintTime >= _paintMaxTime)
             {
                 JobAreaManager.Instance.MinigameSuccessed();
@@ -137,6 +144,7 @@ namespace CIPA
 
                 gameObject.SetActive(false);
             }
+            */
         }
 
         private void UpdatePaintBar()

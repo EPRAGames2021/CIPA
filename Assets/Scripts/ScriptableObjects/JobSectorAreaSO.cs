@@ -13,6 +13,7 @@ namespace EPRA.Utilities
 
         [SerializeField] private int _day;
 
+        public JobSector JobSector => _jobSectorAreaSO;
         public List<JobSO> Jobs => _jobs;
         public JobSO CurrentJob => _jobs[_day];
         public int Day => _day;

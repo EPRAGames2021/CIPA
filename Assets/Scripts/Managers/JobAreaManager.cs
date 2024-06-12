@@ -28,6 +28,7 @@ namespace CIPA
 
 
         public JobSectorAreaSO JobSectorAreaSO => _jobSectorSO;
+        public bool ArrivedAtMinigameLocation { get { return _arrivedAtMinigameLocation; } set { _arrivedAtMinigameLocation = value; } }
 
 
         private void Awake()
@@ -67,6 +68,8 @@ namespace CIPA
             GameManager.Instance.UpdateGameState(GameState.GameState);
             CanvasManager.Instance.GameScreen.SetDay(_jobSectorSO.Day);
 
+            CustomGameEvents.OnMinigameStarted += InitiateMinigameProcess;
+
             for (int i = 0; i < _minigameContextObjects.Count; i++)
             {
                 _minigameContextObjects[i].SetActive(i == _jobSectorSO.Day);
@@ -84,7 +87,7 @@ namespace CIPA
             }
             else
             {
-                InputHandler.Instance.SetPlayer(_player);
+                InputHandler.Instance.SetMovementSystem(_player.MovementSystem);
 
                 _player.HealthSystem.OnDied += PlayerDied;
                 _player.EquipmentSystem.OnEquipped += EquipPlayer;
@@ -93,6 +96,8 @@ namespace CIPA
 
         private void Finish()
         {
+            CustomGameEvents.OnMinigameStarted -= InitiateMinigameProcess;
+
             if (_player != null) _player.HealthSystem.OnDied -= PlayerDied;
             if (_player != null) _player.EquipmentSystem.OnEquipped -= EquipPlayer;
         }
@@ -115,9 +120,8 @@ namespace CIPA
             }
         }
 
-        public void InitiateMinigameProcess()
+        private void InitiateMinigameProcess()
         {
-            _arrivedAtMinigameLocation = true;
             _playerCamera.Priority = 9;
 
             if (_player.EquipmentSystem.WearingEquipment)
@@ -147,7 +151,19 @@ namespace CIPA
             }
         }
 
-        public void MinigameSuccessed()
+        public void FinishMinigame(bool success)
+        {
+            if (success)
+            {
+                MinigameSuccessed();
+            }
+            else
+            {
+                MinigameFailed();
+            }
+        }
+
+        private void MinigameSuccessed()
         {
             _jobSectorSO.CurrentJob.AddUniqueAction("playerCompletedDay", true);
 
@@ -155,7 +171,6 @@ namespace CIPA
 
             _jobSectorSO.SetScoreToDay(_jobSectorSO.Day, _dayScore.Value);
 
-            GameManager.Instance.UpdateGameState(GameState.PausedState);
             CanvasManager.Instance.OpenMenu(MenuType.VictoryMenu);
             CanvasManager.Instance.OpenMenu(MenuType.DayScoreMenu);
 
@@ -163,19 +178,22 @@ namespace CIPA
             AudioManager.Instance.PlayRandomSFX(_victorySFX);
 
             _jobSectorSO.FinishDay();
+
+            CustomGameEvents.InvokeOnMinigameEnded();
         }
 
-        public void MinigameFailed()
+        private void MinigameFailed()
         {
             _jobSectorSO.CurrentJob.AddUniqueAction("playerCompletedDay", false);
 
             RewardAndPenaltyManager.Instance.PlayerHasFailedJob();
 
-            GameManager.Instance.UpdateGameState(GameState.PausedState);
             CanvasManager.Instance.OpenMenu(MenuType.GameOverMenu);
 
             Vibrator.Vibrate(100);
             AudioManager.Instance.PlayRandomSFX(_defeatSFX);
+
+            CustomGameEvents.InvokeOnMinigameEnded();
         }
 
         public void RestartJob()

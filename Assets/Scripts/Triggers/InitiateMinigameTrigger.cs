@@ -7,12 +7,14 @@ namespace CIPA
     {
         [SerializeField] private PlayerDetector _playerDetector;
 
-        private void Start()
+        [SerializeField] private bool _triggered;
+
+        private void OnEnable()
         {
             Init();
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             Finish();
         }
@@ -20,6 +22,8 @@ namespace CIPA
 
         private void Init()
         {
+            _triggered = false;
+
             _playerDetector.OnPlayerDetected += HandlePlayerDetection;
         }
 
@@ -31,12 +35,16 @@ namespace CIPA
 
         private void HandlePlayerDetection(Player player)
         {
+            if (_triggered) return;
+
             InitiateMinigame();
+
+            _triggered = true;
         }
 
         private void InitiateMinigame()
         {
-            JobAreaManager.Instance.InitiateMinigameProcess();
+            CustomGameEvents.InvokeOnMinigameStarted();
         }
     }
 }

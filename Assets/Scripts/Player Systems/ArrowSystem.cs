@@ -13,6 +13,10 @@ namespace CIPA
         [SerializeField] private int _index;
         [SerializeField] private List<Transform> _targets;
 
+        [Header("Debug")]
+        [SerializeField] private float _distance;
+        [SerializeField] private float _toleranceDistance = 3f;
+
 
         private void Start()
         {
@@ -37,6 +41,7 @@ namespace CIPA
 
             ResetArrow();
 
+            CheckArrow(MissionManager.Instance.CurrentMissionIndex);
             MissionManager.OnMissionChanged += CheckArrow;
         }
 
@@ -71,9 +76,9 @@ namespace CIPA
         {
             if (_target == null) return;
 
-            float distance = Vector3.Distance(transform.position, _targets[_index].position);
+            _distance = Vector3.Distance(transform.position, _targets[_index].position);
 
-            if (distance < 3 && _index < _targets.Count - 1)
+            if (_distance < _toleranceDistance && _index < _targets.Count - 1)
             {
                 _index++;
                 _target = _targets[_index];
@@ -84,7 +89,7 @@ namespace CIPA
         {
             int day = JobAreaManager.Instance.JobSectorAreaSO.Day;
 
-            _arrow.SetActive(missionIndex == 1 && day < 2);
+            _arrow.SetActive(missionIndex > 0 && day < 2);
         }
 
 

@@ -30,6 +30,9 @@ namespace CIPA
 
         private void FinishMinigame(bool succeeded)
         {
+            JobAreaManager.Instance.FinishMinigame(succeeded);
+
+            /*
             if (succeeded)
             {
                 JobAreaManager.Instance.MinigameSuccessed();
@@ -38,6 +41,7 @@ namespace CIPA
             {
                 JobAreaManager.Instance.MinigameFailed();
             }
+            */
 
             gameObject.SetActive(false);
         }

@@ -32,6 +32,7 @@ namespace EPRA.Utilities
 
         private void Start()
         {
+            AdaptToGameState(GameManager.Instance.State);
             GameManager.Instance.OnGameStateChanged += AdaptToGameState;
 
             SceneLoader.Instance.OnLoadIsInProgress += DisplayLoadingScreen;
@@ -64,7 +65,11 @@ namespace EPRA.Utilities
 
         private void AdaptToGameState(GameState gameState)
         {
-            FloatingJoystick.gameObject.SetActive(gameState == GameState.GameState);
+            if (gameState == GameState.MainMenuState)
+            {
+                EnableVirtualJoystick(false);
+                EnableHUD(false);
+            }
         }
 
         private void DisplayLoadingScreen(bool display)
@@ -81,6 +86,17 @@ namespace EPRA.Utilities
 
                 _currentMenu?.SelectUI();
             }
+        }
+
+
+        public void EnableVirtualJoystick(bool enable)
+        {
+            FloatingJoystick.gameObject.SetActive(enable);
+        }
+
+        public void EnableHUD(bool enable)
+        {
+            _gameScreen.EnableHUD(enable);
         }
 
 
@@ -202,10 +218,6 @@ namespace EPRA.Utilities
         }
 
 
-        public void SetHudEnabled(bool enable)
-        {
-            _gameScreen.gameObject.SetActive(enable);
-        }
 
         public void SwitchSettings()
         {
