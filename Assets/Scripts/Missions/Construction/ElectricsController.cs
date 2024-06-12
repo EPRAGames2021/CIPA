@@ -5,12 +5,16 @@ namespace CIPA
 {
     public class ElectricsController : MonoBehaviour
     {
+        [SerializeField] private GameObject _spotlight;
+
         private void OnEnable()
         {
             CanvasManager.Instance.EnableVirtualJoystick(true);
             CanvasManager.Instance.EnableHUD(true);
 
             CustomGameEvents.OnMinigameStarted += StartMiniGame;
+
+            _spotlight.SetActive(false);
         }
 
         private void OnDisable()
@@ -25,6 +29,8 @@ namespace CIPA
             CanvasManager.Instance.EnableHUD(false);
 
             JobAreaManager.Instance.ArrivedAtMinigameLocation = true;
+
+            _spotlight.SetActive(true);
         }
     }
 }

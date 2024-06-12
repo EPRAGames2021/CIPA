@@ -1,11 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using TMPro;
 using UnityEngine;
 
 public class PatrolSystem : MonoBehaviour
 {
     [Header("GD area")]
+    [SerializeField] private List<PatrolPoint> _points;
     [SerializeField] private List<Transform> _patrolPoints;
 
     [Header("Dev area")]
@@ -13,6 +13,7 @@ public class PatrolSystem : MonoBehaviour
     [SerializeField] private int _currentTargetIndex;
 
     public Transform CurrentTarget => _currentTarget;
+    public float Delay => _points[_currentTargetIndex].Delay;
     public bool HasTargets => _patrolPoints.Count > 0;
 
 
@@ -28,25 +29,21 @@ public class PatrolSystem : MonoBehaviour
 
         if (HasTargets)
         {
-            _currentTarget = _patrolPoints[_currentTargetIndex];
+            _currentTarget = _points[_currentTargetIndex].Transform;
         }
-        //else
-        //{
-        //    Debug.LogWarning(this + " has no targets.");
-        //}
     }
 
 
     public void NextPatrolPoint()
     {
         _currentTargetIndex++;
-        
-        if (_currentTargetIndex >= _patrolPoints.Count)
+
+        if (_currentTargetIndex >= _points.Count)
         {
             _currentTargetIndex = 0;
         }
 
-        _currentTarget = _patrolPoints[_currentTargetIndex];
+        _currentTarget = _points[_currentTargetIndex].Transform;
     }
 
     public void PreviousPatrolPoint()
@@ -55,19 +52,36 @@ public class PatrolSystem : MonoBehaviour
 
         if (_currentTargetIndex < 0)
         {
-            _currentTargetIndex = _patrolPoints.Count - 1;
+            _currentTargetIndex = _points.Count - 1;
         }
 
-        _currentTarget = _patrolPoints[_currentTargetIndex];
+        _currentTarget = _points[_currentTargetIndex].Transform;
     }
 
 
     private void OnDrawGizmosSelected()
     {
-        foreach (Transform transform in _patrolPoints)
+        Gizmos.color = Color.green;
+
+        for (int i = 0; i < _points.Count; i++)
         {
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireCube(transform.position, new Vector3(1, 1, 1));
+            Gizmos.DrawWireCube(_points[i].Transform.position, new Vector3(1, 1, 1));
         }
+    }
+}
+
+[System.Serializable]
+public class PatrolPoint
+{
+    [SerializeField] private Transform _transform;
+    [SerializeField] private float _delay;
+
+    public Transform Transform => _transform;
+    public float Delay => _delay;
+
+    public PatrolPoint(Transform transform, float delay)
+    {
+        _transform = transform;
+        _delay = delay;
     }
 }

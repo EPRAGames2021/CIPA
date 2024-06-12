@@ -1,5 +1,6 @@
 using EPRA.Utilities;
 using UnityEngine;
+using Cinemachine;
 
 namespace CIPA
 {
@@ -7,6 +8,7 @@ namespace CIPA
     {
         [SerializeField] private Player _player;
         [SerializeField] private MovementSystem _truckMovementSystem;
+        [SerializeField] private CinemachineVirtualCamera _truckVirtualCamera;
 
         [SerializeField] private GameObject _truckArrowSystem;
 
@@ -17,6 +19,8 @@ namespace CIPA
         {
             CanvasManager.Instance.EnableHUD(true);
             CanvasManager.Instance.EnableVirtualJoystick(true);
+
+            _truckVirtualCamera.gameObject.SetActive(false);
 
             _collectionSpot.OnPlayerVehicleDetected += FillTrunk;
             _deliveringSpot.OnPlayerVehicleDetected += CheckContent;
@@ -47,6 +51,9 @@ namespace CIPA
         {
             _player.MovementSystem.StandStill();
             _player.gameObject.SetActive(false);
+
+            _truckVirtualCamera.gameObject.SetActive(true);
+            _truckVirtualCamera.Priority = 11;
 
             _truckMovementSystem.StandStill();
             _truckMovementSystem.TemporarilyDisableMovement(0.25f);

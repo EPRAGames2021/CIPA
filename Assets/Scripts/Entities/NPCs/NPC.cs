@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Collections;
 using UnityEditor;
 using UnityEngine;
 
@@ -21,6 +22,8 @@ public class NPC : MonoBehaviour
 
     [SerializeField] private GameObject _box;
     [SerializeField] private GameObject _handcart;
+
+    private Coroutine _patrolCoroutine;
 
 
     private void OnValidate()
@@ -60,6 +63,8 @@ public class NPC : MonoBehaviour
 
             Talk();
         }
+
+        _patrolCoroutine = null;
     }
 
     private void Move()
@@ -75,8 +80,24 @@ public class NPC : MonoBehaviour
 
         if (_distanceToTarget < 0.5f)
         {
-            _patrolSystem.NextPatrolPoint();
+            if (_patrolCoroutine == null)
+            {
+                _patrolCoroutine = StartCoroutine(RestBeforePatrollingAgain(_patrolSystem.Delay));
+            }
         }        
+    }
+
+    private IEnumerator RestBeforePatrollingAgain(float delay)
+    {
+        _characterState = CharacterState.Talking;
+
+        yield return new WaitForSeconds(delay);
+
+        _patrolSystem.NextPatrolPoint();
+
+        _characterState = CharacterState.Roaming;
+
+        _patrolCoroutine = null;
     }
 
     private void Talk()

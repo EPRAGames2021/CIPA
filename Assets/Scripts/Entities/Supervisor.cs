@@ -61,8 +61,10 @@ namespace CIPA
 
             if (_player.EquipmentSystem.WearingEquipment)
             {
+                JobSector jobSector = JobAreaManager.Instance.JobSectorAreaSO.JobSector;
                 int day = JobAreaManager.Instance.JobSectorAreaSO.Day;
-                string key = "day" + day + "supervisor";
+
+                string key = jobSector + "Day" + day + "supervisor";
 
                 _missionLineReminder.text = LanguageManager.GetTranslation(key);
             }
