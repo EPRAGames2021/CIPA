@@ -56,7 +56,7 @@ namespace CIPA
             _truckVirtualCamera.Priority = 11;
 
             _truckMovementSystem.StandStill();
-            _truckMovementSystem.TemporarilyDisableMovement(0.25f);
+            _truckMovementSystem.TemporarilyDisableMovement(1f);
             InputHandler.Instance.SetMovementSystem(_truckMovementSystem);
             _truckArrowSystem.SetActive(true);
         }
@@ -77,6 +77,8 @@ namespace CIPA
         private void CheckContent(PlayerVehicle vehicle)
         {
             JobAreaManager.Instance.FinishMinigame(vehicle.Carrying);
+
+            _truckArrowSystem.SetActive(false);
         }
     }
 }
