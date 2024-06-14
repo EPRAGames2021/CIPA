@@ -140,7 +140,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1659954470072262235}
-  - component: {fileID: 8197306182972917989}
   m_Layer: 0
   m_Name: Reception Area Siderurgy
   m_TagString: Untagged
@@ -172,19 +171,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &8197306182972917989
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6241158891157392089}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7863069518373171092
 GameObject:
   m_ObjectHideFlags: 0
@@ -1576,8 +1562,21 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.5000017, y: 4.513362, z: 0.31185016}
-  m_Center: {x: 1.7500006, y: 2.256681, z: 0.08750147}
+  m_Size: {x: 0.94021964, y: 4.513362, z: 0.31185016}
+  m_Center: {x: 3.0298917, y: 2.256681, z: 0.08750147}
+--- !u!65 &4139216637596187855
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6319691117198884900}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0048568, y: 4.513362, z: 0.31185016}
+  m_Center: {x: 0.5024282, y: 2.256681, z: 0.08750147}
 --- !u!4 &6701318012137675422 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9f5f17513bbc8cf45b9aa39a7fefca96, type: 3}
