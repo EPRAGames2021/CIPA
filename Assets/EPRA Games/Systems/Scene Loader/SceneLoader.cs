@@ -12,7 +12,7 @@ public class SceneLoader : MonoBehaviour
 
     [Min(0)]
     [Tooltip("Just in case it's necessary to artifically increase loading times")]
-    [SerializeField] private float forcedLoadDelay;
+    [SerializeField] private float _forcedLoadDelay;
 
     [SerializeField] private int _currentSceneID;
 
@@ -81,12 +81,10 @@ public class SceneLoader : MonoBehaviour
     }
 
     private IEnumerator LoadAsynchronously(int sceneID, LoadMode loadMode)
-    {        
-        Progress = 0f;
-        OnProgressChanges?.Invoke(Progress);
-        OnLoadIsInProgress?.Invoke(true);
+    {
+        InvokeProgress(true);
 
-        yield return new WaitForSeconds(forcedLoadDelay);
+        yield return new WaitForSeconds(_forcedLoadDelay);
 
         if (loadMode == LoadMode.Replace)
         {
@@ -106,10 +104,28 @@ public class SceneLoader : MonoBehaviour
             yield return null;
         }
 
+        SetNewSceneAsActive(sceneID);
+
         OnSceneIDLoaded?.Invoke(sceneID);
-                
-        //Progress = 0f;
-        //OnProgressChanges?.Invoke(Progress);
-        OnLoadIsInProgress?.Invoke(false);
+
+        InvokeProgress(false);
+    }
+
+
+    private void SetNewSceneAsActive(int sceneID)
+    {
+        Scene newScene = SceneManager.GetSceneByBuildIndex(sceneID);
+
+        if (newScene.IsValid())
+        {
+            SceneManager.SetActiveScene(newScene);
+        }
+    }
+
+    private void InvokeProgress(bool isProgress)
+    {
+        Progress = 0f;
+        OnProgressChanges?.Invoke(Progress);
+        OnLoadIsInProgress?.Invoke(isProgress);
     }
 }

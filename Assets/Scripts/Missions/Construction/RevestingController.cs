@@ -5,17 +5,23 @@ namespace CIPA
 {
     public class RevestingController : MonoBehaviour
     {
+        [SerializeField] private GameObject _minigameUI;
+
         private void OnEnable()
         {
+            _minigameUI.SetActive(false);
+
             CanvasManager.Instance.EnableVirtualJoystick(true);
             CanvasManager.Instance.EnableHUD(true);
 
-            CustomGameEvents.OnMinigameStarted += StartMiniGame;
+            CustomGameEvents.OnPlayerArrivedAtMinigameLocation += StartMiniGame;
+            CustomGameEvents.OnMinigameStarted += ActivateUI;
         }
 
         private void OnDisable()
         {
-            CustomGameEvents.OnMinigameStarted -= StartMiniGame;
+            CustomGameEvents.OnPlayerArrivedAtMinigameLocation -= StartMiniGame;
+            CustomGameEvents.OnMinigameStarted += ActivateUI;
         }
 
 
@@ -25,6 +31,11 @@ namespace CIPA
             CanvasManager.Instance.EnableHUD(false);
 
             JobAreaManager.Instance.ArrivedAtMinigameLocation = true;
+        }
+
+        private void ActivateUI()
+        {
+            _minigameUI.SetActive(true);
         }
     }
 }

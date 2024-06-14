@@ -93,15 +93,13 @@ namespace CIPA
                 else
                 {
                     JobAreaManager.Instance.FinishMinigame(true);
-                    //JobAreaManager.Instance.MinigameSuccessed();
 
                     gameObject.SetActive(false);
                 }
             }
             else
             {
-                JobAreaManager.Instance.FinishMinigame(true);
-                //JobAreaManager.Instance.MinigameFailed();
+                JobAreaManager.Instance.FinishMinigame(false);
 
                 OnMinigameFailed?.Invoke();
 

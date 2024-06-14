@@ -37,7 +37,7 @@ namespace CIPA
 
         private void Init()
         {
-            _arrow.SetActive(false);
+            SetEnabled(false);
 
             ResetArrow();
 
@@ -89,7 +89,7 @@ namespace CIPA
         {
             int day = JobAreaManager.Instance.JobSectorAreaSO.Day;
 
-            _arrow.SetActive(missionIndex > 0 && day < 2);
+            SetEnabled(missionIndex > 0 && day < 2);
         }
 
 
@@ -100,6 +100,11 @@ namespace CIPA
             _targets = newPath;
 
             ResetArrow();
+        }
+
+        public void SetEnabled(bool enabled)
+        {
+            _arrow.SetActive(enabled);
         }
     }
 }

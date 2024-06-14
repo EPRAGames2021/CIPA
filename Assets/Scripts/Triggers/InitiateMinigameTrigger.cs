@@ -1,5 +1,4 @@
 using UnityEngine;
-using EPRA.Utilities;
 
 namespace CIPA
 {
@@ -44,7 +43,7 @@ namespace CIPA
 
         private void InitiateMinigame()
         {
-            CustomGameEvents.InvokeOnMinigameStarted();
+            CustomGameEvents.InvokeOnPlayerArrivedAtMinigameLocation();
         }
     }
 }

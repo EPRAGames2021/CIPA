@@ -12,7 +12,7 @@ namespace CIPA
         [SerializeField] private JobSectorAreaSO _jobSectorSO;
 
         [SerializeField] private List<GameObject> _minigameContextObjects;
-        [SerializeField] private List<GameObject> _minigamesUIs;
+
         [SerializeField] private CinemachineVirtualCamera _playerCamera;
 
         [SerializeField] private Player _player;
@@ -68,16 +68,11 @@ namespace CIPA
             GameManager.Instance.UpdateGameState(GameState.GameState);
             CanvasManager.Instance.GameScreen.SetDay(_jobSectorSO.Day);
 
-            CustomGameEvents.OnMinigameStarted += InitiateMinigameProcess;
+            CustomGameEvents.OnPlayerArrivedAtMinigameLocation += InitiateMinigameProcess;
 
             for (int i = 0; i < _minigameContextObjects.Count; i++)
             {
                 _minigameContextObjects[i].SetActive(i == _jobSectorSO.Day);
-            }
-
-            for (int i = 0; i < _minigamesUIs.Count; i++)
-            {
-                _minigamesUIs[i].SetActive(false);
             }
 
 
@@ -96,7 +91,7 @@ namespace CIPA
 
         private void Finish()
         {
-            CustomGameEvents.OnMinigameStarted -= InitiateMinigameProcess;
+            CustomGameEvents.OnPlayerArrivedAtMinigameLocation -= InitiateMinigameProcess;
 
             if (_player != null) _player.HealthSystem.OnDied -= PlayerDied;
             if (_player != null) _player.EquipmentSystem.OnEquipped -= EquipPlayer;
@@ -145,10 +140,7 @@ namespace CIPA
 
             _player.HealthSystem.Invincible = true;
 
-            for (int i = 0; i < _minigamesUIs.Count; i++)
-            {
-                _minigamesUIs[i].SetActive(i == _jobSectorSO.Day);
-            }
+            CustomGameEvents.InvokeOnMinigameStarted();
         }
 
         public void FinishMinigame(bool success)

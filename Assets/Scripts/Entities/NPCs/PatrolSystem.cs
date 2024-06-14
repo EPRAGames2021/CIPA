@@ -22,6 +22,19 @@ public class PatrolSystem : MonoBehaviour
         Init();
     }
 
+    private void OnValidate()
+    {
+        if (_points.Count == 0 && _patrolPoints.Count > 0)
+        {
+            for (int i = 0; i < _patrolPoints.Count; i++)
+            {
+                PatrolPoint patrol = new(_patrolPoints[i].transform, 0);
+
+                _points.Add(patrol);
+            }
+        }
+    }
+
 
     private void Init()
     {

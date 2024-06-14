@@ -32,7 +32,7 @@ public class NPC : MonoBehaviour
         if (_animator == null) _animator = GetComponentInChildren<Animator>();
 
 #if UNITY_EDITOR
-        if (EditorApplication.isPlaying) CheckCarrying();
+        if (!EditorApplication.isPlaying) CheckCarrying();
 #endif
     }
 
