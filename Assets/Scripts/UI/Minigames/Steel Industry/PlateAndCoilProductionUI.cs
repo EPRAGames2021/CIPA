@@ -3,17 +3,17 @@ using UnityEngine.UI;
 
 namespace CIPA
 {
-    public class ElectricsUI : MonoBehaviour
+    public class PlateAndCoilProductionUI : MonoBehaviour
     {
         [SerializeField] private Button _confirmButton;
 
-        [SerializeField] private PipeGrid _wireGrid;
+        [SerializeField] private PipeGrid _pipeGrid;
 
         private void OnEnable()
         {
             Camera.main.orthographic = true;
 
-            _wireGrid.ResetGrid();
+            _pipeGrid.ResetGrid();
         }
 
         private void Start()
@@ -34,7 +34,7 @@ namespace CIPA
 
         private void Init()
         {
-            _confirmButton.onClick.AddListener(CheckPipes);
+            _confirmButton.onClick.AddListener(CheckGrid);
         }
 
         private void Finish()
@@ -43,11 +43,11 @@ namespace CIPA
         }
 
 
-        private void CheckPipes()
+        private void CheckGrid()
         {
-            JobAreaManager.Instance.FinishMinigame(_wireGrid.CheckForCorrectGrid());
+            JobAreaManager.Instance.FinishMinigame(_pipeGrid.CheckForCorrectGrid());
 
-            _wireGrid.LockGrid();
+            _pipeGrid.LockGrid();
 
             gameObject.SetActive(false);
         }

@@ -1,41 +1,38 @@
 using UnityEngine;
+using Cinemachine;
 using EPRA.Utilities;
 
 namespace CIPA
 {
-    public class RevestingController : MonoBehaviour
+    public class PlateAndCoilProductionController : MonoBehaviour
     {
         [SerializeField] private GameObject _minigameUI;
+        [SerializeField] private CinemachineVirtualCamera _camera;
 
         private void OnEnable()
         {
             _minigameUI.SetActive(false);
+            _camera.gameObject.SetActive(false);
 
             CanvasManager.Instance.EnableVirtualJoystick(true);
             CanvasManager.Instance.EnableHUD(true);
 
-            CustomGameEvents.OnPlayerArrivedAtMinigameLocation += StartMiniGame;
-            CustomGameEvents.OnMinigameStarted += ActivateUI;
+            CustomGameEvents.OnMinigameStarted += StartMiniGame;
         }
 
         private void OnDisable()
         {
-            CustomGameEvents.OnPlayerArrivedAtMinigameLocation -= StartMiniGame;
-            CustomGameEvents.OnMinigameStarted -= ActivateUI;
+            CustomGameEvents.OnMinigameStarted -= StartMiniGame;
         }
 
 
         private void StartMiniGame()
         {
+            _minigameUI.SetActive(true);
+            _camera.gameObject.SetActive(true);
+
             CanvasManager.Instance.EnableVirtualJoystick(false);
             CanvasManager.Instance.EnableHUD(false);
-
-            JobAreaManager.Instance.ArrivedAtMinigameLocation = true;
-        }
-
-        private void ActivateUI()
-        {
-            _minigameUI.SetActive(true);
         }
     }
 }

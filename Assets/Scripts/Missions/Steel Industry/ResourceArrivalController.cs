@@ -32,8 +32,8 @@ namespace CIPA
 
         private void OnDisable()
         {
-            _collectionSpot.OnPlayerVehicleDetected += FillTrunk;
-            _deliveringSpot.OnPlayerVehicleDetected += CheckContent;
+            _collectionSpot.OnPlayerVehicleDetected -= FillTrunk;
+            _deliveringSpot.OnPlayerVehicleDetected -= CheckContent;
 
             CustomGameEvents.OnPlayerWorePPEs -= PrepareTruck;
             CustomGameEvents.OnMinigameStarted -= TransferControlToTruck;

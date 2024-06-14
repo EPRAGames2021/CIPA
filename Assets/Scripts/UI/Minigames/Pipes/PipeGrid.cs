@@ -14,9 +14,6 @@ public class PipeGrid : MonoBehaviour
     [SerializeField] private AudioClipCollection _gridFinishedSFX;
 
 
-    public bool GridIsCorrect => _gridIsCorrect;
-
-
     private void Start()
     {
         Init();
