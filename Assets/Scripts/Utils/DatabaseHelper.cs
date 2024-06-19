@@ -5,7 +5,7 @@ using System.Text;
 
 public class DatabaseHelper
 {
-    private readonly string _connectionString;
+    // private readonly string _connectionString;
 
     public DatabaseHelper(string connectionString)
     {
