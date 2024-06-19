@@ -7,23 +7,11 @@ namespace CIPA
     {
         [SerializeField] private Button _confirmButton;
 
-        [SerializeField] private PipeGrid _pipeGrid;
-
-        private void OnEnable()
-        {
-            Camera.main.orthographic = true;
-
-            _pipeGrid.ResetGrid();
-        }
+        [SerializeField] private PlateAndCoilGrid _plateAndCoilGrid;
 
         private void Start()
         {
             Init();
-        }
-
-        private void OnDisable()
-        {
-            Camera.main.orthographic = false;
         }
 
         private void OnDestroy()
@@ -35,19 +23,22 @@ namespace CIPA
         private void Init()
         {
             _confirmButton.onClick.AddListener(CheckGrid);
+
+            _plateAndCoilGrid.OnContainerOverflow += CheckGrid;
         }
 
         private void Finish()
         {
             _confirmButton.onClick.RemoveAllListeners();
-        }
 
+            _plateAndCoilGrid.OnContainerOverflow -= CheckGrid;
+        }
 
         private void CheckGrid()
         {
-            JobAreaManager.Instance.FinishMinigame(_pipeGrid.CheckForCorrectGrid());
+            JobAreaManager.Instance.FinishMinigame(_plateAndCoilGrid.CheckForCompletion());
 
-            _pipeGrid.LockGrid();
+            _plateAndCoilGrid.Filling = false;
 
             gameObject.SetActive(false);
         }

@@ -10,12 +10,7 @@ public class Tile : MonoBehaviour
 
     [SerializeField] private int _id;
 
-    public int Rotation => _draggableObject.Rotation;
-    public bool Attached => _draggableObject.Attached;
-    public bool Static => _draggableObject.Static;
-    public bool LockedRotation => _draggableObject.LockedRotation;
     public ObjectSlot Slot => _draggableObject.Slot;
-    public ObjectSlot PreviousSlot => _draggableObject.PreviousSlot;
 
     [Header("Debug")]
     [SerializeField] private int _originalQuadrant;

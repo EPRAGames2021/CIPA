@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78942fc3027fc1341bc04418d7717a69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _trigerred: 0
+  _canBeTriggeredInfiniteTimes: 0
 --- !u!65 &8552882083215078778
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -73,7 +75,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerDetector: {fileID: 6946845326366401675}
-  _triggered: 0
   _simpleAdvance: 0
   _missionToGoTo: 2
 --- !u!114 &3971865416372095620
@@ -89,3 +90,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerDetector: {fileID: 6946845326366401675}
+  _triggered: 0

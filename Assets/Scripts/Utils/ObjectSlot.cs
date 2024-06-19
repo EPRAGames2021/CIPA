@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class ObjectSlot : MonoBehaviour
 {
-    [SerializeField] private DraggableObject _startingObject;
-
     [SerializeField] private DraggableObject _draggableObject;
+
+    [Header("Debug")]
+    [Tooltip("This is meant to be empty until game starts")]
+    [SerializeField] private DraggableObject _startingObject;
 
     public bool Full => _draggableObject != null;
     public DraggableObject Object => _draggableObject;
