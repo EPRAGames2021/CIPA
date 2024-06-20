@@ -4,11 +4,17 @@ using DG.Tweening;
 
 public class DraggableObject : MonoBehaviour
 {
-    [SerializeField] private int _rotation;
+    [Header("Movement")]
     [SerializeField] private bool _attached;
-    [SerializeField] private bool _static;
+    [SerializeField] private bool _lockedMovement;
+
+    [Header("Rotation")]
+    [SerializeField] private int _rotationIndex;
+    [SerializeField] private int[] _rotations;
     [SerializeField] private bool _lockedRotation;
-    [SerializeField] private bool _locked;
+
+    [Header("Other")]
+    [SerializeField] private bool _static;
 
     [SerializeField] private ObjectSlot _slot;
     [SerializeField] private ObjectSlot _previousSlot;
@@ -25,11 +31,10 @@ public class DraggableObject : MonoBehaviour
     [SerializeField] private bool _moveInZ;
     [SerializeField] private bool _rotateInY;
 
-    public int Rotation => _rotation;
+
+    public int RotationIndex => _rotationIndex;
     public bool Attached { get { return _attached; } set { _attached = value; } }
-    public bool Static => _static;
-    public bool LockedRotation { get { return _lockedRotation; } set { _lockedRotation = value; } }
-    public bool Locked { get { return _locked; } set { _locked = value; } }
+    public bool Locked { set { _lockedMovement = value; _lockedRotation = value; } }
     public ObjectSlot Slot { get { return _slot; } set { _slot = value; } }
     public ObjectSlot PreviousSlot { get { return _previousSlot; } set { _previousSlot = value; } }
 
@@ -46,7 +51,7 @@ public class DraggableObject : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if (_static || _locked) return;
+        if (_static || _lockedMovement) return;
 
         _holdTime += Time.deltaTime;
 
@@ -110,14 +115,25 @@ public class DraggableObject : MonoBehaviour
         _holdTime = 0.0f;
     }
 
-    public void Rotate()
+    private void Rotate()
     {
-        if (_lockedRotation || _locked) return;
+        if (_lockedRotation || _static) return;
 
-        _rotation = (_rotation - 90) % 360;
+        _rotationIndex--;
+        
+        if ( _rotationIndex < 0)
+        {
+            _rotationIndex = _rotations.Length - 1;
+        }
 
-        if (!_rotateInY) transform.DORotate(new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z + _rotation), _timeUntilDrag * 0.9f);
-        else transform.DORotate(new Vector3(transform.rotation.x, transform.rotation.y + _rotation, transform.rotation.z), _timeUntilDrag * 0.9f);
+        if (!_rotateInY)
+        {
+            transform.DORotate(new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z + _rotations[_rotationIndex]), _timeUntilDrag * 0.9f);
+        }
+        else
+        {
+            transform.DORotate(new Vector3(transform.rotation.x, transform.rotation.y + _rotations[_rotationIndex], transform.rotation.z), _timeUntilDrag * 0.9f);
+        }
 
         OnObjectRotated?.Invoke();
 

@@ -10,11 +10,6 @@ public class Pipe : MonoBehaviour
 
     [SerializeField] private List<PipeConnector> _pipeConnectors;
 
-    public bool Attached => _draggableObject.Attached;
-    public bool Static => _draggableObject.Static;
-    public ObjectSlot Slot => _draggableObject.Slot;
-    public ObjectSlot PreviousSlot => _draggableObject.PreviousSlot;
-
     public bool FullyConnected => _fullyConnected;
 
 
