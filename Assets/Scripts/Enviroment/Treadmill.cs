@@ -1,3 +1,4 @@
+using ES3Types;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -77,6 +78,8 @@ namespace CIPA
             if (newScrap != null)
             {
                 OnScrapSpawned?.Invoke(newScrap);
+
+                newScrap.OnCollected += Remove;
             }
 
             _spawnNewScrap = null;
@@ -108,6 +111,18 @@ namespace CIPA
                     rigidbody.velocity = new Vector3(0, 0, -1) * _speed;
                 }
             }
+        }
+
+        private void Remove(Scrap scrap)
+        {
+            scrap.TryGetComponent(out Rigidbody rigidbody);
+
+            if (rigidbody != null)
+            {
+                _bodies.Remove(rigidbody);
+            }
+
+            scrap.OnCollected -= Remove;
         }
     }
 }

@@ -89,7 +89,7 @@ namespace CIPA
         {
             int day = JobAreaManager.Instance.JobSectorAreaSO.Day;
 
-            SetEnabled(missionIndex > 0 && day < 2);
+            SetEnabled(missionIndex > 0);
         }
 
 
