@@ -11,6 +11,10 @@ public enum EquipmentType
     Mask = 6,
     EarPlug = 7,
     AntiStaticBoots = 8,
+    FaceShield= 9,
+    GasMask = 10,
+    PVCJacket = 11,
+    SteelTipBoots = 12,
 }
 
 [System.Serializable]
