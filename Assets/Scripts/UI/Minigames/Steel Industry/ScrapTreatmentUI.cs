@@ -12,12 +12,20 @@ namespace CIPA
         [SerializeField] private List<Button> _treadmillButtons;
         [SerializeField] private List<TMP_Text> _buttonsText;
 
+        [SerializeField] private TMP_Text _colletedCount;
+        [SerializeField] private TMP_Text _lostCount;
+
         [SerializeField] private ScrapTreatmentController _scrapTreatmentController;
 
 
         private void OnEnable()
         {
             Init();
+        }
+
+        private void LateUpdate()
+        {
+            UpdateScore();
         }
 
         private void OnDisable()
@@ -51,6 +59,12 @@ namespace CIPA
             {
                 _treadmillButtons[i].onClick.RemoveAllListeners();
             }
+        }
+
+        private void UpdateScore()
+        {
+            _colletedCount.text = LanguageManager.GetTranslation("SteelIndustryDay3collectedcargo", _scrapTreatmentController.Collected, _scrapTreatmentController.RequiredToWin);
+            _lostCount.text = LanguageManager.GetTranslation("SteelIndustryDay3droppedcargo", _scrapTreatmentController.Lost, _scrapTreatmentController.RequiredToLose);
         }
 
 

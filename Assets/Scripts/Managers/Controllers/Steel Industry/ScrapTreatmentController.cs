@@ -24,6 +24,11 @@ namespace CIPA
 
         public List<Treadmill> Treadmills => _treadmills;
 
+        public int RequiredToWin => _requiredScrapsToWin;
+        public int RequiredToLose => _requiredScrapsToLose;
+        public int Collected => _scrapsDisposedCorrectly;
+        public int Lost => _scrapsDisposedIncorrectly;
+
 
         private void OnEnable()
         {
