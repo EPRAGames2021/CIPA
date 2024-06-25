@@ -12,16 +12,16 @@ public class PlayerVehicle : MonoBehaviour
 
     private void OnValidate()
     {
-        SetCarryign(_carrying);
+        SetCarrying(_carrying);
     }
 
     private void OnEnable()
     {
-        SetCarryign(_carrying);
+        SetCarrying(_carrying);
     }
 
 
-    public void SetCarryign(bool carrying)
+    public void SetCarrying(bool carrying)
     {
         _carrying = carrying;
 

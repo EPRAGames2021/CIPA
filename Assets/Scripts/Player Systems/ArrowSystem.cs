@@ -102,6 +102,14 @@ namespace CIPA
             ResetArrow();
         }
 
+        public void SetTarget(Transform target)
+        {
+            _targets.Clear();
+            _targets.Add(target);
+
+            ResetArrow();
+        }
+
         public void SetEnabled(bool enabled)
         {
             _arrow.SetActive(enabled);

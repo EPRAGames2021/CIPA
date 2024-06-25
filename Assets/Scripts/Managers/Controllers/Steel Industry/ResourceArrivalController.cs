@@ -69,7 +69,7 @@ namespace CIPA
 
         private void FillTrunk(PlayerVehicle vehicle)
         {
-            vehicle.SetCarryign(true);
+            vehicle.SetCarrying(true);
 
             MissionManager.Instance.GoToNextMission();
         }

@@ -1,50 +1,59 @@
 using UnityEngine;
-using EPRA.Utilities;
 
-[RequireComponent(typeof(Collider))]
-public class BumpableObject : MonoBehaviour
+namespace CIPA
 {
-    [SerializeField] private bool _hasBeenHit;
-    [SerializeField] private bool _hitIsFatal;
-    [SerializeField] private Collider _collider;
-
-    public bool HitIsFatal => _hitIsFatal;
-
-    public static event System.Action<BumpableObject, Player> OnHasBeenHitByPlayer;
-
-
-    private void OnValidate()
+    [RequireComponent(typeof(Collider))]
+    public class BumpableObject : MonoBehaviour
     {
-        if (_collider == null) _collider = GetComponent<Collider>();
-    }
+        [SerializeField] private bool _hasBeenHit;
+        [SerializeField] private bool _hitIsFatal;
+        [SerializeField] private Collider _collider;
 
-    private void Awake()
-    {
-        Init();
-    }
+        public bool HitIsFatal => _hitIsFatal;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.GetComponent<Player>() != null && !_hasBeenHit)
+        public static event System.Action<BumpableObject> OnHasBeenHitByPlayer;
+
+
+        private void OnValidate()
         {
-            Player player = other.GetComponent<Player>();
-
-            OnHasBeenHitByPlayer?.Invoke(this, player);
-
-            _hasBeenHit = true;
+            if (_collider == null) _collider = GetComponent<Collider>();
         }
-    }
+
+        private void Awake()
+        {
+            Init();
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (!_hasBeenHit)
+            {
+                if (other.GetComponent<Player>() != null)
+                {
+                    OnHasBeenHitByPlayer?.Invoke(this);
+
+                    _hasBeenHit = true;
+                }
+                else if (other.GetComponent<PlayerVehicle>() != null)
+                {
+                    OnHasBeenHitByPlayer?.Invoke(this);
+
+                    _hasBeenHit = true;
+                }
+            }
+        }
 
 
-    private void Init()
-    {
-        _hasBeenHit = false;
+        private void Init()
+        {
+            _hasBeenHit = false;
 
-        _collider.isTrigger = true;
-    }
+            _collider.isTrigger = true;
+        }
 
-    public void Refresh()
-    {
-        Init();
+        public void Refresh()
+        {
+            Init();
+        }
     }
 }

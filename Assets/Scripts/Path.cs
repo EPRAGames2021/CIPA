@@ -1,43 +1,45 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using EPRA.Utilities;
 
-public class Path : MonoBehaviour
+namespace CIPA
 {
-    [SerializeField] private bool _correct;
-
-    [SerializeField] private MeshRenderer _meshRenderer;
-    [SerializeField] private Material[] _materials;
-
-    private void OnValidate()
+    public class Path : MonoBehaviour
     {
-        if (_correct)
-        {
-            _meshRenderer.material = _materials[0];
-        }
-        else
-        {
-            _meshRenderer.material = _materials[1];
-        }
-    }
+        [SerializeField] private bool _correct;
 
-    private void Start()
-    {
-        if (_correct)
-        {
-            _meshRenderer.material = _materials[0];
-        }
-        else
-        {
-            _meshRenderer.material = _materials[1];
-        }
-    }
+        [SerializeField] private MeshRenderer _meshRenderer;
+        [SerializeField] private Material[] _materials;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!_correct && other.GetComponent<HealthSystem>() != null)
+        private void OnValidate()
         {
-            other.GetComponent<HealthSystem>().TakeDamage(2000);
+            if (_correct)
+            {
+                _meshRenderer.material = _materials[0];
+            }
+            else
+            {
+                _meshRenderer.material = _materials[1];
+            }
+        }
+
+        private void Start()
+        {
+            if (_correct)
+            {
+                _meshRenderer.material = _materials[0];
+            }
+            else
+            {
+                _meshRenderer.material = _materials[1];
+            }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (!_correct && other.GetComponent<HealthSystem>() != null)
+            {
+                other.GetComponent<HealthSystem>().TakeDamage(2000);
+            }
         }
     }
 }

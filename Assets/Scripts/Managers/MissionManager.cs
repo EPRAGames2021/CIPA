@@ -55,6 +55,13 @@ namespace CIPA
             OnMissionChanged?.Invoke(_currentMissionIndex);
         }
 
+        public void ReturnToPreviousMission()
+        {
+            _currentMissionIndex--;
+
+            OnMissionChanged?.Invoke(_currentMissionIndex);
+        }
+
         public void GoToMission(int missions)
         {
             _currentMissionIndex = missions;
