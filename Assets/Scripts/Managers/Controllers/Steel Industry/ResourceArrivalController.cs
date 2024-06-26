@@ -7,12 +7,14 @@ namespace CIPA
     public class ResourceArrivalController : MonoBehaviour
     {
         [SerializeField] private Player _player;
+
+        [SerializeField] private GameObject _minigameTrigger;
+
         [SerializeField] private MovementSystem _truckMovementSystem;
         [SerializeField] private CinemachineVirtualCamera _truckVirtualCamera;
+        [SerializeField] private ArrowSystem _truckArrowSystem;
 
-        [SerializeField] private GameObject _truckArrowSystem;
-
-        [SerializeField] private PlayerVehicleDetector _collectionSpot;
+        [SerializeField] private PlayerVehicleDetector _collectingSpot;
         [SerializeField] private PlayerVehicleDetector _deliveringSpot;
 
         private void OnEnable()
@@ -22,8 +24,7 @@ namespace CIPA
 
             _truckVirtualCamera.gameObject.SetActive(false);
 
-            _collectionSpot.OnPlayerVehicleDetected += FillTrunk;
-            _deliveringSpot.OnPlayerVehicleDetected += CheckContent;
+            _collectingSpot.OnPlayerVehicleDetected += FillTrunk;
 
             CustomGameEvents.OnPlayerWorePPEs += PrepareTruck;
             CustomGameEvents.OnMinigameStarted += TransferControlToTruck;
@@ -32,7 +33,7 @@ namespace CIPA
 
         private void OnDisable()
         {
-            _collectionSpot.OnPlayerVehicleDetected -= FillTrunk;
+            _collectingSpot.OnPlayerVehicleDetected -= FillTrunk;
             _deliveringSpot.OnPlayerVehicleDetected -= CheckContent;
 
             CustomGameEvents.OnPlayerWorePPEs -= PrepareTruck;
@@ -44,7 +45,10 @@ namespace CIPA
 
         private void PrepareTruck()
         {
-            _truckArrowSystem.SetActive(false);
+            _truckArrowSystem.SetEnabled(false);
+
+            _collectingSpot.gameObject.SetActive(false);
+            _deliveringSpot.gameObject.SetActive(false);
         }
 
         private void TransferControlToTruck()
@@ -52,13 +56,19 @@ namespace CIPA
             _player.MovementSystem.StandStill();
             _player.gameObject.SetActive(false);
 
+            _minigameTrigger.SetActive(false);
+            _collectingSpot.gameObject.SetActive(true);
+
             _truckVirtualCamera.gameObject.SetActive(true);
             _truckVirtualCamera.Priority = 11;
+
+            _truckArrowSystem.SetTarget(_collectingSpot.transform);
 
             _truckMovementSystem.StandStill();
             _truckMovementSystem.TemporarilyDisableMovement(1f);
             InputHandler.Instance.SetMovementSystem(_truckMovementSystem);
-            _truckArrowSystem.SetActive(true);
+
+            _truckArrowSystem.SetEnabled(true);
         }
 
         private void EndMiniGame()
@@ -72,13 +82,20 @@ namespace CIPA
             vehicle.SetCarrying(true);
 
             MissionManager.Instance.GoToNextMission();
+
+            _collectingSpot.gameObject.SetActive(false);
+            _deliveringSpot.gameObject.SetActive(true);
+
+            _truckArrowSystem.SetTarget(_deliveringSpot.transform);
+
+            _deliveringSpot.OnPlayerVehicleDetected += CheckContent;
         }
 
         private void CheckContent(PlayerVehicle vehicle)
         {
             JobAreaManager.Instance.FinishMinigame(vehicle.Carrying);
 
-            _truckArrowSystem.SetActive(false);
+            _truckArrowSystem.SetEnabled(false);
         }
     }
 }
