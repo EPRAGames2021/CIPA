@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1899315406095549885}
   - component: {fileID: 8685232660646155905}
+  - component: {fileID: -2908989919490930154}
   m_Layer: 0
-  m_Name: 04
+  m_Name: Container Group D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,6 +56,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 7.35, y: 5, z: 12.25}
   m_Center: {x: 0, y: 2.5, z: 0}
+--- !u!114 &-2908989919490930154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1899315406095549886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c246ac461a6c06641bd2fc63b0b4cc1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hasBeenHit: 0
+  _hitIsFatal: 1
+  _collider: {fileID: 8685232660646155905}
 --- !u!1001 &1899315406157171980
 PrefabInstance:
   m_ObjectHideFlags: 0

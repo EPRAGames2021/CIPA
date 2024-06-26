@@ -45,6 +45,11 @@ namespace CIPA
         {
             _collectingSpot.OnPlayerVehicleDetected -= CollectCargo;
 
+            for (int i = 0; i < _deliveringSpotsList.Capacity; i++)
+            {
+                _deliveringSpotsList[i].OnPlayerVehicleDetected -= DeliverCargo;
+            }
+
             CustomGameEvents.OnPlayerWorePPEs -= PrepareForklift;
             CustomGameEvents.OnMinigameStarted -= TransferControlToForklift;
             CustomGameEvents.OnMinigameEnded -= EndMiniGame;
@@ -71,8 +76,6 @@ namespace CIPA
 
             _minigameTrigger.SetActive(false);
             _minigameUI.SetActive(true);
-
-
 
             _forkliftVirtualCamera.gameObject.SetActive(true);
             _forkliftVirtualCamera.Priority = 11;
