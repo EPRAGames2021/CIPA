@@ -135,5 +135,10 @@ namespace CIPA
                 _canMove = true;
             }
         }
+
+        public void Refresh()
+        {
+            Init();
+        }
     }
 }

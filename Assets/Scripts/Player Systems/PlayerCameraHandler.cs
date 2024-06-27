@@ -44,6 +44,8 @@ namespace CIPA
 
         private void Init()
         {
+            CustomGameEvents.OnPlayerArrivedAtMinigameLocation += DisablePlayerCamera;
+
             _equipmentSystem.OnEquipped += AnimateCamera;
 
             FocusOnPPEBoard(false);
@@ -51,9 +53,16 @@ namespace CIPA
 
         private void Finish()
         {
+            CustomGameEvents.OnPlayerArrivedAtMinigameLocation -= DisablePlayerCamera;
+
             _equipmentSystem.OnEquipped -= AnimateCamera;
         }
 
+
+        private void DisablePlayerCamera()
+        {
+            _playerVirtualCamera.Priority = 9;
+        }
 
         private void AnimateCamera(bool animate)
         {
@@ -64,7 +73,6 @@ namespace CIPA
                 StartCoroutine(ReturnZoomLevel(3.5f));
             }
         }
-
 
         private void SetCameraDistance(float distance)
         {

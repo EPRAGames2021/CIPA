@@ -265,6 +265,8 @@ GameObject:
   - component: {fileID: 1200104511}
   - component: {fileID: 1200104510}
   - component: {fileID: 1200104509}
+  - component: {fileID: 3815681670800440004}
+  - component: {fileID: 1546838865177054902}
   m_Layer: 0
   m_Name: Forklift
   m_TagString: Untagged
@@ -492,6 +494,42 @@ MonoBehaviour:
   - {fileID: 6557859863371398397}
   - {fileID: 2408172842005067858}
   - {fileID: 6830340718605662586}
+--- !u!114 &3815681670800440004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5877058930737043394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f51010100793824b8d43b2a0e42808c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _state: -1
+  _alive: 1
+  _animator: {fileID: 0}
+  _healthSystem: {fileID: 1546838865177054902}
+  _movementSystem: {fileID: 1200104511}
+  _equipmentSystem: {fileID: 0}
+  _arrowSystem: {fileID: 1200104510}
+--- !u!114 &1546838865177054902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5877058930737043394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8ce40aa7827ecb47b613620fc8d88d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dead: 0
+  _health: 100
+  _maxHealth: 100
+  _invincible: 0
+  _injuryThreshhold: 50
 --- !u!1 &6862253899264681900
 GameObject:
   m_ObjectHideFlags: 0
@@ -723,7 +761,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7577553005463737947}
   m_LocalRotation: {x: 0.5201378, y: 0, z: 0, w: 0.8540824}
-  m_LocalPosition: {x: 60.00003, y: 42.21204, z: -22.97284}
+  m_LocalPosition: {x: 60, y: 42.21203, z: -22.972834}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -865,7 +903,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3802723055399647718}
-  - component: {fileID: 9115537373560800684}
+  - component: {fileID: 8170797035768322115}
   m_Layer: 0
   m_Name: Transporting and Storing
   m_TagString: Untagged
@@ -891,7 +929,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9115537373560800684
+--- !u!114 &8170797035768322115
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -900,15 +938,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 8870266207311347216}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04ecb2d54c1688043b251837d812edc4, type: 3}
+  m_Script: {fileID: 11500000, guid: 60869fd4b5efee04e801a90a978cb81a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 0}
+  _playerVehicle: {fileID: 3815681670800440004}
   _minigameTrigger: {fileID: 1455814131136092543}
   _minigameUI: {fileID: 0}
-  _forkliftMovementSystem: {fileID: 1200104511}
-  _forkliftVirtualCamera: {fileID: 3599505246024311896}
-  _forkliftArrowSystem: {fileID: 1200104510}
+  _vehicleMovementSystem: {fileID: 1200104511}
+  _vehicleVirtualCamera: {fileID: 3599505246024311896}
+  _vehicleArrowSystem: {fileID: 1200104510}
   _collectingSpot: {fileID: 4929631200396470162}
   _deliveringSpotsList:
   - {fileID: 3139749580191619051}

@@ -8,7 +8,7 @@ namespace CIPA
     {
         [SerializeField] private TMP_Text _deliveriesText;
 
-        [SerializeField] private TransportingAndStoringController _controller;
+        [SerializeField] private ResourceVehicleTransportationController _controller;
 
 
         private void LateUpdate()

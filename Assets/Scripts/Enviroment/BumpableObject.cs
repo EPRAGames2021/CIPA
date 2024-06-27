@@ -11,7 +11,7 @@ namespace CIPA
 
         public bool HitIsFatal => _hitIsFatal;
 
-        public static event System.Action<BumpableObject> OnHasBeenHitByPlayer;
+        public static event System.Action<BumpableObject, Player> OnHasBeenHitByPlayer;
 
 
         private void OnValidate()
@@ -24,19 +24,20 @@ namespace CIPA
             Init();
         }
 
+        private void OnDestroy()
+        {
+            Finish();
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             if (!_hasBeenHit)
             {
                 if (other.GetComponent<Player>() != null)
                 {
-                    OnHasBeenHitByPlayer?.Invoke(this);
+                    Player player = other.GetComponent<Player>();
 
-                    _hasBeenHit = true;
-                }
-                else if (other.GetComponent<PlayerVehicle>() != null)
-                {
-                    OnHasBeenHitByPlayer?.Invoke(this);
+                    OnHasBeenHitByPlayer?.Invoke(this, player);
 
                     _hasBeenHit = true;
                 }
@@ -46,14 +47,24 @@ namespace CIPA
 
         private void Init()
         {
+            //this may be hard to expand in the future. Ideally this refresh comes from the outside
+            CustomGameEvents.OnMinigameStarted += Refresh;
+
             _hasBeenHit = false;
 
             _collider.isTrigger = true;
         }
 
+        private void Finish()
+        {
+            CustomGameEvents.OnMinigameStarted -= Refresh;
+        }
+
         public void Refresh()
         {
-            Init();
+            _hasBeenHit = false;
+
+            _collider.isTrigger = true;
         }
     }
 }

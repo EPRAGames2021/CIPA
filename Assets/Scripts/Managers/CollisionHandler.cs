@@ -26,11 +26,11 @@ namespace CIPA
         }
 
 
-        private void HandleCollision(BumpableObject bumpableObject)
+        private void HandleCollision(BumpableObject bumpableObject, Player player)
         {
             if (bumpableObject.HitIsFatal)
             {
-                JobAreaManager.Instance.FinishMinigame(false);
+                player.HealthSystem.TakeDamage(int.MaxValue);
             }
             else
             {
