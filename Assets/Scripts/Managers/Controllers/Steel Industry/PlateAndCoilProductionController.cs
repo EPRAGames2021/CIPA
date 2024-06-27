@@ -17,9 +17,6 @@ namespace CIPA
             _minigameUI.SetActive(false);
             _camera.gameObject.SetActive(false);
 
-            _plateAndCoilGrid.ResetGrid();
-            _plateAndCoilGrid.Filling = false;
-
             CanvasManager.Instance.EnableVirtualJoystick(true);
             CanvasManager.Instance.EnableHUD(true);
 
@@ -39,6 +36,8 @@ namespace CIPA
             _minigameUI.SetActive(true);
             _camera.gameObject.SetActive(true);
 
+            _plateAndCoilGrid.ResetGrid();
+            _plateAndCoilGrid.Filling = false;
             StartCoroutine(StartFillingDelay());
 
             CanvasManager.Instance.EnableVirtualJoystick(false);

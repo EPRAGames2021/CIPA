@@ -507,7 +507,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _state: -1
-  _alive: 1
   _animator: {fileID: 0}
   _healthSystem: {fileID: 1546838865177054902}
   _movementSystem: {fileID: 1200104511}
@@ -785,7 +784,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 10
+  m_Priority: 11
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 1121442493707404708}
@@ -941,8 +940,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60869fd4b5efee04e801a90a978cb81a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
-  _playerVehicle: {fileID: 3815681670800440004}
+  _vehiclePlayer: {fileID: 3815681670800440004}
+  _vehicle: {fileID: 1200104509}
   _minigameTrigger: {fileID: 1455814131136092543}
   _minigameUI: {fileID: 0}
   _vehicleMovementSystem: {fileID: 1200104511}

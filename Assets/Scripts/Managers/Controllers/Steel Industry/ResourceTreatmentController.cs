@@ -34,7 +34,6 @@ namespace CIPA
         {
             _minigameUI.SetActive(true);
             _virtualCamera.gameObject.SetActive(true);
-            _virtualCamera.Priority = 11;
 
             _player.ArrowSystem.SetEnabled(false);
 

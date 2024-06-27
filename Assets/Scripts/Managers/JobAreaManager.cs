@@ -117,8 +117,6 @@ namespace CIPA
 
         private void InitiateMinigame()
         {
-            Debug.Log("init");
-
             GameManager.Instance.UpdateGameState(GameState.MiniGameState);
 
             _player.HealthSystem.Invincible = true;
@@ -156,6 +154,7 @@ namespace CIPA
 
         private void EndJob()
         {
+            CanvasManager.Instance.EnableHUD(false);
             CanvasManager.Instance.OpenMenu(MenuType.GameOverMenu);
 
             AudioManager.Instance.PlayRandomSFX(_defeatSFX);
@@ -192,6 +191,12 @@ namespace CIPA
             if (_arrivedAtMinigameLocation)
             {
                 InitiateMinigame();
+
+                //a rework of this system would come in handy
+                //2 because player will have already completed missions 0 and 1
+                //0 -> wear ppe
+                //1 -> attive at location
+                MissionManager.Instance.GoToMission(2);
             }
             else
             {

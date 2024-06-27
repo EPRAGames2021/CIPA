@@ -88,8 +88,8 @@ namespace CIPA
         {
             ChangeState(CharacterState.Roaming);
 
-            HealthSystem.Refresh();
-            MovementSystem.Refresh();
+            _healthSystem.Refresh();
+            _movementSystem.Refresh();
         }
     }
 

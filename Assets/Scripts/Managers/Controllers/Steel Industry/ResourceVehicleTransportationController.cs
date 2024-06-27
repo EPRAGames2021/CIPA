@@ -8,7 +8,10 @@ namespace CIPA
     public class ResourceVehicleTransportationController : MonoBehaviour
     {
         private Player _player;
-        [SerializeField] private Player _playerVehicle;
+
+        [SerializeField] private Player _vehiclePlayer;
+        [SerializeField] private PlayerVehicle _vehicle;
+
         private Vector3 _vehicleInitialPosition;
         private Quaternion _vehicleInitialRotation;
 
@@ -43,8 +46,8 @@ namespace CIPA
         {
             _player = JobAreaManager.Instance.Player;
 
-            _vehicleInitialPosition = _playerVehicle.transform.position;
-            _vehicleInitialRotation = _playerVehicle.transform.rotation;
+            _vehicleInitialPosition = _vehiclePlayer.transform.position;
+            _vehicleInitialRotation = _vehiclePlayer.transform.rotation;
 
             _vehicleVirtualCamera.gameObject.SetActive(false);
             _vehicleArrowSystem.SetEnabled(false);
@@ -58,74 +61,82 @@ namespace CIPA
             CanvasManager.Instance.EnableHUD(true);
             CanvasManager.Instance.EnableVirtualJoystick(true);
 
-            CustomGameEvents.OnMinigameStarted += TransferControlToVehicle;
+            CustomGameEvents.OnMinigameStarted += InitiateMiniGame;
             CustomGameEvents.OnMinigameEnded += EndMiniGame;
 
-            _playerVehicle.OnDied += PlayerDied;
+            _vehiclePlayer.OnDied += PlayerDied;
             _collectingSpot.OnPlayerVehicleDetected += CollectCargo;
         }
 
         private void Finish()
         {
-            CustomGameEvents.OnMinigameStarted -= TransferControlToVehicle;
+            CustomGameEvents.OnMinigameStarted -= InitiateMiniGame;
             CustomGameEvents.OnMinigameEnded -= EndMiniGame;
 
-            _playerVehicle.OnDied -= PlayerDied;
+            _vehiclePlayer.OnDied -= PlayerDied;
             _collectingSpot.OnPlayerVehicleDetected -= CollectCargo;
 
-            for (int i = 0; i < _deliveringSpotsList.Capacity; i++)
-            {
-                _deliveringSpotsList[i].OnPlayerVehicleDetected -= DeliverCargo;
-            }
+            ClearDeliverySubs();
         }
 
-        private void TransferControlToVehicle()
+
+        private void InitiateMiniGame()
         {
-            Debug.Log("transfer");
-
-            _player.MovementSystem.StandStill();
-            _player.gameObject.SetActive(false);
-
-            _playerVehicle.gameObject.SetActive(true);
-            _playerVehicle.transform.SetPositionAndRotation(_vehicleInitialPosition, _vehicleInitialRotation);
-            _playerVehicle.Refresh();
+            ClearDeliverySubs();
 
             _currentDeliverySpotIndex = 0;
 
             _minigameTrigger.SetActive(false);
-            _minigameUI.SetActive(true);
 
-            _vehicleVirtualCamera.gameObject.SetActive(true);
-            _vehicleVirtualCamera.Priority = 11;
+            _player.MovementSystem.StandStill();
+            _player.gameObject.SetActive(false);
 
             _collectingSpot.gameObject.SetActive(true);
-            _vehicleArrowSystem.SetTarget(_collectingSpot.transform);
-            _vehicleArrowSystem.SetEnabled(true);
 
             InputHandler.Instance.SetMovementSystem(_vehicleMovementSystem);
+
+            SetupVehicle();
+            EnableUI(true);
+        }
+
+        private void SetupVehicle()
+        {
+            _vehicle.SetCarrying(false);
+
+            _vehiclePlayer.gameObject.SetActive(true);
+            _vehiclePlayer.transform.SetPositionAndRotation(_vehicleInitialPosition, _vehicleInitialRotation);
+            _vehiclePlayer.Refresh();
+
+            _vehicleVirtualCamera.gameObject.SetActive(true);
+
+            _vehicleArrowSystem.SetTarget(_collectingSpot.transform);
+            _vehicleArrowSystem.SetEnabled(true);
             _vehicleMovementSystem.StandStill();
             _vehicleMovementSystem.TemporarilyDisableMovement(1f);
         }
 
+        private void EnableUI(bool display)
+        {
+            CanvasManager.Instance.EnableHUD(display);
+            CanvasManager.Instance.EnableVirtualJoystick(display);
+
+            _minigameUI.SetActive(display);
+        }
+
         private void EndMiniGame()
         {
-            Debug.Log("end");
-
-            CanvasManager.Instance.EnableVirtualJoystick(false);
-            CanvasManager.Instance.EnableHUD(false);
-
-            _minigameUI.SetActive(false);
+            EnableUI(false);
         }
 
         private void CollectCargo(PlayerVehicle vehicle)
         {
             vehicle.SetCarrying(true);
 
-            _collectingSpot.gameObject.SetActive(false);
-
-            SetupDeliverySpot();
-
             MissionManager.Instance.GoToNextMission();
+
+            _collectingSpot.gameObject.SetActive(false);
+            EnableDeliverySpot(_currentDeliverySpotIndex, true);
+            _vehicleArrowSystem.SetTarget(_deliveringSpotsList[_currentDeliverySpotIndex].transform);
         }
 
         private void DeliverCargo(PlayerVehicle vehicle)
@@ -136,11 +147,9 @@ namespace CIPA
             {
                 MissionManager.Instance.ReturnToPreviousMission();
 
+                EnableDeliverySpot(_currentDeliverySpotIndex, false);
                 _collectingSpot.gameObject.SetActive(true);
                 _vehicleArrowSystem.SetTarget(_collectingSpot.transform);
-
-                _deliveringSpotsList[_currentDeliverySpotIndex].gameObject.SetActive(false);
-                _deliveringSpotsList[_currentDeliverySpotIndex].OnPlayerVehicleDetected -= DeliverCargo;
 
                 _currentDeliverySpotIndex++;
             }
@@ -150,12 +159,26 @@ namespace CIPA
             }
         }
 
-        private void SetupDeliverySpot()
+        private void EnableDeliverySpot(int index, bool enable)
         {
-            _deliveringSpotsList[_currentDeliverySpotIndex].gameObject.SetActive(true);
-            _deliveringSpotsList[_currentDeliverySpotIndex].OnPlayerVehicleDetected += DeliverCargo;
+            _deliveringSpotsList[index].gameObject.SetActive(enable);
 
-            _vehicleArrowSystem.SetTarget(_deliveringSpotsList[_currentDeliverySpotIndex].transform);
+            if (enable)
+            {
+                _deliveringSpotsList[index].OnPlayerVehicleDetected += DeliverCargo;
+            }
+            else
+            {
+                _deliveringSpotsList[index].OnPlayerVehicleDetected -= DeliverCargo;
+            }
+        }
+
+        private void ClearDeliverySubs()
+        {
+            for (int i = 0; i < _deliveringSpotsList.Count; i++)
+            {
+                EnableDeliverySpot(i, false);
+            }
         }
 
         private void PlayerDied()
