@@ -1,37 +1,76 @@
 using System;
-using System.Data.SqlClient;
+using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
+using FirebaseAdmin;
+using Google.Apis.Auth.OAuth2;
+using Google.Cloud.Firestore;
+using System.IO;
 
 public class DatabaseHelper
 {
-    // private readonly string _connectionString;
+    private FirestoreDb _firestoreDb;
 
-    public DatabaseHelper(string connectionString)
+    static DatabaseHelper()
     {
-        _connectionString = connectionString;
+        // Carregar o arquivo de chave diretamente da pasta Resources
+        string path = Path.Combine(Application.dataPath, "Firebase/ServiceAccount/serviceAccountKey.json");
+        FirebaseApp.Create(new AppOptions()
+        {
+            Credential = GoogleCredential.FromFile(path)
+        });
     }
 
-    // Método para executar uma consulta SQL parametrizada
-    public void ExecuteQuery(string query, SqlParameter[] parameters)
+    public DatabaseHelper()
     {
-        using (SqlConnection connection = new SqlConnection(_connectionString))
+        _firestoreDb = FirestoreDb.Create("cipa-d3fcb"); // Substitua "your-project-id" pelo ID do seu projeto Firebase
+    }
+
+    // Método para executar uma operação no Firestore (inserção/atualização/exclusão)
+    public async Task<string> ExecuteQuery(string collection, string operation, object data = null, string documentId = null)
+    {
+        CollectionReference collectionRef = _firestoreDb.Collection(collection);
+
+        switch (operation.ToLower())
         {
-            SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddRange(parameters);
-            connection.Open();
-            command.ExecuteNonQuery();
+            case "insert":
+                ValidateData(data); // Validação dos dados
+                DocumentReference docRef = await collectionRef.AddAsync(data);
+                return docRef.Id; // Retorna o ID do documento criado
+
+            case "update":
+                ValidateData(data); // Validação dos dados
+                ValidateDocumentId(documentId); // Validação do ID do documento
+                DocumentReference updateDocRef = collectionRef.Document(documentId);
+                await updateDocRef.SetAsync(data, SetOptions.MergeAll);
+                return documentId; // Retorna o ID do documento atualizado
+
+            case "delete":
+                ValidateDocumentId(documentId); // Validação do ID do documento
+                DocumentReference deleteDocRef = collectionRef.Document(documentId);
+                await deleteDocRef.DeleteAsync();
+                return documentId; // Retorna o ID do documento excluído
+
+            default:
+                throw new ArgumentException("Invalid operation type. Use 'insert', 'update', or 'delete'.");
         }
     }
 
-    // Método para obter dados de uma consulta SQL parametrizada
-    public SqlDataReader ExecuteQueryWithResult(string query, SqlParameter[] parameters)
+    // Método para obter dados de uma consulta no Firestore com base em múltiplos campos
+    public async Task<QuerySnapshot> ExecuteQueryWithResult(string collection, Dictionary<string, object> filters)
     {
-        SqlConnection connection = new SqlConnection(_connectionString);
-        SqlCommand command = new SqlCommand(query, connection);
-        command.Parameters.AddRange(parameters);
-        connection.Open();
-        return command.ExecuteReader(CommandBehavior.CloseConnection);
+        ValidateFilters(filters); // Validação dos filtros
+        CollectionReference collectionRef = _firestoreDb.Collection(collection);
+        Query query = collectionRef;
+
+        foreach (var filter in filters)
+        {
+            query = query.WhereEqualTo(filter.Key, filter.Value);
+        }
+
+        QuerySnapshot snapshot = await query.GetSnapshotAsync();
+        return snapshot;
     }
 
     // Método para criptografar uma senha usando SHA-256
@@ -46,6 +85,51 @@ public class DatabaseHelper
                 builder.Append(bytes[i].ToString("x2"));
             }
             return builder.ToString();
+        }
+    }
+
+    // Método para validar dados antes de enviá-los para o Firestore
+    private void ValidateData(object data)
+    {
+        // Implementar a validação necessária para os dados
+        if (data == null)
+        {
+            throw new ArgumentNullException(nameof(data), "Data cannot be null");
+        }
+
+        // Adicionar validações adicionais conforme necessário
+    }
+
+    // Método para validar o ID do documento
+    private void ValidateDocumentId(string documentId)
+    {
+        if (string.IsNullOrWhiteSpace(documentId))
+        {
+            throw new ArgumentException("Document ID cannot be null or empty", nameof(documentId));
+        }
+
+        // Adicionar validações adicionais conforme necessário
+    }
+
+    // Método para validar os filtros de consulta
+    private void ValidateFilters(Dictionary<string, object> filters)
+    {
+        if (filters == null || filters.Count == 0)
+        {
+            throw new ArgumentException("Filters cannot be null or empty", nameof(filters));
+        }
+
+        foreach (var filter in filters)
+        {
+            if (string.IsNullOrWhiteSpace(filter.Key))
+            {
+                throw new ArgumentException("Filter keys cannot be null or empty", nameof(filters));
+            }
+
+            if (filter.Value == null)
+            {
+                throw new ArgumentNullException(nameof(filters), "Filter values cannot be null");
+            }
         }
     }
 }

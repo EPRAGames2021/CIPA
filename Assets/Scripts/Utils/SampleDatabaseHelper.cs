@@ -1,53 +1,46 @@
 class Program
 {
-    static void Main(string[] args)
+    static async Task Main(string[] args)
     {
-        string connectionString = "sua_string_de_conexao";
-        DatabaseHelper dbHelper = new DatabaseHelper(connectionString);
+        DatabaseHelper dbHelper = new DatabaseHelper();
 
-        // Exemplo de consulta parametrizada para inserção
-        string insertQuery = "INSERT INTO Usuarios (Username, Password) VALUES (@Username, @Password, @City)";
-        string username = "usuario_exemplo";
-        string password = "senha_exemplo";
-        string city = "Salvador";
-        string encryptedPassword = dbHelper.EncryptPassword(password);
+        // Dados para inserir no Firestore
+        var dataToInsert = new { Name = "John Doe", Email = "john.doe@example.com" };
 
-        SqlParameter[] insertParameters = {
-            new SqlParameter("@Username", username),
-            new SqlParameter("@Password", encryptedPassword),
-            new SqlParameter("@City", city),
+        // Executar uma inserção
+        string documentId = await dbHelper.ExecuteQuery("users", "insert", dataToInsert);
+        Console.WriteLine($"Documento criado com ID: {documentId}");
 
-        };
+        // Dados para atualizar no Firestore
+        var dataToUpdate = new { Email = "new.email@example.com" };
 
-        dbHelper.ExecuteQuery(insertQuery, insertParameters);
+        // Executar uma atualização
+        string updatedDocumentId = await dbHelper.ExecuteQuery("users", "update", dataToUpdate, documentId);
+        Console.WriteLine($"Documento atualizado com ID: {updatedDocumentId}");
 
-        // Exemplo de consulta parametrizada para leitura
-        string selectQuery = "SELECT * FROM Usuarios WHERE Username = @Username";
-        SqlParameter[] selectParameters = {
-            new SqlParameter("@Username", username)
-        };
+        // Executar uma exclusão
+        string deletedDocumentId = await dbHelper.ExecuteQuery("users", "delete", null, documentId);
+        Console.WriteLine($"Documento excluído com ID: {deletedDocumentId}");
 
-        using (SqlDataReader reader = dbHelper.ExecuteQueryWithResult(selectQuery, selectParameters))
+        // Obter dados de um documento com base em múltiplos campos
+        var filters = new Dictionary<string, object>
         {
-            while (reader.Read())
+            { "Name", "John Doe" },
+            { "Email", "new.email@example.com" }
+        };
+
+        var result = await dbHelper.ExecuteQueryWithResult("users", filters);
+
+        if (result.Documents.Count > 0)
+        {
+            foreach (var doc in result.Documents)
             {
-                Console.WriteLine($"ID: {reader["ID"]}, Username: {reader["Username"]}, Password: {reader["Password"]}");
+                Console.WriteLine($"Nome: {doc.GetValue<string>("Name")}, Email: {doc.GetValue<string>("Email")}");
             }
         }
-
-        // Exemplo de login com consulta
-        string selectQuery = "SELECT * FROM Usuarios WHERE Username = @Username AND @Password LIMIT";
-        SqlParameter[] selectParameters = {
-            new SqlParameter("@Username", username)
-            new SqlParameter("@Password", encryptedPassword)
-        };
-
-        using (SqlDataReader reader = dbHelper.ExecuteQueryWithResult(selectQuery, selectParameters))
+        else
         {
-            while (reader.Read())
-            {
-                Console.WriteLine($"ID: {reader["ID"]}, Username: {reader["Username"]}, Password: {reader["Password"]}");
-            }
+            Console.WriteLine("Documento não encontrado!");
         }
     }
 }
