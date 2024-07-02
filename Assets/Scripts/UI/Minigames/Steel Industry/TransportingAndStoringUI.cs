@@ -11,7 +11,7 @@ namespace CIPA
         [SerializeField] private ResourceVehicleTransportationController _controller;
 
 
-        private void LateUpdate()
+        protected virtual void LateUpdate()
         {
             UpdateDeliveries();
         }

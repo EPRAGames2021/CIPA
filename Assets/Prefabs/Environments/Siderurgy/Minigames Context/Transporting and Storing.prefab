@@ -489,7 +489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3a7c42e03a5f5349b60e6b931e2b375, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _carrying: 0
+  _cargoType: 0
   _trunkContent:
   - {fileID: 6557859863371398397}
   - {fileID: 2408172842005067858}
@@ -1063,12 +1063,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
+--- !u!1 &4806735121423801217 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4806735120747414208, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
+  m_PrefabInstance: {fileID: 945248577}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4215612312718819606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4806735121423801217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb45e2896300a0f459bdeea0b69674ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _vehicleDetector: {fileID: 4929631200396470162}
+  _isDeliveryPoint: 0
+  _cargoType: 0
 --- !u!114 &4929631200396470162 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4929631200525893331, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
   m_PrefabInstance: {fileID: 945248577}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 4806735121423801217}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e752dec6af67b21489524e3d8df8b57e, type: 3}
@@ -1089,6 +1109,10 @@ PrefabInstance:
     - target: {fileID: 4806735120747414208, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
       propertyPath: m_Name
       value: PlayerVehicleDetector Delivering (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929631200525893331, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
+      propertyPath: _canBeTriggeredInfiniteTimes
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8343932675837974131, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
       propertyPath: m_RootOrder
@@ -1136,12 +1160,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
+--- !u!1 &5341012199664521834 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4806735120747414208, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
+  m_PrefabInstance: {fileID: 624841927870861482}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5125630745508489639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5341012199664521834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb45e2896300a0f459bdeea0b69674ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _vehicleDetector: {fileID: 5531109845094395513}
+  _isDeliveryPoint: 1
+  _cargoType: 0
 --- !u!114 &5531109845094395513 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4929631200525893331, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
   m_PrefabInstance: {fileID: 624841927870861482}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 5341012199664521834}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e752dec6af67b21489524e3d8df8b57e, type: 3}
@@ -1280,6 +1324,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerVehicleDetector Delivering (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4929631200525893331, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
+      propertyPath: _canBeTriggeredInfiniteTimes
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8343932675837974131, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1331,12 +1379,32 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4929631200525893331, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
   m_PrefabInstance: {fileID: 1527275792629519487}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 6306461275102058175}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e752dec6af67b21489524e3d8df8b57e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &6306461275102058175 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4806735120747414208, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
+  m_PrefabInstance: {fileID: 1527275792629519487}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3974656610544283682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6306461275102058175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb45e2896300a0f459bdeea0b69674ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _vehicleDetector: {fileID: 5861549576434707116}
+  _isDeliveryPoint: 1
+  _cargoType: 0
 --- !u!4 &7420352953554600460 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8343932675837974131, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
@@ -1490,6 +1558,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerVehicleDetector Delivering (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4929631200525893331, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
+      propertyPath: _canBeTriggeredInfiniteTimes
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8343932675837974131, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -1541,12 +1613,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8343932675837974131, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
   m_PrefabInstance: {fileID: 7167041641881606425}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2432654386544139225 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4806735120747414208, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
+  m_PrefabInstance: {fileID: 7167041641881606425}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6541946851630878766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2432654386544139225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb45e2896300a0f459bdeea0b69674ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _vehicleDetector: {fileID: 2819221566658586570}
+  _isDeliveryPoint: 1
+  _cargoType: 0
 --- !u!114 &2819221566658586570 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4929631200525893331, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
   m_PrefabInstance: {fileID: 7167041641881606425}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2432654386544139225}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e752dec6af67b21489524e3d8df8b57e, type: 3}
@@ -1562,6 +1654,10 @@ PrefabInstance:
     - target: {fileID: 4806735120747414208, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
       propertyPath: m_Name
       value: PlayerVehicleDetector Delivering
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929631200525893331, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
+      propertyPath: _canBeTriggeredInfiniteTimes
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8343932675837974131, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
       propertyPath: m_RootOrder
@@ -1619,9 +1715,29 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4929631200525893331, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
   m_PrefabInstance: {fileID: 8069096959581350200}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 3265044647257091064}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e752dec6af67b21489524e3d8df8b57e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &3265044647257091064 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4806735120747414208, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
+  m_PrefabInstance: {fileID: 8069096959581350200}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1726081297719031058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3265044647257091064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb45e2896300a0f459bdeea0b69674ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _vehicleDetector: {fileID: 3139749580191619051}
+  _isDeliveryPoint: 1
+  _cargoType: 0

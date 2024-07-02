@@ -10,7 +10,7 @@ namespace CIPA
         private Player _player;
 
         [SerializeField] private Player _vehiclePlayer;
-        [SerializeField] private PlayerVehicle _vehicle;
+        [SerializeField] protected PlayerVehicle _vehicle;
 
         private Vector3 _vehicleInitialPosition;
         private Quaternion _vehicleInitialRotation;
@@ -20,10 +20,10 @@ namespace CIPA
 
         [SerializeField] private MovementSystem _vehicleMovementSystem;
         [SerializeField] private CinemachineVirtualCamera _vehicleVirtualCamera;
-        [SerializeField] private ArrowSystem _vehicleArrowSystem;
+        [SerializeField] protected ArrowSystem _vehicleArrowSystem;
 
         [SerializeField] private PlayerVehicleDetector _collectingSpot;
-        [SerializeField] private List<PlayerVehicleDetector> _deliveringSpotsList;
+        [SerializeField] protected List<PlayerVehicleDetector> _deliveringSpotsList;
 
         [SerializeField] private int _currentDeliverySpotIndex;
 
@@ -42,7 +42,7 @@ namespace CIPA
         }
 
 
-        private void Init()
+        protected virtual void Init()
         {
             _player = JobAreaManager.Instance.Player;
 
@@ -53,10 +53,7 @@ namespace CIPA
             _vehicleArrowSystem.SetEnabled(false);
             _collectingSpot.gameObject.SetActive(false);
 
-            for (int i = 0; i < _deliveringSpotsList.Count; i++)
-            {
-                _deliveringSpotsList[i].gameObject.SetActive(false);
-            }
+            SetAllDeliverySubsActive(false);
 
             CanvasManager.Instance.EnableHUD(true);
             CanvasManager.Instance.EnableVirtualJoystick(true);
@@ -65,24 +62,24 @@ namespace CIPA
             CustomGameEvents.OnMinigameEnded += EndMiniGame;
 
             _vehiclePlayer.OnDied += PlayerDied;
-            _collectingSpot.OnPlayerVehicleDetected += CollectCargo;
+            _vehicle.OnCarryingChanged += UpdateCargo;
         }
 
-        private void Finish()
+        protected virtual void Finish()
         {
             CustomGameEvents.OnMinigameStarted -= InitiateMiniGame;
             CustomGameEvents.OnMinigameEnded -= EndMiniGame;
 
             _vehiclePlayer.OnDied -= PlayerDied;
-            _collectingSpot.OnPlayerVehicleDetected -= CollectCargo;
+            _vehicle.OnCarryingChanged -= UpdateCargo;
 
-            ClearDeliverySubs();
+            SetAllDeliverySubsActive(false);
         }
 
 
-        private void InitiateMiniGame()
+        protected virtual void InitiateMiniGame()
         {
-            ClearDeliverySubs();
+            SetAllDeliverySubsActive(false);
 
             _currentDeliverySpotIndex = 0;
 
@@ -99,9 +96,9 @@ namespace CIPA
             EnableUI(true);
         }
 
-        private void SetupVehicle()
+        protected virtual void SetupVehicle()
         {
-            _vehicle.SetCarrying(false);
+            _vehicle.SetCarrying(CargoType.None, false);
 
             _vehiclePlayer.gameObject.SetActive(true);
             _vehiclePlayer.transform.SetPositionAndRotation(_vehicleInitialPosition, _vehicleInitialRotation);
@@ -128,26 +125,34 @@ namespace CIPA
             EnableUI(false);
         }
 
-        private void CollectCargo(PlayerVehicle vehicle)
+        private void UpdateCargo(bool enableCarrying)
         {
-            vehicle.SetCarrying(true);
+            if (enableCarrying)
+            {
+                CollectCargo();
+            }
+            else
+            {
+                DeliverCargo();
+            }
+        }
 
+        protected virtual void CollectCargo()
+        {
             MissionManager.Instance.GoToNextMission();
 
             _collectingSpot.gameObject.SetActive(false);
-            EnableDeliverySpot(_currentDeliverySpotIndex, true);
+            _deliveringSpotsList[_currentDeliverySpotIndex].gameObject.SetActive(true);
             _vehicleArrowSystem.SetTarget(_deliveringSpotsList[_currentDeliverySpotIndex].transform);
         }
 
-        private void DeliverCargo(PlayerVehicle vehicle)
+        protected virtual void DeliverCargo()
         {
-            vehicle.SetCarrying(false);
-
             if (_currentDeliverySpotIndex < _deliveringSpotsList.Count - 1)
             {
                 MissionManager.Instance.ReturnToPreviousMission();
 
-                EnableDeliverySpot(_currentDeliverySpotIndex, false);
+                _deliveringSpotsList[_currentDeliverySpotIndex].gameObject.SetActive(false);
                 _collectingSpot.gameObject.SetActive(true);
                 _vehicleArrowSystem.SetTarget(_collectingSpot.transform);
 
@@ -159,25 +164,11 @@ namespace CIPA
             }
         }
 
-        private void EnableDeliverySpot(int index, bool enable)
-        {
-            _deliveringSpotsList[index].gameObject.SetActive(enable);
-
-            if (enable)
-            {
-                _deliveringSpotsList[index].OnPlayerVehicleDetected += DeliverCargo;
-            }
-            else
-            {
-                _deliveringSpotsList[index].OnPlayerVehicleDetected -= DeliverCargo;
-            }
-        }
-
-        private void ClearDeliverySubs()
+        protected void SetAllDeliverySubsActive(bool active)
         {
             for (int i = 0; i < _deliveringSpotsList.Count; i++)
             {
-                EnableDeliverySpot(i, false);
+                _deliveringSpotsList[i].gameObject.SetActive(active);
             }
         }
 
