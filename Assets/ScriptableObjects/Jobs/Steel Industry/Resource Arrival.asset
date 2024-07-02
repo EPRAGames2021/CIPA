@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: Resource Arrival
   m_EditorClassIdentifier: 
   _jobSector: 2
-  _score: 300
+  _score: 0
   _jobName: ResourceArrival
   _saveName: SteelIndustryResourceArrival
   _keyName: resourceArrivalName
-  _requiredEquipment: 02000000030000000c0000000500000001000000
-  _actions:
-  - _action: playerUsedPPE
-    _performed: 1
-  - _action: playerCompletedDay
-    _performed: 1
+  _requiredEquipmentSOList:
+  - {fileID: 11400000, guid: a04bad867e086c4418499c62ff6e37be, type: 2}
+  - {fileID: 11400000, guid: 2eb12cae9b913b84ca47ecafa136248e, type: 2}
+  - {fileID: 11400000, guid: 8dcd8ac62fa066849b2613a50ed0707e, type: 2}
+  - {fileID: 11400000, guid: d305d82ce11260b47a691597aef1bee4, type: 2}
+  - {fileID: 11400000, guid: f512e150b65b984499be6aade60f5663, type: 2}
+  _actions: []

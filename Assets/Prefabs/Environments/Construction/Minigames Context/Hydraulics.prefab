@@ -1134,7 +1134,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1630246314115537408}
-  - component: {fileID: 1436646784679009447}
+  - component: {fileID: 4717186789049269864}
   m_Layer: 0
   m_Name: Hydraulics
   m_TagString: Untagged
@@ -1161,7 +1161,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1436646784679009447
+--- !u!114 &4717186789049269864
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1170,11 +1170,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1630246314115537409}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5589c6b7620d65478569c1177ce27e7, type: 3}
+  m_Script: {fileID: 11500000, guid: 78a84959c6d39064eb59e06f182b0a93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 0}
   _minigameUI: {fileID: 0}
-  _spotlight: {fileID: 3947925118342656547}
+  _virtualCamera: {fileID: 1642060671}
+  _minigameEnviromentObjects:
+  - {fileID: 3947925118342656547}
+  _grid: {fileID: 228624019391136279}
 --- !u!1 &1684604088438990709
 GameObject:
   m_ObjectHideFlags: 0
@@ -6106,6 +6110,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 053dea0466521d642ac887e51fc43ef2, type: 3}
+--- !u!114 &228624019391136279 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 228624020871511221, guid: 053dea0466521d642ac887e51fc43ef2, type: 3}
+  m_PrefabInstance: {fileID: 2042936994}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab2615ac6b1a9d24cb03da68593457c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7581461007860834258 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7581461007487312240, guid: 053dea0466521d642ac887e51fc43ef2, type: 3}

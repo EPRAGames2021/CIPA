@@ -11,14 +11,14 @@ GameObject:
   - component: {fileID: 3558531472543658793}
   - component: {fileID: 3558531472543658794}
   - component: {fileID: 3558531472543658795}
-  - component: {fileID: 4494455467084293931}
+  - component: {fileID: 1199812730}
   m_Layer: 5
   m_Name: Electrics UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3558531472543658793
 RectTransform:
   m_ObjectHideFlags: 0
@@ -78,7 +78,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4494455467084293931
+--- !u!114 &1199812730
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,11 +87,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3558531472543658966}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80f7a4d6f02de5541939c840d036f557, type: 3}
+  m_Script: {fileID: 11500000, guid: 09f37f6a93ddc9843820177a9b33808a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _confirmButton: {fileID: 3202661905424057927}
-  _wireGrid: {fileID: 0}
+  _controller: {fileID: 0}
 --- !u!1 &3558531473107775179
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,7 +200,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 181.65
+  m_fontSize: 200
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

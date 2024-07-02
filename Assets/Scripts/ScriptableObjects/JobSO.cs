@@ -13,14 +13,14 @@ public class JobSO : ScriptableObject
 
     [SerializeField] private string _keyName;
 
-    [SerializeField] private List<EquipmentType> _requiredEquipment;
+    [SerializeField] private List<EquipmentSO> _requiredEquipmentSOList;
 
     [SerializeField] private List<TrackableAction> _actions;
 
     public int Score => _score;
     public string JobName => _jobName;
     public string KeyName => _keyName;
-    public List<EquipmentType> RequiredEquipment => _requiredEquipment;
+    public List<EquipmentSO> RequiredEquipmentSO => _requiredEquipmentSOList;
 
 
     private void OnValidate()

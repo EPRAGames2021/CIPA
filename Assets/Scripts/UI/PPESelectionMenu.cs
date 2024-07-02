@@ -14,8 +14,8 @@ namespace CIPA
         [Header("Debug")]
         [SerializeField] private JobSO _jobSO;
 
-        [SerializeField] private List<EquipmentType> _requiredEquipments;
-        [SerializeField] private List<EquipmentType> _selectedEquipments;
+        [SerializeField] private List<EquipmentSO> _requiredEquipments;
+        [SerializeField] private List<EquipmentSO> _selectedEquipments;
 
 
         public static event System.Action<bool> OnSelectionIsCorrect;
@@ -35,7 +35,7 @@ namespace CIPA
         private void Init()
         {
             _jobSO = JobAreaManager.Instance?.JobSectorAreaSO.CurrentJob;
-            _requiredEquipments = _jobSO.RequiredEquipment;
+            _requiredEquipments = _jobSO.RequiredEquipmentSO;
             _selectedEquipments = new();
 
             foreach (ResourceToggle resourceToggle in _resourceToggleList)
@@ -64,7 +64,7 @@ namespace CIPA
                 {
                     EquipmentSO equipment = resourceToggle.ResourceSO as EquipmentSO;
 
-                    _selectedEquipments.Add(equipment.Type);
+                    _selectedEquipments.Add(equipment);
                 }
             }
 

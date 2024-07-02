@@ -831,7 +831,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1363445827735355184}
-  - component: {fileID: 4603489095696663564}
+  - component: {fileID: 2452826670944133926}
   m_Layer: 0
   m_Name: Finishing
   m_TagString: Untagged
@@ -858,7 +858,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4603489095696663564
+--- !u!114 &2452826670944133926
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -867,10 +867,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1363445827735355183}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 379cd786748ea014a8bc0800b55d289d, type: 3}
+  m_Script: {fileID: 11500000, guid: 9457e69aa2ae8f147b3e3c894c10a4f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 0}
   _minigameUI: {fileID: 0}
+  _virtualCamera: {fileID: 3081160107555515879}
+  _minigameEnviromentObjects: []
 --- !u!1 &1420490092153846647
 GameObject:
   m_ObjectHideFlags: 0
