@@ -1652,6 +1652,7 @@ Transform:
   - {fileID: 5493492886882375655}
   - {fileID: 4642257256445822299}
   - {fileID: 5587834589804553741}
+  - {fileID: 3763863172861991901}
   m_Father: {fileID: 4495565167033577736}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1936,7 +1937,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3031256861783090018}
-  - component: {fileID: 5461320669838957239}
+  - component: {fileID: 8979217672224705497}
   m_Layer: 0
   m_Name: Land Grading
   m_TagString: Untagged
@@ -1963,7 +1964,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5461320669838957239
+--- !u!114 &8979217672224705497
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1972,10 +1973,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3031256861783090019}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 816f51a80ea6eeb40b16f42c8c770144, type: 3}
+  m_Script: {fileID: 11500000, guid: 9457e69aa2ae8f147b3e3c894c10a4f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 0}
   _minigameUI: {fileID: 0}
+  _virtualCamera: {fileID: 1225599554}
+  _minigameEnviromentObjects: []
 --- !u!1 &3369056201000016358
 GameObject:
   m_ObjectHideFlags: 0
@@ -11057,6 +11061,72 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4772553483008108, guid: 9c159c2eaddb3465286059ed305db777, type: 3}
   m_PrefabInstance: {fileID: 1173892967143027011}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1195126564971966148
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2655045339711968043}
+    m_Modifications:
+    - target: {fileID: 2643081755943531801, guid: 14210e852cf07dc42bab7453bc343693, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2643081755943531801, guid: 14210e852cf07dc42bab7453bc343693, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2643081755943531801, guid: 14210e852cf07dc42bab7453bc343693, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2643081755943531801, guid: 14210e852cf07dc42bab7453bc343693, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -29.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2643081755943531801, guid: 14210e852cf07dc42bab7453bc343693, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2643081755943531801, guid: 14210e852cf07dc42bab7453bc343693, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2643081755943531801, guid: 14210e852cf07dc42bab7453bc343693, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2643081755943531801, guid: 14210e852cf07dc42bab7453bc343693, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2643081755943531801, guid: 14210e852cf07dc42bab7453bc343693, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2643081755943531801, guid: 14210e852cf07dc42bab7453bc343693, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2643081755943531801, guid: 14210e852cf07dc42bab7453bc343693, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3451389500618715043, guid: 14210e852cf07dc42bab7453bc343693, type: 3}
+      propertyPath: m_Name
+      value: PPE Outdoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 3451389500618715043, guid: 14210e852cf07dc42bab7453bc343693, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 14210e852cf07dc42bab7453bc343693, type: 3}
+--- !u!4 &3763863172861991901 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2643081755943531801, guid: 14210e852cf07dc42bab7453bc343693, type: 3}
+  m_PrefabInstance: {fileID: 1195126564971966148}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1204799692989588625
 PrefabInstance:
@@ -24042,6 +24112,10 @@ PrefabInstance:
     - target: {fileID: 3451389500618715043, guid: ffc8e8e173e3fc8418f6245afc04a807, type: 3}
       propertyPath: m_Name
       value: Streetsign_outdoor EPI_Day 01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3451389500618715043, guid: ffc8e8e173e3fc8418f6245afc04a807, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffc8e8e173e3fc8418f6245afc04a807, type: 3}

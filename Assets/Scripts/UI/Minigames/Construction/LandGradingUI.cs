@@ -32,17 +32,6 @@ namespace CIPA
         {
             JobAreaManager.Instance.FinishMinigame(succeeded);
 
-            /*
-            if (succeeded)
-            {
-                JobAreaManager.Instance.MinigameSuccessed();
-            }
-            else
-            {
-                JobAreaManager.Instance.MinigameFailed();
-            }
-            */
-
             gameObject.SetActive(false);
         }
     }

@@ -37,6 +37,7 @@ namespace EPRA.Utilities
         private void Init()
         {
             _invincible = false;
+            _dead = false;
             _health = _maxHealth;
         }
 
@@ -62,6 +63,11 @@ namespace EPRA.Utilities
             _health = Mathf.Min(_health + heal, _maxHealth);
 
             OnHealed?.Invoke();
+        }
+
+        public void Refresh()
+        {
+            Init();
         }
     }
 }

@@ -8,7 +8,9 @@ namespace CIPA
 
         [SerializeField] private bool _canBeTriggeredInfiniteTimes;
 
+
         public event System.Action<PlayerVehicle> OnPlayerVehicleDetected;
+
 
         private void OnTriggerEnter(Collider other)
         {

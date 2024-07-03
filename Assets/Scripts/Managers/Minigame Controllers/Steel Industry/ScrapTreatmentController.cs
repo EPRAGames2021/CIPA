@@ -51,9 +51,6 @@ namespace CIPA
                 _treadmills[i].Active = false;
             }
 
-            _scrapsDisposedCorrectly = 0;
-            _scrapsDisposedIncorrectly = 0;
-
             CanvasManager.Instance.EnableHUD(true);
             CanvasManager.Instance.EnableVirtualJoystick(true);
 
@@ -76,10 +73,14 @@ namespace CIPA
         {
             _minigameUI.SetActive(true);
             _virtualCamera.gameObject.SetActive(true);
-            _virtualCamera.Priority = 11;
+
+            _scrapsDisposedCorrectly = 0;
+            _scrapsDisposedIncorrectly = 0;
 
             for (int i = 0; i < _treadmills.Count; i++)
             {
+                _treadmills[i].Refresh();
+
                 _treadmills[i].Active = true;
 
                 _treadmills[i].OnScrapSpawned += SubToNewScrap;

@@ -43,11 +43,11 @@ namespace CIPA
         }
 
 
-        public void EquipPlayer(List<EquipmentType> equipTypes, bool enable)
+        public void EquipPlayer(List<EquipmentSO> equipTypes, bool enable)
         {
-            foreach (EquipmentType equipmentType in equipTypes)
+            for (int i = 0; i < equipTypes.Count; i++)
             {
-                EquipEquipment(equipmentType, enable);
+                EquipEquipment(equipTypes[i].Type, enable);
             }
 
             _wearingEquipment = enable;

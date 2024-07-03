@@ -1,33 +1,45 @@
+using CIPA;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerVehicle : MonoBehaviour
 {
-    [SerializeField] private bool _carrying;
+    [SerializeField] private CargoType _cargoType;
 
     [SerializeField] private List<GameObject> _trunkContent;
 
-    public bool Carrying => _carrying;
+    public bool IsCarrying => _cargoType != CargoType.None;
+    public CargoType CargoType => _cargoType;
+
+
+    public event System.Action<bool> OnCarryingChanged;
 
 
     private void OnValidate()
     {
-        SetCarrying(_carrying);
+        SetCarrying(_cargoType, false);
     }
 
     private void OnEnable()
     {
-        SetCarrying(_carrying);
+        SetCarrying(_cargoType, false);
     }
 
 
-    public void SetCarrying(bool carrying)
+    public void SetCarrying(CargoType cargo, bool invokeEvent = true)
     {
-        _carrying = carrying;
+        if (_cargoType == cargo) return;
+
+        _cargoType = cargo;
+
+        if (invokeEvent)
+        {
+            OnCarryingChanged?.Invoke(IsCarrying);
+        }
 
         for (int i = 0; i < _trunkContent.Count; i++)
         {
-            _trunkContent[i].SetActive(_carrying);
+            _trunkContent[i].SetActive(IsCarrying);
         }
     }
 }

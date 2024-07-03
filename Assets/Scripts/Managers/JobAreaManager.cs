@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;
 using EPRA.Utilities;
 
 namespace CIPA
@@ -12,8 +11,6 @@ namespace CIPA
         [SerializeField] private JobSectorAreaSO _jobSectorSO;
 
         [SerializeField] private List<GameObject> _minigameContextObjects;
-
-        [SerializeField] private CinemachineVirtualCamera _playerCamera;
 
         [SerializeField] private Player _player;
 
@@ -28,6 +25,7 @@ namespace CIPA
 
 
         public JobSectorAreaSO JobSectorAreaSO => _jobSectorSO;
+        public Player Player => _player;
         public bool ArrivedAtMinigameLocation { get { return _arrivedAtMinigameLocation; } set { _arrivedAtMinigameLocation = value; } }
 
 
@@ -75,37 +73,20 @@ namespace CIPA
                 _minigameContextObjects[i].SetActive(i == _jobSectorSO.Day);
             }
 
-
-            if (_player == null)
-            {
-                Debug.LogWarning("Player is null.");
-            }
-            else
-            {
-                InputHandler.Instance.SetMovementSystem(_player.MovementSystem);
-
-                _player.HealthSystem.OnDied += PlayerDied;
-                _player.EquipmentSystem.OnEquipped += EquipPlayer;
-            }
+            InputHandler.Instance.SetMovementSystem(_player.MovementSystem);
+            
+            _player.OnDied += PlayerDied;
+            _player.EquipmentSystem.OnEquipped += EquipPlayer;
         }
 
         private void Finish()
         {
             CustomGameEvents.OnPlayerArrivedAtMinigameLocation -= InitiateMinigameProcess;
 
-            if (_player != null) _player.HealthSystem.OnDied -= PlayerDied;
+            if (_player != null) _player.OnDied -= PlayerDied;
             if (_player != null) _player.EquipmentSystem.OnEquipped -= EquipPlayer;
         }
 
-
-        private void PlayerDied()
-        {
-            _jobSectorSO.CurrentJob.AddUniqueAction("playerDisruptedFlow", true);
-
-            CanvasManager.Instance.OpenMenu(MenuType.GameOverMenu);
-            AudioManager.Instance.PlayRandomSFX(_deathSFX);
-            AudioManager.Instance.PlayRandomSFX(_defeatSFX);
-        }
 
         private void EquipPlayer(bool equip)
         {
@@ -117,7 +98,7 @@ namespace CIPA
 
         private void InitiateMinigameProcess()
         {
-            _playerCamera.Priority = 9;
+            _arrivedAtMinigameLocation = true;
 
             if (_player.EquipmentSystem.WearingEquipment)
             {
@@ -141,18 +122,6 @@ namespace CIPA
             _player.HealthSystem.Invincible = true;
 
             CustomGameEvents.InvokeOnMinigameStarted();
-        }
-
-        public void FinishMinigame(bool success)
-        {
-            if (success)
-            {
-                MinigameSuccessed();
-            }
-            else
-            {
-                MinigameFailed();
-            }
         }
 
         private void MinigameSuccessed()
@@ -180,12 +149,41 @@ namespace CIPA
 
             RewardAndPenaltyManager.Instance.PlayerHasFailedJob();
 
+            EndJob();
+        }
+
+        private void EndJob()
+        {
+            CanvasManager.Instance.EnableHUD(false);
             CanvasManager.Instance.OpenMenu(MenuType.GameOverMenu);
 
-            Vibrator.Vibrate(100);
             AudioManager.Instance.PlayRandomSFX(_defeatSFX);
 
+            Vibrator.Vibrate(100);
+
             CustomGameEvents.InvokeOnMinigameEnded();
+        }
+
+
+        public void PlayerDied()
+        {
+            _jobSectorSO.CurrentJob.AddUniqueAction("playerDisruptedFlow", true);
+
+            AudioManager.Instance.PlayRandomSFX(_deathSFX);
+
+            EndJob();
+        }
+
+        public void FinishMinigame(bool success)
+        {
+            if (success)
+            {
+                MinigameSuccessed();
+            }
+            else
+            {
+                MinigameFailed();
+            }
         }
 
         public void RestartJob()
@@ -193,6 +191,12 @@ namespace CIPA
             if (_arrivedAtMinigameLocation)
             {
                 InitiateMinigame();
+
+                //a rework of this system would come in handy
+                //2 because player will have already completed missions 0 and 1
+                //0 -> wear ppe
+                //1 -> attive at location
+                MissionManager.Instance.GoToMission(2);
             }
             else
             {

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using EPRA.Utilities;
 
@@ -60,8 +61,8 @@ namespace CIPA
                 MissionManager.Instance.GoToNextMission();
                 PlayerCameraHandler.Instance.FocusOnPPEBoard(false);
 
-                JobSO job = JobAreaManager.Instance.JobSectorAreaSO.CurrentJob;
-                _player.EquipmentSystem.EquipPlayer(job.RequiredEquipment, true);
+                List<EquipmentSO> equipmentSOList = JobAreaManager.Instance.JobSectorAreaSO.CurrentJob.RequiredEquipmentSO;
+                _player.EquipmentSystem.EquipPlayer(equipmentSOList, true);
 
                 _playerDetector.gameObject.SetActive(false);
 

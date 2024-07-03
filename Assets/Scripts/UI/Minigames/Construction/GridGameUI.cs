@@ -3,30 +3,18 @@ using UnityEngine.UI;
 
 namespace CIPA
 {
-    public class ElectricsUI : MonoBehaviour
+    public class GridGameUI : MonoBehaviour
     {
         [SerializeField] private Button _confirmButton;
 
-        [SerializeField] private PipeGrid _wireGrid;
+        [SerializeField] private GridGameController _controller;
 
         private void OnEnable()
-        {
-            Camera.main.orthographic = true;
-
-            _wireGrid.ResetGrid();
-        }
-
-        private void Start()
         {
             Init();
         }
 
         private void OnDisable()
-        {
-            Camera.main.orthographic = false;
-        }
-
-        private void OnDestroy()
         {
             Finish();
         }
@@ -45,9 +33,7 @@ namespace CIPA
 
         private void CheckPipes()
         {
-            JobAreaManager.Instance.FinishMinigame(_wireGrid.CheckForCorrectGrid());
-
-            _wireGrid.LockGrid();
+            JobAreaManager.Instance.FinishMinigame(_controller.CheckIfGridIsCorrect());
 
             gameObject.SetActive(false);
         }

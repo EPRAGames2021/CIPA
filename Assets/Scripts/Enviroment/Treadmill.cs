@@ -14,6 +14,7 @@ namespace CIPA
         [Tooltip("Measured in seconds")]
         [SerializeField] private float _spawnFrequency;
         private Coroutine _spawnNewScrap;
+        private Scrap _mostRecentScrap;
 
         [SerializeField] private float _speed;
         [SerializeField] private bool _shouldRun;
@@ -62,6 +63,7 @@ namespace CIPA
 
         private void Init()
         {
+            _mostRecentScrap = null;
             _spawnNewScrap = null;
         }
 
@@ -77,9 +79,11 @@ namespace CIPA
 
             if (newScrap != null)
             {
-                OnScrapSpawned?.Invoke(newScrap);
+                _mostRecentScrap = newScrap;
 
-                newScrap.OnCollected += Remove;
+                OnScrapSpawned?.Invoke(_mostRecentScrap);
+
+                _mostRecentScrap.OnCollected += Remove;
             }
 
             _spawnNewScrap = null;
@@ -123,6 +127,26 @@ namespace CIPA
             }
 
             scrap.OnCollected -= Remove;
+        }
+
+
+        public void Refresh()
+        {
+            if (_mostRecentScrap != null)
+            {
+                _mostRecentScrap.OnCollected -= Remove;
+            }
+
+            while (_bodies.Count > 0)
+            {
+                Destroy(_bodies[0].gameObject);
+
+                _bodies.RemoveAt(0);
+            }
+
+            _bodies.Clear();
+
+            Init();
         }
     }
 }

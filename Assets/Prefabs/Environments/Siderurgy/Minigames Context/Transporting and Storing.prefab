@@ -265,6 +265,8 @@ GameObject:
   - component: {fileID: 1200104511}
   - component: {fileID: 1200104510}
   - component: {fileID: 1200104509}
+  - component: {fileID: 3815681670800440004}
+  - component: {fileID: 1546838865177054902}
   m_Layer: 0
   m_Name: Forklift
   m_TagString: Untagged
@@ -487,11 +489,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3a7c42e03a5f5349b60e6b931e2b375, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _carrying: 0
+  _cargoType: 0
   _trunkContent:
   - {fileID: 6557859863371398397}
   - {fileID: 2408172842005067858}
   - {fileID: 6830340718605662586}
+--- !u!114 &3815681670800440004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5877058930737043394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f51010100793824b8d43b2a0e42808c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _state: -1
+  _animator: {fileID: 0}
+  _healthSystem: {fileID: 1546838865177054902}
+  _movementSystem: {fileID: 1200104511}
+  _equipmentSystem: {fileID: 0}
+  _arrowSystem: {fileID: 1200104510}
+--- !u!114 &1546838865177054902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5877058930737043394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8ce40aa7827ecb47b613620fc8d88d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dead: 0
+  _health: 100
+  _maxHealth: 100
+  _invincible: 0
+  _injuryThreshhold: 50
 --- !u!1 &6862253899264681900
 GameObject:
   m_ObjectHideFlags: 0
@@ -723,7 +760,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7577553005463737947}
   m_LocalRotation: {x: 0.5201378, y: 0, z: 0, w: 0.8540824}
-  m_LocalPosition: {x: 60.00003, y: 42.21204, z: -22.97284}
+  m_LocalPosition: {x: 60, y: 42.21203, z: -22.972834}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -747,7 +784,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 10
+  m_Priority: 11
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 1121442493707404708}
@@ -865,7 +902,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3802723055399647718}
-  - component: {fileID: 9115537373560800684}
+  - component: {fileID: 8170797035768322115}
   m_Layer: 0
   m_Name: Transporting and Storing
   m_TagString: Untagged
@@ -891,7 +928,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9115537373560800684
+--- !u!114 &8170797035768322115
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -900,15 +937,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 8870266207311347216}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04ecb2d54c1688043b251837d812edc4, type: 3}
+  m_Script: {fileID: 11500000, guid: 60869fd4b5efee04e801a90a978cb81a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
+  _vehiclePlayer: {fileID: 3815681670800440004}
+  _vehicle: {fileID: 1200104509}
   _minigameTrigger: {fileID: 1455814131136092543}
   _minigameUI: {fileID: 0}
-  _forkliftMovementSystem: {fileID: 1200104511}
-  _forkliftVirtualCamera: {fileID: 3599505246024311896}
-  _forkliftArrowSystem: {fileID: 1200104510}
+  _vehicleMovementSystem: {fileID: 1200104511}
+  _vehicleVirtualCamera: {fileID: 3599505246024311896}
+  _vehicleArrowSystem: {fileID: 1200104510}
   _collectingSpot: {fileID: 4929631200396470162}
   _deliveringSpotsList:
   - {fileID: 3139749580191619051}
@@ -1025,12 +1063,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
+--- !u!1 &4806735121423801217 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4806735120747414208, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
+  m_PrefabInstance: {fileID: 945248577}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4215612312718819606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4806735121423801217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb45e2896300a0f459bdeea0b69674ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _vehicleDetector: {fileID: 4929631200396470162}
+  _isDeliveryPoint: 0
+  _cargoType: 0
 --- !u!114 &4929631200396470162 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4929631200525893331, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
   m_PrefabInstance: {fileID: 945248577}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 4806735121423801217}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e752dec6af67b21489524e3d8df8b57e, type: 3}
@@ -1051,6 +1109,10 @@ PrefabInstance:
     - target: {fileID: 4806735120747414208, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
       propertyPath: m_Name
       value: PlayerVehicleDetector Delivering (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929631200525893331, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
+      propertyPath: _canBeTriggeredInfiniteTimes
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8343932675837974131, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
       propertyPath: m_RootOrder
@@ -1098,12 +1160,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
+--- !u!1 &5341012199664521834 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4806735120747414208, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
+  m_PrefabInstance: {fileID: 624841927870861482}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5125630745508489639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5341012199664521834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb45e2896300a0f459bdeea0b69674ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _vehicleDetector: {fileID: 5531109845094395513}
+  _isDeliveryPoint: 1
+  _cargoType: 0
 --- !u!114 &5531109845094395513 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4929631200525893331, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
   m_PrefabInstance: {fileID: 624841927870861482}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 5341012199664521834}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e752dec6af67b21489524e3d8df8b57e, type: 3}
@@ -1242,6 +1324,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerVehicleDetector Delivering (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4929631200525893331, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
+      propertyPath: _canBeTriggeredInfiniteTimes
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8343932675837974131, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1293,12 +1379,32 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4929631200525893331, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
   m_PrefabInstance: {fileID: 1527275792629519487}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 6306461275102058175}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e752dec6af67b21489524e3d8df8b57e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &6306461275102058175 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4806735120747414208, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
+  m_PrefabInstance: {fileID: 1527275792629519487}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3974656610544283682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6306461275102058175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb45e2896300a0f459bdeea0b69674ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _vehicleDetector: {fileID: 5861549576434707116}
+  _isDeliveryPoint: 1
+  _cargoType: 0
 --- !u!4 &7420352953554600460 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8343932675837974131, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
@@ -1452,6 +1558,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerVehicleDetector Delivering (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4929631200525893331, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
+      propertyPath: _canBeTriggeredInfiniteTimes
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8343932675837974131, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -1503,12 +1613,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8343932675837974131, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
   m_PrefabInstance: {fileID: 7167041641881606425}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2432654386544139225 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4806735120747414208, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
+  m_PrefabInstance: {fileID: 7167041641881606425}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6541946851630878766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2432654386544139225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb45e2896300a0f459bdeea0b69674ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _vehicleDetector: {fileID: 2819221566658586570}
+  _isDeliveryPoint: 1
+  _cargoType: 0
 --- !u!114 &2819221566658586570 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4929631200525893331, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
   m_PrefabInstance: {fileID: 7167041641881606425}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2432654386544139225}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e752dec6af67b21489524e3d8df8b57e, type: 3}
@@ -1524,6 +1654,10 @@ PrefabInstance:
     - target: {fileID: 4806735120747414208, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
       propertyPath: m_Name
       value: PlayerVehicleDetector Delivering
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929631200525893331, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
+      propertyPath: _canBeTriggeredInfiniteTimes
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8343932675837974131, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
       propertyPath: m_RootOrder
@@ -1581,9 +1715,29 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4929631200525893331, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
   m_PrefabInstance: {fileID: 8069096959581350200}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 3265044647257091064}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e752dec6af67b21489524e3d8df8b57e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &3265044647257091064 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4806735120747414208, guid: 67b4f26b398551146811e45fc183fd16, type: 3}
+  m_PrefabInstance: {fileID: 8069096959581350200}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1726081297719031058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3265044647257091064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb45e2896300a0f459bdeea0b69674ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _vehicleDetector: {fileID: 3139749580191619051}
+  _isDeliveryPoint: 1
+  _cargoType: 0

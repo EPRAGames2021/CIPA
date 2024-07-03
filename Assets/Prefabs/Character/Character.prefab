@@ -751,8 +751,11 @@ MonoBehaviour:
   _animator: {fileID: 4997531372555551442}
   _rigidbody: {fileID: 6853027721232337917}
   _inputDirection: {x: 0, y: 0, z: 0}
+  _movementDirection: {x: 0, y: 0, z: 0}
   _moveSpeed: 5
   _turnSpeed: 15
+  _cameraTransform: {fileID: 0}
+  _moveRelativeToCamera: 1
   _currentAngle: 0
   _targetAngle: 0
   _canMove: 0
@@ -815,6 +818,8 @@ MonoBehaviour:
   _target: {fileID: 0}
   _index: 0
   _targets: []
+  _distance: 0
+  _toleranceDistance: 3
 --- !u!1 &7323023846113124790
 GameObject:
   m_ObjectHideFlags: 0

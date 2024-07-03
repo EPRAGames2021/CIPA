@@ -1,23 +1,24 @@
 using UnityEngine;
 using Cinemachine;
 using EPRA.Utilities;
+using System.Collections;
 
 namespace CIPA
 {
-    public class ResourceTreatmentController : MonoBehaviour
+    public class PlateAndCoilProductionController : MonoBehaviour
     {
         [SerializeField] private GameObject _minigameUI;
-        [SerializeField] private CinemachineVirtualCamera _virtualCamera;
+        [SerializeField] private CinemachineVirtualCamera _camera;
 
-        [SerializeField] private Player _player;
+        [SerializeField] private PlateAndCoilGrid _plateAndCoilGrid;
 
         private void OnEnable()
         {
             _minigameUI.SetActive(false);
-            _virtualCamera.gameObject.SetActive(false);
+            _camera.gameObject.SetActive(false);
 
-            CanvasManager.Instance.EnableHUD(true);
             CanvasManager.Instance.EnableVirtualJoystick(true);
+            CanvasManager.Instance.EnableHUD(true);
 
             CustomGameEvents.OnMinigameStarted += StartMiniGame;
             CustomGameEvents.OnMinigameEnded += EndMiniGame;
@@ -33,18 +34,28 @@ namespace CIPA
         private void StartMiniGame()
         {
             _minigameUI.SetActive(true);
-            _virtualCamera.gameObject.SetActive(true);
-            _virtualCamera.Priority = 11;
+            _camera.gameObject.SetActive(true);
 
-            _player.ArrowSystem.SetEnabled(false);
+            _plateAndCoilGrid.ResetGrid();
+            _plateAndCoilGrid.Filling = false;
+            StartCoroutine(StartFillingDelay());
 
-            CanvasManager.Instance.EnableHUD(false);
             CanvasManager.Instance.EnableVirtualJoystick(false);
+            CanvasManager.Instance.EnableHUD(false);
+
+            Camera.main.orthographic = true;
+        }
+
+        private IEnumerator StartFillingDelay()
+        {
+            yield return new WaitForSeconds(1);
+
+            _plateAndCoilGrid.Filling = true;
         }
 
         private void EndMiniGame()
         {
-            _minigameUI.SetActive(false);
+            Camera.main.orthographic = false;
         }
     }
 }
