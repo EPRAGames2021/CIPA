@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3734465291012296137}
   - component: {fileID: 8713247240494971228}
   - component: {fileID: 8773741422170219426}
+  - component: {fileID: 7052838358581126882}
   - component: {fileID: 3907312306118168661}
   m_Layer: 5
   m_Name: Close Button
@@ -78,6 +79,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7052838358581126882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 563793448072233520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3a68a4c8cb304f4380cce25009de281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _selectable: {fileID: 3907312306118168661}
+  _onSelectSound: {fileID: 0}
+  _onSubmitSound: {fileID: 11400000, guid: 7b8ab97ba699abb40aa1cd504ed6b65b, type: 2}
+  _randomFX: 0
+  _FXIndex: 0
 --- !u!114 &3907312306118168661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -404,7 +422,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 79
+  m_fontSize: 85.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -539,7 +557,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 160.65
+  m_fontSize: 174.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

@@ -1,5 +1,4 @@
 using System;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
 using System.Collections.Generic;
@@ -97,6 +96,11 @@ namespace EPRA.Utilities
             DataManager.SaveData("LanguageIndex", _languageIndex);
         }
 
+        public void InitializeMixers()
+        {
+            UpdateMixer(_SFXMixer, _canPlaySFX ? _SFXVolume : -80);
+            UpdateMixer(_musicMixer, _canPlayMusic ? _musicVolume : -80);
+        }
 
         public void SetVibration(bool canVibrate)
         {

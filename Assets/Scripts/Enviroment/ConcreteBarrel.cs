@@ -79,7 +79,7 @@ public class ConcreteBarrel : MonoBehaviour
 
         if (_spinning && !_audioSource.isPlaying)
         {
-            AudioManager.Instance.PlayRandomSFX(_audioSource, _spinningSFX);
+            AudioManager.Instance.PlayRandomSFX(_spinningSFX, _audioSource);
         }
         else if (!_spinning && _audioSource.isPlaying)
         {

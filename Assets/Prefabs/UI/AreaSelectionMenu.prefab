@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3734465291012296137}
   - component: {fileID: 8713247240494971228}
   - component: {fileID: 8773741422170219426}
+  - component: {fileID: 73040259995566931}
   - component: {fileID: 3907312306118168661}
   - component: {fileID: 7119123581110684187}
   - component: {fileID: 6881428659913300427}
@@ -80,6 +81,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 0.5
+--- !u!114 &73040259995566931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 563793448072233520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3a68a4c8cb304f4380cce25009de281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _selectable: {fileID: 3907312306118168661}
+  _onSelectSound: {fileID: 0}
+  _onSubmitSound: {fileID: 11400000, guid: 7b8ab97ba699abb40aa1cd504ed6b65b, type: 2}
+  _randomFX: 1
+  _FXIndex: 0
 --- !u!114 &3907312306118168661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -485,6 +503,7 @@ GameObject:
   - component: {fileID: 8442731248107427820}
   - component: {fileID: 6500137484865255661}
   - component: {fileID: 2390120341563584649}
+  - component: {fileID: 8198381520896939462}
   - component: {fileID: 753619028171810574}
   - component: {fileID: 705367177334332597}
   - component: {fileID: 6149721895256287419}
@@ -554,6 +573,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 0.5
+--- !u!114 &8198381520896939462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7155939898059640999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3a68a4c8cb304f4380cce25009de281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _selectable: {fileID: 753619028171810574}
+  _onSelectSound: {fileID: 0}
+  _onSubmitSound: {fileID: 11400000, guid: 7b8ab97ba699abb40aa1cd504ed6b65b, type: 2}
+  _randomFX: 1
+  _FXIndex: 0
 --- !u!114 &753619028171810574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1070,6 +1106,7 @@ GameObject:
   - component: {fileID: 5505846092363053983}
   - component: {fileID: 6373058892149166101}
   - component: {fileID: 7988703299939488852}
+  - component: {fileID: 8377850996692570839}
   - component: {fileID: 2124830396691116286}
   m_Layer: 5
   m_Name: Back Button
@@ -1137,6 +1174,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 0.5
+--- !u!114 &8377850996692570839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8733986379278368784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3a68a4c8cb304f4380cce25009de281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _selectable: {fileID: 2124830396691116286}
+  _onSelectSound: {fileID: 0}
+  _onSubmitSound: {fileID: 11400000, guid: 7b8ab97ba699abb40aa1cd504ed6b65b, type: 2}
+  _randomFX: 1
+  _FXIndex: 0
 --- !u!114 &2124830396691116286
 MonoBehaviour:
   m_ObjectHideFlags: 0

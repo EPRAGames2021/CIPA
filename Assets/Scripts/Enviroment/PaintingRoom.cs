@@ -107,7 +107,7 @@ namespace CIPA
 
             if (_painting && !_audioSource.isPlaying)
             {
-                AudioManager.Instance.PlayRandomSFX(_audioSource, _paintingSFX);
+                AudioManager.Instance.PlayRandomSFX(_paintingSFX, _audioSource);
             }
             else if (!_painting && _audioSource.isPlaying)
             {

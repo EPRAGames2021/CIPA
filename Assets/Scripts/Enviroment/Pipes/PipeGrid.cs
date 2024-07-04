@@ -74,7 +74,7 @@ public class PipeGrid : MonoBehaviour
             }
         }
 
-        if (_gridIsCorrect) AudioManager.Instance.PlayRandomSFX(_audioSource, _gridFinishedSFX);
+        if (_gridIsCorrect) AudioManager.Instance.PlayRandomSFX(_gridFinishedSFX, _audioSource);
 
         return _gridIsCorrect;
     }

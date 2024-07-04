@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 3753847265838320408}
   - component: {fileID: 3753847265838320421}
   - component: {fileID: 3753847265838320410}
+  - component: {fileID: 2974299740340416382}
   - component: {fileID: 3753847265838320411}
   m_Layer: 5
   m_Name: Settings Button
@@ -153,6 +154,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2974299740340416382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3753847265838320409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3a68a4c8cb304f4380cce25009de281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _selectable: {fileID: 3753847265838320411}
+  _onSelectSound: {fileID: 0}
+  _onSubmitSound: {fileID: 11400000, guid: 7b8ab97ba699abb40aa1cd504ed6b65b, type: 2}
+  _randomFX: 1
+  _FXIndex: 0
 --- !u!114 &3753847265838320411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -589,6 +607,7 @@ GameObject:
   - component: {fileID: 8093165207950692352}
   - component: {fileID: 6867718042711965441}
   - component: {fileID: 2616943775513982821}
+  - component: {fileID: 314939861263505951}
   - component: {fileID: 1085170926453842146}
   - component: {fileID: 2482038488637137350}
   - component: {fileID: 858956911659326631}
@@ -658,6 +677,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 0.75
+--- !u!114 &314939861263505951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7364837683611883339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3a68a4c8cb304f4380cce25009de281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _selectable: {fileID: 1085170926453842146}
+  _onSelectSound: {fileID: 0}
+  _onSubmitSound: {fileID: 11400000, guid: 7b8ab97ba699abb40aa1cd504ed6b65b, type: 2}
+  _randomFX: 1
+  _FXIndex: 0
 --- !u!114 &1085170926453842146
 MonoBehaviour:
   m_ObjectHideFlags: 0
