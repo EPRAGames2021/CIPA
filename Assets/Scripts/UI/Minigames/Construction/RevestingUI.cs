@@ -27,7 +27,7 @@ namespace CIPA
         private void OnDisable()
         {
             _virtualCamera.m_Lens.OrthographicSize = 5;
-            _virtualCamera.m_Lens.Orthographic = true;
+            _virtualCamera.m_Lens.Orthographic = false;
         }
 
         private void OnDestroy()
@@ -54,25 +54,6 @@ namespace CIPA
             _tileGrid.LockGrid();
 
             gameObject.SetActive(false);
-
-            /*
-            if (_tileGrid.CheckForCorrectGrid())
-            {
-                JobAreaManager.Instance.MinigameSuccessed();
-
-                _tileGrid.LockGrid();
-
-                gameObject.SetActive(false);
-            }
-            else
-            {
-                JobAreaManager.Instance.MinigameFailed();
-
-                _tileGrid.LockGrid();
-
-                gameObject.SetActive(false);
-            }
-            */
         }
     }
 }

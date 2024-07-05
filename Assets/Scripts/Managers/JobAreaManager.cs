@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using EPRA.Utilities;
+using System.Collections;
 
 namespace CIPA
 {
@@ -126,14 +127,12 @@ namespace CIPA
 
         private void MinigameSuccessed()
         {
+
             _jobSectorSO.CurrentJob.AddUniqueAction("playerCompletedDay", true);
 
             RewardAndPenaltyManager.Instance.PlayerHasCompletedJob();
 
             _jobSectorSO.SetScoreToDay(_jobSectorSO.Day, _dayScore.Value);
-
-            CanvasManager.Instance.OpenMenu(MenuType.VictoryMenu);
-            CanvasManager.Instance.OpenMenu(MenuType.DayScoreMenu);
 
             Vibrator.Vibrate(100);
             AudioManager.Instance.PlayRandomSFX(_victorySFX);
@@ -141,6 +140,23 @@ namespace CIPA
             _jobSectorSO.FinishDay();
 
             CustomGameEvents.InvokeOnMinigameEnded();
+
+            StartCoroutine(OpenMenusDelay());
+        }
+
+        private IEnumerator OpenMenusDelay()
+        {
+            yield return new WaitForSeconds(1.0f);
+
+            _player.Win();
+
+            yield return new WaitForSeconds(1.5f);
+
+            CanvasManager.Instance.OpenMenu(MenuType.VictoryMenu);
+
+            yield return new WaitForSeconds(1.5f);
+
+            CanvasManager.Instance.OpenMenu(MenuType.DayScoreMenu);
         }
 
         private void MinigameFailed()
