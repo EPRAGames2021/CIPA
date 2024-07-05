@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3359246204100696688}
   - component: {fileID: 1624523315713807158}
   - component: {fileID: 7435872273237803811}
+  - component: {fileID: 6048492160417134872}
   - component: {fileID: 5510327823004195055}
   - component: {fileID: 3311338410832609083}
   - component: {fileID: 348761111931483831}
@@ -80,6 +81,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 0.7
+--- !u!114 &6048492160417134872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323908367811473305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3a68a4c8cb304f4380cce25009de281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _selectable: {fileID: 5510327823004195055}
+  _onSelectSound: {fileID: 11400000, guid: 7b8ab97ba699abb40aa1cd504ed6b65b, type: 2}
+  _onSubmitSound: {fileID: 11400000, guid: 7b8ab97ba699abb40aa1cd504ed6b65b, type: 2}
+  _randomFX: 1
+  _FXIndex: 0
 --- !u!114 &5510327823004195055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -561,8 +579,8 @@ MonoBehaviour:
   - {fileID: 7789205473276739194}
   _confirmButton: {fileID: 5510327823004195055}
   _jobSO: {fileID: 0}
-  _requiredEquipments: 
-  _selectedEquipments: 
+  _requiredEquipments: []
+  _selectedEquipments: []
 --- !u!1 &7722955461447337743
 GameObject:
   m_ObjectHideFlags: 0

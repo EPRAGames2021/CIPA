@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace EPRA.Utilities
@@ -10,6 +8,8 @@ namespace EPRA.Utilities
     {
         [Range(0f, 1f)] public float Volume = 1f;
         [SerializeField] private AudioClip[] _clips;
+
+        public int Count => _clips.Length;
 
         public AudioClip GetFirstClip()
         {

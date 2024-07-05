@@ -1316,9 +1316,9 @@ MonoBehaviour:
       m_Action: Movement
       m_Flags: 8
     m_Flags: 0
-  _player: {fileID: 0}
-  x: 0
-  z: 0
+  _movementSystem: {fileID: 0}
+  _x: 0
+  _z: 0
   _openSettingsAction:
     m_Name: Open Settings
     m_Type: 0
@@ -1432,7 +1432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 991392daae2c66245be8db59e33fa99d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forcedLoadDelay: 0
+  _forcedLoadDelay: 0
   _currentSceneID: 0
 --- !u!1001 &1240346029
 PrefabInstance:
@@ -1741,6 +1741,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7697922016487444492, guid: da48fff9f48cbcb4cbdee7dcc825aa58, type: 3}
+      propertyPath: _fxAudioSource
+      value: 
+      objectReference: {fileID: 1374994556}
+    - target: {fileID: 7697922016487444492, guid: da48fff9f48cbcb4cbdee7dcc825aa58, type: 3}
+      propertyPath: _musicAudioSource
+      value: 
+      objectReference: {fileID: 1374994555}
     - target: {fileID: 7697922016487444493, guid: da48fff9f48cbcb4cbdee7dcc825aa58, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1790,6 +1798,16 @@ PrefabInstance:
 --- !u!4 &1374994554 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7697922016487444493, guid: da48fff9f48cbcb4cbdee7dcc825aa58, type: 3}
+  m_PrefabInstance: {fileID: 1374994553}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1374994555 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7697922016487444495, guid: da48fff9f48cbcb4cbdee7dcc825aa58, type: 3}
+  m_PrefabInstance: {fileID: 1374994553}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1374994556 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7697922016487444494, guid: da48fff9f48cbcb4cbdee7dcc825aa58, type: 3}
   m_PrefabInstance: {fileID: 1374994553}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1395142839

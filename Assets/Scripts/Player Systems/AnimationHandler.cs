@@ -15,6 +15,6 @@ public class AnimationHandler : MonoBehaviour
 
     public void CallSFX()
     {
-        AudioManager.Instance.PlayRandomSFX(_audioSource, _stepSFX);
+        AudioManager.Instance.PlayRandomSFX(_stepSFX, _audioSource);
     }
 }

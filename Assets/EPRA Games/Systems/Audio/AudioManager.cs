@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace EPRA.Utilities
@@ -9,13 +7,15 @@ namespace EPRA.Utilities
         public static AudioManager Instance { get; private set; }
     
         [SerializeField] private Configuration _configuration;
-    
-        [SerializeField] private AudioSource FXAudio;
-        [SerializeField] private AudioSource MusicAudio;
-    
+
+        [SerializeField] private AudioSource _fxAudioSource;
+        [SerializeField] private AudioSource _musicAudioSource;
+
+        [Header("Currently playing")]
         [SerializeField] private AudioClipCollection _musicCollection;
         [SerializeField] private AudioClip _music;
-    
+
+        [Header("Defaults")]
         [SerializeField] private AudioClipCollection _defaultMenuMusicCollection;
         [SerializeField] private AudioClipCollection _defaultGameplayMusicCollection;
     
@@ -30,8 +30,18 @@ namespace EPRA.Utilities
         {
             InitSingleton();
         }
-    
-    
+
+        private void Start()
+        {
+            Init();
+        }
+
+        private void Update()
+        {
+            PlayMusic();
+        }
+
+
         private void InitSingleton()
         {
             if (Instance == null)
@@ -43,11 +53,16 @@ namespace EPRA.Utilities
                 Destroy(gameObject);
             }
         }
+
+        private void Init()
+        {
+            _configuration.InitializeMixers();
+        }
     
     
         public void SetMusic(AudioClipCollection musicCollection, bool playRightAway)
         {
-            SetMusic(musicCollection);
+            SetMusicPlaylist(musicCollection);
     
             if (playRightAway)
             {
@@ -55,7 +70,7 @@ namespace EPRA.Utilities
             }
         }
     
-        public void SetMusic(AudioClipCollection musicCollection)
+        public void SetMusicPlaylist(AudioClipCollection musicCollection)
         {
             if (!CollectionIsValid(musicCollection)) return;
     
@@ -67,37 +82,27 @@ namespace EPRA.Utilities
     
             _music = music;
     
-            MusicAudio.clip = _music;
-            MusicAudio.volume = musicCollection.Volume;
+            _musicAudioSource.clip = _music;
+            _musicAudioSource.volume = musicCollection.Volume;
         }
     
     
-        public void PlaySFX(AudioSource audioSource, AudioClipCollection clipCollection)
+        public void PlaySFX(AudioClipCollection clipCollection, int index = 0, AudioSource audioSource = null)
         {
             if (!CollectionIsValid(clipCollection)) return;
-    
-            PlayClip(audioSource, clipCollection.GetFirstClip(), clipCollection.Volume);
+
+            if (index > clipCollection.Count) index = clipCollection.Count;
+
+            PlayClip(clipCollection.GetClip(index), clipCollection.Volume, audioSource);
         }
     
-        public void PlaySFX(AudioClipCollection clipCollection)
+        public void PlayRandomSFX(AudioClipCollection clipCollection, AudioSource audioSource = null)
         {
             if (!CollectionIsValid(clipCollection)) return;
-    
-            PlayClip(clipCollection.GetFirstClip(), clipCollection.Volume);
-        }
-    
-        public void PlayRandomSFX(AudioSource audioSource, AudioClipCollection clipCollection)
-        {
-            if (!CollectionIsValid(clipCollection)) return;
-    
-            PlayClip(audioSource, clipCollection.GetRandomClip(), clipCollection.Volume);
-        }
-    
-        public void PlayRandomSFX(AudioClipCollection clipCollection)
-        {
-            if (!CollectionIsValid(clipCollection)) return;
-    
-            PlayClip(clipCollection.GetRandomClip(), clipCollection.Volume);
+
+            int random = Random.Range(0, clipCollection.Count);
+
+            PlaySFX(clipCollection, random, audioSource);
         }
     
     
@@ -105,63 +110,67 @@ namespace EPRA.Utilities
         {
             if (_music == null || !MainAudioIsValid()) return;
     
-            if (!MusicAudio.isPlaying) MusicAudio.Play();
+            if (!_musicAudioSource.isPlaying) _musicAudioSource.Play();
         }
     
         public void StopMusic()
         {
             if (_music == null || !MainAudioIsValid()) return;
     
-            if (MusicAudio.isPlaying) MusicAudio.Stop();
+            if (_musicAudioSource.isPlaying) _musicAudioSource.Stop();
         }
     
     
         private bool MainAudioIsValid()
         {
-            bool isAudioSourceNull = FXAudio == null;
+            bool isAudioSourceNull = _fxAudioSource == null;
+
             if (isAudioSourceNull) Debug.LogWarning("Audio Source is null", this);
     
             return !isAudioSourceNull;
         }
     
+        
         private bool CollectionIsValid(AudioClipCollection clipCollection)
         {
-            bool isClipCollectionNull = clipCollection == null;
-            if (isClipCollectionNull) Debug.LogWarning("ClipCollection is null", this);
+            bool isClipCollectionValid = clipCollection != null;
+
+            if (!isClipCollectionValid)
+            {
+                Debug.LogWarning($"{clipCollection} is null", this);
+            }
     
-            return !isClipCollectionNull;
+            return isClipCollectionValid;
         }
     
         private bool AudioClipIsValid(AudioClip clip)
         {
-            bool isClipNull = clip == null;
-            if (isClipNull) Debug.LogWarning("Audio Clip is null", this);
-    
-            return !isClipNull;
+            bool isClipValid = clip != null;
+
+            if (!isClipValid)
+            {
+                Debug.LogWarning($"{clip} is null", this);
+            }
+
+            return isClipValid;
         }
     
-        private void PlayClip(AudioSource audiosource, AudioClip clip, float volume)
+        private void PlayClip(AudioClip clip, float volume, AudioSource audioSource)
         {
             if (!AudioClipIsValid(clip)) return;
     
-            if (audiosource != null)
+            if (audioSource != null)
             {
-                audiosource.clip = clip;
-                audiosource.volume = volume;
-                audiosource.Play();
+                audioSource.clip = clip;
+                audioSource.volume = volume;
+                audioSource.Play();
             }
             else
             {
-                Debug.LogWarning("AudioSource is null. Using default AudioSource instead");
-                PlayClip(clip, volume);
+                //Debug.LogWarning("AudioSource is null. Using default AudioSource instead");
+
+                _fxAudioSource.PlayOneShot(clip, volume);
             }
-        }
-    
-        private void PlayClip(AudioClip clip, float volume)
-        {
-            if (!AudioClipIsValid(clip)) return;
-    
-            FXAudio.PlayOneShot(clip, volume);
         }
     }
 }

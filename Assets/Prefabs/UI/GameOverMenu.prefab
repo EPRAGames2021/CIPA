@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3734465291012296137}
   - component: {fileID: 8713247240494971228}
   - component: {fileID: 8773741422170219426}
+  - component: {fileID: 655980699340333379}
   - component: {fileID: 3907312306118168661}
   - component: {fileID: 647889433589621350}
   - component: {fileID: 6713786685023520989}
@@ -80,6 +81,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 0.7
+--- !u!114 &655980699340333379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 563793448072233520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3a68a4c8cb304f4380cce25009de281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _selectable: {fileID: 0}
+  _onSelectSound: {fileID: 0}
+  _onSubmitSound: {fileID: 11400000, guid: 7b8ab97ba699abb40aa1cd504ed6b65b, type: 2}
+  _randomFX: 1
+  _FXIndex: 0
 --- !u!114 &3907312306118168661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,7 +440,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 82.9
+  m_fontSize: 89.8
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -716,6 +734,7 @@ GameObject:
   - component: {fileID: 8442731248107427820}
   - component: {fileID: 6500137484865255661}
   - component: {fileID: 2390120341563584649}
+  - component: {fileID: 3687050000329476796}
   - component: {fileID: 753619028171810574}
   - component: {fileID: 2813729230187679630}
   - component: {fileID: 5932073155350226404}
@@ -785,6 +804,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 0.7
+--- !u!114 &3687050000329476796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7155939898059640999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3a68a4c8cb304f4380cce25009de281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _selectable: {fileID: 0}
+  _onSelectSound: {fileID: 0}
+  _onSubmitSound: {fileID: 11400000, guid: 7b8ab97ba699abb40aa1cd504ed6b65b, type: 2}
+  _randomFX: 1
+  _FXIndex: 0
 --- !u!114 &753619028171810574
 MonoBehaviour:
   m_ObjectHideFlags: 0

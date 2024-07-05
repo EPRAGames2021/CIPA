@@ -1,3 +1,4 @@
+using EPRA.Utilities;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -9,8 +10,9 @@ namespace CIPA
         [SerializeField] private Player _player;
 
         [SerializeField] private Animator _animator;
-        [SerializeField] private ParticleSystem _particleSystem;
         [SerializeField] private MovementSystem _movementSystem;
+        [SerializeField] private ParticleSystem _particleSystem;
+        [SerializeField] private AudioClipCollection _audioClipCollection;
 
         [SerializeField] private bool _wearingEquipment;
 
@@ -55,6 +57,8 @@ namespace CIPA
             if (_wearingEquipment)
             {
                 _particleSystem.Play();
+                AudioManager.Instance.PlayRandomSFX(_audioClipCollection);
+
                 _animator.SetTrigger("Spin");
                 _movementSystem.StandStill();
                 _movementSystem.TemporarilyDisableMovement(4);

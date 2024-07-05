@@ -281,6 +281,7 @@ GameObject:
   - component: {fileID: 9107436415521505287}
   - component: {fileID: 4639390894292083325}
   - component: {fileID: 5378952256450169919}
+  - component: {fileID: 180939720639671396}
   - component: {fileID: 6819972717348248942}
   m_Layer: 5
   m_Name: Settings Button
@@ -347,6 +348,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &180939720639671396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4784369173788370838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3a68a4c8cb304f4380cce25009de281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _selectable: {fileID: 6819972717348248942}
+  _onSelectSound: {fileID: 0}
+  _onSubmitSound: {fileID: 11400000, guid: 7b8ab97ba699abb40aa1cd504ed6b65b, type: 2}
+  _randomFX: 1
+  _FXIndex: 0
 --- !u!114 &6819972717348248942
 MonoBehaviour:
   m_ObjectHideFlags: 0

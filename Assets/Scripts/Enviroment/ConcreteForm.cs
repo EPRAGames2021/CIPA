@@ -54,7 +54,7 @@ public class ConcreteForm : MonoBehaviour
 
     private void PlaySound()
     {
-        if (_shouldPlayAnimation && !_audioSource.isPlaying) AudioManager.Instance.PlayRandomSFX(_audioSource, _clipSFX);
+        if (_shouldPlayAnimation && !_audioSource.isPlaying) AudioManager.Instance.PlayRandomSFX(_clipSFX, _audioSource);
         if (!_shouldPlayAnimation && _audioSource.isPlaying) _audioSource.Stop();
     }
 }
