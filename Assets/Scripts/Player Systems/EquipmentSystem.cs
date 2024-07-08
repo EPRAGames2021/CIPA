@@ -37,7 +37,6 @@ namespace CIPA
 
         private void Init()
         {
-            //EquipPlayer(false);
             foreach (EquipmentHandler equipmentHandler in _equipmentHandlers)
             {
                 equipmentHandler.Equip(false);

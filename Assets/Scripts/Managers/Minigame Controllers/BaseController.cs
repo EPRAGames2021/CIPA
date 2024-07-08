@@ -72,6 +72,7 @@ namespace CIPA
         protected virtual void EndMinigame()
         {
             _minigameUI.SetActive(false);
+            _virtualCamera.gameObject.SetActive(false);
 
             CanvasManager.Instance.EnableVirtualJoystick(false);
             CanvasManager.Instance.EnableHUD(false);

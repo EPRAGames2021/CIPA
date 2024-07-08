@@ -84,6 +84,16 @@ namespace CIPA
             //Destroy(gameObject, 2f);
         }
 
+        public void Win()
+        {
+            _movementSystem.StandStill();
+            _movementSystem.CanMove = false;
+
+            ChangeState(CharacterState.Dancing);
+
+            if (_animator != null) _animator.SetTrigger("Win");
+        }
+
         public void Refresh()
         {
             ChangeState(CharacterState.Roaming);
