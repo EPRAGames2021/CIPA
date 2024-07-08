@@ -60,6 +60,8 @@ namespace CIPA
 
         private void Init()
         {
+            Debug.Log($"Is this the final day? : {_jobSectorSO.IsFinalDay}");
+
             RewardAndPenaltyManager.Instance.ResetScore();
 
             _arrivedAtMinigameLocation = false;
@@ -137,8 +139,6 @@ namespace CIPA
             Vibrator.Vibrate(100);
             AudioManager.Instance.PlayRandomSFX(_victorySFX);
 
-            _jobSectorSO.FinishDay();
-
             CustomGameEvents.InvokeOnMinigameEnded();
 
             StartCoroutine(OpenMenusDelay());
@@ -157,6 +157,8 @@ namespace CIPA
             yield return new WaitForSeconds(1.5f);
 
             CanvasManager.Instance.OpenMenu(MenuType.DayScoreMenu);
+
+            _jobSectorSO.FinishDay();
         }
 
         private void MinigameFailed()
