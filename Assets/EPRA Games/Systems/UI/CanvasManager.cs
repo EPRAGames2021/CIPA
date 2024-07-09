@@ -225,7 +225,7 @@ namespace EPRA.Utilities
             {
                 CloseCurrentMenu();
             }
-            else
+            else if (_currentMenu == null)
             {
                 OpenMenu(MenuType.SettingsMenu);
             }
