@@ -64,7 +64,7 @@ namespace EPRA.Utilities
                 }
                 else
                 {
-                    Debug.LogError(System.String.Format("Could not resolve all Firebase dependencies: {0}", dependencyStatus));
+                    //Debug.LogError(System.String.Format("Could not resolve all Firebase dependencies: {0}", dependencyStatus));
 
                     _isConnected = false;
                 }
@@ -158,7 +158,7 @@ namespace EPRA.Utilities
 
         public static async Task<bool> GetCompanyExists(string company)
         {
-            Debug.Log("Does " + company + " exist? " + await CheckIfFieldExists("Companies" + "/" + company));
+            //Debug.Log("Does " + company + " exist? " + await CheckIfFieldExists("Companies" + "/" + company));
 
             return await CheckIfFieldExists("Companies" + "/" + company);
         }
@@ -167,7 +167,7 @@ namespace EPRA.Utilities
         {
             if (!await CheckIfFieldExists("Companies" + "/" + company + "/" + "AdminCreated"))
             {
-                Debug.Log("Admin field for " + company + " does not exist. Creating it and setting it to false.");
+                //Debug.Log("Admin field for " + company + " does not exist. Creating it and setting it to false.");
 
                 await SetAdminCreated(company, false);
 
@@ -175,7 +175,7 @@ namespace EPRA.Utilities
             }
             else
             {
-                Debug.Log("Has " + company + " admin account been created? " + await GetValueOfField<bool>("Companies" + "/" + company + "/" + "AdminCreated"));
+                //Debug.Log("Has " + company + " admin account been created? " + await GetValueOfField<bool>("Companies" + "/" + company + "/" + "AdminCreated"));
 
                 return await GetValueOfField<bool>("Companies" + "/" + company + "/" + "AdminCreated");
             }
@@ -187,7 +187,7 @@ namespace EPRA.Utilities
             {
                 if (!await CheckIfFieldExists("Companies" + "/" + id + "/" + "AdminCreated"))
                 {
-                    Debug.Log("Password field for " + id + " does not exist. Creating it and setting it to an empty string.");
+                    //Debug.Log("Password field for " + id + " does not exist. Creating it and setting it to an empty string.");
 
                     await SetPassword(id, string.Empty);
 
@@ -195,7 +195,7 @@ namespace EPRA.Utilities
                 }
                 else
                 {
-                    Debug.Log("Is password of " + id + " correct? " + await GetValueOfField<string>("Companies" + "/" + id + "/" + "Password") == password);
+                    //Debug.Log("Is password of " + id + " correct? " + await GetValueOfField<string>("Companies" + "/" + id + "/" + "Password") == password);
 
                     return await GetValueOfField<string>("Companies" + "/" + id + "/" + "Password") == password;
                 }
@@ -204,7 +204,7 @@ namespace EPRA.Utilities
             {
                 if (!await CheckIfFieldExists("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id))
                 {
-                    Debug.Log("Password field for " + id + " does not exist. Creating it and setting it to an empty string.");
+                    //Debug.Log("Password field for " + id + " does not exist. Creating it and setting it to an empty string.");
 
                     await SetPassword(id, string.Empty);
 
@@ -212,7 +212,7 @@ namespace EPRA.Utilities
                 }
                 else
                 {
-                    Debug.Log("Is password of " + id + " correct? " + await GetValueOfField<string>("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id + "/" + "Password") == password);
+                    //Debug.Log("Is password of " + id + " correct? " + await GetValueOfField<string>("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id + "/" + "Password") == password);
 
                     return await GetValueOfField<string>("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id + "/" + "Password") == password;
                 }
@@ -223,7 +223,7 @@ namespace EPRA.Utilities
         {
             if (await GetEmployeeCompany(id) == null)
             {
-                Debug.Log("Company not valid");
+                //Debug.Log("Company not valid");
                 return false;
             }
             else
@@ -256,20 +256,20 @@ namespace EPRA.Utilities
             {
                 if (await SetAdminCreated(company, true))
                 {
-                    Debug.Log("Success. Admin account created for company " + company);
+                    //Debug.Log("Success. Admin account created for company " + company);
 
                     return true;
                 }
                 else 
                 {
-                    Debug.Log("Something went wrong. Couldn't change the status of admin account created to true");
+                    //Debug.Log("Something went wrong. Couldn't change the status of admin account created to true");
 
                     return false;
                 }
             }
             else
             {
-                Debug.Log("Something went wrong. Couldn't set password");
+                //Debug.Log("Something went wrong. Couldn't set password");
 
                 return false;
             }
@@ -317,7 +317,7 @@ namespace EPRA.Utilities
                 }
                 else
                 {
-                    Debug.LogWarning("No companies found in the database.");
+                    //Debug.LogWarning("No companies found in the database.");
                 }
             }
             catch (Exception ex)
@@ -341,7 +341,7 @@ namespace EPRA.Utilities
 
                 if (employeePrefix == parsedCompanyName)
                 {
-                    Debug.Log("Employee " + id + " belongs to company " + company);
+                    //Debug.Log("Employee " + id + " belongs to company " + company);
 
                     Instance._companyCode = company;
 
@@ -355,7 +355,7 @@ namespace EPRA.Utilities
 
         public static async Task<bool> GetIsEmployeeFirstLogin(string id)
         {
-            Debug.Log(await GetValueOfField<string>("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id));
+            //Debug.Log(await GetValueOfField<string>("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id));
             return (await GetValueOfField<string>("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id) == null ||
                 await GetValueOfField<string>("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id) == "");
         }
@@ -371,7 +371,7 @@ namespace EPRA.Utilities
             //14 CNPJ            //3 letters            
             string pattern = @"^\d{14}[A-Za-z]{3}";
 
-            Debug.Log("Is " + code + " a company valid id? " + Regex.IsMatch(code, pattern));
+            //Debug.Log("Is " + code + " a company valid id? " + Regex.IsMatch(code, pattern));
 
             return Regex.IsMatch(code, pattern);
         }
@@ -394,13 +394,13 @@ namespace EPRA.Utilities
 
             valid = true;
 
-            Debug.Log("Is " + code + " an employee valid id? " + valid);
+            //Debug.Log("Is " + code + " an employee valid id? " + valid);
             return valid;
         }
 
         public static string GetCompanyPrefix()
         {
-            Debug.Log(GetPrefixInternal(Instance._companyCode));
+            //Debug.Log(GetPrefixInternal(Instance._companyCode));
             return GetPrefixInternal(Instance._companyCode);
         }
 
@@ -423,7 +423,7 @@ namespace EPRA.Utilities
             //at least 1 letter, 1 number, 1 special character, 8 characters long at least and no whitespaces
             string pattern = @"^(?=.*[a-zA-Z])(?=.*\d)(?=.*[^a-zA-Z\d])(?!.*\s).{8,}$";
 
-            Debug.Log("Is " + password + " a valid password? " + Regex.IsMatch(password, pattern));
+            //Debug.Log("Is " + password + " a valid password? " + Regex.IsMatch(password, pattern));
 
             return Regex.IsMatch(password, pattern);
         }
@@ -432,13 +432,13 @@ namespace EPRA.Utilities
         {
             if (!GetIsValidPassword(password) || !GetIsValidPassword(confirmPassword))
             {
-                Debug.Log("Password is NOT valid");
+                //Debug.Log("Password is NOT valid");
 
                 return false;
             }
             else if (password != confirmPassword)
             {
-                Debug.Log("Passwords do NOT match");
+                //Debug.Log("Passwords do NOT match");
 
                 return false;
             }

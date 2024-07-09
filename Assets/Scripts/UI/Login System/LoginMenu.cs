@@ -223,7 +223,7 @@ namespace EPRA.Utilities
         {
             simpleTranslate.SetKey(feedback);
 
-            Debug.Log(simpleTranslate.Text);
+            //Debug.Log(simpleTranslate.Text);
         }
 
         private void GoToMainMenu()
