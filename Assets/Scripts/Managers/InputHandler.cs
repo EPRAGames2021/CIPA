@@ -105,7 +105,7 @@ namespace CIPA
 
         private void OpenSettings(InputAction.CallbackContext context)
         {
-            if (!GameManager.Instance.State.Equals(GameState.GameState)) return;
+            if (!GameManager.Instance.State.Equals(GameState.GameState) || JobAreaManager.Instance.ArrivedAtMinigameLocation) return;
 
             CanvasManager.Instance.SwitchSettings();
         }

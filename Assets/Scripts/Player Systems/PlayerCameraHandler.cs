@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
@@ -11,7 +12,7 @@ namespace CIPA
         [SerializeField] private EquipmentSystem _equipmentSystem;
         [SerializeField] private CinemachineVirtualCamera _playerVirtualCamera;
 
-        [SerializeField] private CinemachineVirtualCamera _PPEVirtualCamera;
+        [SerializeField] private List<CinemachineVirtualCamera> _PPEvirtualCameras;
 
 
         private void Awake()
@@ -90,7 +91,10 @@ namespace CIPA
 
         public void FocusOnPPEBoard(bool focusOnPPEBoard)
         {
-            _PPEVirtualCamera.gameObject.SetActive(focusOnPPEBoard);
+            for (int i = 0; i < _PPEvirtualCameras.Count; i++)
+            {
+                _PPEvirtualCameras[i].Priority = focusOnPPEBoard ? 11 : -1;
+            }
         }
     }
 }

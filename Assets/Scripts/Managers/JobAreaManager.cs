@@ -1,7 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using EPRA.Utilities;
-using System.Collections;
 
 namespace CIPA
 {
@@ -60,8 +60,6 @@ namespace CIPA
 
         private void Init()
         {
-            Debug.Log($"Is this the final day? : {_jobSectorSO.IsFinalDay}");
-
             RewardAndPenaltyManager.Instance.ResetScore();
 
             _arrivedAtMinigameLocation = false;
@@ -153,9 +151,6 @@ namespace CIPA
             yield return new WaitForSeconds(1.5f);
 
             CanvasManager.Instance.OpenMenu(MenuType.VictoryMenu);
-
-            yield return new WaitForSeconds(1.5f);
-
             CanvasManager.Instance.OpenMenu(MenuType.DayScoreMenu);
 
             _jobSectorSO.FinishDay();
