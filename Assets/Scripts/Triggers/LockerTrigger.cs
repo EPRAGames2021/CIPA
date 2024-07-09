@@ -8,7 +8,7 @@ namespace CIPA
     {
         [SerializeField] private PlayerDetector _playerDetector;
 
-        [SerializeField] private Player _player;
+        private Player _player;
 
         private void Start()
         {

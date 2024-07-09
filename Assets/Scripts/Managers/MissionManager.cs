@@ -7,8 +7,6 @@ namespace CIPA
     {
         public static MissionManager Instance;
 
-        [SerializeField] private JobSectorAreaSO _jobSectorAreaSO;
-
         [SerializeField] private int _currentMissionIndex;
 
         public int CurrentMissionIndex => _currentMissionIndex;
@@ -41,8 +39,6 @@ namespace CIPA
 
         private void Init()
         {
-            _jobSectorAreaSO = JobAreaManager.Instance.JobSectorAreaSO;
-
             _currentMissionIndex = 0;
 
             OnMissionChanged?.Invoke(_currentMissionIndex);
