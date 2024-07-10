@@ -24,6 +24,7 @@ namespace CIPA
 
         [SerializeField] private GameObject _box;
         [SerializeField] private GameObject _handcart;
+        [SerializeField] private CarriableObject _carriableObject;
 
         private Coroutine _patrolCoroutine;
 
@@ -67,6 +68,20 @@ namespace CIPA
             _patrolCoroutine = null;
         }
 
+
+        public void UpdateState(CharacterState characterState)
+        {
+            if (characterState == _characterState) return;
+
+            _characterState = characterState;
+
+            if (_characterState == CharacterState.Dying)
+            {
+                Fall();
+            }
+        }
+
+
         private void Move()
         {
             _animator.SetBool("IsWalking", _characterState == CharacterState.Roaming);
@@ -80,10 +95,7 @@ namespace CIPA
 
             if (_distanceToTarget < 0.5f)
             {
-                if (_patrolCoroutine == null)
-                {
-                    _patrolCoroutine = StartCoroutine(RestBeforePatrollingAgain(_patrolSystem.Delay));
-                }
+                _patrolCoroutine ??= StartCoroutine(RestBeforePatrollingAgain(_patrolSystem.Delay));
             }
         }
 
@@ -116,6 +128,21 @@ namespace CIPA
             if (EditorApplication.isPlaying) _animator.SetBool("IsCarrying", _carryingBox || _pushingHandCart);
 #endif
 
+        }
+
+        private void Fall()
+        {
+            _animator.SetBool("IsCarrying", false);
+            _animator.SetBool("IsTalking0", false);
+            _animator.SetBool("IsTalking1", false);
+
+            _animator.SetTrigger("BumpedTrigger");
+
+            if (_carriableObject != null)
+            {
+                _carriableObject.Fall();
+                _carriableObject.transform.SetParent(transform.parent);
+            }
         }
     }
 }

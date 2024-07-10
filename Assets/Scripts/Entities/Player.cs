@@ -111,5 +111,6 @@ namespace CIPA
         Dying = 1,
         Dancing = 2,
         Talking = 3,
+        Carrying = 4,
     }
 }

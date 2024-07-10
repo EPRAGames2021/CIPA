@@ -36,6 +36,13 @@ namespace CIPA
             {
                 RewardAndPenaltyManager.Instance.PlayerHasBumpedIntoObject();
             }
+
+            bumpableObject.TryGetComponent(out NPC npc);
+
+            if (npc != null)
+            {
+                npc.UpdateState(CharacterState.Dying);
+            }
         }
     }
 }

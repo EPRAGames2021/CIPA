@@ -11,6 +11,7 @@ namespace CIPA
 
         [Header("Dev area")]
         [SerializeField] private Player _player;
+        [SerializeField] private Animator _animator;
 
         [SerializeField] private TextMeshProUGUI _missionLineReminder;
         [SerializeField] private GameObject _speechBubble;
@@ -35,6 +36,12 @@ namespace CIPA
         private void LateUpdate()
         {
             _canvas.transform.LookAt(Camera.main.transform.position);
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, _distanceToTriggerSpeech);
         }
 
 
@@ -74,11 +81,9 @@ namespace CIPA
             }
         }
 
-
-        private void OnDrawGizmos()
+        public void Wave()
         {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(transform.position, _distanceToTriggerSpeech);
+            _animator.SetTrigger("WavingTrigger");
         }
     }
 }
