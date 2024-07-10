@@ -60,21 +60,19 @@ namespace CIPA
 
         private void Init()
         {
-            RewardAndPenaltyManager.Instance.ResetScore();
-
             _arrivedAtMinigameLocation = false;
 
+            RewardAndPenaltyManager.Instance.ResetScore();
             GameManager.Instance.UpdateGameState(GameState.GameState);
             CanvasManager.Instance.GameScreen.SetDay(_jobSectorSO.Day);
-
-            CustomGameEvents.OnPlayerArrivedAtMinigameLocation += InitiateMinigameProcess;
+            InputHandler.Instance.SetMovementSystem(_player.MovementSystem);
 
             for (int i = 0; i < _minigameContextObjects.Count; i++)
             {
                 _minigameContextObjects[i].SetActive(i == _jobSectorSO.Day);
             }
 
-            InputHandler.Instance.SetMovementSystem(_player.MovementSystem);
+            CustomGameEvents.OnPlayerArrivedAtMinigameLocation += PreInitiateMinigame;
             
             _player.OnDied += PlayerDied;
             _player.EquipmentSystem.OnEquipped += EquipPlayer;
@@ -82,10 +80,10 @@ namespace CIPA
 
         private void Finish()
         {
-            CustomGameEvents.OnPlayerArrivedAtMinigameLocation -= InitiateMinigameProcess;
+            CustomGameEvents.OnPlayerArrivedAtMinigameLocation -= PreInitiateMinigame;
 
-            if (_player != null) _player.OnDied -= PlayerDied;
-            if (_player != null) _player.EquipmentSystem.OnEquipped -= EquipPlayer;
+            _player.OnDied -= PlayerDied;
+            _player.EquipmentSystem.OnEquipped -= EquipPlayer;
         }
 
 
@@ -97,7 +95,7 @@ namespace CIPA
             }
         }
 
-        private void InitiateMinigameProcess()
+        private void PreInitiateMinigame()
         {
             _arrivedAtMinigameLocation = true;
 
@@ -118,6 +116,7 @@ namespace CIPA
 
         private void InitiateMinigame()
         {
+            CanvasManager.Instance.CloseAllMenus();
             GameManager.Instance.UpdateGameState(GameState.MiniGameState);
 
             _player.HealthSystem.Invincible = true;
