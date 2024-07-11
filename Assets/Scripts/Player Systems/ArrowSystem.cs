@@ -29,9 +29,10 @@ namespace CIPA
             CheckDistance();
         }
 
-        private void OnDestroy()
+        private void OnDrawGizmosSelected()
         {
-            Finish();
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, _toleranceDistance);
         }
 
 
@@ -40,14 +41,6 @@ namespace CIPA
             SetEnabled(false);
 
             ResetArrow();
-
-            CheckArrow(MissionManager.Instance.CurrentMissionIndex);
-            MissionManager.OnMissionChanged += CheckArrow;
-        }
-
-        private void Finish()
-        {
-            MissionManager.OnMissionChanged -= CheckArrow;
         }
 
 
@@ -83,13 +76,6 @@ namespace CIPA
                 _index++;
                 _target = _targets[_index];
             }
-        }
-
-        private void CheckArrow(int missionIndex)
-        {
-            int day = JobAreaManager.Instance.JobSectorAreaSO.Day;
-
-            SetEnabled(missionIndex > 0);
         }
 
 

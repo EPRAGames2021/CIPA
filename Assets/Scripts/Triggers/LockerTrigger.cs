@@ -65,6 +65,7 @@ namespace CIPA
 
                 List<EquipmentSO> equipmentSOList = JobAreaManager.Instance.JobSectorAreaSO.CurrentJob.RequiredEquipmentSO;
                 _player.EquipmentSystem.EquipPlayer(equipmentSOList, true);
+                _player.ArrowSystem.SetEnabled(true);
 
                 _playerDetector.gameObject.SetActive(false);
 
