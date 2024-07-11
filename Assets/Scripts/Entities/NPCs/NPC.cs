@@ -33,8 +33,6 @@ namespace CIPA
         {
             if (_patrolSystem == null) _patrolSystem = GetComponent<PatrolSystem>();
             if (_animator == null) _animator = GetComponentInChildren<Animator>();
-
-            CheckCarrying();
         }
 
         private void Start()
@@ -124,10 +122,7 @@ namespace CIPA
             _box.SetActive(_carryingBox);
             _handcart.SetActive(_pushingHandCart);
 
-#if UNITY_EDITOR
-            if (EditorApplication.isPlaying) _animator.SetBool("IsCarrying", _carryingBox || _pushingHandCart);
-#endif
-
+            _animator.SetBool("IsCarrying", _carriableObject != null);
         }
 
         private void Fall()
