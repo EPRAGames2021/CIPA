@@ -1,7 +1,7 @@
+using System.Collections;
 using UnityEngine;
 using Cinemachine;
 using EPRA.Utilities;
-using System.Collections;
 
 namespace CIPA
 {

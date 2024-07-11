@@ -57,6 +57,8 @@ namespace CIPA
             if (equip)
             {
                 CanvasManager.Instance.CloseMenu(MenuType.PPESelectionMenu);
+                CanvasManager.Instance.EnableVirtualJoystick(true);
+                CanvasManager.Instance.EnableHUD(true);
 
                 MissionManager.Instance.GoToNextMission();
                 PlayerCameraHandler.Instance.FocusOnPPEBoard(false);
@@ -67,17 +69,15 @@ namespace CIPA
                 _playerDetector.gameObject.SetActive(false);
 
                 CustomGameEvents.InvokeOnPlayerWorePPEs();
+                Vibrator.Vibrate(100);
             }
             else
             {
-                CanvasManager.Instance.SwitchMenu(MenuType.GameOverMenu);
+                CanvasManager.Instance.CloseMenu(MenuType.PPESelectionMenu);
+                JobAreaManager.Instance.FinishMinigame(false);
             }
 
-            CanvasManager.Instance.EnableVirtualJoystick(true);
-            CanvasManager.Instance.EnableHUD(true);
-
             PPESelectionMenu.OnSelectionIsCorrect -= EquipPlayer;
-            Vibrator.Vibrate(100);
         }
     }
 }
