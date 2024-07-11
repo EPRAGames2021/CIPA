@@ -39,7 +39,7 @@ namespace CIPA
 
             bumpableObject.TryGetComponent(out NPC npc);
 
-            if (npc != null)
+            if (npc != null && !JobAreaManager.Instance.ArrivedAtMinigameLocation)
             {
                 npc.UpdateState(CharacterState.Dying);
             }
