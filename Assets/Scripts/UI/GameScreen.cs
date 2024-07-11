@@ -20,6 +20,7 @@ namespace EPRA.Utilities
 
         private int _score;
         private int _day;
+        private JobSectorAreaSO _jobSectorAreaSO;
 
 
         private void Start()
@@ -76,7 +77,7 @@ namespace EPRA.Utilities
         private void AdaptToLanguage(SystemLanguage systemLanguage)
         {
             UpdateDayScore(_score);
-            SetDay(_day);
+            SetDay(_jobSectorAreaSO);
 
             if (MissionManager.Instance != null)
             {
@@ -97,11 +98,12 @@ namespace EPRA.Utilities
         }
 
 
-        public void SetDay(int day)
+        public void SetDay(JobSectorAreaSO jobSectorAreaSO)
         {
-            _day = day;
+            _jobSectorAreaSO = jobSectorAreaSO;
+            _day = _jobSectorAreaSO.Day;
 
-            _dayText.text = LanguageManager.GetTranslation("gameDay", _day + 1);
+            _dayText.text = LanguageManager.GetTranslation("gameDay", _day + 1) + ": " + LanguageManager.GetTranslation(_jobSectorAreaSO.CurrentJob.KeyName);
         }
     }
 }
