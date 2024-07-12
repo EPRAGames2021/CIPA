@@ -10,6 +10,7 @@ namespace CIPA
         public static PlayerCameraHandler Instance;
 
         [SerializeField] private EquipmentSystem _equipmentSystem;
+
         [SerializeField] private CinemachineVirtualCamera _playerVirtualCamera;
 
         [SerializeField] private List<CinemachineVirtualCamera> _PPEvirtualCameras;
@@ -95,6 +96,11 @@ namespace CIPA
             {
                 _PPEvirtualCameras[i].Priority = focusOnPPEBoard ? 11 : -1;
             }
+        }
+
+        public void ZoomOnSign(bool zoomInOnSign)
+        {
+            _playerVirtualCamera.m_Lens.FieldOfView = zoomInOnSign ? 45 : 60;
         }
     }
 }

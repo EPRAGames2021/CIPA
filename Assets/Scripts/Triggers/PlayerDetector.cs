@@ -9,6 +9,7 @@ namespace CIPA
         [SerializeField] private bool _canBeTriggeredInfiniteTimes;
 
         public event System.Action<Player> OnPlayerDetected;
+        public event System.Action<Player> OnPlayerLeft;
 
         private void OnTriggerEnter(Collider other)
         {
@@ -17,6 +18,21 @@ namespace CIPA
                 Player player = other.GetComponent<Player>();
 
                 OnPlayerDetected?.Invoke(player);
+
+                if (!_canBeTriggeredInfiniteTimes)
+                {
+                    _trigerred = true;
+                }
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.GetComponent<Player>() != null && !_trigerred)
+            {
+                Player player = other.GetComponent<Player>();
+
+                OnPlayerLeft?.Invoke(player);
 
                 if (!_canBeTriggeredInfiniteTimes)
                 {

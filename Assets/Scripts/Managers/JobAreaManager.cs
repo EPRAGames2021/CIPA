@@ -64,6 +64,7 @@ namespace CIPA
 
             RewardAndPenaltyManager.Instance.ResetScore();
             GameManager.Instance.UpdateGameState(GameState.GameState);
+            //CanvasManager.Instance.GameScreen.SetDay(_jobSectorSO.Day);
             CanvasManager.Instance.GameScreen.SetDay(_jobSectorSO);
             InputHandler.Instance.SetMovementSystem(_player.MovementSystem);
 

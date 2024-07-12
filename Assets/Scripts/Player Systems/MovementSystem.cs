@@ -14,6 +14,9 @@ namespace CIPA
         [SerializeField] private float _moveSpeed;
         [SerializeField] private float _turnSpeed;
 
+        [SerializeField] private float _baseSpeed;
+        [SerializeField] private float _restrictedSpeed;
+
         [Header("Optional")]
         [Tooltip("Useful to orientate movement relative to camera rather than world")]
         [SerializeField] private Transform _cameraTransform;
@@ -56,6 +59,8 @@ namespace CIPA
         private void Init()
         {
             _canMove = true;
+
+            RestrictMovement(false);
         }
 
 
@@ -84,8 +89,10 @@ namespace CIPA
 
             if (_animator == null) return;
 
-            _animator.SetBool("IsWalking", inputMagnitude > 0.05f && inputMagnitude < 0.5f && _canMove);
-            _animator.SetBool("IsRunning", inputMagnitude >= 0.5f && _canMove);
+            _animator.SetBool("IsWalking", _rigidbody.velocity.magnitude > 0.05f && _rigidbody.velocity.magnitude < _baseSpeed * 0.65f);
+            _animator.SetBool("IsRunning", _rigidbody.velocity.magnitude >= _baseSpeed * 0.65f);
+            //_animator.SetBool("IsWalking", inputMagnitude > 0.05f && inputMagnitude < 0.5f && _canMove);
+            //_animator.SetBool("IsRunning", inputMagnitude >= 0.5f && _canMove);
         }
 
         private void HandleRotationInput()
@@ -139,6 +146,11 @@ namespace CIPA
         public void Refresh()
         {
             Init();
+        }
+
+        public void RestrictMovement(bool restrict)
+        {
+            _moveSpeed = restrict ? _restrictedSpeed : _baseSpeed;
         }
     }
 }
