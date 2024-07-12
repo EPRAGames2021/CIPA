@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using EPRA.Utilities;
+using System.Collections;
 
 namespace CIPA
 {
@@ -56,7 +57,13 @@ namespace CIPA
         {
             _player.ArrowSystem.SetEnabled(false);
 
-            _minigameUI.SetActive(true);
+            StartCoroutine(OpenMenuDelay());
+            IEnumerator OpenMenuDelay()
+            {
+                yield return new WaitForSeconds(0.5f);
+                _minigameUI.SetActive(true);
+            }
+
             _virtualCamera.gameObject.SetActive(true);
             _virtualCamera.Priority = 11;
 

@@ -117,6 +117,8 @@ namespace CIPA
 
         private void InitiateMinigame()
         {
+            CanvasManager.Instance.InitiateFadeSequence();
+
             CanvasManager.Instance.CloseAllMenus();
             GameManager.Instance.UpdateGameState(GameState.MiniGameState);
 

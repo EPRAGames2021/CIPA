@@ -1961,7 +1961,6 @@ Transform:
   - {fileID: 4178307619762661528}
   - {fileID: 4495565167033577736}
   - {fileID: 1223390965772765842}
-  - {fileID: 3288812767902555620}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4033,6 +4032,7 @@ Transform:
   - {fileID: 1225599553}
   - {fileID: 1171660753886154430}
   - {fileID: 7453631349205604284}
+  - {fileID: 3288812767902555620}
   m_Father: {fileID: 3031256861783090018}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -25083,15 +25083,19 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 3031256861783090018}
+    m_TransformParent: {fileID: 4757173096854778706}
     m_Modifications:
     - target: {fileID: 4806735120747414208, guid: cc18bc9087f9f2a4d9eddb1a1fb17219, type: 3}
       propertyPath: m_Name
       value: ZoomOnSignTrigger
       objectReference: {fileID: 0}
+    - target: {fileID: 4942596042213697466, guid: cc18bc9087f9f2a4d9eddb1a1fb17219, type: 3}
+      propertyPath: _indicator
+      value: 
+      objectReference: {fileID: 6221564005443900111}
     - target: {fileID: 8343932675837974131, guid: cc18bc9087f9f2a4d9eddb1a1fb17219, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8343932675837974131, guid: cc18bc9087f9f2a4d9eddb1a1fb17219, type: 3}
       propertyPath: m_LocalPosition.x
@@ -27804,6 +27808,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2757273470351843026, guid: 41415a9b82523a54a861814046045752, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2997041863986281883, guid: 41415a9b82523a54a861814046045752, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -27829,6 +27837,11 @@ PrefabInstance:
 --- !u!4 &6105401398091675908 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2643081755943531801, guid: 41415a9b82523a54a861814046045752, type: 3}
+  m_PrefabInstance: {fileID: 8076259128684121117}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6221564005443900111 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2757273470351843026, guid: 41415a9b82523a54a861814046045752, type: 3}
   m_PrefabInstance: {fileID: 8076259128684121117}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8277155378720152113

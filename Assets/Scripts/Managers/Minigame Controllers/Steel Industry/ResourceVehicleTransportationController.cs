@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using EPRA.Utilities;
+using System.Collections;
 
 namespace CIPA
 {
@@ -117,7 +118,12 @@ namespace CIPA
             CanvasManager.Instance.EnableHUD(display);
             CanvasManager.Instance.EnableVirtualJoystick(display);
 
-            _minigameUI.SetActive(display);
+            StartCoroutine(OpenMenuDelay());
+            IEnumerator OpenMenuDelay()
+            {
+                yield return new WaitForSeconds(0.5f);
+                _minigameUI.SetActive(display);
+            }
         }
 
         private void EndMiniGame()

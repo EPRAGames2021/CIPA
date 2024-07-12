@@ -33,7 +33,14 @@ namespace CIPA
 
         private void StartMiniGame()
         {
-            _minigameUI.SetActive(true);
+            //_minigameUI.SetActive(true);
+            StartCoroutine(OpenMenuDelay());
+            IEnumerator OpenMenuDelay()
+            {
+                yield return new WaitForSeconds(0.5f);
+                _minigameUI.SetActive(true);
+            }
+
             _camera.gameObject.SetActive(true);
 
             _plateAndCoilGrid.ResetGrid();

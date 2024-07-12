@@ -1,3 +1,4 @@
+using CIPA;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -18,6 +19,7 @@ namespace EPRA.Utilities
 
         [SerializeField] private GameScreen _gameScreen;
         [SerializeField] private LoadingScreen _loadingScreen;
+        [SerializeField] private FadeScreen _fadeScreen;
 
 
         public FloatingJoystick FloatingJoystick => _floatingJoystick;
@@ -229,6 +231,11 @@ namespace EPRA.Utilities
             {
                 OpenMenu(MenuType.SettingsMenu);
             }
+        }
+
+        public void InitiateFadeSequence()
+        {
+            _fadeScreen.InitiateFadeSequence();
         }
     }
 

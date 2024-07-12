@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using EPRA.Utilities;
+using System.Collections;
 
 namespace CIPA
 {
@@ -71,7 +72,14 @@ namespace CIPA
 
         private void StartMiniGame()
         {
-            _minigameUI.SetActive(true);
+            //_minigameUI.SetActive(true);
+            StartCoroutine(OpenMenuDelay());
+            IEnumerator OpenMenuDelay()
+            {
+                yield return new WaitForSeconds(0.5f);
+                _minigameUI.SetActive(true);
+            }
+
             _virtualCamera.gameObject.SetActive(true);
 
             _scrapsDisposedCorrectly = 0;
