@@ -95,6 +95,8 @@ GameObject:
   - component: {fileID: 4622933282171528}
   - component: {fileID: 33066975735972344}
   - component: {fileID: 23794424350880542}
+  - component: {fileID: 110692872182122460}
+  - component: {fileID: 367285429664921862}
   m_Layer: 0
   m_Name: Excavator_1A_Wheel_R.R
   m_TagString: Untagged
@@ -167,6 +169,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &110692872182122460
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082198690076336}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300026, guid: 10e9b139a8a114a6cbcbf89db1224a9c, type: 3}
+--- !u!114 &367285429664921862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082198690076336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c246ac461a6c06641bd2fc63b0b4cc1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hasBeenHit: 0
+  _hitIsFatal: 1
+  _collider: {fileID: 110692872182122460}
 --- !u!1 &1115315846620088
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,6 +209,8 @@ GameObject:
   - component: {fileID: 4545155649328862}
   - component: {fileID: 33919300580868138}
   - component: {fileID: 23195458625329236}
+  - component: {fileID: 4663277027517005054}
+  - component: {fileID: 3882101205585253868}
   m_Layer: 0
   m_Name: Excavator_Blade_Pivot_1A
   m_TagString: Untagged
@@ -251,6 +284,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4663277027517005054
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115315846620088}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300028, guid: 10e9b139a8a114a6cbcbf89db1224a9c, type: 3}
+--- !u!114 &3882101205585253868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115315846620088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c246ac461a6c06641bd2fc63b0b4cc1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hasBeenHit: 0
+  _hitIsFatal: 1
+  _collider: {fileID: 4663277027517005054}
 --- !u!1 &1208793843743012
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,6 +324,8 @@ GameObject:
   - component: {fileID: 4954245334430652}
   - component: {fileID: 33657665436761304}
   - component: {fileID: 23065773895867506}
+  - component: {fileID: 8881929082533039923}
+  - component: {fileID: 6407847675292407991}
   m_Layer: 0
   m_Name: Excavator_1A_Wheel_F.L
   m_TagString: Untagged
@@ -334,6 +398,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &8881929082533039923
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1208793843743012}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300022, guid: 10e9b139a8a114a6cbcbf89db1224a9c, type: 3}
+--- !u!114 &6407847675292407991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1208793843743012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c246ac461a6c06641bd2fc63b0b4cc1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hasBeenHit: 0
+  _hitIsFatal: 1
+  _collider: {fileID: 8881929082533039923}
 --- !u!1 &1249416752706714
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,6 +537,7 @@ GameObject:
   - component: {fileID: 33770850385540172}
   - component: {fileID: 23313350373666488}
   - component: {fileID: 64921308912267346}
+  - component: {fileID: 5785616748538525262}
   m_Layer: 0
   m_Name: Excavator_1A_Body
   m_TagString: Untagged
@@ -458,7 +552,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1280354088717226}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -529,12 +623,27 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1280354088717226}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300018, guid: 10e9b139a8a114a6cbcbf89db1224a9c, type: 3}
+--- !u!114 &5785616748538525262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1280354088717226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c246ac461a6c06641bd2fc63b0b4cc1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hasBeenHit: 0
+  _hitIsFatal: 1
+  _collider: {fileID: 64921308912267346}
 --- !u!1 &1351428393932604
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,6 +655,8 @@ GameObject:
   - component: {fileID: 4320808047828418}
   - component: {fileID: 33159800754790002}
   - component: {fileID: 23590512250206120}
+  - component: {fileID: 3939379212503728948}
+  - component: {fileID: 1421763785573606401}
   m_Layer: 0
   m_Name: Excavator_1A_Wheel_R.L
   m_TagString: Untagged
@@ -618,6 +729,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3939379212503728948
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351428393932604}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300024, guid: 10e9b139a8a114a6cbcbf89db1224a9c, type: 3}
+--- !u!114 &1421763785573606401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351428393932604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c246ac461a6c06641bd2fc63b0b4cc1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hasBeenHit: 0
+  _hitIsFatal: 1
+  _collider: {fileID: 3939379212503728948}
 --- !u!1 &1361191702012596
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,6 +769,8 @@ GameObject:
   - component: {fileID: 4375155362924454}
   - component: {fileID: 33156349663092202}
   - component: {fileID: 23858958809074408}
+  - component: {fileID: 7748951495552193996}
+  - component: {fileID: 9157365107424699487}
   m_Layer: 0
   m_Name: Excavator_1A_Wheel_F.R
   m_TagString: Untagged
@@ -701,6 +843,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7748951495552193996
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361191702012596}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300020, guid: 10e9b139a8a114a6cbcbf89db1224a9c, type: 3}
+--- !u!114 &9157365107424699487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361191702012596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c246ac461a6c06641bd2fc63b0b4cc1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hasBeenHit: 0
+  _hitIsFatal: 1
+  _collider: {fileID: 7748951495552193996}
 --- !u!1 &1754411680912602
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,6 +882,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4795094736148586}
   - component: {fileID: 4936203670377189407}
+  - component: {fileID: 7204039944928768136}
+  - component: {fileID: 8150064229846562914}
+  - component: {fileID: 5194556643611912727}
   m_Layer: 0
   m_Name: Excavator_1A
   m_TagString: Untagged
@@ -754,3 +928,151 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!82 &7204039944928768136
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754411680912602}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: ba058bc0783cce5469b3e8b2780e00de, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 4
+  MaxDistance: 20
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.99710464
+      inSlope: -3.1908436
+      outSlope: -3.1908436
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.3620628
+    - serializedVersion: 3
+      time: 0.20334607
+      value: 0.56120706
+      inSlope: -1.1812243
+      outSlope: -1.1812243
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.21039625
+    - serializedVersion: 3
+      time: 0.72248375
+      value: 0.2451697
+      inSlope: -0.72404736
+      outSlope: -0.72404736
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.28064153
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.3533538
+      outSlope: -0.3533538
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.34584546
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &8150064229846562914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754411680912602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fed103fab1286314c9e49f98c9725db9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 4936203670377189407}
+  _audioSource: {fileID: 7204039944928768136}
+  _engineTurningOn: {fileID: 11400000, guid: f35a46764ce39bb4db9dc3d062b29354, type: 2}
+  _turnedOn: 1
+  _moving: 0
+  _speed: 3
+  _patrolSystem: {fileID: 5194556643611912727}
+--- !u!114 &5194556643611912727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754411680912602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8606094db5799e24181162c806503377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _points: []
+  _currentTarget: {fileID: 0}
+  _currentTargetIndex: 0

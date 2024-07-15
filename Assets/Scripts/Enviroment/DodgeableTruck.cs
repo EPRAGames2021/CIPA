@@ -1,70 +1,60 @@
 using UnityEngine;
 using DG.Tweening;
+using EPRA.Utilities;
 
 namespace CIPA
 {
     [RequireComponent(typeof(PatrolSystem))]
+    [RequireComponent(typeof(AudioSource))]
     public class DodgeableTruck : MonoBehaviour
     {
-        [SerializeField] private PlayerDetector _playerDetector;
+        [SerializeField] private Animator _animator;
+        [SerializeField] private AudioSource _audioSource;
 
+        [SerializeField] private AudioClipCollection _engineTurningOn;
+
+        [SerializeField] private bool _turnedOn;
         [SerializeField] private bool _moving;
         [SerializeField, Min(0.1f)] private float _speed;
 
-        [SerializeField] private Animator _animator;
-
         [SerializeField] private PatrolSystem _patrolSystem;
 
-        private void OnValidate()
-        {
-            if (_patrolSystem == null) _patrolSystem = GetComponent<PatrolSystem>();
-        }
 
         private void Start()
         {
             Init();
         }
 
-        private void OnDestroy()
+        private void Update()
         {
-            Finish();
+            HandleAnimation();
         }
 
 
         private void Init()
         {
-            _playerDetector.OnPlayerDetected += HandlePlayerDetection;
-
-            transform.LookAt(_patrolSystem.CurrentTarget);
+            if (_patrolSystem.HasTargets) transform.LookAt(_patrolSystem.CurrentTarget);
         }
 
-        private void Finish()
+        private void HandleAnimation()
         {
-            _playerDetector.OnPlayerDetected -= HandlePlayerDetection;
-        }
-
-
-        private void HandlePlayerDetection(Player player)
-        {
-            InitiateTruckMovement();
+            _animator.SetBool("IsIdle", _turnedOn && !_moving);
+            _animator.SetBool("IsMoving", _turnedOn && _moving);
         }
 
 
-        private void InitiateTruckMovement()
+        public void InitiateTruckMovement()
         {
+            if (!_turnedOn) _turnedOn = true;
+
             _moving = true;
-
-            Move();
-        }
-
-        private void Move()
-        {
-            if (!_moving) return;
 
             float distance = Vector3.Distance(transform.position, _patrolSystem.CurrentTarget.position);
             float time = distance / _speed;
 
             transform.DOMove(_patrolSystem.CurrentTarget.position, time);
+
+            AudioManager.Instance.PlayRandomSFX(_engineTurningOn, _audioSource);
         }
     }
 }

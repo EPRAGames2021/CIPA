@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4682374899732516}
   - component: {fileID: 33362193889169802}
   - component: {fileID: 23642032317893120}
+  - component: {fileID: 7983175153853821567}
+  - component: {fileID: 3290958410451382054}
   m_Layer: 0
   m_Name: Truck_1C_Wheel_R.L
   m_TagString: Untagged
@@ -83,6 +85,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7983175153853821567
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131570447881338}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300004, guid: 04b29ca018110414ebbb5781df0dcadf, type: 3}
+--- !u!114 &3290958410451382054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131570447881338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c246ac461a6c06641bd2fc63b0b4cc1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hasBeenHit: 0
+  _hitIsFatal: 1
+  _collider: {fileID: 7983175153853821567}
 --- !u!1 &1159716166826742
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,6 +125,8 @@ GameObject:
   - component: {fileID: 4534185599763736}
   - component: {fileID: 33701520669912904}
   - component: {fileID: 23423136331662814}
+  - component: {fileID: 757810554547018510}
+  - component: {fileID: 1013815216131485696}
   m_Layer: 0
   m_Name: Truck_1C_Wheel_R.R
   m_TagString: Untagged
@@ -166,6 +199,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &757810554547018510
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159716166826742}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300002, guid: 04b29ca018110414ebbb5781df0dcadf, type: 3}
+--- !u!114 &1013815216131485696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159716166826742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c246ac461a6c06641bd2fc63b0b4cc1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hasBeenHit: 0
+  _hitIsFatal: 1
+  _collider: {fileID: 757810554547018510}
 --- !u!1 &1187925853493530
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,6 +238,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4096193784749992}
   - component: {fileID: 1941355239076547711}
+  - component: {fileID: 6384547750468668571}
+  - component: {fileID: 3764896707841210543}
+  - component: {fileID: 8168818922502329120}
   m_Layer: 0
   m_Name: Concrete Mixer
   m_TagString: Untagged
@@ -221,6 +286,154 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!82 &6384547750468668571
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1187925853493530}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: ba058bc0783cce5469b3e8b2780e00de, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 4
+  MaxDistance: 20
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.99710464
+      inSlope: -3.1908436
+      outSlope: -3.1908436
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.3620628
+    - serializedVersion: 3
+      time: 0.20334607
+      value: 0.56120706
+      inSlope: -1.1812243
+      outSlope: -1.1812243
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.21039625
+    - serializedVersion: 3
+      time: 0.72248375
+      value: 0.2451697
+      inSlope: -0.72404736
+      outSlope: -0.72404736
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.28064153
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.3533538
+      outSlope: -0.3533538
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.34584546
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &3764896707841210543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1187925853493530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fed103fab1286314c9e49f98c9725db9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 1941355239076547711}
+  _audioSource: {fileID: 6384547750468668571}
+  _engineTurningOn: {fileID: 11400000, guid: f35a46764ce39bb4db9dc3d062b29354, type: 2}
+  _turnedOn: 1
+  _moving: 0
+  _speed: 3
+  _patrolSystem: {fileID: 8168818922502329120}
+--- !u!114 &8168818922502329120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1187925853493530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8606094db5799e24181162c806503377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _points: []
+  _currentTarget: {fileID: 0}
+  _currentTargetIndex: 0
 --- !u!1 &1213775674383718
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,6 +445,8 @@ GameObject:
   - component: {fileID: 4772024004661910}
   - component: {fileID: 33681703337435854}
   - component: {fileID: 23710267778301968}
+  - component: {fileID: 4249467414702437330}
+  - component: {fileID: 3695632148933759872}
   m_Layer: 0
   m_Name: Truck_1C_Wheel_F.R
   m_TagString: Untagged
@@ -304,6 +519,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4249467414702437330
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213775674383718}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300006, guid: 04b29ca018110414ebbb5781df0dcadf, type: 3}
+--- !u!114 &3695632148933759872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213775674383718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c246ac461a6c06641bd2fc63b0b4cc1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hasBeenHit: 0
+  _hitIsFatal: 1
+  _collider: {fileID: 4249467414702437330}
 --- !u!1 &1292485253878662
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,6 +559,8 @@ GameObject:
   - component: {fileID: 4227311916683924}
   - component: {fileID: 33355345163544608}
   - component: {fileID: 23835725972804466}
+  - component: {fileID: 3972181642443905095}
+  - component: {fileID: 8832925359582323198}
   m_Layer: 0
   m_Name: Truck_1C_Wheel_F.L
   m_TagString: Untagged
@@ -387,6 +633,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3972181642443905095
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292485253878662}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300008, guid: 04b29ca018110414ebbb5781df0dcadf, type: 3}
+--- !u!114 &8832925359582323198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292485253878662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c246ac461a6c06641bd2fc63b0b4cc1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hasBeenHit: 0
+  _hitIsFatal: 1
+  _collider: {fileID: 3972181642443905095}
 --- !u!1 &1310676012593026
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,6 +773,7 @@ GameObject:
   - component: {fileID: 33410611029494898}
   - component: {fileID: 23311221754628416}
   - component: {fileID: 64893555305492084}
+  - component: {fileID: 3254069242152726016}
   m_Layer: 0
   m_Name: Truck_1C
   m_TagString: Untagged
@@ -583,12 +859,27 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1946491755909850}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 04b29ca018110414ebbb5781df0dcadf, type: 3}
+--- !u!114 &3254069242152726016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946491755909850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c246ac461a6c06641bd2fc63b0b4cc1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hasBeenHit: 0
+  _hitIsFatal: 1
+  _collider: {fileID: 64893555305492084}
 --- !u!1 &1962752836157148
 GameObject:
   m_ObjectHideFlags: 0
