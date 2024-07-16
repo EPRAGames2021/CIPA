@@ -9,7 +9,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: HasBoxes
+    m_ConditionEvent: HasCargo
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: IsMoving
@@ -65,7 +65,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: HasBoxes
+    m_ConditionEvent: HasCargo
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: IsMoving
@@ -93,7 +93,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: HasBoxes
+    m_ConditionEvent: HasCargo
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: IsMoving
@@ -135,7 +135,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: ef8f2672013f6f64aab678203aae44b1, type: 2}
+  m_Motion: {fileID: 7400000, guid: 1e5f9f3414005794ba8b99f1f57fbd88, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -148,7 +148,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: drop up boxes
+  m_Name: drop up cargo
   m_Speed: -1
   m_CycleOffset: 0
   m_Transitions:
@@ -162,7 +162,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: defd0b2ed30545c4e9e1a144ff677d0d, type: 2}
+  m_Motion: {fileID: 7400000, guid: 096dfadc731b7dc46ac2ca1b13a8ed73, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -175,7 +175,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pick up boxes
+  m_Name: pick up cargo
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -189,7 +189,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: defd0b2ed30545c4e9e1a144ff677d0d, type: 2}
+  m_Motion: {fileID: 7400000, guid: 096dfadc731b7dc46ac2ca1b13a8ed73, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -201,10 +201,10 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Forklift
+  m_Name: Truck Resources
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: HasBoxes
+  - m_Name: HasCargo
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -254,7 +254,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Idle with boxes
+  m_Name: Idle with cargo
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -270,7 +270,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: adb9aaf611e0e234792a116470970e9d, type: 2}
+  m_Motion: {fileID: 7400000, guid: f3df05a8d1765f243bb7fc19a7f65574, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -288,7 +288,7 @@ AnimatorStateTransition:
     m_ConditionEvent: IsMoving
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: HasBoxes
+    m_ConditionEvent: HasCargo
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6016302714777797754}
@@ -316,7 +316,7 @@ AnimatorStateTransition:
     m_ConditionEvent: IsMoving
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: HasBoxes
+    m_ConditionEvent: HasCargo
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3724905996827197190}
@@ -339,7 +339,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Move without boxes
+  m_Name: Move without cargo
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -353,7 +353,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 69cc9794d101dd2419e804f3751a8da0, type: 2}
+  m_Motion: {fileID: 7400000, guid: 38ee4717c079b5848bc44a76f477bc4e, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -366,7 +366,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Move with boxes
+  m_Name: Move with cargo
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -380,7 +380,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 5ebc25fe46e470747a65b9e1d3a39766, type: 2}
+  m_Motion: {fileID: 7400000, guid: 8feb38179376f554a987fc4f4479c4ca, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -395,7 +395,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: HasBoxes
+    m_ConditionEvent: HasCargo
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3724905996827197190}
@@ -420,7 +420,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: HasBoxes
+    m_ConditionEvent: HasCargo
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1683667243765596823}
@@ -445,7 +445,7 @@ AnimatorTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: HasBoxes
+    m_ConditionEvent: HasCargo
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1683667243765596823}
@@ -531,7 +531,7 @@ AnimatorStateTransition:
     m_ConditionEvent: IsMoving
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: HasBoxes
+    m_ConditionEvent: HasCargo
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1683667243765596823}

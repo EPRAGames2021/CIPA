@@ -471,7 +471,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4326126598273470772}
-  - component: {fileID: 8162799641816230826}
   - component: {fileID: 6043727659528005683}
   - component: {fileID: 50445706937140411}
   m_Layer: 0
@@ -503,26 +502,6 @@ Transform:
   m_Father: {fileID: 4091410973575928075}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &8162799641816230826
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4324520134930159494}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: cf5d42447d6d16447ad834c86f4d26d1, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &6043727659528005683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -535,7 +514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 416b851a85ed41b47ad8982715d63608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 8162799641816230826}
+  _animator: {fileID: 0}
   _controller: {fileID: 0}
   _dumping: 0
   _audioSource: {fileID: 50445706937140411}
@@ -811,6 +790,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4091410973575928075}
+  - component: {fileID: 8144096913631009255}
   m_Layer: 0
   m_Name: Truck Resources
   m_TagString: Untagged
@@ -834,6 +814,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &8144096913631009255
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4487232399979528833}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 89bcc760931c4024c80d1d2970ef8d4b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &116063012827954264
 PrefabInstance:
   m_ObjectHideFlags: 0
