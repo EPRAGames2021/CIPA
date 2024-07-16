@@ -1,11 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using EPRA.Utilities;
 
 namespace CIPA
 {
-    [RequireComponent(typeof(PatrolSystem))]
     [RequireComponent(typeof(AudioSource))]
+    [RequireComponent(typeof(PatrolSystem))]
     public class DodgeableTruck : MonoBehaviour
     {
         [SerializeField] private Animator _animator;
@@ -19,6 +20,14 @@ namespace CIPA
 
         [SerializeField] private PatrolSystem _patrolSystem;
 
+        [SerializeField] private List<BumpableObject> _contactPoints;
+
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            SetTurnOn(_turnedOn);
+        }
+#endif
 
         private void Start()
         {
@@ -34,6 +43,8 @@ namespace CIPA
         private void Init()
         {
             if (_patrolSystem.HasTargets) transform.LookAt(_patrolSystem.CurrentTarget);
+
+            SetTurnOn(_turnedOn);
         }
 
         private void HandleAnimation()
@@ -45,7 +56,11 @@ namespace CIPA
 
         public void InitiateTruckMovement()
         {
-            if (!_turnedOn) _turnedOn = true;
+            if (!_turnedOn)
+            {
+                //_turnedOn = true;
+                SetTurnOn(true);
+            }
 
             _moving = true;
 
@@ -55,6 +70,16 @@ namespace CIPA
             transform.DOMove(_patrolSystem.CurrentTarget.position, time);
 
             AudioManager.Instance.PlayRandomSFX(_engineTurningOn, _audioSource);
+        }
+
+        public void SetTurnOn(bool turnOn)
+        {
+            _turnedOn = turnOn;
+
+            for (int i = 0; i < _contactPoints.Count; i++)
+            {
+                _contactPoints[i].SetActive(_turnedOn);
+            }
         }
     }
 }

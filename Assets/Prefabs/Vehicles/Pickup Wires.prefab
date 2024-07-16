@@ -10,6 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7496518062487144321}
   - component: {fileID: 2762292048321734221}
+  - component: {fileID: 3240857983253580104}
+  - component: {fileID: 234183161005593724}
+  - component: {fileID: 2230641218366711126}
   m_Layer: 0
   m_Name: Pickup Wires
   m_TagString: Untagged
@@ -53,6 +56,161 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!82 &3240857983253580104
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717653085891840799}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: ba058bc0783cce5469b3e8b2780e00de, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 4
+  MaxDistance: 20
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.99710464
+      inSlope: -3.1908436
+      outSlope: -3.1908436
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.3620628
+    - serializedVersion: 3
+      time: 0.20334607
+      value: 0.56120706
+      inSlope: -1.1812243
+      outSlope: -1.1812243
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.21039625
+    - serializedVersion: 3
+      time: 0.72248375
+      value: 0.2451697
+      inSlope: -0.72404736
+      outSlope: -0.72404736
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.28064153
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.3533538
+      outSlope: -0.3533538
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.34584546
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &234183161005593724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717653085891840799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fed103fab1286314c9e49f98c9725db9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 2762292048321734221}
+  _audioSource: {fileID: 3240857983253580104}
+  _engineTurningOn: {fileID: 11400000, guid: f35a46764ce39bb4db9dc3d062b29354, type: 2}
+  _turnedOn: 0
+  _moving: 0
+  _speed: 2
+  _patrolSystem: {fileID: 2230641218366711126}
+  _contactPoints:
+  - {fileID: 5718937253102729825}
+  - {fileID: 7338876901708960400}
+  - {fileID: 1884921453490342789}
+  - {fileID: 7086725835518852944}
+  - {fileID: 8136241563921220387}
+  - {fileID: 7666355133628197571}
+--- !u!114 &2230641218366711126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717653085891840799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8606094db5799e24181162c806503377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _points: []
+  _currentTarget: {fileID: 0}
+  _currentTargetIndex: 0
 --- !u!1 &5990775498447936416
 GameObject:
   m_ObjectHideFlags: 0
@@ -64,6 +222,8 @@ GameObject:
   - component: {fileID: 5993789501816950350}
   - component: {fileID: 6005396798296008178}
   - component: {fileID: 6013187089873127566}
+  - component: {fileID: 6811996986556547409}
+  - component: {fileID: 8136241563921220387}
   m_Layer: 0
   m_Name: Pick_Up_1A_Wheel_R.L
   m_TagString: Untagged
@@ -136,6 +296,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6811996986556547409
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5990775498447936416}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300008, guid: 8271f31ce10ff4caa969c4ce55b941c1, type: 3}
+--- !u!114 &8136241563921220387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5990775498447936416}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c246ac461a6c06641bd2fc63b0b4cc1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _active: 0
+  _hasBeenHit: 0
+  _hitIsFatal: 1
+  _collider: {fileID: 6811996986556547409}
 --- !u!1 &5990797454850935178
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,6 +337,8 @@ GameObject:
   - component: {fileID: 5994508194663570940}
   - component: {fileID: 6004863936381693628}
   - component: {fileID: 6013852421585165812}
+  - component: {fileID: 5773070863040296044}
+  - component: {fileID: 7086725835518852944}
   m_Layer: 0
   m_Name: Pick_Up_1A_Wheel_F.R
   m_TagString: Untagged
@@ -219,6 +411,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5773070863040296044
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5990797454850935178}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300012, guid: 8271f31ce10ff4caa969c4ce55b941c1, type: 3}
+--- !u!114 &7086725835518852944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5990797454850935178}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c246ac461a6c06641bd2fc63b0b4cc1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _active: 0
+  _hasBeenHit: 0
+  _hitIsFatal: 1
+  _collider: {fileID: 5773070863040296044}
 --- !u!1 &5990981902686488740
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,6 +453,7 @@ GameObject:
   - component: {fileID: 6005289752741087858}
   - component: {fileID: 6013584228702382354}
   - component: {fileID: 6036388498017920284}
+  - component: {fileID: 5718937253102729825}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -332,6 +555,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300004, guid: 8271f31ce10ff4caa969c4ce55b941c1, type: 3}
+--- !u!114 &5718937253102729825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5990981902686488740}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c246ac461a6c06641bd2fc63b0b4cc1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _active: 0
+  _hasBeenHit: 0
+  _hitIsFatal: 1
+  _collider: {fileID: 6036388498017920284}
 --- !u!1 &5991091212609345210
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,6 +582,8 @@ GameObject:
   - component: {fileID: 5994816154939625310}
   - component: {fileID: 6005340114254057352}
   - component: {fileID: 6013625143602092110}
+  - component: {fileID: 9000600765120172074}
+  - component: {fileID: 1884921453490342789}
   m_Layer: 0
   m_Name: Pick_Up_1A_Wheel_F.L
   m_TagString: Untagged
@@ -415,6 +656,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &9000600765120172074
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5991091212609345210}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300014, guid: 8271f31ce10ff4caa969c4ce55b941c1, type: 3}
+--- !u!114 &1884921453490342789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5991091212609345210}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c246ac461a6c06641bd2fc63b0b4cc1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _active: 0
+  _hasBeenHit: 0
+  _hitIsFatal: 1
+  _collider: {fileID: 9000600765120172074}
 --- !u!1 &5991290944624476170
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,6 +697,8 @@ GameObject:
   - component: {fileID: 5994310874061775086}
   - component: {fileID: 6005158249478629318}
   - component: {fileID: 6013652556614818862}
+  - component: {fileID: 5947138186307480386}
+  - component: {fileID: 7666355133628197571}
   m_Layer: 0
   m_Name: Pick_Up_1A_Wheel_R.R
   m_TagString: Untagged
@@ -498,6 +771,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5947138186307480386
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5991290944624476170}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300010, guid: 8271f31ce10ff4caa969c4ce55b941c1, type: 3}
+--- !u!114 &7666355133628197571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5991290944624476170}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c246ac461a6c06641bd2fc63b0b4cc1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _active: 0
+  _hasBeenHit: 0
+  _hitIsFatal: 1
+  _collider: {fileID: 5947138186307480386}
 --- !u!1 &5991609450983879080
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,6 +813,8 @@ GameObject:
   - component: {fileID: 6005062695397148598}
   - component: {fileID: 6013281938127920568}
   - component: {fileID: 6037406420052894674}
+  - component: {fileID: 7852827242862767000}
+  - component: {fileID: 7338876901708960400}
   m_Layer: 0
   m_Name: Pick_Up_1A_Tailgate
   m_TagString: Untagged
@@ -595,6 +900,36 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.3808768, y: 0.7238042, z: 0.30087864}
   m_Center: {x: -0.00000011920929, y: 0.2693468, z: -0.080657065}
+--- !u!64 &7852827242862767000
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5991609450983879080}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300006, guid: 8271f31ce10ff4caa969c4ce55b941c1, type: 3}
+--- !u!114 &7338876901708960400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5991609450983879080}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c246ac461a6c06641bd2fc63b0b4cc1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _active: 0
+  _hasBeenHit: 0
+  _hitIsFatal: 1
+  _collider: {fileID: 6037406420052894674}
 --- !u!1001 &540593509778672267
 PrefabInstance:
   m_ObjectHideFlags: 0

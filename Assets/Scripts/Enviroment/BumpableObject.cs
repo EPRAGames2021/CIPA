@@ -5,8 +5,10 @@ namespace CIPA
     [RequireComponent(typeof(Collider))]
     public class BumpableObject : MonoBehaviour
     {
+        [SerializeField] private bool _active = true;
         [SerializeField] private bool _hasBeenHit;
         [SerializeField] private bool _hitIsFatal;
+
         [SerializeField] private Collider _collider;
 
         public bool HitIsFatal => _hitIsFatal;
@@ -31,7 +33,7 @@ namespace CIPA
 
         private void OnTriggerEnter(Collider other)
         {
-            if (!_hasBeenHit)
+            if (!_hasBeenHit && _active)
             {
                 if (other.GetComponent<Player>() != null)
                 {
@@ -65,6 +67,13 @@ namespace CIPA
             _hasBeenHit = false;
 
             _collider.isTrigger = true;
+        }
+
+        public void SetActive(bool active)
+        {
+            _active = active;
+
+            _collider.isTrigger = _active;
         }
     }
 }

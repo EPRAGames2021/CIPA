@@ -195,6 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c246ac461a6c06641bd2fc63b0b4cc1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _active: 1
   _hasBeenHit: 0
   _hitIsFatal: 1
   _collider: {fileID: 110692872182122460}
@@ -310,6 +311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c246ac461a6c06641bd2fc63b0b4cc1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _active: 1
   _hasBeenHit: 0
   _hitIsFatal: 1
   _collider: {fileID: 4663277027517005054}
@@ -424,6 +426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c246ac461a6c06641bd2fc63b0b4cc1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _active: 1
   _hasBeenHit: 0
   _hitIsFatal: 1
   _collider: {fileID: 8881929082533039923}
@@ -439,6 +442,7 @@ GameObject:
   - component: {fileID: 33647872015711204}
   - component: {fileID: 23130297831912666}
   - component: {fileID: 64930561870162006}
+  - component: {fileID: 1016110418021878370}
   m_Layer: 0
   m_Name: Excavator_Blade_1A
   m_TagString: Untagged
@@ -519,12 +523,28 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1249416752706714}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300032, guid: 10e9b139a8a114a6cbcbf89db1224a9c, type: 3}
+--- !u!114 &1016110418021878370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249416752706714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c246ac461a6c06641bd2fc63b0b4cc1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _active: 1
+  _hasBeenHit: 0
+  _hitIsFatal: 1
+  _collider: {fileID: 64930561870162006}
 --- !u!1 &1280354088717226
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,6 +661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c246ac461a6c06641bd2fc63b0b4cc1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _active: 1
   _hasBeenHit: 0
   _hitIsFatal: 1
   _collider: {fileID: 64921308912267346}
@@ -755,6 +776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c246ac461a6c06641bd2fc63b0b4cc1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _active: 1
   _hasBeenHit: 0
   _hitIsFatal: 1
   _collider: {fileID: 3939379212503728948}
@@ -869,6 +891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c246ac461a6c06641bd2fc63b0b4cc1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _active: 1
   _hasBeenHit: 0
   _hitIsFatal: 1
   _collider: {fileID: 7748951495552193996}
@@ -1059,8 +1082,16 @@ MonoBehaviour:
   _engineTurningOn: {fileID: 11400000, guid: f35a46764ce39bb4db9dc3d062b29354, type: 2}
   _turnedOn: 1
   _moving: 0
-  _speed: 3
+  _speed: 2
   _patrolSystem: {fileID: 5194556643611912727}
+  _contactPoints:
+  - {fileID: 5785616748538525262}
+  - {fileID: 6407847675292407991}
+  - {fileID: 9157365107424699487}
+  - {fileID: 1421763785573606401}
+  - {fileID: 367285429664921862}
+  - {fileID: 3882101205585253868}
+  - {fileID: 1016110418021878370}
 --- !u!114 &5194556643611912727
 MonoBehaviour:
   m_ObjectHideFlags: 0

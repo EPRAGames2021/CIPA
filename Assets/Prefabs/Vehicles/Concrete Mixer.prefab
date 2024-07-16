@@ -111,6 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c246ac461a6c06641bd2fc63b0b4cc1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _active: 1
   _hasBeenHit: 0
   _hitIsFatal: 1
   _collider: {fileID: 7983175153853821567}
@@ -225,6 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c246ac461a6c06641bd2fc63b0b4cc1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _active: 1
   _hasBeenHit: 0
   _hitIsFatal: 1
   _collider: {fileID: 757810554547018510}
@@ -417,8 +419,14 @@ MonoBehaviour:
   _engineTurningOn: {fileID: 11400000, guid: f35a46764ce39bb4db9dc3d062b29354, type: 2}
   _turnedOn: 1
   _moving: 0
-  _speed: 3
+  _speed: 2
   _patrolSystem: {fileID: 8168818922502329120}
+  _contactPoints:
+  - {fileID: 3254069242152726016}
+  - {fileID: 8832925359582323198}
+  - {fileID: 3695632148933759872}
+  - {fileID: 3290958410451382054}
+  - {fileID: 1013815216131485696}
 --- !u!114 &8168818922502329120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -545,6 +553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c246ac461a6c06641bd2fc63b0b4cc1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _active: 1
   _hasBeenHit: 0
   _hitIsFatal: 1
   _collider: {fileID: 4249467414702437330}
@@ -659,6 +668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c246ac461a6c06641bd2fc63b0b4cc1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _active: 1
   _hasBeenHit: 0
   _hitIsFatal: 1
   _collider: {fileID: 3972181642443905095}
@@ -877,6 +887,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c246ac461a6c06641bd2fc63b0b4cc1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _active: 1
   _hasBeenHit: 0
   _hitIsFatal: 1
   _collider: {fileID: 64893555305492084}

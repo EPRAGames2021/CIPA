@@ -44,7 +44,7 @@ namespace CIPA
 
             string key = jobSector + "Day" + _day + "mission" + _mission;
 
-            _currentMission.text = "-" + LanguageManager.GetTranslation(key);
+            _currentMission.text = LanguageManager.GetTranslation(key);
         }
     }
 }
