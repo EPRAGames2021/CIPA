@@ -64,7 +64,6 @@ namespace CIPA
 
             RewardAndPenaltyManager.Instance.ResetScore();
             GameManager.Instance.UpdateGameState(GameState.GameState);
-            //CanvasManager.Instance.GameScreen.SetDay(_jobSectorSO.Day);
             CanvasManager.Instance.GameScreen.SetDay(_jobSectorSO);
             InputHandler.Instance.SetMovementSystem(_player.MovementSystem);
 
@@ -129,15 +128,14 @@ namespace CIPA
 
         private void MinigameSuccessed()
         {
-
             _jobSectorSO.CurrentJob.AddUniqueAction("playerCompletedDay", true);
 
+            CanvasManager.Instance.InitiateFadeSequence();
             RewardAndPenaltyManager.Instance.PlayerHasCompletedJob();
+            AudioManager.Instance.PlayRandomSFX(_victorySFX);
+            Vibrator.Vibrate(100);
 
             _jobSectorSO.SetScoreToDay(_jobSectorSO.Day, _dayScore.Value);
-
-            Vibrator.Vibrate(100);
-            AudioManager.Instance.PlayRandomSFX(_victorySFX);
 
             CustomGameEvents.InvokeOnMinigameEnded();
 
