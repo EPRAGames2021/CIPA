@@ -129,8 +129,6 @@ namespace CIPA
         private void MinigameSuccessed()
         {
             _jobSectorSO.CurrentJob.AddUniqueAction("playerCompletedDay", true);
-
-            CanvasManager.Instance.InitiateFadeSequence();
             RewardAndPenaltyManager.Instance.PlayerHasCompletedJob();
             AudioManager.Instance.PlayRandomSFX(_victorySFX);
             Vibrator.Vibrate(100);
@@ -189,6 +187,8 @@ namespace CIPA
 
         public void FinishMinigame(bool success)
         {
+            CanvasManager.Instance.InitiateFadeSequence();
+
             if (success)
             {
                 MinigameSuccessed();
