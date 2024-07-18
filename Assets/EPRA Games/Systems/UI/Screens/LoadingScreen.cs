@@ -25,6 +25,8 @@ public class LoadingScreen : MonoBehaviour
 
     public bool IsBeingDisplayed => _loadingScreenContainer.activeInHierarchy;
 
+    public static event System.Action OnScreenHasBeenClosed;
+
 
     private void OnEnable()
     {
@@ -51,7 +53,8 @@ public class LoadingScreen : MonoBehaviour
         _slider.value = 0;
 
         _continueButton.gameObject.SetActive(!_autoHide);
-        _continueButton.onClick.AddListener(() => _loadingScreenContainer.SetActive(false));
+        //_continueButton.onClick.AddListener(() => _loadingScreenContainer.SetActive(false));
+        _continueButton.onClick.AddListener(CloseLoadingScreen);
     }
 
     private void Finish()
@@ -59,6 +62,13 @@ public class LoadingScreen : MonoBehaviour
         _continueButton.onClick.RemoveAllListeners();
     }
 
+
+    private void CloseLoadingScreen()
+    {
+        _loadingScreenContainer.SetActive(false);
+
+        OnScreenHasBeenClosed?.Invoke();
+    }
 
     public void SetPercentage(float progress)
     {

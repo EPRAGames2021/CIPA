@@ -199,6 +199,25 @@ namespace CIPA
             }
         }
 
+        public void FinishTutorial()
+        {
+            _jobSectorSO.CurrentJob.AddUniqueAction("playerCompletedDay", true);
+
+            AudioManager.Instance.PlayRandomSFX(_victorySFX);
+            Vibrator.Vibrate(100);
+            _player.Win();
+            StartCoroutine(FinishTutorialDelay());
+
+            IEnumerator FinishTutorialDelay()
+            {
+                yield return new WaitForSeconds(1.5f);
+
+                CanvasManager.Instance.OpenMenu(MenuType.VictoryMenu);
+
+                _jobSectorSO.FinishDay();
+            }
+        }
+
         public void RestartJob()
         {
             if (_arrivedAtMinigameLocation)

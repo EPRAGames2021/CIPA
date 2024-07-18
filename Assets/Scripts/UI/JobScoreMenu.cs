@@ -57,12 +57,10 @@ namespace CIPA
             }
             else
             {
-                for (int i = 0; i < _jobSectorArea.TotalDays; i++)
+                //starts at 1 because 0 is tutorial and shouldn't count towards score
+                for (int i = 1; i < _jobSectorArea.TotalDays; i++)
                 {
-                    //_dayScoreText.text += LanguageManager.GetTranslation("scoreOfTheDayScore", i, _jobSectorArea.Jobs[i].JobName + ": " + _jobSectorArea.Jobs[i].Score + "\n");
-                    //_dayScoreText.text += LanguageManager.GetTranslation("dayJobScore", i, _jobSectorArea.Jobs[i].KeyName, _jobSectorArea.Jobs[i].Score + "\n");
-
-                    _dayScoreText.text += LanguageManager.GetTranslation("gameDay", i + 1) + " | ";
+                    _dayScoreText.text += LanguageManager.GetTranslation("gameDay", i) + " | ";
                     _dayScoreText.text += LanguageManager.GetTranslation(_jobSectorArea.Jobs[i].KeyName) + " | ";
                     _dayScoreText.text += LanguageManager.GetTranslation("gameScore", _jobSectorArea.Jobs[i].Score) + "\n";
                 }

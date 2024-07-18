@@ -103,7 +103,14 @@ namespace EPRA.Utilities
             _jobSectorAreaSO = jobSectorAreaSO;
             _day = _jobSectorAreaSO.Day;
 
-            _dayText.text = LanguageManager.GetTranslation("gameDay", _day + 1) + ": " + LanguageManager.GetTranslation(_jobSectorAreaSO.CurrentJob.KeyName);
+            if (_day == 0)
+            {
+                _dayText.text = "Tutorial";
+            }
+            else
+            {
+                _dayText.text = LanguageManager.GetTranslation("gameDay", _day) + ": " + LanguageManager.GetTranslation(_jobSectorAreaSO.CurrentJob.KeyName);
+            }
         }
     }
 }

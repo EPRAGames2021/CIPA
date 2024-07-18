@@ -8,6 +8,8 @@ namespace CIPA
     {
         [SerializeField] private PlayerDetector _playerDetector;
 
+        [SerializeField] private bool _triggerAutomatically = true;
+
         private Player _player;
 
         private void Start()
@@ -23,16 +25,16 @@ namespace CIPA
 
         private void Init()
         {
-            _playerDetector.OnPlayerDetected += HandlePlayerDetection;
+            if (_triggerAutomatically) _playerDetector.OnPlayerDetected += HandlePlayerDetection;
         }
 
         private void Finish()
         {
-            _playerDetector.OnPlayerDetected -= HandlePlayerDetection;
+            if (_triggerAutomatically) _playerDetector.OnPlayerDetected -= HandlePlayerDetection;
         }
 
 
-        private void HandlePlayerDetection(Player player)
+        public void HandlePlayerDetection(Player player)
         {
             _player = player;
 

@@ -39,7 +39,6 @@ namespace EPRA.Utilities
             _steelIndustry.onClick.RemoveAllListeners();
         }
 
-
         private void GoToConstruction()
         {
             SceneLoader.Instance.LoadLevel(2, LoadMode.Replace);
