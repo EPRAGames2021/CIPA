@@ -2,137 +2,140 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ConcreteMixPanel : MonoBehaviour
+namespace CIPA
 {
-    [Header("Dev area")]
-    [SerializeField] private Slider _mixSlider;
-
-    [SerializeField] private float _averageSpeed;
-    [SerializeField] private int _logsSize;
-    [SerializeField] private List<float> _speedLogs = new List<float>();
-
-    [SerializeField] private float _mixTimeWrongSpeed;
-    [SerializeField] private float _mixTime;
-
-    [SerializeField] private bool _mixFinished;
-
-    [Header("GD area")]
-    [SerializeField] private float _mixMaxTime;
-    [SerializeField] private float _mixMaxTimeWrongSpeed;
-    [SerializeField] private float _idealSpeed;
-    [Range(0, 100), SerializeField] private float _speedTolerancePercent;
-    [SerializeField] private float _mixMinTolerableSpeed;
-    [SerializeField] private float _mixMaxTolerableSpeed;
-
-    [Header("Touch handler")]
-    [SerializeField] private ScreenTouchController _screenTouchController;
-    [SerializeField] private MouseDelta _mouseDelta;
-
-    public float AverageSpeed => _averageSpeed;
-    public bool MixFinished => _mixFinished;
-
-    public event System.Action<bool> OnMixSucceeded;
-
-
-    private void OnValidate()
+    public class ConcreteMixPanel : MonoBehaviour
     {
-        _mixSlider.maxValue = _idealSpeed * 2;
+        [Header("Dev area")]
+        [SerializeField] private Slider _mixSlider;
 
-        _mixMaxTolerableSpeed = _idealSpeed + ((_idealSpeed / 100) * _speedTolerancePercent);
-        _mixMinTolerableSpeed = _idealSpeed - ((_idealSpeed / 100) * _speedTolerancePercent);
-    }
+        [SerializeField] private float _averageSpeed;
+        [SerializeField] private int _logsSize;
+        [SerializeField] private List<float> _speedLogs = new List<float>();
 
-    private void OnEnable()
-    {
-        Init();
-    }
+        [SerializeField] private float _mixTimeWrongSpeed;
+        [SerializeField] private float _mixTime;
 
-    private void Update()
-    {
-        if (_mixFinished) return;
+        [SerializeField] private bool _mixFinished;
 
-        if (_screenTouchController.FirstPress && _screenTouchController.DetectHolding())
+        [Header("GD area")]
+        [SerializeField] private float _mixMaxTime;
+        [SerializeField] private float _mixMaxTimeWrongSpeed;
+        [SerializeField] private float _idealSpeed;
+        [Range(0, 100), SerializeField] private float _speedTolerancePercent;
+        [SerializeField] private float _mixMinTolerableSpeed;
+        [SerializeField] private float _mixMaxTolerableSpeed;
+
+        [Header("Touch handler")]
+        [SerializeField] private ScreenTouchController _screenTouchController;
+        [SerializeField] private MouseDelta _mouseDelta;
+
+        public float AverageSpeed => _averageSpeed;
+        public bool MixFinished => _mixFinished;
+
+        public event System.Action<bool> OnMixSucceeded;
+
+
+        private void OnValidate()
         {
-            CalculateAverageSpeed();
-            Mix();
+            _mixSlider.maxValue = _idealSpeed * 2;
+
+            _mixMaxTolerableSpeed = _idealSpeed + ((_idealSpeed / 100) * _speedTolerancePercent);
+            _mixMinTolerableSpeed = _idealSpeed - ((_idealSpeed / 100) * _speedTolerancePercent);
         }
 
-        CheckForMiniGameCompletion();
-    }
-
-
-    private void Init()
-    {
-        _averageSpeed = 0;
-
-        _speedLogs.Clear();
-        for (int i = 0; i < _logsSize; i++)
+        private void OnEnable()
         {
-            _speedLogs.Add(_idealSpeed);
+            Init();
         }
 
-        _mixFinished = false;
-        _mixTimeWrongSpeed = 0.0f;
-        _mixTime = 0.0f;
-
-        _mixSlider.minValue = 0;
-        _mixSlider.value = _idealSpeed;
-        _mixSlider.maxValue = _idealSpeed * 2;
-    }
-
-    private void CalculateAverageSpeed()
-    {
-        _speedLogs.Add(_mouseDelta.Speed / 1000);
-
-        if (_speedLogs.Count > _logsSize)
+        private void Update()
         {
-            _speedLogs.RemoveAt(0);
+            if (_mixFinished) return;
+
+            if (_screenTouchController.FirstPress && _screenTouchController.DetectHolding())
+            {
+                CalculateAverageSpeed();
+                Mix();
+            }
+
+            CheckForMiniGameCompletion();
         }
 
-        float total = 0;
 
-        foreach (float speed in _speedLogs)
+        private void Init()
         {
-            total += speed;
+            _averageSpeed = 0;
+
+            _speedLogs.Clear();
+            for (int i = 0; i < _logsSize; i++)
+            {
+                _speedLogs.Add(_idealSpeed);
+            }
+
+            _mixFinished = false;
+            _mixTimeWrongSpeed = 0.0f;
+            _mixTime = 0.0f;
+
+            _mixSlider.minValue = 0;
+            _mixSlider.value = _idealSpeed;
+            _mixSlider.maxValue = _idealSpeed * 2;
         }
 
-        _averageSpeed = total / _speedLogs.Count;
-    }
-
-    private void Mix()
-    {
-        bool tolerableSpeed = _averageSpeed > _mixMinTolerableSpeed && _averageSpeed < _mixMaxTolerableSpeed;
-
-        if (tolerableSpeed)
+        private void CalculateAverageSpeed()
         {
-            _mixTime += Time.deltaTime;
+            _speedLogs.Add(_mouseDelta.Speed / 1000);
+
+            if (_speedLogs.Count > _logsSize)
+            {
+                _speedLogs.RemoveAt(0);
+            }
+
+            float total = 0;
+
+            foreach (float speed in _speedLogs)
+            {
+                total += speed;
+            }
+
+            _averageSpeed = total / _speedLogs.Count;
         }
-        else if (!tolerableSpeed && _mouseDelta.Distance > 0)
+
+        private void Mix()
         {
-            _mixTimeWrongSpeed += Time.deltaTime;
+            bool tolerableSpeed = _averageSpeed > _mixMinTolerableSpeed && _averageSpeed < _mixMaxTolerableSpeed;
+
+            if (tolerableSpeed)
+            {
+                _mixTime += Time.deltaTime;
+            }
+            else if (!tolerableSpeed && _mouseDelta.Distance > 0)
+            {
+                _mixTimeWrongSpeed += Time.deltaTime;
+            }
+
+            UpdateMixBar();
         }
 
-        UpdateMixBar();
-    }
-
-    private void CheckForMiniGameCompletion()
-    {
-        if (_mixTime >= _mixMaxTime)
+        private void CheckForMiniGameCompletion()
         {
-            OnMixSucceeded?.Invoke(true);
+            if (_mixTime >= _mixMaxTime)
+            {
+                OnMixSucceeded?.Invoke(true);
 
-            _mixFinished = true;
+                _mixFinished = true;
+            }
+            else if (_mixTimeWrongSpeed >= _mixMaxTimeWrongSpeed)
+            {
+                OnMixSucceeded?.Invoke(false);
+
+                _mixFinished = true;
+            }
         }
-        else if (_mixTimeWrongSpeed >= _mixMaxTimeWrongSpeed)
+
+        private void UpdateMixBar()
         {
-            OnMixSucceeded?.Invoke(false);
-
-            _mixFinished = true;
+            _mixSlider.value = _averageSpeed;
         }
-    }
-
-    private void UpdateMixBar()
-    {
-        _mixSlider.value = _averageSpeed;
     }
 }
