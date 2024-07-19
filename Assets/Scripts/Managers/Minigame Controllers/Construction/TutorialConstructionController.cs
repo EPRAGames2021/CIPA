@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using EPRA.Utilities;
-using System;
 
 namespace CIPA
 {
@@ -50,15 +49,6 @@ namespace CIPA
             _vehiclesDetector.OnPlayerDetected += TriggerTutorialHandler;
             _spotDetector.OnPlayerDetected += TriggerTutorialHandler;
             _finishDetector.OnPlayerDetected += TriggerTutorialHandler;
-
-            //LoadingScreen.OnScreenHasBeenClosed += () => TriggerTutorial(0);
-            //_lockerDetector.OnPlayerDetected += (Player player) => TriggerTutorial(1);
-            //CustomGameEvents.OnPlayerWorePPEs += () => TriggerTutorial(2);
-            //_conesDetector.OnPlayerDetected += (Player player) => TriggerTutorial(3);
-            //_colleaguesDetector.OnPlayerDetected += (Player player) => TriggerTutorial(4);
-            //_vehiclesDetector.OnPlayerDetected += (Player player) => TriggerTutorial(5);
-            //_spotDetector.OnPlayerDetected += (Player player) => TriggerTutorial(6);
-            //_finishDetector.OnPlayerDetected += (Player player) => TriggerTutorial(7);
         }
 
         private void Finish()
@@ -71,15 +61,6 @@ namespace CIPA
             _vehiclesDetector.OnPlayerDetected -= TriggerTutorialHandler;
             _spotDetector.OnPlayerDetected -= TriggerTutorialHandler;
             _finishDetector.OnPlayerDetected -= TriggerTutorialHandler;
-
-            //LoadingScreen.OnScreenHasBeenClosed -= () => TriggerTutorial(0);
-            //_lockerDetector.OnPlayerDetected -= (Player player) => TriggerTutorial(1);
-            //CustomGameEvents.OnPlayerWorePPEs -= () => TriggerTutorial(2);
-            //_conesDetector.OnPlayerDetected -= (Player player) => TriggerTutorial(3);
-            //_colleaguesDetector.OnPlayerDetected -= (Player player) => TriggerTutorial(4);
-            //_vehiclesDetector.OnPlayerDetected -= (Player player) => TriggerTutorial(5);
-            //_spotDetector.OnPlayerDetected -= (Player player) => TriggerTutorial(6);
-            //_finishDetector.OnPlayerDetected -= (Player player) => TriggerTutorial(7);
         }
 
 
@@ -97,16 +78,13 @@ namespace CIPA
         private void TriggerTutorial(int index)
         {
             _tutorialConstructionUI.gameObject.SetActive(true);
+
             CanvasManager.Instance.EnableVirtualJoystick(false);
             CanvasManager.Instance.EnableHUD(false);
 
-            //_currentTutorialID = index;
-            _tutorialConstructionUI.ShowDescription(_keys[index]);
+            _tutorialConstructionUI.ShowDescription(_keys[index]);    
             
-            if (_currentTutorialID == 0)
-            {
-                _tutorialConstructionUI.ShowHand(true);
-            }
+            _tutorialConstructionUI.ShowHand(_currentTutorialID == 0);
         }
 
         public void CloseTutorial()

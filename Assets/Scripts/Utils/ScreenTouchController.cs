@@ -10,6 +10,10 @@ namespace CIPA
 
         public bool FirstPress => _firstPress;
 
+
+        public event System.Action OnPressed;
+
+
         private void OnEnable()
         {
             Input.simulateMouseWithTouches = true;
@@ -27,7 +31,9 @@ namespace CIPA
         {
             if (!IsPointerOverUIElement() && Input.GetMouseButtonDown(0))
             {
-                _firstPress = true;
+                OnPressed?.Invoke();
+
+                SetFirstPress(true);
             }
         }
 
@@ -46,7 +52,12 @@ namespace CIPA
 
         public void ReInit()
         {
-            _firstPress = false;
+            SetFirstPress(false);
+        }
+
+        private void SetFirstPress(bool firstPress)
+        {
+            _firstPress = firstPress;
         }
 
 
