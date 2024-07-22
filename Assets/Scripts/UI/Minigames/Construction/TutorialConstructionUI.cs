@@ -7,6 +7,8 @@ namespace CIPA
 {
     public class TutorialConstructionUI : MonoBehaviour
     {
+        [SerializeField] private ScreenTouchController _screenTouchController;
+
         [SerializeField] private TutorialConstructionController _controller;
 
         [SerializeField] private GameObject _tutorialHand;
@@ -30,12 +32,16 @@ namespace CIPA
 
         private void Init()
         {
-            _closePanelButton.onClick.AddListener(AdvanceTutorial);
+            //_closePanelButton.onClick.AddListener(AdvanceTutorial);
+
+            _screenTouchController.OnPressed += AdvanceTutorial;
         }
 
         private void Finish()
         {
-            _closePanelButton.onClick.RemoveAllListeners();
+            //_closePanelButton.onClick.RemoveAllListeners();
+
+            _screenTouchController.OnPressed -= AdvanceTutorial;
         }
 
 
@@ -44,6 +50,8 @@ namespace CIPA
             SetDescriptionPanelActive(false);
 
             _controller.CloseTutorial();
+
+            _screenTouchController.ReInit();
         }
 
         public void ShowDescription(string key)
@@ -51,6 +59,8 @@ namespace CIPA
             _descriptionText.text = LanguageManager.GetTranslation(key);
 
             SetDescriptionPanelActive(true);
+
+            _screenTouchController.ReInit();
         }
 
         public void SetDescriptionPanelActive(bool active)

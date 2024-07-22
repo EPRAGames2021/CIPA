@@ -1,76 +1,79 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PouringPanel : MonoBehaviour
+namespace CIPA
 {
-    [Header("Dev area")]
-    [SerializeField] private Slider _fillSlider;
-
-    [SerializeField] private float _fillValue;
-    [SerializeField] private float _maxFill;
-
-    [SerializeField] private bool _pouringFinished;
-
-    [Header("GD area")]
-    [SerializeField] private float _fillIdealValue;
-    [SerializeField] private float _fillOffsetTolerance;
-
-    [Header("Touch handler")]
-    [SerializeField] private ScreenTouchController _screenTouchController;
-
-
-    public event System.Action<bool> OnPouringSucceeded;
-
-
-    private void OnEnable()
+    public class PouringPanel : MonoBehaviour
     {
-        Init();
-    }
+        [Header("Dev area")]
+        [SerializeField] private Slider _fillSlider;
 
-    private void Update()
-    {
-        if (_pouringFinished) return;
+        [SerializeField] private float _fillValue;
+        [SerializeField] private float _maxFill;
 
-        if (_screenTouchController.DetectHolding())
+        [SerializeField] private bool _pouringFinished;
+
+        [Header("GD area")]
+        [SerializeField] private float _fillIdealValue;
+        [SerializeField] private float _fillOffsetTolerance;
+
+        [Header("Touch handler")]
+        [SerializeField] private ScreenTouchController _screenTouchController;
+
+
+        public event System.Action<bool> OnPouringSucceeded;
+
+
+        private void OnEnable()
         {
-            Fill();
+            Init();
         }
-        else if (_screenTouchController.FirstPress)
+
+        private void Update()
         {
-            _pouringFinished = true;
+            if (_pouringFinished) return;
 
-            InvokeOnPouring();
+            if (_screenTouchController.DetectHolding())
+            {
+                Fill();
+            }
+            else if (_screenTouchController.FirstPress)
+            {
+                _pouringFinished = true;
+
+                InvokeOnPouring();
+            }
         }
-    }
 
 
-    private void Init()
-    {
-        _pouringFinished = false;
+        private void Init()
+        {
+            _pouringFinished = false;
 
-        _fillValue = 0;
+            _fillValue = 0;
 
-        _fillSlider.minValue = 0;
-        _fillSlider.value = _fillValue;
-        _fillSlider.maxValue = _maxFill;
-    }
+            _fillSlider.minValue = 0;
+            _fillSlider.value = _fillValue;
+            _fillSlider.maxValue = _maxFill;
+        }
 
-    private void Fill()
-    {
-        _fillValue += Time.deltaTime;
+        private void Fill()
+        {
+            _fillValue += Time.deltaTime;
 
-        UpdateFillBar();
-    }
+            UpdateFillBar();
+        }
 
-    private void UpdateFillBar()
-    {
-        _fillSlider.value = _fillValue;
-    }
+        private void UpdateFillBar()
+        {
+            _fillSlider.value = _fillValue;
+        }
 
-    private void InvokeOnPouring()
-    {
-        bool succeeded = Mathf.Abs(_fillValue - _fillIdealValue) < _fillOffsetTolerance;
+        private void InvokeOnPouring()
+        {
+            bool succeeded = Mathf.Abs(_fillValue - _fillIdealValue) < _fillOffsetTolerance;
 
-        OnPouringSucceeded?.Invoke(succeeded);
+            OnPouringSucceeded?.Invoke(succeeded);
+        }
     }
 }
