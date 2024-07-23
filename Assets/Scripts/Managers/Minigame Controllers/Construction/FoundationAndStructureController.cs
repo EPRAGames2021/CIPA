@@ -21,7 +21,6 @@ namespace CIPA
         {
             base.EndMinigame();
 
-            //_confetti.gameObject.SetActive(true);
             _confetti.Play();
         }
     }

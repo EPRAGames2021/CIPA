@@ -10,6 +10,8 @@ namespace CIPA
         public static JobAreaManager Instance { get; private set; }
 
         [SerializeField] private JobSectorAreaSO _jobSectorSO;
+        [SerializeField] private DialogSO _boss;
+        [SerializeField] private DialogSO _doctor;
 
         [SerializeField] private List<GameObject> _minigameContextObjects;
 
@@ -18,6 +20,8 @@ namespace CIPA
         [SerializeField] private CurrencySO _dayScore;
 
         [SerializeField] private bool _arrivedAtMinigameLocation;
+
+        [SerializeField] private Transform _doctorsOffice;
 
         [Header("Sounds")]
         [SerializeField] private AudioClipCollection _victorySFX;
@@ -137,10 +141,10 @@ namespace CIPA
 
             CustomGameEvents.InvokeOnMinigameEnded();
 
-            StartCoroutine(OpenMenusDelay());
+            StartCoroutine(OpenBossDialogDelay());
         }
 
-        private IEnumerator OpenMenusDelay()
+        private IEnumerator OpenBossDialogDelay()
         {
             yield return new WaitForSeconds(1.0f);
 
@@ -148,9 +152,49 @@ namespace CIPA
 
             yield return new WaitForSeconds(1.5f);
 
+            //open boss dialog
+            CanvasManager.Instance.DialogScreen.SetDialogSO(_boss);
+            CanvasManager.Instance.DialogScreen.OnDialogsFinished += MoveToDoctor;
+
+            //CanvasManager.Instance.OpenMenu(MenuType.VictoryMenu);
+            //CanvasManager.Instance.OpenMenu(MenuType.DayScoreMenu);
+            //
+            //_jobSectorSO.FinishDay();
+        }
+
+        private void MoveToDoctor()
+        {
+            CanvasManager.Instance.DialogScreen.OnDialogsFinished -= MoveToDoctor;
+
+            StartCoroutine(MoveToDoctorDelay());
+        }
+
+        private IEnumerator MoveToDoctorDelay()
+        {
+            CanvasManager.Instance.InitiateFadeSequence();
+
+            yield return new WaitForSeconds(0.5f);
+
+            _player.transform.SetLocalPositionAndRotation(_doctorsOffice.position, _doctorsOffice.rotation);
+
+            CanvasManager.Instance.DialogScreen.SetDialogSO(_doctor);
+
+            CanvasManager.Instance.DialogScreen.OnDialogsFinished += OpenReportMenu;
+        }
+
+        private void OpenReportMenu()
+        {
+            CanvasManager.Instance.DialogScreen.OnDialogsFinished -= OpenReportMenu;
+
+            CanvasManager.Instance.OpenMenu(MenuType.DayReportMenu);
+            
+            DayReportMenu reportMenu = CanvasManager.Instance.CurrentMenu as DayReportMenu;
+
+            reportMenu.SetDay(_jobSectorSO.CurrentJob);
+
             CanvasManager.Instance.OpenMenu(MenuType.VictoryMenu);
             CanvasManager.Instance.OpenMenu(MenuType.DayScoreMenu);
-
+            
             _jobSectorSO.FinishDay();
         }
 

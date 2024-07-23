@@ -16,15 +16,17 @@ namespace EPRA.Utilities
         [SerializeField] private MenuController _currentMenu;
 
         [SerializeField] private FloatingJoystick _floatingJoystick;
-
         [SerializeField] private GameScreen _gameScreen;
         [SerializeField] private LoadingScreen _loadingScreen;
+        [SerializeField] private DialogScreen _dialogScreen;
         [SerializeField] private FadeScreen _fadeScreen;
 
 
+        public MenuController CurrentMenu => _currentMenu;
         public FloatingJoystick FloatingJoystick => _floatingJoystick;
         public GameScreen GameScreen => _gameScreen;
         public LoadingScreen LoadingScreen => _loadingScreen;
+        public DialogScreen DialogScreen => _dialogScreen;
 
 
         private void Awake()
@@ -250,5 +252,6 @@ namespace EPRA.Utilities
         LoginMenu = 6,
         AdminMenu = 7,
         PPESelectionMenu = 8,
+        DayReportMenu = 9,
     }
 }
