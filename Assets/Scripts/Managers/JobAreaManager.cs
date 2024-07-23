@@ -80,6 +80,8 @@ namespace CIPA
             
             _player.OnDied += PlayerDied;
             _player.EquipmentSystem.OnEquipped += EquipPlayer;
+
+            _jobSectorSO.CurrentJob.AddUniqueAction("playerFollowedPath", true);
         }
 
         private void Finish()
@@ -152,14 +154,8 @@ namespace CIPA
 
             yield return new WaitForSeconds(1.5f);
 
-            //open boss dialog
             CanvasManager.Instance.DialogScreen.SetDialogSO(_boss);
             CanvasManager.Instance.DialogScreen.OnDialogsFinished += MoveToDoctor;
-
-            //CanvasManager.Instance.OpenMenu(MenuType.VictoryMenu);
-            //CanvasManager.Instance.OpenMenu(MenuType.DayScoreMenu);
-            //
-            //_jobSectorSO.FinishDay();
         }
 
         private void MoveToDoctor()
@@ -178,7 +174,6 @@ namespace CIPA
             _player.transform.SetLocalPositionAndRotation(_doctorsOffice.position, _doctorsOffice.rotation);
 
             CanvasManager.Instance.DialogScreen.SetDialogSO(_doctor);
-
             CanvasManager.Instance.DialogScreen.OnDialogsFinished += OpenReportMenu;
         }
 
@@ -186,9 +181,7 @@ namespace CIPA
         {
             CanvasManager.Instance.DialogScreen.OnDialogsFinished -= OpenReportMenu;
 
-            CanvasManager.Instance.OpenMenu(MenuType.DayReportMenu);
-            
-            DayReportMenu reportMenu = CanvasManager.Instance.CurrentMenu as DayReportMenu;
+            DayReportMenu reportMenu = CanvasManager.Instance.OpenMenu(MenuType.DayReportMenu) as DayReportMenu;
 
             reportMenu.SetDay(_jobSectorSO.CurrentJob);
 
@@ -222,7 +215,7 @@ namespace CIPA
 
         public void PlayerDied()
         {
-            _jobSectorSO.CurrentJob.AddUniqueAction("playerDisruptedFlow", true);
+            _jobSectorSO.CurrentJob.AddUniqueAction("playerFollowedPath", false);
 
             AudioManager.Instance.PlayRandomSFX(_deathSFX);
 

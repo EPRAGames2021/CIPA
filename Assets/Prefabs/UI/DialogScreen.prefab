@@ -329,6 +329,9 @@ MonoBehaviour:
   _speakerIcon: {fileID: 6928801093327852022}
   _descriptionText: {fileID: 5556290786608150082}
   _closePanelButton: {fileID: 6081783270198581370}
+  _dialogSO: {fileID: 0}
+  _dialogIndex: 0
+  _dialogs: []
 --- !u!114 &2318055655559680034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1179,7 +1182,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9162817644930255859}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f29791aec5a0c3643b6bed00649257a4, type: 3}
   m_Name: 
@@ -1206,7 +1209,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: _boss
+  m_text: _speaker
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dbbdd6f47f88cb043bd1c0300e60d170, type: 2}
   m_sharedMaterial: {fileID: 3307577626219306070, guid: dbbdd6f47f88cb043bd1c0300e60d170, type: 2}

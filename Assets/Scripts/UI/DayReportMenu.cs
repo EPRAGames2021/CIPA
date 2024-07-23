@@ -42,7 +42,10 @@ namespace CIPA
 
             for (int i = 0; i < actions.Count; i++)
             {
-                _actionsText.text = LanguageManager.GetTranslation(actions[i].Action) + " " + actions[i].Performed + "\n";
+                string action = LanguageManager.GetTranslation(actions[i].Action);
+                string performed = actions[i].Performed ? LanguageManager.GetTranslation("yes") : LanguageManager.GetTranslation("no");
+
+                _actionsText.text += action + ": " + performed + "\n";
             }
         }
 

@@ -20,12 +20,17 @@ namespace CIPA
 
         [SerializeField] private Button _closePanelButton;
 
-        private DialogSO _dialogSO;
-        private int _dialogIndex;
-        private List<string> _dialogs;
+        [SerializeField] private DialogSO _dialogSO;
+        [SerializeField] private int _dialogIndex;
+        [SerializeField] private List<string> _dialogs;
 
         public event System.Action OnDialogsFinished;
 
+
+        private void Awake()
+        {
+            SetDescriptionPanelActive(false);            
+        }
 
         private void OnEnable()
         {
@@ -40,8 +45,6 @@ namespace CIPA
 
         private void Init()
         {
-            SetDescriptionPanelActive(false);
-
             _dialogIndex = 0;
 
             _screenTouchController.OnPressed += AdvanceDialog;
@@ -64,22 +67,24 @@ namespace CIPA
             else
             {
                 ClearDialogs();
+                SetDescriptionPanelActive(false);
 
                 OnDialogsFinished?.Invoke();
             }
         }
 
-        public void ClearDialogs()
+        private void ClearDialogs()
         {
+            _dialogSO = null;
             _dialogs.Clear();
 
             _descriptionText.text = string.Empty;
-
-            SetDescriptionPanelActive(false);
         }
 
         public void SetDialogSO(DialogSO dialogSO)
         {
+            ClearDialogs();
+
             _dialogSO = dialogSO;
             _dialogIndex = 0;
 
@@ -91,7 +96,7 @@ namespace CIPA
 
         private void SetDialogs(List<string> dialogs)
         {
-            _dialogs = dialogs;
+            _dialogs = new(dialogs);
         }
 
         private void SetSpeaker(string nameKey, Sprite icon)

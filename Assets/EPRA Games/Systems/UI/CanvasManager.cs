@@ -141,7 +141,7 @@ namespace EPRA.Utilities
         }
 
 
-        public void OpenMenu(MenuType menu)
+        public MenuController OpenMenu(MenuType menu)
         {
             MenuController desiredMenu = _menuControllersList.Find(menuController => menuController.Menu == menu);
 
@@ -149,14 +149,14 @@ namespace EPRA.Utilities
             {
                 Debug.LogWarning($" {menu} cannot be opened because it is null");
 
-                return;
+                return null;
             }
 
             if (_allActiveMenus.Contains(desiredMenu))
             {
                 Debug.LogWarning($"Cannot open {menu} because it has already been opened");
 
-                return;
+                return null;
             }
             else
             {
@@ -167,6 +167,8 @@ namespace EPRA.Utilities
                 _currentMenu.gameObject.SetActive(true);
 
                 if (!_loadingScreen.IsBeingDisplayed) _currentMenu?.SelectUI();
+
+                return desiredMenu;
             }
         }
 
