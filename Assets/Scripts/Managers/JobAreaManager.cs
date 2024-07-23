@@ -80,8 +80,6 @@ namespace CIPA
             
             _player.OnDied += PlayerDied;
             _player.EquipmentSystem.OnEquipped += EquipPlayer;
-
-            _jobSectorSO.CurrentJob.AddUniqueAction("playerFollowedPath", true);
         }
 
         private void Finish()
