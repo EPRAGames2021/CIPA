@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using Cinemachine;
 
 namespace CIPA
 {
@@ -8,26 +7,12 @@ namespace CIPA
     {
         [SerializeField] private Button _confirmButton;
 
-        [SerializeField] private TileGrid _tileGrid;
-        [SerializeField] private CinemachineVirtualCamera _virtualCamera;
+        public event System.Action OnConfirm;
 
-        private void OnEnable()
-        {
-            _virtualCamera.m_Lens.Orthographic = true;
-            _virtualCamera.m_Lens.OrthographicSize = 25f;
-
-            _tileGrid.ResetGrid();
-        }
 
         private void Start()
         {
             Init();
-        }
-
-        private void OnDisable()
-        {
-            _virtualCamera.m_Lens.OrthographicSize = 5;
-            _virtualCamera.m_Lens.Orthographic = false;
         }
 
         private void OnDestroy()
@@ -49,11 +34,7 @@ namespace CIPA
 
         private void CheckGrid()
         {
-            JobAreaManager.Instance.FinishMinigame(_tileGrid.CheckForCorrectGrid());
-
-            _tileGrid.LockGrid();
-
-            gameObject.SetActive(false);
+            OnConfirm?.Invoke();
         }
     }
 }

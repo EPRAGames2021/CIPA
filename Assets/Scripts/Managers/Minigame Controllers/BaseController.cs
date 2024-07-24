@@ -1,17 +1,17 @@
 using System.Collections.Generic;
+using System.Collections; 
 using UnityEngine;
 using Cinemachine;
 using EPRA.Utilities;
-using System.Collections;
 
 namespace CIPA
 {
     public class BaseController : MonoBehaviour
     {
-        [SerializeField] private Player _player;
+        [SerializeField] protected Player _player;
 
         [SerializeField] private GameObject _minigameUI;
-        [SerializeField] private CinemachineVirtualCamera _virtualCamera;
+        [SerializeField] protected CinemachineVirtualCamera _virtualCamera;
 
         [Tooltip("Optional. For objects that only show up when mini game starts")]
         [SerializeField] private List<GameObject> _minigameEnviromentObjects;
@@ -28,7 +28,7 @@ namespace CIPA
         }
 
 
-        private void Init()
+        protected virtual void Init()
         {
             _player = JobAreaManager.Instance.Player;
 
@@ -47,7 +47,7 @@ namespace CIPA
             CustomGameEvents.OnMinigameEnded += EndMinigame;
         }
 
-        private void Finish()
+        protected virtual void Finish()
         {
             CustomGameEvents.OnMinigameStarted -= StartMiniGame;
             CustomGameEvents.OnMinigameEnded -= EndMinigame;

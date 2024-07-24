@@ -94,6 +94,13 @@ namespace CIPA
             if (_animator != null) _animator.SetTrigger("Win");
         }
 
+        public void LookDown()
+        {
+            ChangeState(CharacterState.Looking);
+
+            if (_animator != null) _animator.SetBool("IsLooking", true);
+        }
+
         public void Refresh()
         {
             ChangeState(CharacterState.Roaming);
@@ -112,5 +119,6 @@ namespace CIPA
         Dancing = 2,
         Talking = 3,
         Carrying = 4,
+        Looking = 5,
     }
 }

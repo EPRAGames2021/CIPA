@@ -25,6 +25,7 @@ public class DraggableObject : MonoBehaviour
     [SerializeField] private AudioClipCollection _rotateSFX;
 
     [Header("Debug")]
+    private Vector3 _initialScale;
     [SerializeField] private float _timeUntilDrag;
     [SerializeField] private float _holdTime;
     [SerializeField] private Vector3 _touchPosition;
@@ -63,7 +64,7 @@ public class DraggableObject : MonoBehaviour
 
                 AudioManager.Instance.PlayRandomSFX(_selectSFX);
 
-                transform.DOScale(new Vector3(0.75f, 0.75f, 0.75f), 0.25f);
+                transform.DOScale(new Vector3(_initialScale.x * 0.75f, _initialScale.y * 0.75f, _initialScale.z * 0.75f), 0.25f);
             }
 
             _touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -96,7 +97,7 @@ public class DraggableObject : MonoBehaviour
 
         _holdTime = 0.0f;
 
-        transform.DOScale(new Vector3(1f, 1f, 1f), 0.25f);
+        transform.DOScale(new Vector3(_initialScale.x * 1f, _initialScale.y * 1f, _initialScale.z * 1f), 0.25f);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -112,6 +113,8 @@ public class DraggableObject : MonoBehaviour
 
     private void Init()
     {
+        _initialScale = transform.localScale;
+
         _holdTime = 0.0f;
     }
 

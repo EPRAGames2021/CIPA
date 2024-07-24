@@ -68,20 +68,20 @@ namespace CIPA
         {
             if (_movimentBlocked) return;
 
-            float inputMagnitude;
+            //float inputMagnitude;
 
             if (_cameraTransform != null && _moveRelativeToCamera)
             {
                 float referenceYRotation = _cameraTransform.transform.eulerAngles.y;
                 Vector3 adjustedDirection = Quaternion.Euler(0, referenceYRotation, 0) * _inputDirection;
 
-                inputMagnitude = Mathf.Abs(adjustedDirection.x) + Mathf.Abs(adjustedDirection.z);
+                //inputMagnitude = Mathf.Abs(adjustedDirection.x) + Mathf.Abs(adjustedDirection.z);
 
                 _movementDirection = adjustedDirection;
             }
             else
             {
-                inputMagnitude = Mathf.Abs(_inputDirection.x) + Mathf.Abs(_inputDirection.z);
+                //inputMagnitude = Mathf.Abs(_inputDirection.x) + Mathf.Abs(_inputDirection.z);
 
                 _movementDirection = _inputDirection;
             }

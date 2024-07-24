@@ -118,6 +118,7 @@ namespace CIPA
             InitiateMinigame();
         }
 
+
         private void InitiateMinigame()
         {
             CanvasManager.Instance.InitiateFadeSequence();
@@ -140,6 +141,7 @@ namespace CIPA
             _jobSectorSO.SetScoreToDay(_jobSectorSO.Day, _dayScore.Value);
 
             CustomGameEvents.InvokeOnMinigameEnded();
+            CustomGameEvents.InvokeOnMinigameWon();
 
             StartCoroutine(OpenBossDialogDelay());
         }
@@ -189,16 +191,27 @@ namespace CIPA
             _jobSectorSO.FinishDay();
         }
 
+
         private void MinigameFailed()
         {
             _jobSectorSO.CurrentJob.AddUniqueAction("playerCompletedDay", false);
 
             RewardAndPenaltyManager.Instance.PlayerHasFailedJob();
+            CustomGameEvents.InvokeOnMinigameLost();
 
-            EndJob();
+            EndJobPrematurely();
         }
 
-        private void EndJob()
+        public void PlayerDied()
+        {
+            _jobSectorSO.CurrentJob.AddUniqueAction("playerFollowedPath", false);
+
+            AudioManager.Instance.PlayRandomSFX(_deathSFX);
+
+            EndJobPrematurely();
+        }
+
+        private void EndJobPrematurely()
         {
             CanvasManager.Instance.EnableHUD(false);
             CanvasManager.Instance.OpenMenu(MenuType.GameOverMenu);
@@ -211,14 +224,6 @@ namespace CIPA
         }
 
 
-        public void PlayerDied()
-        {
-            _jobSectorSO.CurrentJob.AddUniqueAction("playerFollowedPath", false);
-
-            AudioManager.Instance.PlayRandomSFX(_deathSFX);
-
-            EndJob();
-        }
 
         public void FinishMinigame(bool success)
         {
