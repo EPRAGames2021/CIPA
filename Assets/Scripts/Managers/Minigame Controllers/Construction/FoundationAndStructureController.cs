@@ -13,9 +13,25 @@ namespace CIPA
 
         private bool _ended;
 
+
         private void Update()
         {
             _secondaryCamera.gameObject.SetActive(_foundationAndStructureUI.StageIndex >= 3 && !_ended);
+        }
+
+
+        protected override void Init()
+        {
+            base.Init();
+
+            CustomGameEvents.OnMinigameWon += FireConfetti;
+        }
+
+        protected override void Finish()
+        {
+            base.Finish();
+
+            CustomGameEvents.OnMinigameWon -= FireConfetti;
         }
 
 
@@ -24,7 +40,10 @@ namespace CIPA
             base.EndMinigame();
 
             _ended = true;
+        }
 
+        private void FireConfetti()
+        {
             _confetti.Play();
         }
     }

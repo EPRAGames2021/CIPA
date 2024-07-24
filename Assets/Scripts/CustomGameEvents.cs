@@ -6,11 +6,18 @@ namespace CIPA
         public static event System.Action OnPlayerWorePPEs;
         public static event System.Action OnMinigameStarted;
         public static event System.Action OnMinigameEnded;
+        public static event System.Action OnMinigameWon;
+        public static event System.Action OnMinigameLost;
 
 
         public static void InvokeOnPlayerArrivedAtMinigameLocation()
         {
             OnPlayerArrivedAtMinigameLocation?.Invoke();
+        }
+
+        public static void InvokeOnPlayerWorePPEs()
+        {
+            OnPlayerWorePPEs?.Invoke();
         }
 
         public static void InvokeOnMinigameStarted()
@@ -23,9 +30,14 @@ namespace CIPA
             OnMinigameEnded?.Invoke();
         }
 
-        public static void InvokeOnPlayerWorePPEs()
+        public static void InvokeOnMinigameWon()
         {
-            OnPlayerWorePPEs?.Invoke();
+            OnMinigameWon?.Invoke();
+        }
+
+        public static void InvokeOnMinigameLost()
+        {
+            OnMinigameLost?.Invoke();
         }
     }
 }
