@@ -16,15 +16,17 @@ namespace EPRA.Utilities
         [SerializeField] private MenuController _currentMenu;
 
         [SerializeField] private FloatingJoystick _floatingJoystick;
-
         [SerializeField] private GameScreen _gameScreen;
         [SerializeField] private LoadingScreen _loadingScreen;
+        [SerializeField] private DialogScreen _dialogScreen;
         [SerializeField] private FadeScreen _fadeScreen;
 
 
+        public MenuController CurrentMenu => _currentMenu;
         public FloatingJoystick FloatingJoystick => _floatingJoystick;
         public GameScreen GameScreen => _gameScreen;
         public LoadingScreen LoadingScreen => _loadingScreen;
+        public DialogScreen DialogScreen => _dialogScreen;
 
 
         private void Awake()
@@ -139,7 +141,7 @@ namespace EPRA.Utilities
         }
 
 
-        public void OpenMenu(MenuType menu)
+        public MenuController OpenMenu(MenuType menu)
         {
             MenuController desiredMenu = _menuControllersList.Find(menuController => menuController.Menu == menu);
 
@@ -147,14 +149,14 @@ namespace EPRA.Utilities
             {
                 Debug.LogWarning($" {menu} cannot be opened because it is null");
 
-                return;
+                return null;
             }
 
             if (_allActiveMenus.Contains(desiredMenu))
             {
                 Debug.LogWarning($"Cannot open {menu} because it has already been opened");
 
-                return;
+                return null;
             }
             else
             {
@@ -165,6 +167,8 @@ namespace EPRA.Utilities
                 _currentMenu.gameObject.SetActive(true);
 
                 if (!_loadingScreen.IsBeingDisplayed) _currentMenu?.SelectUI();
+
+                return desiredMenu;
             }
         }
 
@@ -250,5 +254,6 @@ namespace EPRA.Utilities
         LoginMenu = 6,
         AdminMenu = 7,
         PPESelectionMenu = 8,
+        DayReportMenu = 9,
     }
 }

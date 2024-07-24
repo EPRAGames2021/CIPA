@@ -1,5 +1,4 @@
 using UnityEngine;
-using EPRA.Utilities;
 
 [CreateAssetMenu(fileName = "Equipment", menuName = "Scriptable Objects/Equipment", order = 1)]
 

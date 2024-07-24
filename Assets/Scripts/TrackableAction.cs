@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -10,6 +8,7 @@ public class TrackableAction
 
     public string Action { get { return _action; } set { _action = value; } }
     public bool Performed { get { return _performed; } set { _performed = value; } }
+
 
     public TrackableAction(string action, bool performed)
     {

@@ -21,6 +21,7 @@ public class JobSO : ScriptableObject
     public string JobName => _jobName;
     public string KeyName => _keyName;
     public List<EquipmentSO> RequiredEquipmentSO => _requiredEquipmentSOList;
+    public List<TrackableAction> Actions => _actions;
 
 
     private void OnValidate()

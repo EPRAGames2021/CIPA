@@ -11,9 +11,11 @@ namespace CIPA
 
         [SerializeField] private ParticleSystem _confetti;
 
+        private bool _ended;
+
         private void Update()
         {
-            _secondaryCamera.gameObject.SetActive(_foundationAndStructureUI.StageIndex >= 3);
+            _secondaryCamera.gameObject.SetActive(_foundationAndStructureUI.StageIndex >= 3 && !_ended);
         }
 
 
@@ -21,7 +23,8 @@ namespace CIPA
         {
             base.EndMinigame();
 
-            //_confetti.gameObject.SetActive(true);
+            _ended = true;
+
             _confetti.Play();
         }
     }
