@@ -22,13 +22,10 @@ namespace CIPA
 
         public CharacterState State => _state;
 
+
         public event System.Action<CharacterState> OnStateChange;
         public event System.Action OnDied;
 
-        private void Awake()
-        {
-            if (_animator != null) _animator.updateMode = AnimatorUpdateMode.UnscaledTime;
-        }
 
         private void Start()
         {
@@ -45,9 +42,6 @@ namespace CIPA
             _healthSystem.OnDied += Die;
 
             ChangeState(CharacterState.Roaming);
-
-            //this must not be here but I'm too lazy to fix this properly
-            if (_animator != null) _animator.updateMode = AnimatorUpdateMode.Normal;
         }
 
         private void Finish()
@@ -58,7 +52,7 @@ namespace CIPA
         public void ChangeState(CharacterState state)
         {
             if (State == CharacterState.Dying) return;
-            if (State == CharacterState.Dancing) return;
+            //if (State == CharacterState.Dancing) return;
 
             if (_state != state)
             {
@@ -78,10 +72,6 @@ namespace CIPA
             OnDied?.Invoke();
 
             ChangeState(CharacterState.Dying);
-
-            if (_animator != null) _animator.SetTrigger("Die");
-
-            //Destroy(gameObject, 2f);
         }
 
         public void Win()
@@ -90,15 +80,6 @@ namespace CIPA
             _movementSystem.CanMove = false;
 
             ChangeState(CharacterState.Dancing);
-
-            if (_animator != null) _animator.SetTrigger("Win");
-        }
-
-        public void LookDown()
-        {
-            ChangeState(CharacterState.Looking);
-
-            if (_animator != null) _animator.SetBool("IsLooking", true);
         }
 
         public void Refresh()

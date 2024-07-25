@@ -100,7 +100,7 @@ namespace CIPA
 
         public void ZoomOnSign(bool zoomInOnSign)
         {
-            _playerVirtualCamera.m_Lens.FieldOfView = zoomInOnSign ? 45 : 60;
+            SetCameraDistance(zoomInOnSign ? 7 : 15);
         }
     }
 }

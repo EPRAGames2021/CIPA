@@ -5,7 +5,6 @@ namespace CIPA
 {
     public class MovementSystem : MonoBehaviour
     {
-        [SerializeField] private Animator _animator;
         [SerializeField] private Rigidbody _rigidbody;
 
         [Header("Movement")]
@@ -29,7 +28,12 @@ namespace CIPA
         [SerializeField] private bool _canMove;
         [SerializeField] private bool _movimentBlocked;
 
+        [SerializeField] private bool _isWalking;
+        [SerializeField] private bool _isRunning;
+
         public bool CanMove { get { return _canMove; } set { _canMove = value; } }
+        public bool IsWalking => _isWalking;
+        public bool IsRunning => _isRunning;
         public Vector3 InputDirection { get { return _inputDirection; } set { _inputDirection = value; } }
 
 
@@ -68,31 +72,20 @@ namespace CIPA
         {
             if (_movimentBlocked) return;
 
-            //float inputMagnitude;
-
             if (_cameraTransform != null && _moveRelativeToCamera)
             {
                 float referenceYRotation = _cameraTransform.transform.eulerAngles.y;
                 Vector3 adjustedDirection = Quaternion.Euler(0, referenceYRotation, 0) * _inputDirection;
 
-                //inputMagnitude = Mathf.Abs(adjustedDirection.x) + Mathf.Abs(adjustedDirection.z);
-
                 _movementDirection = adjustedDirection;
             }
             else
             {
-                //inputMagnitude = Mathf.Abs(_inputDirection.x) + Mathf.Abs(_inputDirection.z);
-
                 _movementDirection = _inputDirection;
             }
 
-
-            if (_animator == null) return;
-
-            _animator.SetBool("IsWalking", _rigidbody.velocity.magnitude > 0.05f && _rigidbody.velocity.magnitude < _baseSpeed * 0.65f);
-            _animator.SetBool("IsRunning", _rigidbody.velocity.magnitude >= _baseSpeed * 0.65f);
-            //_animator.SetBool("IsWalking", inputMagnitude > 0.05f && inputMagnitude < 0.5f && _canMove);
-            //_animator.SetBool("IsRunning", inputMagnitude >= 0.5f && _canMove);
+            _isWalking = _rigidbody.velocity.magnitude > 0.05f && _rigidbody.velocity.magnitude < _baseSpeed * 0.65f;
+            _isRunning = _rigidbody.velocity.magnitude >= _baseSpeed * 0.65f;
         }
 
         private void HandleRotationInput()
@@ -123,11 +116,8 @@ namespace CIPA
 
             _inputDirection.Set(0f, 0f, 0f);
 
-            if (_animator != null)
-            {
-                _animator.SetBool("IsWalking", false);
-                _animator.SetBool("IsRunning", false);
-            }
+            _isWalking = false;
+            _isRunning = false;
         }
 
         public void TemporarilyDisableMovement(float disableTime)

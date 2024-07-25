@@ -48,7 +48,7 @@ namespace CIPA
         {
             yield return new WaitForSeconds(2);
 
-            _player.LookDown();
+            _player.ChangeState(CharacterState.Looking);
         }
     }
 }

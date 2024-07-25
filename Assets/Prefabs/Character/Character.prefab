@@ -761,6 +761,8 @@ MonoBehaviour:
   _targetAngle: 0
   _canMove: 0
   _movimentBlocked: 0
+  _isWalking: 0
+  _isRunning: 0
 --- !u!114 &7739863900803627024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1468,6 +1470,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 4742287052940349844}
   _stepSFX: {fileID: 11400000, guid: e969efc25755a1c4b95ad8e2319da708, type: 2}
+  _animator: {fileID: 4997531372555551442}
+  _player: {fileID: 8773940894981897254}
+  _movementSystem: {fileID: 6853027721232337912}
 --- !u!95 &4997531372555551442 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: ace0d774ada705c4ab8f4da1551be57d, type: 3}

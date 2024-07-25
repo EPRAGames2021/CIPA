@@ -24,6 +24,7 @@ namespace CIPA
         {
             base.Init();
 
+            CustomGameEvents.OnMinigameStarted += ResetEnded;
             CustomGameEvents.OnMinigameWon += FireConfetti;
         }
 
@@ -31,6 +32,7 @@ namespace CIPA
         {
             base.Finish();
 
+            CustomGameEvents.OnMinigameStarted -= ResetEnded;
             CustomGameEvents.OnMinigameWon -= FireConfetti;
         }
 
@@ -40,6 +42,11 @@ namespace CIPA
             base.EndMinigame();
 
             _ended = true;
+        }
+
+        private void ResetEnded()
+        {
+            _ended = false;
         }
 
         private void FireConfetti()

@@ -172,6 +172,7 @@ namespace CIPA
             yield return new WaitForSeconds(0.5f);
 
             _player.transform.SetLocalPositionAndRotation(_doctorsOffice.position, _doctorsOffice.rotation);
+            _player.Refresh();
 
             CanvasManager.Instance.DialogScreen.SetDialogSO(_doctor);
             CanvasManager.Instance.DialogScreen.OnDialogsFinished += OpenReportMenu;
