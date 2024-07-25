@@ -19,6 +19,8 @@ namespace CIPA
             _virtualCamera.m_Lens.Orthographic = true;
             _virtualCamera.m_Lens.OrthographicSize = 25f;
 
+            _tileGrid.ResetGrid();
+
             _revestingUI.OnConfirm += CheckGrid;
         }
 
@@ -36,12 +38,15 @@ namespace CIPA
         {
             JobAreaManager.Instance.FinishMinigame(_tileGrid.CheckForCorrectGrid());
 
-            _player.MovementSystem.CanMove = false;
-            _player.transform.SetLocalPositionAndRotation(_playerTeleportDestination.position, _playerTeleportDestination.rotation);
-
             _tileGrid.LockGrid();
 
-            StartCoroutine(AnimationDelay());
+            if (_tileGrid.CheckForCorrectGrid())
+            {
+                _player.MovementSystem.CanMove = false;
+                _player.transform.SetLocalPositionAndRotation(_playerTeleportDestination.position, _playerTeleportDestination.rotation);
+                PlayerCameraHandler.Instance.ZoomInOnPlayer(true);
+                StartCoroutine(AnimationDelay());
+            }
         }
 
         private IEnumerator AnimationDelay()

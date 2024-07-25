@@ -83,6 +83,14 @@ namespace CIPA
             framingTransposer.m_CameraDistance = distance;
         }
 
+        private void SetCameraOffset(Vector3 offset)
+        {
+            CinemachineFramingTransposer framingTransposer = _playerVirtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
+
+            framingTransposer.m_TrackedObjectOffset = offset;
+        }
+
+
         private IEnumerator ReturnZoomLevel(float time)
         {
             yield return new WaitForSeconds(time);
@@ -98,9 +106,15 @@ namespace CIPA
             }
         }
 
-        public void ZoomOnSign(bool zoomInOnSign)
+        public void ZoomInOnSign(bool zoomInOnSign)
         {
             SetCameraDistance(zoomInOnSign ? 7 : 15);
+        }
+
+        public void ZoomInOnPlayer(bool zoomInOnPlayer)
+        {
+            SetCameraDistance(zoomInOnPlayer ? 7 : 15);
+            SetCameraOffset(zoomInOnPlayer ? new(0f, 2f, 0f) : new Vector3(0f, 5f, 0f));
         }
     }
 }

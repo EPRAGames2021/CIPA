@@ -68,13 +68,13 @@ namespace CIPA
         private void ZoomIn(Player player)
         {
             player.MovementSystem.RestrictMovement(true);
-            PlayerCameraHandler.Instance.ZoomOnSign(true);
+            PlayerCameraHandler.Instance.ZoomInOnSign(true);
         }
 
         private void ZoomOut(Player player)
         {
             player.MovementSystem.RestrictMovement(false);
-            PlayerCameraHandler.Instance.ZoomOnSign(false);
+            PlayerCameraHandler.Instance.ZoomInOnSign(false);
         }
     }
 }
