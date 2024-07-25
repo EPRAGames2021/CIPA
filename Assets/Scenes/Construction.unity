@@ -3237,14 +3237,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2452826670944133926, guid: cd73883b4bb1281488d794d254b24cdf, type: 3}
-      propertyPath: _minigameUI
-      value: 
-      objectReference: {fileID: 1298510544}
+    - target: {fileID: 2217533508263486567, guid: cd73883b4bb1281488d794d254b24cdf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -34.870007
+      objectReference: {fileID: 0}
+    - target: {fileID: 3164450159846863235, guid: cd73883b4bb1281488d794d254b24cdf, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3993206421797403970, guid: cd73883b4bb1281488d794d254b24cdf, type: 3}
       propertyPath: _player
       value: 
       objectReference: {fileID: 197474286}
+    - target: {fileID: 4259073353381323201, guid: cd73883b4bb1281488d794d254b24cdf, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4811432280635296889, guid: cd73883b4bb1281488d794d254b24cdf, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4923354362752219920, guid: cd73883b4bb1281488d794d254b24cdf, type: 3}
       propertyPath: _finishingUI
       value: 
@@ -3257,10 +3269,42 @@ PrefabInstance:
       propertyPath: _screenTouchController
       value: 
       objectReference: {fileID: 1298510550}
+    - target: {fileID: 5630180064740847927, guid: cd73883b4bb1281488d794d254b24cdf, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6333083745626493922, guid: cd73883b4bb1281488d794d254b24cdf, type: 3}
+      propertyPath: _minigameUI
+      value: 
+      objectReference: {fileID: 1298510544}
+    - target: {fileID: 6333083745626493922, guid: cd73883b4bb1281488d794d254b24cdf, type: 3}
+      propertyPath: _mouseDelta
+      value: 
+      objectReference: {fileID: 1298510547}
+    - target: {fileID: 6333083745626493922, guid: cd73883b4bb1281488d794d254b24cdf, type: 3}
+      propertyPath: _finishingUI
+      value: 
+      objectReference: {fileID: 1298510545}
+    - target: {fileID: 6333083745626493922, guid: cd73883b4bb1281488d794d254b24cdf, type: 3}
+      propertyPath: _mousePositionHandler
+      value: 
+      objectReference: {fileID: 1298510546}
+    - target: {fileID: 6333083745626493922, guid: cd73883b4bb1281488d794d254b24cdf, type: 3}
+      propertyPath: _screenTouchController
+      value: 
+      objectReference: {fileID: 1298510550}
+    - target: {fileID: 6666323329057234882, guid: cd73883b4bb1281488d794d254b24cdf, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6739046267361080673, guid: cd73883b4bb1281488d794d254b24cdf, type: 3}
       propertyPath: _player
       value: 
       objectReference: {fileID: 197474286}
+    - target: {fileID: 7108736937441095654, guid: cd73883b4bb1281488d794d254b24cdf, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8810369408899789172, guid: cd73883b4bb1281488d794d254b24cdf, type: 3}
       propertyPath: _player
       value: 
@@ -3277,17 +3321,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1363445827735355183, guid: cd73883b4bb1281488d794d254b24cdf, type: 3}
   m_PrefabInstance: {fileID: 1209196776}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1209196779 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4923354362752219920, guid: cd73883b4bb1281488d794d254b24cdf, type: 3}
-  m_PrefabInstance: {fileID: 1209196776}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36a6c02757df45646b35422763de6a7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1209196780 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 586213993547413507, guid: cd73883b4bb1281488d794d254b24cdf, type: 3}
@@ -3442,6 +3475,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 296662387}
     m_Modifications:
+    - target: {fileID: 1615022627160584111, guid: b6652d3f0d7b2914aac316a42693f913, type: 3}
+      propertyPath: _innerBoxSize.x
+      value: 432
+      objectReference: {fileID: 0}
+    - target: {fileID: 1615022627160584111, guid: b6652d3f0d7b2914aac316a42693f913, type: 3}
+      propertyPath: _innerBoxSize.y
+      value: 1168.6154
+      objectReference: {fileID: 0}
+    - target: {fileID: 1615022627160584111, guid: b6652d3f0d7b2914aac316a42693f913, type: 3}
+      propertyPath: _innerBoxPosition.x
+      value: 585
+      objectReference: {fileID: 0}
+    - target: {fileID: 1615022627160584111, guid: b6652d3f0d7b2914aac316a42693f913, type: 3}
+      propertyPath: _innerBoxPosition.y
+      value: 1012.8
+      objectReference: {fileID: 0}
     - target: {fileID: 2237148637538497281, guid: b6652d3f0d7b2914aac316a42693f913, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3449,7 +3498,7 @@ PrefabInstance:
     - target: {fileID: 2902619330626101269, guid: b6652d3f0d7b2914aac316a42693f913, type: 3}
       propertyPath: _paintingRoom
       value: 
-      objectReference: {fileID: 1209196779}
+      objectReference: {fileID: 0}
     - target: {fileID: 3558531472543658793, guid: b6652d3f0d7b2914aac316a42693f913, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3590,6 +3639,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9584b0f69e638974f88ea40bb0a1288c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1298510547 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1632642010706068162, guid: b6652d3f0d7b2914aac316a42693f913, type: 3}
+  m_PrefabInstance: {fileID: 1298510542}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298510544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 415656bc16ab3634cbca64c7576c4df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1298510550 stripped
