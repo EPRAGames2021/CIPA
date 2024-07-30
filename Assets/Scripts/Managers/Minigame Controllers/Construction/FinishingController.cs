@@ -14,6 +14,10 @@ namespace CIPA
         [SerializeField] private float _paintMinTolerableSpeed;
         [SerializeField] private float _paintMaxTolerableSpeed;
 
+        [Header("Art")]
+        [SerializeField] private ParticleSystem _poofVFX;
+        [SerializeField] private ParticleSystem _sparklesVFX;
+
         [Header("Dev")]
         [SerializeField] private Transform _playerTeleportDestination;
 
@@ -71,6 +75,9 @@ namespace CIPA
             _screenTouchController = _finishingUI.ScreenTouchController;
             _mouseDelta = _finishingUI.MouseDelta;
             _mousePositionHandler = _finishingUI.MousePositionHandler;
+
+            _poofVFX.gameObject.SetActive(false);
+            _sparklesVFX.gameObject.SetActive(false);
 
             base.Init();
         }
@@ -210,6 +217,12 @@ namespace CIPA
             yield return new WaitForSeconds(2);
 
             _player.ChangeState(CharacterState.Looking);
+
+            _sparklesVFX.gameObject.SetActive(true);
+            _sparklesVFX.Play();
+
+            _poofVFX.gameObject.SetActive(true);
+            _poofVFX.Play();
         }
     }
 }

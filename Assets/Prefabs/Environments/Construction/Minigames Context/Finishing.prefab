@@ -911,6 +911,8 @@ MonoBehaviour:
   _speedTolerancePercent: 30
   _paintMinTolerableSpeed: 2.1
   _paintMaxTolerableSpeed: 3.9
+  _poofVFX: {fileID: 1635576007671143440}
+  _sparklesVFX: {fileID: 6103860685211459580}
   _playerTeleportDestination: {fileID: 4122691700148785285}
   _finishingUI: {fileID: 0}
   _paintingRoom: {fileID: 5842267070408540765}
@@ -9383,7 +9385,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1046733363732004, guid: d7a1380441a57044eba390476d4eff72, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4738790163770152, guid: d7a1380441a57044eba390476d4eff72, type: 3}
       propertyPath: m_RootOrder
@@ -9446,6 +9448,11 @@ PrefabInstance:
 --- !u!4 &1468248515668071038 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4738790163770152, guid: d7a1380441a57044eba390476d4eff72, type: 3}
+  m_PrefabInstance: {fileID: 1472837440988494166}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1635576007671143440 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198767994055189830, guid: d7a1380441a57044eba390476d4eff72, type: 3}
   m_PrefabInstance: {fileID: 1472837440988494166}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1480453435317553728
@@ -20103,7 +20110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 137732, guid: 00dac97cdd613fe49a4eb911783ae686, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 417248, guid: 00dac97cdd613fe49a4eb911783ae686, type: 3}
       propertyPath: m_RootOrder
@@ -20163,6 +20170,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00dac97cdd613fe49a4eb911783ae686, type: 3}
+--- !u!198 &6103860685211459580 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 19848150, guid: 00dac97cdd613fe49a4eb911783ae686, type: 3}
+  m_PrefabInstance: {fileID: 6103860685231260714}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6103860685230889418 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 417248, guid: 00dac97cdd613fe49a4eb911783ae686, type: 3}
