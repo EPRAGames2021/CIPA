@@ -54,6 +54,9 @@ namespace EPRA.Utilities
         private void CheckEmployeeScores()
         {
             _subMenuTitle.text = "Check employee score";
+            _employeeIDPrefix.text = FirebaseHandler.GetCompanyPrefix();
+
+            _confirmIDButton.onClick.AddListener(GetEmployeeScore);
 
             OpenSubMenu();
         }
@@ -84,6 +87,21 @@ namespace EPRA.Utilities
                 {
                     _subMenuFeedback.text = "Failed to create new employee";
                 }
+            }
+        }
+
+        private async void GetEmployeeScore()
+        {
+            if (!await FirebaseHandler.GetEmployeeExists(_employeeIDPrefix.text + _employeeIDInput.text))
+            {
+                _subMenuFeedback.text = "employeeDoesNotExist";
+            }
+            else
+            {
+                int score = await FirebaseHandler.GetEmployeeScore(_employeeIDPrefix.text + _employeeIDInput.text);
+                
+                _subMenuFeedback.text = "Employee score is " + score.ToString();
+                
             }
         }
 

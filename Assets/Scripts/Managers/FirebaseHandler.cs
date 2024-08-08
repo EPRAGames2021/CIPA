@@ -35,11 +35,11 @@ namespace EPRA.Utilities
         public bool IsAdminAccount { get { return _isAdminAccount; } set { _isAdminAccount = value; } }
 
 
-        private void Awake()
+        private async void Awake()
         {
             InitSingleton();
             AttemptConnection();
-            _encryptionKey  = Resources.Load<EncryptionKey>("EncryptionKey");
+            _encryptionKey  = Resources.Load<EncryptionKey>("EncryptionKey");            
         }
 
 
@@ -366,6 +366,15 @@ namespace EPRA.Utilities
             return Instance._companyCode;
         }
 
+        public static async Task<int> GetEmployeeScore(string id)
+        {
+            return await GetValueOfField<int>("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id + "/" + "Score");
+        }
+
+        public static async Task<bool> SetEmployeeScore(string id, int score)
+        {
+            return await PushValueToField("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id + "/" + "Score", score) != default;
+        }
 
         public static async Task<bool> GetIsEmployeeFirstLogin(string id)
         {
