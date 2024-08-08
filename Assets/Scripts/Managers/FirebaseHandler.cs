@@ -6,6 +6,9 @@ using System;
 using UnityEngine;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using System.Text;
+using System.Data.SqlTypes;
 
 namespace EPRA.Utilities
 {
@@ -21,6 +24,8 @@ namespace EPRA.Utilities
         [SerializeField] private string _companyCode;
         [SerializeField] private bool _isAdminAccount;
 
+        [SerializeField] private static EncryptionKey _encryptionKey;
+
 
         public FirebaseApp App => _app;
         public DatabaseReference Database => _databaseReference;
@@ -34,6 +39,7 @@ namespace EPRA.Utilities
         {
             InitSingleton();
             AttemptConnection();
+            _encryptionKey  = Resources.Load<EncryptionKey>("EncryptionKey");
         }
 
 
@@ -155,6 +161,13 @@ namespace EPRA.Utilities
             }
         }
 
+        private static async Task<string> AddChildToField(string path, string value)
+        {
+            DatabaseReference database = Instance.Database.Child(path);
+            await database.SetRawJsonValueAsync(value);
+            return value;
+        }
+
 
         public static async Task<bool> GetCompanyExists(string company)
         {
@@ -197,7 +210,7 @@ namespace EPRA.Utilities
                 {
                     //Debug.Log("Is password of " + id + " correct? " + await GetValueOfField<string>("Companies" + "/" + id + "/" + "Password") == password);
 
-                    return await GetValueOfField<string>("Companies" + "/" + id + "/" + "Password") == password;
+                    return await GetValueOfField<string>("Companies" + "/" + id + "/" + "Password") == CriptographPassword(password);
                 }
             }
             else
@@ -214,7 +227,7 @@ namespace EPRA.Utilities
                 {
                     //Debug.Log("Is password of " + id + " correct? " + await GetValueOfField<string>("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id + "/" + "Password") == password);
 
-                    return await GetValueOfField<string>("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id + "/" + "Password") == password;
+                    return await GetValueOfField<string>("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id + "/" + "Password") == CriptographPassword(password);
                 }
             }
         }
@@ -235,13 +248,14 @@ namespace EPRA.Utilities
 
         public static async Task<bool> SetPassword(string id, string password)
         {
+            var criptographedPassword = CriptographPassword(password);
             if (GetIsCompanyID(id))
             {
-                return await PushValueToField("Companies" + "/" + id + "/" + "Password", password) != default;
+                return await PushValueToField("Companies" + "/" + id + "/" + "Password", criptographedPassword) != default;
             }
             else
             {
-                return await PushValueToField("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id + "/" + "Password", password) != default;
+                return await PushValueToField("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id + "/" + "Password", criptographedPassword) != default;
             }
         }
 
@@ -284,7 +298,7 @@ namespace EPRA.Utilities
         {
             if (await GetCompanyExists(company) == default) return false;
             else if (await AddValueToField<string>("Companies" + "/" + company + "/" + "Employees" + "/", id) == default) return false;
-            else if (await AddValueToField<string>("Companies" + "/" + company + "/" + "Employees" + "/" + id, "") == default) return false;
+            else if (await AddChildToField("Companies" + "/" + company + "/" + "Employees" + "/" + id,JsonUtility.ToJson( new Employee())) == default) return false;
             
             return true;
         }
@@ -356,13 +370,14 @@ namespace EPRA.Utilities
         public static async Task<bool> GetIsEmployeeFirstLogin(string id)
         {
             //Debug.Log(await GetValueOfField<string>("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id));
-            return (await GetValueOfField<string>("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id) == null ||
-                await GetValueOfField<string>("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id) == "");
+            return (await GetValueOfField<string>("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id + "/" + "Password") == null ||
+                await GetValueOfField<string>("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id + "/" + "Password") == "");
         }
 
         public static async Task<bool> SetEmployeePassword(string id, string password)
         {
-            return await PushValueToField<string>("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id, password) != default;
+            var criptographedPassword = CriptographPassword(password);
+            return await PushValueToField<string>("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id + "/" + "Password", criptographedPassword) != default;
         }
 
 
@@ -446,5 +461,26 @@ namespace EPRA.Utilities
             return true;
         }
 
+        public static string CriptographPassword(string password)
+        {
+            var key = _encryptionKey.Key;
+            
+            return AesOperation.EncryptString(key, password);            
+        }
+
+        public static string DecriptographPassword(string password)
+        {
+            var key = _encryptionKey.Key;
+
+            return AesOperation.DecryptString(key, password);;
+        }
     }
+}
+
+[Serializable]
+public class Employee
+{
+    public string DisplayName;
+    public string Password;    
+    public int Score;
 }

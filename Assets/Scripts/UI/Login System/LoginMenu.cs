@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Text.RegularExpressions;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace EPRA.Utilities
 {
@@ -28,7 +31,7 @@ namespace EPRA.Utilities
         [SerializeField] private GameObject _passwordInputContainer;
         [SerializeField] private GameObject _confirmPasswordInputContainer;
 
-        [SerializeField] private string _company;
+        [SerializeField] private string _company;        
 
         private void Start()
         {
