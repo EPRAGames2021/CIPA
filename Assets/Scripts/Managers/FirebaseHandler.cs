@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 using System.Data.SqlTypes;
+using System.Linq;
 
 namespace EPRA.Utilities
 {
@@ -340,6 +341,34 @@ namespace EPRA.Utilities
             }
 
             return companyNames;
+        }
+
+        public static async Task<int> GetCompanyEmployeeCount()
+        {
+            DatabaseReference databaseReference = FirebaseDatabase.DefaultInstance.RootReference;
+
+            int employeeCount = 0;
+
+            try
+            {
+                // Get the reference to the "Employees" field
+                DatabaseReference employeesRef = databaseReference.Child("Companies" + "/" + Instance._companyCode + "/" + "Employees");
+
+                // Retrieve the snapshot of the "Employees" field
+                DataSnapshot employeesSnapshot = await employeesRef.GetValueAsync();
+
+                // Check if the snapshot exists and has children
+                if (employeesSnapshot != null && employeesSnapshot.Exists && employeesSnapshot.HasChildren)
+                {
+                    employeeCount = employeesSnapshot.Children.Count();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError("Error fetching employees: " + ex);
+            }
+
+            return employeeCount;
         }
 
         public static async Task<string> GetEmployeeCompany(string id)

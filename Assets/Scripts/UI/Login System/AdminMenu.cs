@@ -20,6 +20,7 @@ namespace EPRA.Utilities
         [SerializeField] private Button _confirmIDButton;
         [SerializeField] private Button _closeSubMenu;
 
+        [SerializeField] private int _maxEmployeeCount;
 
         private void OnEnable()
         {
@@ -73,6 +74,12 @@ namespace EPRA.Utilities
 
         private async void AddNewEmployee()
         {
+            int employeeCount = await FirebaseHandler.GetCompanyEmployeeCount();
+            if(employeeCount >= _maxEmployeeCount)
+            {
+                _subMenuFeedback.text = "Max employee number already reached";
+                return;
+            }
             if (await FirebaseHandler.GetEmployeeExists(_employeeIDPrefix.text + _employeeIDInput.text))
             {
                 _subMenuFeedback.text = "Employee code already exists";
