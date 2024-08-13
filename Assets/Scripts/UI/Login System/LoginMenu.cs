@@ -4,6 +4,7 @@ using TMPro;
 using System.Text.RegularExpressions;
 using System.Security.Cryptography;
 using System.Text;
+using Firebase.Auth;
 
 namespace EPRA.Utilities
 {
@@ -59,6 +60,16 @@ namespace EPRA.Utilities
             _confirmPasswordInputContainer.SetActive(false);
 
             _confirmButton.onClick.AddListener(CheckCredentials);
+
+            Authtentication();
+        }
+
+        private async void Authtentication()
+        {
+            var auth = FirebaseAuth.DefaultInstance;
+            if (auth.CurrentUser == null) {
+                await auth.SignInAnonymouslyAsync();
+            }
         }
 
         private void Finish()
