@@ -1662,7 +1662,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 0.5
+    m_Strength: 0.4
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -1702,7 +1702,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
-  m_ShadowAngle: 0
+  m_ShadowAngle: 2
 --- !u!4 &468042946
 Transform:
   m_ObjectHideFlags: 0
@@ -1710,14 +1710,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 468042944}
-  m_LocalRotation: {x: 0.16636568, y: 0.73994213, z: -0.6208851, w: 0.19826692}
+  m_LocalRotation: {x: 0.48296294, y: 0.22414392, z: -0.12940955, w: 0.8365163}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 118194734}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 80, y: 150, z: 0}
+  m_LocalEulerAnglesHint: {x: 60, y: 30, z: 0}
 --- !u!114 &468042947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3158,6 +3158,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Electrics UI
       objectReference: {fileID: 0}
+    - target: {fileID: 3558531472543658966, guid: 2fb81f487ecad35439cd8ace6e58d949, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fb81f487ecad35439cd8ace6e58d949, type: 3}
 --- !u!224 &1199812727 stripped
@@ -3541,11 +3545,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6766570226258158376, guid: b6652d3f0d7b2914aac316a42693f913, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7877108170972734792, guid: b6652d3f0d7b2914aac316a42693f913, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7877513954018299380, guid: b6652d3f0d7b2914aac316a42693f913, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7877726418688070928, guid: b6652d3f0d7b2914aac316a42693f913, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7877751957248720758, guid: b6652d3f0d7b2914aac316a42693f913, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7877959007297737304, guid: b6652d3f0d7b2914aac316a42693f913, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8486980862473369957, guid: b6652d3f0d7b2914aac316a42693f913, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8486980862475033041, guid: b6652d3f0d7b2914aac316a42693f913, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8975250057527219570, guid: b6652d3f0d7b2914aac316a42693f913, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6652d3f0d7b2914aac316a42693f913, type: 3}
@@ -4045,6 +4077,10 @@ PrefabInstance:
     - target: {fileID: 3558531472543658966, guid: 7bcd62e50c10bda4ea697458466e9b64, type: 3}
       propertyPath: m_Name
       value: Hydraulics UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 3558531472543658966, guid: 7bcd62e50c10bda4ea697458466e9b64, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7bcd62e50c10bda4ea697458466e9b64, type: 3}
