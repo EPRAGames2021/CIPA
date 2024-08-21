@@ -10,6 +10,26 @@ namespace CIPA
         [SerializeField] private bool _drainIsActive;
         private Coroutine _drainCoroutine;
 
+        [SerializeField] private Vector3 _size;
+        [SerializeField] private bool _showWall;
+
+        [SerializeField] private BoxCollider _boxCollider;
+        [SerializeField] private GameObject _wall;
+
+
+        private void OnValidate()
+        {
+            _boxCollider.size = _size;
+            _wall.transform.localScale = _size * 0.5f;
+
+            _wall.SetActive(_showWall);
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube(transform.position, _size);
+        }
 
         private void OnEnable()
         {
@@ -85,5 +105,7 @@ namespace CIPA
                 StopDrain();
             }
         }
+
+
     }
 }
