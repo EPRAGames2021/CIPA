@@ -304,6 +304,22 @@ namespace EPRA.Utilities
             return true;
         }
 
+        public static async Task<bool> AddNewCompany(string id, string displayName, int expiration)
+        {
+            Company company = new Company()
+            { 
+                DisplayName = displayName,
+                AdminCreated = false,
+                Employees = new List<Employee>(),
+                ExpirationDate = DateTime.UtcNow.AddMonths(expiration).ToString()
+            };
+
+            if (!GetIsCompanyID(id)) return false;
+            else if (await AddChildToField("Companies" + "/" + id,JsonUtility.ToJson( company )) == default) return false;
+            
+            return true;
+        }
+
 
         private static async Task<List<string>> GetAllCompanies()
         {
@@ -410,6 +426,13 @@ namespace EPRA.Utilities
             //Debug.Log(await GetValueOfField<string>("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id));
             return (await GetValueOfField<string>("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id + "/" + "Password") == null ||
                 await GetValueOfField<string>("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id + "/" + "Password") == "");
+        }
+
+        public static async Task<bool> GetIsCompanyExpired(string id)
+        {
+            DateTime expirationDate = DateTime.Parse(await GetValueOfField<string>("Companies" + "/" + id + "/" + "ExpirationDate"));
+            
+            return DateTime.Compare(expirationDate, DateTime.UtcNow) < 0;
         }
 
         public static async Task<bool> SetEmployeePassword(string id, string password)
@@ -521,4 +544,14 @@ public class Employee
     public string DisplayName;
     public string Password;    
     public int Score;
+}
+
+[Serializable]
+public class Company
+{
+    public bool AdminCreated;
+    public string DisplayName;
+    public string Password;    
+    public List<Employee> Employees;
+    public string ExpirationDate;
 }

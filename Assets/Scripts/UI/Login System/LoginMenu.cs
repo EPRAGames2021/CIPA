@@ -106,7 +106,13 @@ namespace EPRA.Utilities
                 _company = idInput;
 
                 if (await FirebaseHandler.GetCompanyExists(_company))
-                {
+                {                    
+                    if(await FirebaseHandler.GetIsCompanyExpired(_company))
+                    {                        
+                        SetFeedback(_passwordFeedbackTranslate, "expired");                        
+                        return;
+                    }
+
                     if (await FirebaseHandler.GetAdminAccountCreated(_company))
                     {
                         SetFeedback(_passwordTipTranslate, "insertPassword");
@@ -217,7 +223,7 @@ namespace EPRA.Utilities
             {
                 SetFeedback(_passwordFeedbackTranslate, "organizationDoesNotExist");
                 SetNewPasswordFieldsEnabled(false);
-            }
+            }            
         }
 
 
