@@ -297,8 +297,7 @@ namespace EPRA.Utilities
 
         public static async Task<bool> AddNewEmployee(string company, string id)
         {
-            if (await GetCompanyExists(company) == default) return false;
-            else if (await AddValueToField<string>("Companies" + "/" + company + "/" + "Employees" + "/", id) == default) return false;
+            if (await GetCompanyExists(company) == default) return false;            
             else if (await AddChildToField("Companies" + "/" + company + "/" + "Employees" + "/" + id,JsonUtility.ToJson( new Employee())) == default) return false;
             
             return true;
