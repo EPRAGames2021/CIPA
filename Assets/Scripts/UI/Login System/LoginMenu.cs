@@ -69,7 +69,7 @@ namespace EPRA.Utilities
             var auth = FirebaseAuth.DefaultInstance;
             if (auth.CurrentUser == null) {
                 await auth.SignInAnonymouslyAsync();
-            }
+            }            
         }
 
         private void Finish()
@@ -79,26 +79,7 @@ namespace EPRA.Utilities
 
 
         private async void CheckCredentials()
-        {
-            //done
-            //check whether its organization id or user id
-            //if its organization id check if its valid
-            //if valid, check if admin account has been created
-            //if so, prompt user to insert password to login
-            //if not, prompt user to create admin account (create password)
-            //if admin account exists and password is correct, go to main menu
-            //if account does not exist (no password has been saved) and password is valid, save password and go to main menu
-
-            //todo
-            //if its user id check if its valid
-            //if valid, check if it is its first time logging in
-            //if so, prompt user to create password
-            //if not, ask for password
-
-            //IMPORTANT:
-            //if password doesn't exist and account fails to be created for some reason, overwrite old password rather than append new when hitting confirm again
-            //also passwords should be encrypted
-
+        {            
             string idInput = _idInput.text;
 
             if (FirebaseHandler.GetIsCompanyID(idInput))
@@ -127,6 +108,7 @@ namespace EPRA.Utilities
                                 FirebaseHandler.SetCompany(_company);
 
                                 GoToMainMenu();
+                                await FirebaseHandler.SetEmployeeScore("431EGP0004", 15);
                             }
                             else
                             {

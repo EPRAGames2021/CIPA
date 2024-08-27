@@ -417,6 +417,7 @@ namespace EPRA.Utilities
 
         public static async Task<bool> SetEmployeeScore(string id, int score)
         {
+            if( await GetEmployeeScore(id) > score) return true;
             return await PushValueToField("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id + "/" + "Score", score) != default;
         }
 
