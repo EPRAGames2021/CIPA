@@ -107,8 +107,7 @@ namespace EPRA.Utilities
 
                                 FirebaseHandler.SetCompany(_company);
 
-                                GoToMainMenu();
-                                await FirebaseHandler.SetEmployeeScore("431EGP0004", 15);
+                                GoToMainMenu();                                
                             }
                             else
                             {
