@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 namespace EPRA.Utilities
 {
@@ -19,6 +20,7 @@ namespace EPRA.Utilities
         [SerializeField] private Button _confirmIDButton;
         [SerializeField] private Button _closeSubMenu;
 
+        [SerializeField] private int _maxEmployeeCount;
 
         private void OnEnable()
         {
@@ -53,6 +55,9 @@ namespace EPRA.Utilities
         private void CheckEmployeeScores()
         {
             _subMenuTitle.text = "Check employee score";
+            _employeeIDPrefix.text = FirebaseHandler.GetCompanyPrefix();
+
+            _confirmIDButton.onClick.AddListener(GetEmployeeScore);
 
             OpenSubMenu();
         }
@@ -69,6 +74,12 @@ namespace EPRA.Utilities
 
         private async void AddNewEmployee()
         {
+            int employeeCount = await FirebaseHandler.GetCompanyEmployeeCount();
+            if(employeeCount >= _maxEmployeeCount)
+            {
+                _subMenuFeedback.text = "Max employee number already reached";
+                return;
+            }
             if (await FirebaseHandler.GetEmployeeExists(_employeeIDPrefix.text + _employeeIDInput.text))
             {
                 _subMenuFeedback.text = "Employee code already exists";
@@ -83,6 +94,21 @@ namespace EPRA.Utilities
                 {
                     _subMenuFeedback.text = "Failed to create new employee";
                 }
+            }
+        }
+
+        private async void GetEmployeeScore()
+        {
+            if (!await FirebaseHandler.GetEmployeeExists(_employeeIDPrefix.text + _employeeIDInput.text))
+            {
+                _subMenuFeedback.text = "employeeDoesNotExist";
+            }
+            else
+            {
+                int score = await FirebaseHandler.GetEmployeeScore(_employeeIDPrefix.text + _employeeIDInput.text);
+                
+                _subMenuFeedback.text = "Employee score is " + score.ToString();
+                
             }
         }
 
