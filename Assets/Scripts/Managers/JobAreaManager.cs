@@ -10,6 +10,7 @@ namespace CIPA
         public static JobAreaManager Instance { get; private set; }
 
         [SerializeField] private JobSectorAreaSO _jobSectorSO;
+        [SerializeField] private EmployeeSO _employeeSO;
         [SerializeField] private DialogSO _boss;
         [SerializeField] private DialogSO _doctor;
 
@@ -226,8 +227,6 @@ namespace CIPA
             CustomGameEvents.InvokeOnMinigameEnded();
         }
 
-
-
         public void FinishMinigame(bool success)
         {
             CanvasManager.Instance.InitiateFadeSequence();
@@ -240,6 +239,8 @@ namespace CIPA
             {
                 MinigameFailed();
             }
+
+            _employeeSO.AddNewDayReport(new DayReport(_jobSectorSO.Day, _jobSectorSO.CurrentJob.Score, _jobSectorSO.CurrentJob.Actions));
         }
 
         public void FinishTutorial()
@@ -256,6 +257,8 @@ namespace CIPA
                 yield return new WaitForSeconds(1.5f);
 
                 CanvasManager.Instance.OpenMenu(MenuType.VictoryMenu);
+
+                _employeeSO.AddNewDayReport(new DayReport(_jobSectorSO.Day, _jobSectorSO.CurrentJob.Score, _jobSectorSO.CurrentJob.Actions));
 
                 _jobSectorSO.FinishDay();
             }

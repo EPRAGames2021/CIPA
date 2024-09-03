@@ -16,6 +16,8 @@ namespace EPRA.Utilities
         public Sprite Icon => _spriteIcon;
 
         public event System.Action<int> OnChangeValue;
+        public event System.Action<int> OnValueIncreased;
+        public event System.Action<int> OnValueDecreased;
 
         private void OnEnable()
         {
@@ -28,6 +30,7 @@ namespace EPRA.Utilities
             _value += value;
 
             OnChangeValue?.Invoke(_value);
+            OnValueIncreased?.Invoke(value);
 
             SaveValue();
         }
@@ -42,6 +45,7 @@ namespace EPRA.Utilities
             }
 
             OnChangeValue?.Invoke(_value);
+            OnValueDecreased?.Invoke(value);
 
             SaveValue();
         }

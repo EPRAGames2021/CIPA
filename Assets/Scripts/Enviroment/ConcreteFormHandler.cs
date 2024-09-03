@@ -9,6 +9,8 @@ namespace CIPA
         [SerializeField] private FoundationAndStructureUI _foundation;
         [SerializeField] private ScreenTouchController _controller;
 
+        private bool _minigameBeaten = false;
+
 
         private void Start()
         {
@@ -17,7 +19,10 @@ namespace CIPA
 
         private void Update()
         {
-            _concreteForm.SetActive(_controller.DetectHolding() && _foundation.StageIndex == 3);
+            if (!_minigameBeaten)
+            {
+                _concreteForm.SetActive(_controller.DetectHolding() && _foundation.StageIndex == 3);
+            }
         }
 
         private void OnDestroy()
@@ -28,14 +33,23 @@ namespace CIPA
 
         private void Init()
         {
+            CustomGameEvents.OnMinigameWon += DisableSounds;
             _foundation.OnMinigameFailed += ResetConcrete;
+
+            _minigameBeaten = false;
         }
 
         private void Finish()
         {
+            CustomGameEvents.OnMinigameWon -= DisableSounds;
             _foundation.OnMinigameFailed -= ResetConcrete;
         }
 
+
+        private void DisableSounds()
+        {
+            _minigameBeaten = true;
+        }
 
         private void ResetConcrete()
         {

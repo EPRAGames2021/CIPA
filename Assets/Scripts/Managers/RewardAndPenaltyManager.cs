@@ -18,6 +18,7 @@ public class RewardAndPenaltyManager : MonoBehaviour
     [SerializeField] private RewardsAndPenaltiesSO _playerBumpedIntoObject;
     [SerializeField] private RewardsAndPenaltiesSO _failJob;
     [SerializeField] private RewardsAndPenaltiesSO _arriveAtJobUnequipped;
+    [SerializeField] private RewardsAndPenaltiesSO _walkOnStrictZone;
 
     private void Awake()
     {
@@ -70,6 +71,11 @@ public class RewardAndPenaltyManager : MonoBehaviour
     public void PlayerHasArrivedAtJobUnequipped()
     {
         ChangeScore(_arriveAtJobUnequipped);
+    }
+
+    public void PlayerHasWalkedOnStrictZone()
+    {
+        ChangeScore(_walkOnStrictZone);
     }
 
 
