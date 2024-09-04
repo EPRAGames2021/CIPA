@@ -7,6 +7,7 @@ public class EmployeeSO : ScriptableObject
 {
     [SerializeField] private List<DayReport> _dayReportList;
 
+    public List<DayReport> DayReportList => _dayReportList;
     public void AddNewDayReport(DayReport dayReport)
     {
         int index = dayReport.Day;
