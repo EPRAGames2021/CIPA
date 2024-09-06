@@ -25,12 +25,12 @@ namespace CIPA
 
         private void Init()
         {
-            if (_triggerAutomatically) _playerDetector.OnPlayerDetected += HandlePlayerDetection;
+            if (_triggerAutomatically) SubToEvent();
         }
 
         private void Finish()
         {
-            if (_triggerAutomatically) _playerDetector.OnPlayerDetected -= HandlePlayerDetection;
+            if (_triggerAutomatically) UnsubFromEvent();
         }
 
 
@@ -39,6 +39,32 @@ namespace CIPA
             _player = player;
 
             InitiateEquipmentSelection();
+        }
+
+        public void SetAutomatic(bool automatic)
+        {
+            if (automatic == _triggerAutomatically) return;
+
+            _triggerAutomatically = automatic;
+
+            if (_triggerAutomatically)
+            {
+                SubToEvent();
+            }
+            else
+            {
+                UnsubFromEvent();
+            }
+        }
+
+        private void SubToEvent()
+        {
+            _playerDetector.OnPlayerDetected += HandlePlayerDetection;
+        }
+
+        private void UnsubFromEvent()
+        {
+            _playerDetector.OnPlayerDetected -= HandlePlayerDetection;
         }
 
 

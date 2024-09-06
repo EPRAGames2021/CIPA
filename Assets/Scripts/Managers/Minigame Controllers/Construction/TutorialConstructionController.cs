@@ -38,29 +38,32 @@ namespace CIPA
 
         private void Init()
         {
-            _invisbleBarrier.SetActive(true);
             _currentTutorialID = 0;
+            _lockerTrigger.SetAutomatic(false);
+            EnableBarrier(true);
 
             LoadingScreen.OnScreenHasBeenClosed += TriggerTutorialHandler;
-            _lockerDetector.OnPlayerDetected += TriggerTutorialHandler;
             CustomGameEvents.OnPlayerWorePPEs += TriggerTutorialHandler;
-            _conesDetector.OnPlayerDetected += TriggerTutorialHandler;
-            _colleaguesDetector.OnPlayerDetected += TriggerTutorialHandler;
-            _vehiclesDetector.OnPlayerDetected += TriggerTutorialHandler;
-            _spotDetector.OnPlayerDetected += TriggerTutorialHandler;
-            _finishDetector.OnPlayerDetected += TriggerTutorialHandler;
+
+            if (_lockerDetector) _lockerDetector.OnPlayerDetected += TriggerTutorialHandler;
+            if (_conesDetector) _conesDetector.OnPlayerDetected += TriggerTutorialHandler;
+            if (_colleaguesDetector) _colleaguesDetector.OnPlayerDetected += TriggerTutorialHandler;
+            if (_vehiclesDetector) _vehiclesDetector.OnPlayerDetected += TriggerTutorialHandler;
+            if (_spotDetector) _spotDetector.OnPlayerDetected += TriggerTutorialHandler;
+            if (_finishDetector) _finishDetector.OnPlayerDetected += TriggerTutorialHandler;
         }
 
         private void Finish()
         {
             LoadingScreen.OnScreenHasBeenClosed -= TriggerTutorialHandler;
-            _lockerDetector.OnPlayerDetected -= TriggerTutorialHandler;
             CustomGameEvents.OnPlayerWorePPEs -= TriggerTutorialHandler;
-            _conesDetector.OnPlayerDetected -= TriggerTutorialHandler;
-            _colleaguesDetector.OnPlayerDetected -= TriggerTutorialHandler;
-            _vehiclesDetector.OnPlayerDetected -= TriggerTutorialHandler;
-            _spotDetector.OnPlayerDetected -= TriggerTutorialHandler;
-            _finishDetector.OnPlayerDetected -= TriggerTutorialHandler;
+
+            if (_lockerDetector) _lockerDetector.OnPlayerDetected -= TriggerTutorialHandler;
+            if (_conesDetector) _conesDetector.OnPlayerDetected -= TriggerTutorialHandler;
+            if (_colleaguesDetector) _colleaguesDetector.OnPlayerDetected -= TriggerTutorialHandler;
+            if (_vehiclesDetector) _vehiclesDetector.OnPlayerDetected -= TriggerTutorialHandler;
+            if (_spotDetector) _spotDetector.OnPlayerDetected -= TriggerTutorialHandler;
+            if (_finishDetector) _finishDetector.OnPlayerDetected -= TriggerTutorialHandler;
         }
 
 
@@ -97,7 +100,12 @@ namespace CIPA
                 CanvasManager.Instance.EnableHUD(true);
             }
 
-            if (_currentTutorialID == 0)
+
+            if (_currentTutorialID == _keys.Count - 1)
+            {
+                JobAreaManager.Instance.FinishTutorial();
+            }
+            else if (_currentTutorialID == 0)
             {
                 _tutorialConstructionUI.ShowHand(false);
             }
@@ -107,7 +115,7 @@ namespace CIPA
             }
             else if (_currentTutorialID == 2)
             {
-                _invisbleBarrier.SetActive(false);
+                EnableBarrier(false);
             }
             else if (_currentTutorialID == 7)
             {
@@ -121,12 +129,14 @@ namespace CIPA
             {
                 TriggerTutorial(10);
             }
-            else if (_currentTutorialID == 10)
-            {
-                JobAreaManager.Instance.FinishTutorial();
-            }
 
             _currentTutorialID++;
+        }
+
+
+        public void EnableBarrier(bool enable)
+        {
+            if (_invisbleBarrier != null) _invisbleBarrier.SetActive(enable);
         }
     }
 }
