@@ -303,14 +303,15 @@ namespace EPRA.Utilities
             return true;
         }
 
-        public static async Task<bool> AddNewCompany(string id, string displayName, int expiration)
+        public static async Task<bool> AddNewCompany(string id, string displayName, int expiration, int maxEmployeeCount)
         {
             Company company = new Company()
             { 
                 DisplayName = displayName,
                 AdminCreated = false,
                 Employees = new List<Employee>(),
-                ExpirationDate = DateTime.UtcNow.AddMonths(expiration).ToString()
+                ExpirationDate = DateTime.UtcNow.AddMonths(expiration).ToString(),
+                MaxEmployeeCount = maxEmployeeCount
             };
 
             if (!GetIsCompanyID(id)) return false;
@@ -435,6 +436,11 @@ namespace EPRA.Utilities
             return DateTime.Compare(expirationDate, DateTime.UtcNow) < 0;
         }
 
+        public static async Task<int> GetCompanyMaxEmployeeCount()
+        {
+            return await GetValueOfField<int>("Companies" + "/" + Instance._companyCode + "/" + "MaxEmployeeCount");
+        }
+
         public static async Task<bool> SetEmployeePassword(string id, string password)
         {
             var criptographedPassword = CriptographPassword(password);
@@ -554,4 +560,5 @@ public class Company
     public string Password;    
     public List<Employee> Employees;
     public string ExpirationDate;
+    public int MaxEmployeeCount;
 }

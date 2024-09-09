@@ -119,7 +119,7 @@ namespace EPRA.Utilities
                     {
                         SetFeedback(_passwordTipTranslate, "createPasswordRequirements");
                         SetNewPasswordFieldsEnabled(true);
-
+                        
                         if (!FirebaseHandler.GetNewPasswordIsValid(_passwordInput.text, _confirmPasswordInput.text))
                         {                            
                             if (_passwordInput.text == _confirmPasswordInput.text)
@@ -130,7 +130,11 @@ namespace EPRA.Utilities
                             {
                                 SetFeedback(_passwordFeedbackTranslate, "passwordsDoNotMatch");
                             }
-                        } 
+                        }                         
+                        else if (_passwordInput.text != _confirmPasswordInput.text)
+                        {
+                            SetFeedback(_passwordFeedbackTranslate, "passwordsDoNotMatch");
+                        }
                         else
                         {
                             if (await FirebaseHandler.SetNewAdminAccount(_company, _passwordInput.text))
@@ -166,6 +170,10 @@ namespace EPRA.Utilities
                             {
                                 SetFeedback(_passwordFeedbackTranslate, "passwordsDoNotMatch");
                             }
+                        }
+                        else if (_passwordInput.text != _confirmPasswordInput.text)
+                        {
+                            SetFeedback(_passwordFeedbackTranslate, "passwordsDoNotMatch");
                         }
                         else
                         {
