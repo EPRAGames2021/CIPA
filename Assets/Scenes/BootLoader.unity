@@ -722,6 +722,7 @@ GameObject:
   - component: {fileID: 648929157}
   - component: {fileID: 648929156}
   - component: {fileID: 648929159}
+  - component: {fileID: 648929160}
   m_Layer: 0
   m_Name: MainCanvas
   m_TagString: Untagged
@@ -843,6 +844,18 @@ MonoBehaviour:
   _loadingScreen: {fileID: 1908602211}
   _dialogScreen: {fileID: 1575725883}
   _fadeScreen: {fileID: 2253289601059043624}
+--- !u!114 &648929160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648929154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a07300d059796242b6227919f11339f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &680893742
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1112,6 +1125,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 326973764}
     m_Modifications:
+    - target: {fileID: 1694451706659463682, guid: 34d21d2e5d045ec49ad26976dc5a7567, type: 3}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1859856041857039262, guid: 34d21d2e5d045ec49ad26976dc5a7567, type: 3}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3558531472543658793, guid: 34d21d2e5d045ec49ad26976dc5a7567, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

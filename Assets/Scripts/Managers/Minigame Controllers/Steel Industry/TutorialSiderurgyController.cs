@@ -33,6 +33,7 @@ namespace CIPA
         private void Init()
         {
             _currentTutorialID = 0;
+            _lockerTrigger.SetAutomatic(false);
 
             LoadingScreen.OnScreenHasBeenClosed += TriggerTutorialHandler;
             CustomGameEvents.OnPlayerWorePPEs += TriggerTutorialHandler;
