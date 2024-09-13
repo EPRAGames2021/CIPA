@@ -774,6 +774,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tutorial Siderurgy
       objectReference: {fileID: 0}
+    - target: {fileID: 496923470577896921, guid: 0126290eeaaa4e5499f7a77ac8b9105c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5500914590834542407, guid: 0126290eeaaa4e5499f7a77ac8b9105c, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -825,11 +829,11 @@ PrefabInstance:
     - target: {fileID: 5747898078825288927, guid: 0126290eeaaa4e5499f7a77ac8b9105c, type: 3}
       propertyPath: _lockerTrigger
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 356973854}
     - target: {fileID: 5747898078825288927, guid: 0126290eeaaa4e5499f7a77ac8b9105c, type: 3}
       propertyPath: _lockerDetector
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 356973853}
     - target: {fileID: 5747898078825288927, guid: 0126290eeaaa4e5499f7a77ac8b9105c, type: 3}
       propertyPath: _tutorialConstructionUI
       value: 
@@ -859,6 +863,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2dbfdcc456391a54b9ebd524b8a19390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &356973853 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5683407029410383248, guid: 0126290eeaaa4e5499f7a77ac8b9105c, type: 3}
+  m_PrefabInstance: {fileID: 356973849}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78942fc3027fc1341bc04418d7717a69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &356973854 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9221332310004188834, guid: 0126290eeaaa4e5499f7a77ac8b9105c, type: 3}
+  m_PrefabInstance: {fileID: 356973849}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81548c884fe51314dba602a8c09af9cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &368784869
@@ -1341,6 +1367,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Logistics And Distribution UI
       objectReference: {fileID: 0}
+    - target: {fileID: 6181230728225603547, guid: c0afa04070724644abe48a994f1850d3, type: 3}
+      propertyPath: _controller
+      value: 
+      objectReference: {fileID: 861360053}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0afa04070724644abe48a994f1850d3, type: 3}
 --- !u!1 &499635862 stripped
@@ -1700,6 +1730,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2660184483419411208, guid: 6218e8ab37e4c2947b613945dbc69cc4, type: 3}
   m_PrefabInstance: {fileID: 861360050}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &861360053 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1579463789061411360, guid: 6218e8ab37e4c2947b613945dbc69cc4, type: 3}
+  m_PrefabInstance: {fileID: 861360050}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861360052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae25ee3db3326ee43be0366c4c1cc5e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &894115809
 GameObject:
   m_ObjectHideFlags: 0

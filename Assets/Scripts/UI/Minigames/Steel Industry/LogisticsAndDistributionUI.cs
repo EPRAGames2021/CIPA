@@ -21,7 +21,7 @@ namespace CIPA
 
         private void UpdateDeliveries()
         {
-            _deliveriesText.text = LanguageManager.GetTranslation("SteelIndustryDay5deliveries", _controller.CurrentDeliverySpotIndex, _controller.AmountOfDeliveries);
+            _deliveriesText.text = LanguageManager.GetTranslation("SteelIndustryDay6deliveries", _controller.CurrentDeliverySpotIndex, _controller.AmountOfDeliveries);
         }
 
         private void UpdateTime()

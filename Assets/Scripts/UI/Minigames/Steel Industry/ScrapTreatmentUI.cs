@@ -63,8 +63,8 @@ namespace CIPA
 
         private void UpdateScore()
         {
-            _colletedCount.text = LanguageManager.GetTranslation("SteelIndustryDay3collectedcargo", _scrapTreatmentController.Collected, _scrapTreatmentController.RequiredToWin);
-            _lostCount.text = LanguageManager.GetTranslation("SteelIndustryDay3droppedcargo", _scrapTreatmentController.Lost, _scrapTreatmentController.RequiredToLose);
+            _colletedCount.text = LanguageManager.GetTranslation("SteelIndustryDay4collectedcargo", _scrapTreatmentController.Collected, _scrapTreatmentController.RequiredToWin);
+            _lostCount.text = LanguageManager.GetTranslation("SteelIndustryDay4droppedcargo", _scrapTreatmentController.Lost, _scrapTreatmentController.RequiredToLose);
         }
 
 

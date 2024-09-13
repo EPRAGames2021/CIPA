@@ -240,7 +240,7 @@ namespace CIPA
                 MinigameFailed();
             }
 
-            _employeeSO.AddNewDayReport(new DayReport(_jobSectorSO.Day, _jobSectorSO.CurrentJob.Score, _jobSectorSO.CurrentJob.Actions));
+            _employeeSO.AddNewDayReport(_jobSectorSO.JobSector, new DayReport(_jobSectorSO.Day, _jobSectorSO.CurrentJob.Score, _jobSectorSO.CurrentJob.Actions));
         }
 
         public void FinishTutorial()
@@ -258,7 +258,7 @@ namespace CIPA
 
                 CanvasManager.Instance.OpenMenu(MenuType.VictoryMenu);
 
-                _employeeSO.AddNewDayReport(new DayReport(_jobSectorSO.Day, _jobSectorSO.CurrentJob.Score, _jobSectorSO.CurrentJob.Actions));
+                _employeeSO.AddNewDayReport(_jobSectorSO.JobSector, new DayReport(_jobSectorSO.Day, _jobSectorSO.CurrentJob.Score, _jobSectorSO.CurrentJob.Actions));
 
                 _jobSectorSO.FinishDay();
             }

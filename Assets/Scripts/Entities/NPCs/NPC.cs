@@ -119,8 +119,8 @@ namespace CIPA
 
         private void CheckCarrying()
         {
-            _box.SetActive(_carryingBox);
-            _handcart.SetActive(_pushingHandCart);
+            if (_box != null) _box.SetActive(_carryingBox);
+            if (_handcart != null) _handcart.SetActive(_pushingHandCart);
 
             _animator.SetBool("IsCarrying", _carriableObject != null);
         }

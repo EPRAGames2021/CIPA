@@ -129,6 +129,11 @@ namespace CIPA
         private void EndMiniGame()
         {
             EnableUI(false);
+
+            _player.gameObject.SetActive(true);
+            _player.ArrowSystem.SetEnabled(false);
+
+            _vehicleVirtualCamera.gameObject.SetActive(false);
         }
 
         private void UpdateCargo(bool enableCarrying)
