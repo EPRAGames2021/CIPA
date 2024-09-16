@@ -10,6 +10,8 @@ namespace CIPA
 
         [SerializeField] private List<FillableContainer> _containers;
 
+        [SerializeField] private List<GameObject> _lavaFlow;
+
         [SerializeField] private bool _filling;
 
         public bool Filling { get { return _filling; } set { _filling = value; } }
@@ -80,6 +82,11 @@ namespace CIPA
             if (_filling)
             {
                 _containers[_pipe.RotationIndex].AddToValue(Time.deltaTime);
+            }
+
+            for (int i = 0; i < _lavaFlow.Count; i++)
+            {
+                _lavaFlow[i].SetActive(i == _pipe.RotationIndex);
             }
         }
     }

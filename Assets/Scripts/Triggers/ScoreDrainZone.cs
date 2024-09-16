@@ -27,8 +27,8 @@ namespace CIPA
 
         private void OnDrawGizmos()
         {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireCube(transform.position, _size);
+            //Gizmos.color = Color.red;
+            //Gizmos.DrawWireCube(transform.position, _size);
         }
 
         private void OnEnable()

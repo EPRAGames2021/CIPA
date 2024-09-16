@@ -103,6 +103,7 @@ namespace CIPA
         private void EndMiniGame()
         {
             _minigameUI.SetActive(false);
+            _virtualCamera.gameObject.SetActive(false);
 
             for (int i = 0; i < _treadmills.Count; i++)
             {

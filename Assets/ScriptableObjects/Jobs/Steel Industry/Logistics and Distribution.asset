@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Logistics and Distribution
   m_EditorClassIdentifier: 
   _jobSector: 2
-  _score: 0
+  _score: -3980
   _jobName: LogisticsAndDistribution
   _saveName: SteelIndustryLogisticsAndDistribution
   _keyName: logisticsAndDistributionName
@@ -24,4 +24,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a04bad867e086c4418499c62ff6e37be, type: 2}
   - {fileID: 11400000, guid: d305d82ce11260b47a691597aef1bee4, type: 2}
   - {fileID: 11400000, guid: ec724cdb4a97abd4792c93451ec4767d, type: 2}
-  _actions: []
+  - {fileID: 11400000, guid: 0941983a13cf52c478eca38d5912cf0e, type: 2}
+  _actions:
+  - _action: playerCompletedDay
+    _performed: 1
+  - _action: playerUsedPPE
+    _performed: 1

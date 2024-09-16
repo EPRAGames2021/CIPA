@@ -63,6 +63,7 @@ namespace CIPA
         private void EndMiniGame()
         {
             Camera.main.orthographic = false;
+            _camera.gameObject.SetActive(false);
         }
     }
 }
