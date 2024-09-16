@@ -438,13 +438,27 @@ namespace EPRA.Utilities
             return await AddChildToField("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id + "/" + "DayReports" + "/" + dayReport.Day, JsonUtility.ToJson( dayReport )) != default;
         }
 
+
+        // QUICK FIX TO ALLOW PROJECT TO RUN FOR OTHER IMPLEMENTATIONS
+        // TODO
+        // REMEMBER TO ADJUST BOTH ADDEMPLOYEEDAYREPORT() AND GETEMPLOYEEDAYREPORTS()
         public static async Task<bool> AddAllEmployeeDayReports(string id, EmployeeSO employeeSO)
-        {   
+        {
+            /*
             foreach(DayReport dayReport in employeeSO.DayReportList)
             {
                 if(! await AddEmployeeDayReport(id, dayReport)) return false;                
             }
-            
+            */
+
+            foreach (JobAreaReport jobAreaReport in employeeSO.JobAreaReports)
+            {
+                foreach (DayReport dayReport in jobAreaReport.DayReportList)
+                {
+                    if (!await AddEmployeeDayReport(id, dayReport)) return false;
+                }
+            }
+
             return true;
         }
 
@@ -465,28 +479,27 @@ namespace EPRA.Utilities
                 // Check if the snapshot exists and has children
                 if (dayReportsSnapshot != null && dayReportsSnapshot.Exists && dayReportsSnapshot.HasChildren)
                 {
-                     foreach(var dayReportSnapshot in dayReportsSnapshot.Children)
+                    foreach(var dayReportSnapshot in dayReportsSnapshot.Children)
                     {
                         int day;
                         Int32.TryParse(dayReportSnapshot.Key, out day);
-
+                        
                         int score;
                         Int32.TryParse(dayReportSnapshot.Child("_score").Value.ToString(), out score);                        
-
+                        
                         List<TrackableAction> actions = new List<TrackableAction>();
-
+                        
                         foreach(var actionSnapshot in dayReportSnapshot.Child("_actions").Children)
                         {
                             string action = actionSnapshot.Child("_action").Value.ToString();
                             
                             bool performed = actionSnapshot.Child("_performed").Value.ToString() == "True";
-
+                        
                             actions.Add(new TrackableAction(action, performed));
                         }
-
-                        dayReports.Add(new DayReport(day, score, actions));
-                    }
                     
+                       dayReports.Add(new DayReport(day, score, actions));
+                    }
                 }
             }
             catch (Exception ex)

@@ -10,6 +10,8 @@ public class EmployeeSO : ScriptableObject
 {
     [SerializeField] private List<JobAreaReport> _jobAreaReports;
 
+    public List<JobAreaReport> JobAreaReports { get { return _jobAreaReports; } set { _jobAreaReports = value; } }
+
     public void AddNewDayReport(JobSector jobSector, DayReport dayReport)
     {
         bool hasFound = false;
