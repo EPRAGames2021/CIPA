@@ -422,6 +422,71 @@ namespace EPRA.Utilities
             return await PushValueToField("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id + "/" + "Score", score) != default;
         }
 
+        public static async Task<bool> AddEmployeeDayReport(string id, DayReport dayReport)
+        {                                 
+            return await AddChildToField("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id + "/" + "DayReports" + "/" + dayReport.Day, JsonUtility.ToJson( dayReport )) != default;
+        }
+
+        public static async Task<bool> AddAllEmployeeDayReports(string id, EmployeeSO employeeSO)
+        {   
+            foreach(DayReport dayReport in employeeSO.DayReportList)
+            {
+                if(! await AddEmployeeDayReport(id, dayReport)) return false;                
+            }
+            
+            return true;
+        }
+
+        public static async Task<List<DayReport>> GetEmployeeDayReports(string id)
+        {        
+            DatabaseReference databaseReference = FirebaseDatabase.DefaultInstance.RootReference;
+            
+            List<DayReport> dayReports = new List<DayReport>();
+
+            try
+            {
+                // Get the reference to the "Employees" field
+                DatabaseReference dayReportsRef = databaseReference.Child("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id + "/" + "DayReports");
+
+                // Retrieve the snapshot of the "Employees" field
+                DataSnapshot dayReportsSnapshot = await dayReportsRef.GetValueAsync();
+
+                // Check if the snapshot exists and has children
+                if (dayReportsSnapshot != null && dayReportsSnapshot.Exists && dayReportsSnapshot.HasChildren)
+                {
+                     foreach(var dayReportSnapshot in dayReportsSnapshot.Children)
+                    {
+                        int day;
+                        Int32.TryParse(dayReportSnapshot.Key, out day);
+
+                        int score;
+                        Int32.TryParse(dayReportSnapshot.Child("_score").Value.ToString(), out score);                        
+
+                        List<TrackableAction> actions = new List<TrackableAction>();
+
+                        foreach(var actionSnapshot in dayReportSnapshot.Child("_actions").Children)
+                        {
+                            string action = actionSnapshot.Child("_action").Value.ToString();
+                            
+                            bool performed = actionSnapshot.Child("_performed").Value.ToString() == "True";
+
+                            actions.Add(new TrackableAction(action, performed));
+                        }
+
+                        dayReports.Add(new DayReport(day, score, actions));
+                    }
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError("Error fetching employees: " + ex);
+            }
+
+            //return JsonUtility.FromJson<List<DayReport>>( await GetValueOfField<string>("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id + "/" + "DayReports"));
+            return dayReports;
+        }
+
         public static async Task<bool> GetIsEmployeeFirstLogin(string id)
         {
             //Debug.Log(await GetValueOfField<string>("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id));

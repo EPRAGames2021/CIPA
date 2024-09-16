@@ -32,7 +32,7 @@ namespace EPRA.Utilities
         [SerializeField] private GameObject _passwordInputContainer;
         [SerializeField] private GameObject _confirmPasswordInputContainer;
 
-        [SerializeField] private string _company;        
+        [SerializeField] private string _company;
 
         private void Start()
         {
