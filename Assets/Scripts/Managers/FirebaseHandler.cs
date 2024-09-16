@@ -10,6 +10,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Data.SqlTypes;
 using System.Linq;
+using Firebase.Auth;
 
 namespace EPRA.Utilities
 {
@@ -39,6 +40,7 @@ namespace EPRA.Utilities
         private async void Awake()
         {
             InitSingleton();
+            Authtentication();
             AttemptConnection();
             _encryptionKey  = Resources.Load<EncryptionKey>("EncryptionKey");            
         }
@@ -54,6 +56,15 @@ namespace EPRA.Utilities
             {
                 Destroy(gameObject);
             }
+        }
+
+        
+        private async void Authtentication()
+        {
+            var auth = FirebaseAuth.DefaultInstance;
+            if (auth.CurrentUser == null) {
+                await auth.SignInAnonymouslyAsync();
+            }            
         }
 
         private void AttemptConnection()
