@@ -63,6 +63,7 @@ namespace CIPA
             if (_target == null) return;
 
             _arrow.transform.DOLookAt(_target.position, 0.5f);
+            _arrow.transform.Rotate(0f, _arrow.transform.rotation.y, 0f);
         }
 
         private void CheckDistance()

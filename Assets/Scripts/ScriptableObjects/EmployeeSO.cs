@@ -12,6 +12,16 @@ public class EmployeeSO : ScriptableObject
 
     public List<JobAreaReport> JobAreaReports { get { return _jobAreaReports; } set { _jobAreaReports = value; } }
 
+
+    public void OnEnable()
+    {
+        if (_jobAreaReports == null)
+        {
+            _jobAreaReports = new();
+        }
+    }
+
+
     public void AddNewDayReport(JobSector jobSector, DayReport dayReport)
     {
         bool hasFound = false;
@@ -23,6 +33,8 @@ public class EmployeeSO : ScriptableObject
                 _jobAreaReports[i].AddNewDayReport(dayReport);
 
                 hasFound = true;
+
+                break;
             }
         }
 
@@ -61,7 +73,7 @@ public class JobAreaReport
         {
             _dayReportList.RemoveAt(index);
         }
-
+        
         _dayReportList.Insert(dayReport.Day, dayReport);
     }
 

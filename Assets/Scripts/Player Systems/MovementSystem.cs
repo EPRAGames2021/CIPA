@@ -26,7 +26,6 @@ namespace CIPA
         [SerializeField] private float _targetAngle;
 
         [SerializeField] private bool _canMove;
-        [SerializeField] private bool _movimentBlocked;
 
         [SerializeField] private bool _isWalking;
         [SerializeField] private bool _isRunning;
@@ -49,7 +48,6 @@ namespace CIPA
 
         private void FixedUpdate()
         {
-            if (_movimentBlocked) return;
             if (!_canMove) return;
 
             HandleRotationInput();
@@ -64,14 +62,14 @@ namespace CIPA
         {
             _canMove = true;
 
+            _currentAngle = 0f;
+
             RestrictMovement(false);
         }
 
 
         private void HandleMovementInput()
         {
-            if (_movimentBlocked) return;
-
             if (_cameraTransform != null && _moveRelativeToCamera)
             {
                 float referenceYRotation = _cameraTransform.transform.eulerAngles.y;

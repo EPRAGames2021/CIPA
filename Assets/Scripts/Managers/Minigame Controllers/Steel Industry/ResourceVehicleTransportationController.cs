@@ -62,7 +62,7 @@ namespace CIPA
             CustomGameEvents.OnMinigameStarted += InitiateMiniGame;
             CustomGameEvents.OnMinigameEnded += EndMiniGame;
 
-            _vehiclePlayer.OnDied += PlayerDied;
+            _vehiclePlayer.OnDied += VehicleCrashed;
             _vehicle.OnCarryingChanged += UpdateCargo;
         }
 
@@ -71,7 +71,7 @@ namespace CIPA
             CustomGameEvents.OnMinigameStarted -= InitiateMiniGame;
             CustomGameEvents.OnMinigameEnded -= EndMiniGame;
 
-            _vehiclePlayer.OnDied -= PlayerDied;
+            _vehiclePlayer.OnDied -= VehicleCrashed;
             _vehicle.OnCarryingChanged -= UpdateCargo;
 
             SetAllDeliverySubsActive(false);
@@ -91,9 +91,9 @@ namespace CIPA
 
             _collectingSpot.gameObject.SetActive(true);
 
+            SetupVehicle();
             InputHandler.Instance.SetMovementSystem(_vehicleMovementSystem);
 
-            SetupVehicle();
             EnableUI(true);
         }
 
@@ -101,16 +101,16 @@ namespace CIPA
         {
             _vehicle.SetCarrying(CargoType.None, false);
 
-            _vehiclePlayer.gameObject.SetActive(true);
-            _vehiclePlayer.transform.SetPositionAndRotation(_vehicleInitialPosition, _vehicleInitialRotation);
+            _vehiclePlayer.gameObject.SetActive(false);
+            _vehicleMovementSystem.StandStill();
             _vehiclePlayer.Refresh();
+            _vehiclePlayer.transform.SetPositionAndRotation(_vehicleInitialPosition, _vehicleInitialRotation);
+            _vehiclePlayer.gameObject.SetActive(true);
 
             _vehicleVirtualCamera.gameObject.SetActive(true);
 
             _vehicleArrowSystem.SetTarget(_collectingSpot.transform);
             _vehicleArrowSystem.SetEnabled(true);
-            _vehicleMovementSystem.StandStill();
-            _vehicleMovementSystem.TemporarilyDisableMovement(1f);
         }
 
         private void EnableUI(bool display)
@@ -132,6 +132,7 @@ namespace CIPA
 
             _player.gameObject.SetActive(true);
             _player.ArrowSystem.SetEnabled(false);
+            InputHandler.Instance.SetMovementSystem(_player.MovementSystem);
 
             _vehicleVirtualCamera.gameObject.SetActive(false);
         }
@@ -183,7 +184,7 @@ namespace CIPA
             }
         }
 
-        private void PlayerDied()
+        private void VehicleCrashed()
         {
             JobAreaManager.Instance.PlayerDied();
         }
