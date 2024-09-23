@@ -82,7 +82,7 @@ namespace EPRA.Utilities
                 }
                 else
                 {
-                    //Debug.LogError(System.String.Format("Could not resolve all Firebase dependencies: {0}", dependencyStatus));
+                    Debug.LogError(System.String.Format("Could not resolve all Firebase dependencies: {0}", dependencyStatus));
 
                     _isConnected = false;
                 }

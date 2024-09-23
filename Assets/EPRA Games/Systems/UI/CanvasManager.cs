@@ -9,6 +9,8 @@ namespace EPRA.Utilities
     {
         public static CanvasManager Instance { get; private set; }
 
+        [SerializeField] private MenuType _firstMenuToOpen;
+
         [SerializeField] private List<MenuController> _menuControllersList;
 
         [SerializeField] private List<MenuController> _allActiveMenus;
@@ -43,8 +45,9 @@ namespace EPRA.Utilities
             SceneLoader.Instance.OnProgressChanges += LoadingScreen.SetPercentage;
 
             CloseAllMenus();
-            OpenMenu(MenuType.LoginMenu);
+            //OpenMenu(MenuType.LoginMenu);
             //OpenMenu(MenuType.MainMenu);
+            OpenMenu(_firstMenuToOpen);
         }
 
         private void OnDestroy()
