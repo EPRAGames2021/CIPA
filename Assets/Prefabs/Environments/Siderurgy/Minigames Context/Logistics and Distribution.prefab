@@ -481,8 +481,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 598029724122367713}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.64, y: 0, z: 15.55}
-  m_LocalScale: {x: 0.3, y: 2.4969, z: 21.403305}
+  m_LocalPosition: {x: -0.64, y: 0, z: 23.300003}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3160597958389073904}
@@ -549,7 +549,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 2}
+  m_Size: {x: 1, y: 5, z: 20}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &650384250688380648
 GameObject:
@@ -2163,6 +2163,7 @@ GameObject:
   - component: {fileID: 6007970823100160452}
   - component: {fileID: 6199940726512399468}
   - component: {fileID: 2566173528609790482}
+  - component: {fileID: 3457429140908983158}
   m_Layer: 0
   m_Name: Forklift
   m_TagString: Untagged
@@ -2316,7 +2317,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 32
   m_CollisionDetection: 0
 --- !u!65 &6384704619086287328
 BoxCollider:
@@ -2329,8 +2330,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 2}
-  m_Center: {x: 0, y: 1.05, z: 0.675}
+  m_Size: {x: 2, y: 2, z: 2.7}
+  m_Center: {x: 0, y: 1.05, z: 0}
 --- !u!114 &8901436605284306951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2427,6 +2428,19 @@ MonoBehaviour:
   _maxHealth: 100
   _invincible: 0
   _injuryThreshhold: 50
+--- !u!65 &3457429140908983158
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4763843176770938697}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.2, z: 1}
+  m_Center: {x: 0, y: 0.2, z: 2}
 --- !u!1 &4841317617626600572
 GameObject:
   m_ObjectHideFlags: 0
@@ -2619,7 +2633,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 2}
+  m_Size: {x: 1, y: 5, z: 20}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5517853113853232302
 GameObject:
@@ -2921,7 +2935,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6076562816245224043}
   m_LocalRotation: {x: 0.36779296, y: -0.60392743, z: 0.36779296, w: 0.60392743}
-  m_LocalPosition: {x: 161.1728, y: 42.21202, z: -12.8}
+  m_LocalPosition: {x: 161.17297, y: 42.212067, z: -12.800018}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

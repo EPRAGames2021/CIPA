@@ -10,6 +10,8 @@ namespace CIPA
         [SerializeField] private Transform _scrapSpawnPoint;
         [SerializeField] private List<Scrap> _scrapsPrefabs;
 
+        [SerializeField] private List<Animator> _animators;
+
         [Min(0.1f)]
         [Tooltip("Measured in seconds")]
         [SerializeField] private float _spawnFrequency;
@@ -102,10 +104,20 @@ namespace CIPA
             if (_isRunning && !_shouldRun)
             {
                 _isRunning = false;
+
+                foreach (Animator animator in _animators)
+                {
+                    animator.speed = 0;
+                }
             }
             else if (!_isRunning && _shouldRun)
             {
                 _isRunning = true;
+
+                foreach (Animator animator in _animators)
+                {
+                    animator.speed = _speed * 0.25f;
+                }
             }
 
             if (_isRunning)

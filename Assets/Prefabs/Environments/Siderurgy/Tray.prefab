@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9191820098655011150}
   - component: {fileID: 6371204669312611716}
   - component: {fileID: 8563833861268252197}
-  - component: {fileID: 8049741385233880749}
+  - component: {fileID: 1432265268921330736}
   m_Layer: 0
   m_Name: Tray
   m_TagString: Untagged
@@ -27,7 +27,6 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4858236744373343313}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: -21.18}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
@@ -35,6 +34,7 @@ Transform:
   m_Children:
   - {fileID: 1346393004189302362}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!33 &9191820098655011150
 MeshFilter:
@@ -88,7 +88,7 @@ MeshRenderer:
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!95 &8563833861268252197
 Animator:
-  serializedVersion: 5
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -105,9 +105,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!65 &8049741385233880749
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &1432265268921330736
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,17 +114,9 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4858236744373343313}
   m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Size: {x: 5.954497, y: 1.6315793, z: 3.5326912}
   m_Center: {x: 0.15950422, y: 0.81654006, z: 0}
 --- !u!1001 &1523870548792924593
@@ -133,7 +124,6 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 3
     m_TransformParent: {fileID: 5197220184115367659}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 0fb02f6ec72197245bebd6e30fd466e0, type: 3}
@@ -193,9 +183,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: fdccd08e268433245a423f0a8b121a82, type: 2}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0fb02f6ec72197245bebd6e30fd466e0, type: 3}
 --- !u!4 &1346393004189302362 stripped
 Transform:
