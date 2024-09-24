@@ -20,6 +20,9 @@ namespace CIPA
 
         [SerializeField] private List<GameObject> _cargoSpriteList;
 
+        [SerializeField] private OffScreenIndicatorManager _offScreenIndicatorManager;
+        [SerializeField] private List<GameObject> _offScreenIndicatorList;
+
 
         public float TimeLeft => _timeLeft;
 
@@ -57,6 +60,14 @@ namespace CIPA
 
             _timeLeft = _totalTime;
             _timerTrigerred = true;
+
+            //_offScreenIndicatorManager.SetupIndicators(_offScreenIndicatorList);
+
+            for (int i = 0; i < _offScreenIndicatorList.Count; i++)
+            {
+                _offScreenIndicatorManager.AddTarget(_offScreenIndicatorList[i]);
+
+            }
 
             SetNextCargo();
         }
