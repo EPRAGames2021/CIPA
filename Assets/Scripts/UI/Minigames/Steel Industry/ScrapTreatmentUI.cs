@@ -41,7 +41,7 @@ namespace CIPA
             // Initialize buttons
             for (int i = 0; i < _treadmillButtons.Count; i++)
             {
-                UpdateButton(treadmills[i].Active, i);
+                UpdateButton(!treadmills[i].Active, i);
             }
 
             // Add functionality to buttons

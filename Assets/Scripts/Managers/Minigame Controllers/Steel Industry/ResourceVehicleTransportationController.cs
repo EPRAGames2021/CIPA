@@ -61,9 +61,6 @@ namespace CIPA
 
             CustomGameEvents.OnMinigameStarted += InitiateMiniGame;
             CustomGameEvents.OnMinigameEnded += EndMiniGame;
-
-            _vehiclePlayer.OnDied += VehicleCrashed;
-            _vehicle.OnCarryingChanged += UpdateCargo;
         }
 
         protected virtual void Finish()
@@ -71,15 +68,16 @@ namespace CIPA
             CustomGameEvents.OnMinigameStarted -= InitiateMiniGame;
             CustomGameEvents.OnMinigameEnded -= EndMiniGame;
 
-            _vehiclePlayer.OnDied -= VehicleCrashed;
-            _vehicle.OnCarryingChanged -= UpdateCargo;
-
             SetAllDeliverySubsActive(false);
         }
 
 
         protected virtual void InitiateMiniGame()
         {
+            _vehiclePlayer.OnDied += VehicleCrashed;
+            _vehicle.OnCarryingChanged += UpdateCargo;
+
+
             SetAllDeliverySubsActive(false);
 
             _currentDeliverySpotIndex = 0;
@@ -128,10 +126,15 @@ namespace CIPA
 
         private void EndMiniGame()
         {
+            _vehiclePlayer.OnDied -= VehicleCrashed;
+            _vehicle.OnCarryingChanged -= UpdateCargo;
+
             EnableUI(false);
 
             _player.gameObject.SetActive(true);
             _player.ArrowSystem.SetEnabled(false);
+
+            _vehicleMovementSystem.CanMove = false;
             InputHandler.Instance.SetMovementSystem(_player.MovementSystem);
 
             _vehicleVirtualCamera.gameObject.SetActive(false);

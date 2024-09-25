@@ -62,6 +62,8 @@ namespace CIPA
             _timeLeft = _totalTime;
             _timerTrigerred = true;
 
+            _vehicleCargoBalloon.SetActive(false);
+
             _offScreenIndicatorManager.SetupIndicators(_indicatorWrappers);
 
             SetNextCargo();
