@@ -38,8 +38,7 @@ namespace CIPA
         }
 
 
-        //private void SetupIndicators(List<Item> itemsToIndicate)
-        public void SetupIndicators(List<GameObject> objectsToIndicate, List<Image> images)
+        public void SetupIndicators(List<IndicatorWrapper> objectsToIndicate)
         {
             while (targetIndicators.Count > 0)
             {
@@ -47,16 +46,22 @@ namespace CIPA
                 targetIndicators.Remove(targetIndicators[0]);
             }
 
-            foreach (GameObject gameObject in objectsToIndicate)
+            foreach (IndicatorWrapper indicatorWrapper in objectsToIndicate)
             {
-                AddTarget(gameObject);
+                AddTarget(indicatorWrapper);
             }
         }
 
 
-        public void AddTarget(GameObject targeObject)
+        public void AddTarget(IndicatorWrapper indicatorWrapper)
         {
-            targetIndicators.Add(new OffScreenIndicator() { Target = targeObject.transform });
+            OffScreenIndicator indicator = new()
+            {
+                Target = indicatorWrapper.GameObject.transform,
+                Sprite = indicatorWrapper.Icon
+            };
+
+            targetIndicators.Add(indicator);
 
             InstantiateIndicators();
         }
@@ -80,6 +85,10 @@ namespace CIPA
                 }
 
                 targetIndicator.RectTransform = rectTransform;
+
+
+                IndicatorBaloon indicator = targetIndicator.IndicatorUI.GetComponent<IndicatorBaloon>();
+                indicator.SetIcon(targetIndicator.Sprite);
             }
         }
 
@@ -94,6 +103,7 @@ namespace CIPA
 
         private void UpdatePosition(OffScreenIndicator targetIndicator)
         {
+            //turn off UI indicator if object it is pointing to is disabled
             if (!targetIndicator.Target.gameObject.active)
             {
                 targetIndicator.IndicatorUI.gameObject.SetActive(false);
@@ -114,6 +124,7 @@ namespace CIPA
             indicatorPosition.x = Mathf.Clamp(indicatorPosition.x, rect.width / 2, Screen.width - rect.width / 2) + _offset.x;
             indicatorPosition.y = Mathf.Clamp(indicatorPosition.y, rect.height / 2, Screen.height - rect.height / 2) + _offset.y;
             indicatorPosition.z = 0;
+
             targetIndicator.IndicatorUI.up = (newPosition - indicatorPosition).normalized;
             targetIndicator.IndicatorUI.position = indicatorPosition;
 
@@ -121,17 +132,6 @@ namespace CIPA
             bool shoudDisplay = Vector3.Distance(targetIndicator.Target.gameObject.transform.position, _player.transform.position) > _distanceLimit;
 
             targetIndicator.IndicatorUI.gameObject.SetActive(shoudDisplay);
-
-            /*
-            if (Mathf.Abs((targetIndicator.Target.gameObject.transform.position - _activeCamera.transform.position).x) <= _distanceLimit)
-            {
-                targetIndicator.IndicatorUI.gameObject.SetActive(false);
-            }
-            else
-            {
-                targetIndicator.IndicatorUI.gameObject.SetActive(true);
-            }
-            */
         }
     }
 }

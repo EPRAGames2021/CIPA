@@ -9,9 +9,16 @@ namespace CIPA
     {
         [SerializeField] private Image _icon;
 
-        public void SetIcon(Image icon)
+        public void SetIcon(Sprite icon)
         {
-            _icon = icon;
+            if (icon != null)
+            {
+                _icon.sprite = icon;
+            }
+            else
+            {
+                _icon.sprite = null;
+            }
         }
     }
 }
