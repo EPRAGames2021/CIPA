@@ -67,14 +67,25 @@ public class JobAreaReport
 
     public void AddNewDayReport(DayReport dayReport)
     {
-        int index = dayReport.Day;
+        int day = dayReport.Day;
 
-        if (index < _dayReportList.Count)
+        if (day >= _dayReportList.Count)
         {
-            _dayReportList.RemoveAt(index);
+            _dayReportList.Add(dayReport);
         }
-        
-        _dayReportList.Insert(dayReport.Day, dayReport);
+        else
+        {
+            for (int i = 0; i < day; i++)
+            {
+                if (day == _dayReportList[i].Day)
+                {
+                    _dayReportList.RemoveAt(day);
+                    _dayReportList.Insert(day, dayReport);
+                }
+            }
+        }
+
+        _dayReportList.Sort((day1, day2) => day1.Day.CompareTo(day2.Day));
     }
 
 }
@@ -96,6 +107,13 @@ public class DayReport
         _day = day;
         _score = score;
         _actions = actions;
+    }
+
+    public DayReport(int day)
+    {
+        _day = day;
+        _score = 0;
+        _actions = null;
     }
 }
  

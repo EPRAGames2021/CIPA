@@ -97,6 +97,12 @@ namespace CIPA
             {
                 _spawnNewScrap = StartCoroutine(SpawnNewScrap());
             }
+            else if (_spawnNewScrap != null && !_isRunning)
+            {
+                StopCoroutine(SpawnNewScrap());
+
+                _spawnNewScrap = null;
+            }
         }
 
         private void RunningBehaviour()

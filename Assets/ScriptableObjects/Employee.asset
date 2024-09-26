@@ -12,4 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f2a3aa40082e404caeadb3fcb936654, type: 3}
   m_Name: Employee
   m_EditorClassIdentifier: 
-  _jobAreaReports: []
+  _jobAreaReports:
+  - _jobSector: 1
+    _dayReportList:
+    - _day: 5
+      _score: 300
+      _actions:
+      - _action: playerUsedPPE
+        _performed: 1
+      - _action: playerCompletedDay
+        _performed: 1
+    - _day: 6
+      _score: 300
+      _actions:
+      - _action: playerFollowedPath
+        _performed: 0
+      - _action: playerUsedPPE
+        _performed: 1
+      - _action: playerCompletedDay
+        _performed: 1

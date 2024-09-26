@@ -166,10 +166,10 @@ namespace CIPA
                 }
                 else
                 {
+                    _paintFinished = true;
+                    
                     JobAreaManager.Instance.FinishMinigame(true);
                     StartCoroutine(TeleportPlayerDelay());
-                    
-                    _paintFinished = true;
                 }
             }
             else if (_paintTimeWrongSpeed >= _paintMaxTimeWrongSpeed)
