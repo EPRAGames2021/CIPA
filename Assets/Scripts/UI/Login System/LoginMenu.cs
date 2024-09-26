@@ -61,6 +61,11 @@ namespace EPRA.Utilities
 
             _confirmButton.onClick.AddListener(CheckCredentials);
 
+#if !UNITY_EDITOR
+            _idInput.text = "";
+            _passwordInput.text = "";
+            _confirmPasswordInput.text = "";
+#endif
             Authtentication();
         }
 
