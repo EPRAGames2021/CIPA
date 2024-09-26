@@ -774,10 +774,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tutorial Siderurgy
       objectReference: {fileID: 0}
-    - target: {fileID: 496923470577896921, guid: 0126290eeaaa4e5499f7a77ac8b9105c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5500914590834542407, guid: 0126290eeaaa4e5499f7a77ac8b9105c, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -827,14 +823,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 197474286}
     - target: {fileID: 5747898078825288927, guid: 0126290eeaaa4e5499f7a77ac8b9105c, type: 3}
-      propertyPath: _lockerTrigger
-      value: 
-      objectReference: {fileID: 356973854}
-    - target: {fileID: 5747898078825288927, guid: 0126290eeaaa4e5499f7a77ac8b9105c, type: 3}
-      propertyPath: _lockerDetector
-      value: 
-      objectReference: {fileID: 356973853}
-    - target: {fileID: 5747898078825288927, guid: 0126290eeaaa4e5499f7a77ac8b9105c, type: 3}
       propertyPath: _tutorialConstructionUI
       value: 
       objectReference: {fileID: 258493400}
@@ -863,28 +851,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2dbfdcc456391a54b9ebd524b8a19390, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &356973853 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5683407029410383248, guid: 0126290eeaaa4e5499f7a77ac8b9105c, type: 3}
-  m_PrefabInstance: {fileID: 356973849}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78942fc3027fc1341bc04418d7717a69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &356973854 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9221332310004188834, guid: 0126290eeaaa4e5499f7a77ac8b9105c, type: 3}
-  m_PrefabInstance: {fileID: 356973849}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81548c884fe51314dba602a8c09af9cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &368784869
@@ -1675,10 +1641,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Logistics and Distribution
       objectReference: {fileID: 0}
-    - target: {fileID: 2660184483419411208, guid: 6218e8ab37e4c2947b613945dbc69cc4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2802485449130685444, guid: 6218e8ab37e4c2947b613945dbc69cc4, type: 3}
       propertyPath: _player
       value: 
@@ -1927,7 +1889,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 966383549}
   m_LocalRotation: {x: 0.29911047, y: -0.00000001641865, z: 0.000000005146609, w: 0.9542185}
-  m_LocalPosition: {x: 141.1, y: 13.562503, z: -14.215987}
+  m_LocalPosition: {x: 2.3500004, y: 13.562502, z: 2.6840127}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2352,10 +2314,6 @@ PrefabInstance:
     - target: {fileID: 8870266207311347216, guid: 7c3231c0e4e5cff4fab24f8d547e4378, type: 3}
       propertyPath: m_Name
       value: Transporting and Storing
-      objectReference: {fileID: 0}
-    - target: {fileID: 8870266207311347216, guid: 7c3231c0e4e5cff4fab24f8d547e4378, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9045107374427874737, guid: 7c3231c0e4e5cff4fab24f8d547e4378, type: 3}
       propertyPath: _player
@@ -2813,25 +2771,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1349017109}
     m_Modifications:
-    - target: {fileID: 1369982217218207347, guid: 2af2c86ed211a2144a3f93e74f2692aa, type: 3}
-      propertyPath: m_Size.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1369982217218207347, guid: 2af2c86ed211a2144a3f93e74f2692aa, type: 3}
-      propertyPath: m_Size.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1369982217218207347, guid: 2af2c86ed211a2144a3f93e74f2692aa, type: 3}
-      propertyPath: m_Size.z
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 1425112788190087534, guid: 2af2c86ed211a2144a3f93e74f2692aa, type: 3}
       propertyPath: m_Name
       value: Resources Treatment in Blast Furnance
-      objectReference: {fileID: 0}
-    - target: {fileID: 1425112788190087534, guid: 2af2c86ed211a2144a3f93e74f2692aa, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1519615085066981577, guid: 2af2c86ed211a2144a3f93e74f2692aa, type: 3}
       propertyPath: m_RootOrder
@@ -2885,18 +2827,6 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 197474286}
-    - target: {fileID: 8977433187142780155, guid: 2af2c86ed211a2144a3f93e74f2692aa, type: 3}
-      propertyPath: m_Size.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8977433187142780155, guid: 2af2c86ed211a2144a3f93e74f2692aa, type: 3}
-      propertyPath: m_Size.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8977433187142780155, guid: 2af2c86ed211a2144a3f93e74f2692aa, type: 3}
-      propertyPath: m_Size.z
-      value: 20
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2af2c86ed211a2144a3f93e74f2692aa, type: 3}
 --- !u!4 &742886324392709872 stripped
@@ -2919,10 +2849,6 @@ PrefabInstance:
     - target: {fileID: 496923470577896921, guid: 76b4c0285dbc0b04986398ca598b815d, type: 3}
       propertyPath: m_Name
       value: Resources Arrival
-      objectReference: {fileID: 0}
-    - target: {fileID: 496923470577896921, guid: 76b4c0285dbc0b04986398ca598b815d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2517324413185201051, guid: 76b4c0285dbc0b04986398ca598b815d, type: 3}
       propertyPath: _minigameUI
@@ -3062,10 +2988,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scrap Treatment
       objectReference: {fileID: 0}
-    - target: {fileID: 7861098923212275553, guid: b8f071713b4f6074590a05238c3e091b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7923944130286860712, guid: b8f071713b4f6074590a05238c3e091b, type: 3}
       propertyPath: _player
       value: 
@@ -3100,26 +3022,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1349017109}
     m_Modifications:
-    - target: {fileID: 2333488988669146639, guid: a05e371c780a6de46ac16665ce96a4bd, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2333488988669146639, guid: a05e371c780a6de46ac16665ce96a4bd, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2333488988669146639, guid: a05e371c780a6de46ac16665ce96a4bd, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2345593412796489453, guid: a05e371c780a6de46ac16665ce96a4bd, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2345593412796489453, guid: a05e371c780a6de46ac16665ce96a4bd, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3437889360449247951, guid: a05e371c780a6de46ac16665ce96a4bd, type: 3}
       propertyPath: _player
       value: 
@@ -3168,33 +3070,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5476668155657492284, guid: a05e371c780a6de46ac16665ce96a4bd, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5476668155657492284, guid: a05e371c780a6de46ac16665ce96a4bd, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5476668155657492284, guid: a05e371c780a6de46ac16665ce96a4bd, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5543376699661189086, guid: a05e371c780a6de46ac16665ce96a4bd, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5543376699661189086, guid: a05e371c780a6de46ac16665ce96a4bd, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6978816552332938295, guid: a05e371c780a6de46ac16665ce96a4bd, type: 3}
       propertyPath: m_Name
       value: Plate and Coil Production
-      objectReference: {fileID: 0}
-    - target: {fileID: 6978816552332938295, guid: a05e371c780a6de46ac16665ce96a4bd, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9155426211800518131, guid: a05e371c780a6de46ac16665ce96a4bd, type: 3}
       propertyPath: _minigameUI
