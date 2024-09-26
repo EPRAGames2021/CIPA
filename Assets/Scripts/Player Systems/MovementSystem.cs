@@ -82,7 +82,7 @@ namespace CIPA
                 _movementDirection = _inputDirection;
             }
 
-            _isWalking = _rigidbody.velocity.magnitude > 0.05f && _rigidbody.velocity.magnitude < _baseSpeed * 0.65f;
+            _isWalking = _rigidbody.velocity.magnitude > 0.05f && _rigidbody.velocity.magnitude < _baseSpeed * 0.65f && _inputDirection.magnitude > 0.01f;
             _isRunning = _rigidbody.velocity.magnitude >= _baseSpeed * 0.65f;
         }
 
