@@ -124,7 +124,7 @@ namespace CIPA
             }
         }
 
-        private void EndMiniGame()
+        protected virtual void EndMiniGame()
         {
             _vehiclePlayer.OnDied -= VehicleCrashed;
             _vehicle.OnCarryingChanged -= UpdateCargo;

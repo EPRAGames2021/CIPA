@@ -23,6 +23,8 @@ namespace CIPA
 
         [SerializeField] private Player _player;
 
+        private bool _gameEnded;
+
         public List<Treadmill> Treadmills => _treadmills;
 
         public int RequiredToWin => _requiredScrapsToWin;
@@ -56,7 +58,6 @@ namespace CIPA
             CanvasManager.Instance.EnableVirtualJoystick(true);
 
             CustomGameEvents.OnMinigameStarted += StartMiniGame;
-            CustomGameEvents.OnMinigameEnded += EndMiniGame;
         }
 
         private void Finish()
@@ -67,12 +68,10 @@ namespace CIPA
             }
 
             CustomGameEvents.OnMinigameStarted -= StartMiniGame;
-            CustomGameEvents.OnMinigameEnded -= EndMiniGame;
         }
 
         private void StartMiniGame()
         {
-            //_minigameUI.SetActive(true);
             StartCoroutine(OpenMenuDelay());
             IEnumerator OpenMenuDelay()
             {
@@ -96,6 +95,8 @@ namespace CIPA
 
             _player.ArrowSystem.SetEnabled(false);
 
+            _gameEnded = false;
+
             CanvasManager.Instance.EnableHUD(false);
             CanvasManager.Instance.EnableVirtualJoystick(false);
         }
@@ -111,6 +112,8 @@ namespace CIPA
 
                 _treadmills[i].OnScrapSpawned -= SubToNewScrap;
             }
+
+            _gameEnded = true;
         }
 
 
@@ -140,12 +143,21 @@ namespace CIPA
 
         private void CheckScores()
         {
+            if (_gameEnded)
+            {
+                return;
+            }
+
             if (_scrapsDisposedCorrectly >= _requiredScrapsToWin)
             {
+                EndMiniGame();
+
                 JobAreaManager.Instance.FinishMinigame(true);
             }
             else if (_scrapsDisposedIncorrectly >= _requiredScrapsToLose)
             {
+                EndMiniGame();
+
                 JobAreaManager.Instance.FinishMinigame(false);
             }
         }

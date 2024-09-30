@@ -135,6 +135,7 @@ namespace CIPA
         private void MinigameSuccessed()
         {
             _jobSectorSO.CurrentJob.AddUniqueAction("playerCompletedDay", true);
+
             RewardAndPenaltyManager.Instance.PlayerHasCompletedJob();
             AudioManager.Instance.PlayRandomSFX(_victorySFX);
             Vibrator.Vibrate(100);

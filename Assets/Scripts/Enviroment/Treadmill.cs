@@ -15,7 +15,8 @@ namespace CIPA
         [Min(0.1f)]
         [Tooltip("Measured in seconds")]
         [SerializeField] private float _spawnFrequency;
-        private Coroutine _spawnNewScrap;
+
+        [SerializeField] private float _timeUntilSpawn;
         private Scrap _mostRecentScrap;
 
         [SerializeField] private float _speed;
@@ -66,12 +67,12 @@ namespace CIPA
         private void Init()
         {
             _mostRecentScrap = null;
-            _spawnNewScrap = null;
+            _timeUntilSpawn = _spawnFrequency;
         }
 
-        private IEnumerator SpawnNewScrap()
+        private void SpawnNewScrap()
         {
-            yield return new WaitForSeconds(_spawnFrequency);
+            //yield return new WaitForSeconds(_spawnFrequency);
 
             int randomIndex = Random.Range(0, _scrapsPrefabs.Count);
 
@@ -87,21 +88,20 @@ namespace CIPA
 
                 _mostRecentScrap.OnCollected += Remove;
             }
-
-            _spawnNewScrap = null;
         }
 
         private void SpawningBehaviour()
         {
-            if (_spawnNewScrap == null && _isRunning)
+            if (_isRunning)
             {
-                _spawnNewScrap = StartCoroutine(SpawnNewScrap());
-            }
-            else if (_spawnNewScrap != null && !_isRunning)
-            {
-                StopCoroutine(SpawnNewScrap());
+                _timeUntilSpawn -= Time.deltaTime;
 
-                _spawnNewScrap = null;
+                if (_timeUntilSpawn <= 0)
+                {
+                    SpawnNewScrap();
+
+                    _timeUntilSpawn = _spawnFrequency;
+                }
             }
         }
 
@@ -122,7 +122,7 @@ namespace CIPA
 
                 foreach (Animator animator in _animators)
                 {
-                    animator.speed = _speed * 0.25f;
+                    animator.speed = _speed * 0.25f; //magic number I know but it seems to align the moving speed of the animation with the item on top of the treadmill perfectly
                 }
             }
 
@@ -130,7 +130,7 @@ namespace CIPA
             {
                 foreach (Rigidbody rigidbody in _bodies)
                 {
-                    rigidbody.velocity = new Vector3(0, 0, -1) * _speed;
+                    if (rigidbody != null) rigidbody.velocity = new Vector3(0, 0, -1) * _speed;
                 }
             }
         }

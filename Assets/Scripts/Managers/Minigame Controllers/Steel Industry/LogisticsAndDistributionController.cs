@@ -12,7 +12,7 @@ namespace CIPA
         [Header("Dev Area")]
         [Tooltip("In seconds")]
         [SerializeField] private float _timeLeft;
-        [SerializeField] private bool _timerTrigerred;
+        [SerializeField] private bool _timerIsRunning;
 
         [SerializeField] private VehicleCargoLoader _vehicleCargoLoader;
 
@@ -60,13 +60,20 @@ namespace CIPA
             base.InitiateMiniGame();
 
             _timeLeft = _totalTime;
-            _timerTrigerred = true;
+            _timerIsRunning = true;
 
             _vehicleCargoBalloon.SetActive(false);
 
             _offScreenIndicatorManager.SetupIndicators(_indicatorWrappers);
 
             SetNextCargo();
+        }
+
+        protected override void EndMiniGame()
+        {
+            base.EndMiniGame();
+
+            _timerIsRunning = false;
         }
 
         protected override void SetupVehicle()
@@ -133,7 +140,7 @@ namespace CIPA
 
         private void TimeBehaviour()
         {
-            if (!_timerTrigerred) return;
+            if (!_timerIsRunning) return;
 
             if (_timeLeft > 0)
             {
