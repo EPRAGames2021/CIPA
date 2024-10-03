@@ -242,6 +242,8 @@ namespace CIPA
             }
 
             _employeeSO.AddNewDayReport(_jobSectorSO.JobSector, new DayReport(_jobSectorSO.Day, _jobSectorSO.CurrentJob.Score, _jobSectorSO.CurrentJob.Actions));
+
+            _ = FirebaseHandler.AddAllEmployeeDayReports(FirebaseHandler.Instance.LoggedID, _employeeSO);
         }
 
         public void FinishTutorial()

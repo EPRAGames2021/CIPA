@@ -20,8 +20,8 @@ namespace EPRA.Utilities
 
         private void OnEnable()
         {
-            //_adminButton.gameObject.SetActive(FirebaseHandler.Instance.IsAdminAccount);
-            _adminButton.gameObject.SetActive(false);
+            _adminButton.gameObject.SetActive(FirebaseHandler.Instance.IsAdminAccount);
+            _startButton.gameObject.SetActive(!FirebaseHandler.Instance.IsAdminAccount);
         }
 
         private void Start()

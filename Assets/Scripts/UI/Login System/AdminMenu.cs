@@ -52,7 +52,7 @@ namespace EPRA.Utilities
 
         private void CheckEmployeeScores()
         {
-            _subMenuTitle.text = "Check employee score";
+            _subMenuTitle.text = LanguageManager.GetTranslation("checkEmployeeScore");
             _employeeIDPrefix.text = FirebaseHandler.GetCompanyPrefix();
 
             _confirmIDButton.onClick.AddListener(GetEmployeeScore);
@@ -62,7 +62,7 @@ namespace EPRA.Utilities
 
         private void NewEmployee()
         {
-            _subMenuTitle.text = "Add new employee";
+            _subMenuTitle.text = LanguageManager.GetTranslation("registerNewEmployee");
             _employeeIDPrefix.text = FirebaseHandler.GetCompanyPrefix();
 
             _confirmIDButton.onClick.AddListener(AddNewEmployee);
@@ -76,22 +76,26 @@ namespace EPRA.Utilities
             int maxEmployeeCount = await FirebaseHandler.GetCompanyMaxEmployeeCount();
             if(employeeCount >= maxEmployeeCount)
             {
-                _subMenuFeedback.text = "Max employee number already reached";
+                //_subMenuFeedback.text = "Max employee number already reached";
+                _subMenuFeedback.text = LanguageManager.GetTranslation("maxEmployeeNumberReached");
                 return;
             }
             if (await FirebaseHandler.GetEmployeeExists(_employeeIDPrefix.text + _employeeIDInput.text))
             {
-                _subMenuFeedback.text = "Employee code already exists";
+                //_subMenuFeedback.text = "Employee code already exists";
+                _subMenuFeedback.text = LanguageManager.GetTranslation("employeeCodeAlreadyExists");
             }
             else
             {
                 if (await FirebaseHandler.AddNewEmployee(_employeeIDPrefix.text + _employeeIDInput.text))
                 {
-                    _subMenuFeedback.text = "New employee created successfully";
+                    //_subMenuFeedback.text = "New employee created successfully";
+                    _subMenuFeedback.text = LanguageManager.GetTranslation("employeeCreatedSuccessfully");
                 }
                 else
                 {
-                    _subMenuFeedback.text = "Failed to create new employee";
+                    //_subMenuFeedback.text = "Failed to create new employee";
+                    _subMenuFeedback.text = LanguageManager.GetTranslation("failedToCreateEmployee");
                 }
             }
         }
@@ -100,14 +104,15 @@ namespace EPRA.Utilities
         {
             if (!await FirebaseHandler.GetEmployeeExists(_employeeIDPrefix.text + _employeeIDInput.text))
             {
-                _subMenuFeedback.text = "employeeDoesNotExist";
+                //_subMenuFeedback.text = "employeeDoesNotExist";
+                _subMenuFeedback.text = LanguageManager.GetTranslation("employeeDoesNotExist");
             }
             else
             {
                 int score = await FirebaseHandler.GetEmployeeScore(_employeeIDPrefix.text + _employeeIDInput.text);
-                
-                _subMenuFeedback.text = "Employee score is " + score.ToString();
-                
+
+                //_subMenuFeedback.text = "Employee score is " + score.ToString();
+                _subMenuFeedback.text = LanguageManager.GetTranslation("employeeReport");
             }
         }
 
