@@ -42,6 +42,8 @@ namespace CIPA
             _lockerTrigger.SetAutomatic(false);
             EnableBarrier(true);
 
+            _tutorialConstructionUI.OnAdvanceTutorial += CloseTutorial;
+
             LoadingScreen.OnScreenHasBeenClosed += TriggerTutorialHandler;
             CustomGameEvents.OnPlayerWorePPEs += TriggerTutorialHandler;
 
@@ -55,6 +57,8 @@ namespace CIPA
 
         private void Finish()
         {
+            _tutorialConstructionUI.OnAdvanceTutorial -= CloseTutorial;
+
             LoadingScreen.OnScreenHasBeenClosed -= TriggerTutorialHandler;
             CustomGameEvents.OnPlayerWorePPEs -= TriggerTutorialHandler;
 

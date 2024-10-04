@@ -8,6 +8,8 @@ namespace CIPA
     {
         [SerializeField] private Player _player;
 
+        [SerializeField] private GameObject _factoryMap;
+        [SerializeField] private GameObject _invisibleBarrier;
         [SerializeField] private LockerTrigger _lockerTrigger;
 
         [SerializeField] private TutorialConstructionUI _tutorialConstructionUI;
@@ -17,7 +19,8 @@ namespace CIPA
         [SerializeField] private List<string> _keys;
 
         [SerializeField] private PlayerDetector _lockerDetector;
-        [SerializeField] private PlayerDetector _finishDetector;
+        [SerializeField] private PlayerDetector _mapDetector;
+
 
         private void OnEnable()
         {
@@ -35,20 +38,27 @@ namespace CIPA
             _currentTutorialID = 0;
             _lockerTrigger.SetAutomatic(false);
 
+            _factoryMap.SetActive(false);
+            _invisibleBarrier.SetActive(true);
+
+            _tutorialConstructionUI.OnAdvanceTutorial += CloseTutorial;
+
             LoadingScreen.OnScreenHasBeenClosed += TriggerTutorialHandler;
             CustomGameEvents.OnPlayerWorePPEs += TriggerTutorialHandler;
 
             _lockerDetector.OnPlayerDetected += TriggerTutorialHandler;
-            _finishDetector.OnPlayerDetected += TriggerTutorialHandler;
+            _mapDetector.OnPlayerDetected += TriggerTutorialHandler;
         }
 
         private void Finish()
         {
-            LoadingScreen.OnScreenHasBeenClosed += TriggerTutorialHandler;
-            CustomGameEvents.OnPlayerWorePPEs += TriggerTutorialHandler;
+            _tutorialConstructionUI.OnAdvanceTutorial -= CloseTutorial;
 
-            _lockerDetector.OnPlayerDetected += TriggerTutorialHandler;
-            _finishDetector.OnPlayerDetected -= TriggerTutorialHandler;
+            LoadingScreen.OnScreenHasBeenClosed -= TriggerTutorialHandler;
+            CustomGameEvents.OnPlayerWorePPEs -= TriggerTutorialHandler;
+
+            _lockerDetector.OnPlayerDetected -= TriggerTutorialHandler;
+            _mapDetector.OnPlayerDetected -= TriggerTutorialHandler;
         }
 
 
@@ -79,7 +89,7 @@ namespace CIPA
         {
             _tutorialConstructionUI.gameObject.SetActive(false);
 
-            if (_currentTutorialID != 1 && _currentTutorialID < 7)
+            if (_currentTutorialID != 1 && _currentTutorialID < 5)
             {
                 CanvasManager.Instance.EnableVirtualJoystick(true);
                 CanvasManager.Instance.EnableHUD(true);
@@ -95,6 +105,22 @@ namespace CIPA
             }
             else if (_currentTutorialID == 2)
             {
+                _invisibleBarrier.SetActive(false);
+            }
+            else if (_currentTutorialID == 3)
+            {
+                TriggerTutorial(4);
+            }
+            else if (_currentTutorialID == 4)
+            {
+                _factoryMap.SetActive(true);
+
+                TriggerTutorial(4);
+            }
+            else if (_currentTutorialID == 5)
+            {
+                _factoryMap.SetActive(false);
+
                 JobAreaManager.Instance.FinishTutorial();
             }
 

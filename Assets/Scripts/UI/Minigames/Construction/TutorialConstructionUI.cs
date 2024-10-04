@@ -9,8 +9,6 @@ namespace CIPA
     {
         [SerializeField] private ScreenTouchController _screenTouchController;
 
-        [SerializeField] private TutorialConstructionController _controller;
-
         [SerializeField] private GameObject _tutorialHand;
 
         [SerializeField] private GameObject _descriptionPanel;
@@ -18,6 +16,7 @@ namespace CIPA
 
         [SerializeField] private Button _closePanelButton;
 
+        public event System.Action OnAdvanceTutorial;
 
         private void OnEnable()
         {
@@ -32,15 +31,11 @@ namespace CIPA
 
         private void Init()
         {
-            //_closePanelButton.onClick.AddListener(AdvanceTutorial);
-
             _screenTouchController.OnPressed += AdvanceTutorial;
         }
 
         private void Finish()
         {
-            //_closePanelButton.onClick.RemoveAllListeners();
-
             _screenTouchController.OnPressed -= AdvanceTutorial;
         }
 
@@ -49,7 +44,7 @@ namespace CIPA
         {
             SetDescriptionPanelActive(false);
 
-            _controller.CloseTutorial();
+            OnAdvanceTutorial?.Invoke();
 
             _screenTouchController.ReInit();
         }
