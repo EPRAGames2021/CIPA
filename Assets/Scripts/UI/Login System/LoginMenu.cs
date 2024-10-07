@@ -199,6 +199,8 @@ namespace EPRA.Utilities
                             {
                                 FirebaseHandler.SetCompany(_company);
 
+                                FirebaseHandler.SetLoggedID(_idInput.text); 
+
                                 GoToMainMenu();
                             }
                             else

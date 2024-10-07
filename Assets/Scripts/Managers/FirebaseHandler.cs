@@ -588,6 +588,11 @@ namespace EPRA.Utilities
             Instance._companyCode = company;
         }
 
+        public static void SetLoggedID(string loggedID)
+        {
+            Instance._loggedID = loggedID;
+        }
+
 
         public static bool GetIsValidPassword(string password)
         {
