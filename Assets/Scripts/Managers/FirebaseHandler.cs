@@ -433,29 +433,18 @@ namespace EPRA.Utilities
             return await PushValueToField("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id + "/" + "Score", score) != default;
         }
 
-        public static async Task<bool> AddEmployeeDayReport(string id, DayReport dayReport)
+        public static async Task<bool> AddEmployeeDayReport(string id, JobAreaReport jobAreaReport, DayReport dayReport)
         {                                 
-            return await AddChildToField("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id + "/" + "DayReports" + "/" + dayReport.Day, JsonUtility.ToJson( dayReport )) != default;
+            return await AddChildToField("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id + "/" + "DayReports" + "/" + jobAreaReport.JobSector + "/" + dayReport.Day, JsonUtility.ToJson( dayReport )) != default;
         }
 
-
-        // QUICK FIX TO ALLOW PROJECT TO RUN FOR OTHER IMPLEMENTATIONS
-        // TODO
-        // REMEMBER TO ADJUST BOTH ADDEMPLOYEEDAYREPORT() AND GETEMPLOYEEDAYREPORTS()
         public static async Task<bool> AddAllEmployeeDayReports(string id, EmployeeSO employeeSO)
         {
-            /*
-            foreach(DayReport dayReport in employeeSO.DayReportList)
-            {
-                if(! await AddEmployeeDayReport(id, dayReport)) return false;                
-            }
-            */
-
             foreach (JobAreaReport jobAreaReport in employeeSO.JobAreaReports)
             {
                 foreach (DayReport dayReport in jobAreaReport.DayReportList)
                 {
-                    if (!await AddEmployeeDayReport(id, dayReport)) return false;
+                    if (!await AddEmployeeDayReport(id, jobAreaReport, dayReport)) return false;
                 }
             }
 
