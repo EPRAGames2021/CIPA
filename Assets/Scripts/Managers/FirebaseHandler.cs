@@ -433,10 +433,6 @@ namespace EPRA.Utilities
             return await PushValueToField("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id + "/" + "Score", score) != default;
         }
 
-        public static async Task<bool> AddEmployeeDayReport(string id, JobAreaReport jobAreaReport, DayReport dayReport)
-        {                                 
-            return await AddChildToField("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id + "/" + "DayReports" + "/" + jobAreaReport.JobSector + "/" + dayReport.Day, JsonUtility.ToJson( dayReport )) != default;
-        }
 
         public static async Task<bool> AddAllEmployeeDayReports(string id, EmployeeSO employeeSO)
         {
@@ -449,6 +445,13 @@ namespace EPRA.Utilities
             }
 
             return true;
+        }
+
+        private static async Task<bool> AddEmployeeDayReport(string id, JobAreaReport jobAreaReport, DayReport dayReport)
+        {
+            Debug.Log("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id + "/" + "DayReports" + "/" + jobAreaReport.JobSector + "/" + dayReport.Day);
+
+            return await AddChildToField("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id + "/" + "DayReports" + "/" + jobAreaReport.JobSector + "/" + dayReport.Day, JsonUtility.ToJson( dayReport )) != default;
         }
 
         public static async Task<List<DayReport>> GetEmployeeDayReports(string id)
@@ -500,6 +503,8 @@ namespace EPRA.Utilities
             return dayReports;
         }
 
+
+
         public static async Task<bool> GetIsEmployeeFirstLogin(string id)
         {
             //Debug.Log(await GetValueOfField<string>("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id));
@@ -524,6 +529,7 @@ namespace EPRA.Utilities
             var criptographedPassword = CriptographPassword(password);
             return await PushValueToField<string>("Companies" + "/" + Instance._companyCode + "/" + "Employees" + "/" + id + "/" + "Password", criptographedPassword) != default;
         }
+
 
 
         public static bool GetIsCompanyID(string code)

@@ -243,7 +243,10 @@ namespace CIPA
 
             _employeeSO.AddNewDayReport(_jobSectorSO.JobSector, new DayReport(_jobSectorSO.Day, _jobSectorSO.CurrentJob.Score, _jobSectorSO.CurrentJob.Actions));
 
-            _ = FirebaseHandler.AddAllEmployeeDayReports(FirebaseHandler.Instance.LoggedID, _employeeSO);
+            if (FirebaseHandler.Instance != null)
+            {
+                _ = FirebaseHandler.AddAllEmployeeDayReports(FirebaseHandler.Instance.LoggedID, _employeeSO);
+            }
         }
 
         public void FinishTutorial()
@@ -264,6 +267,11 @@ namespace CIPA
                 _employeeSO.AddNewDayReport(_jobSectorSO.JobSector, new DayReport(_jobSectorSO.Day, _jobSectorSO.CurrentJob.Score, _jobSectorSO.CurrentJob.Actions));
 
                 _jobSectorSO.FinishDay();
+
+                if (FirebaseHandler.Instance != null)
+                {
+                    _ = FirebaseHandler.AddAllEmployeeDayReports(FirebaseHandler.Instance.LoggedID, _employeeSO);
+                }
             }
         }
 

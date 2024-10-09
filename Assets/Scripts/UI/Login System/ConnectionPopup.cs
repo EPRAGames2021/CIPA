@@ -43,6 +43,13 @@ public class ConnectionPopup : MonoBehaviour
 
     private void AttemptConnection()
     {
+        if (FirebaseHandler.Instance == null)
+        {
+            gameObject.SetActive(false);
+
+            return;
+        }
+
         _connectionStatusText.text = "Checking connection";
 
         if (FirebaseHandler.Instance.IsConnected)

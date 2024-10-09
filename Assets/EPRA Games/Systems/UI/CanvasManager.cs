@@ -45,8 +45,6 @@ namespace EPRA.Utilities
             SceneLoader.Instance.OnProgressChanges += LoadingScreen.SetPercentage;
 
             CloseAllMenus();
-            //OpenMenu(MenuType.LoginMenu);
-            //OpenMenu(MenuType.MainMenu);
             OpenMenu(_firstMenuToOpen);
         }
 
