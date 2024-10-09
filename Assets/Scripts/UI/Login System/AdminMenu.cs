@@ -91,6 +91,8 @@ namespace EPRA.Utilities
                 {
                     //_subMenuFeedback.text = "New employee created successfully";
                     _subMenuFeedback.text = LanguageManager.GetTranslation("employeeCreatedSuccessfully");
+
+                    _employeeIDInput.text = string.Empty;
                 }
                 else
                 {

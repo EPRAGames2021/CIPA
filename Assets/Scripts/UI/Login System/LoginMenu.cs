@@ -93,9 +93,10 @@ namespace EPRA.Utilities
 
                 if (await FirebaseHandler.GetCompanyExists(_company))
                 {                    
-                    if(await FirebaseHandler.GetIsCompanyExpired(_company))
+                    if (await FirebaseHandler.GetIsCompanyExpired(_company))
                     {                        
-                        SetFeedback(_passwordFeedbackTranslate, "expired");                        
+                        SetFeedback(_passwordFeedbackTranslate, "expired");
+                        
                         return;
                     }
 
@@ -124,21 +125,14 @@ namespace EPRA.Utilities
                     {
                         SetFeedback(_passwordTipTranslate, "createPasswordRequirements");
                         SetNewPasswordFieldsEnabled(true);
-                        
-                        if (!FirebaseHandler.GetNewPasswordIsValid(_passwordInput.text, _confirmPasswordInput.text))
-                        {                            
-                            if (_passwordInput.text == _confirmPasswordInput.text)
-                            {
-                                SetFeedback(_passwordFeedbackTranslate, "passwordIsNotValid");
-                            }
-                            else
-                            {
-                                SetFeedback(_passwordFeedbackTranslate, "passwordsDoNotMatch");
-                            }
-                        }                         
-                        else if (_passwordInput.text != _confirmPasswordInput.text)
+
+                        if (_passwordInput.text != _confirmPasswordInput.text)
                         {
                             SetFeedback(_passwordFeedbackTranslate, "passwordsDoNotMatch");
+                        }
+                        else if (!FirebaseHandler.GetNewPasswordIsValid(_passwordInput.text, _confirmPasswordInput.text))
+                        {
+                            SetFeedback(_passwordFeedbackTranslate, "passwordIsNotValid");
                         }
                         else
                         {
@@ -165,25 +159,22 @@ namespace EPRA.Utilities
                         SetFeedback(_passwordTipTranslate, "createPasswordRequirements");
                         SetNewPasswordFieldsEnabled(true);
 
-                        if (!FirebaseHandler.GetNewPasswordIsValid(_passwordInput.text, _confirmPasswordInput.text))
-                        {
-                            if (_passwordInput.text == _confirmPasswordInput.text)
-                            {
-                                SetFeedback(_passwordFeedbackTranslate, "passwordIsNotValid");
-                            }
-                            else
-                            {
-                                SetFeedback(_passwordFeedbackTranslate, "passwordsDoNotMatch");
-                            }
-                        }
-                        else if (_passwordInput.text != _confirmPasswordInput.text)
+                        if (_passwordInput.text != _confirmPasswordInput.text)
                         {
                             SetFeedback(_passwordFeedbackTranslate, "passwordsDoNotMatch");
+                        }
+                        else if (!FirebaseHandler.GetNewPasswordIsValid(_passwordInput.text, _confirmPasswordInput.text))
+                        {
+                            SetFeedback(_passwordFeedbackTranslate, "passwordIsNotValid");
                         }
                         else
                         {
                             if (await FirebaseHandler.SetPassword(idInput, _passwordInput.text))
                             {
+                                FirebaseHandler.SetCompany(_company);
+
+                                FirebaseHandler.SetLoggedID(_idInput.text);
+
                                 GoToMainMenu();
                             }
                         }
