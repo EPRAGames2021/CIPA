@@ -1,13 +1,12 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using EPRA.Utilities;
-using System.Linq;
 
 [CreateAssetMenu(fileName = "Employee", menuName = "Scriptable Objects/Employee", order = 1)]
 public class EmployeeSO : ScriptableObject
 {
+    [SerializeField] private string _lastID;
+
     [SerializeField] private List<JobAreaReport> _jobAreaReports;
 
     public List<JobAreaReport> JobAreaReports { get { return _jobAreaReports; } set { _jobAreaReports = value; } }
@@ -21,6 +20,22 @@ public class EmployeeSO : ScriptableObject
         }
     }
 
+
+
+    private void SetID(string id)
+    {
+        _lastID = id;
+    }
+
+    public void SetupID(string id)
+    {
+        if (_lastID != FirebaseHandler.Instance.LoggedID)
+        {
+            _jobAreaReports = new();
+        }
+
+        SetID(id);
+    }
 
     public void AddNewDayReport(JobSector jobSector, DayReport dayReport)
     {

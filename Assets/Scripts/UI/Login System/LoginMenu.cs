@@ -32,6 +32,8 @@ namespace EPRA.Utilities
         [SerializeField] private GameObject _passwordInputContainer;
         [SerializeField] private GameObject _confirmPasswordInputContainer;
 
+        [SerializeField] private EmployeeSO _employeeSO;
+
         [SerializeField] private string _company;
 
         private void Start()
@@ -175,6 +177,8 @@ namespace EPRA.Utilities
 
                                 FirebaseHandler.SetLoggedID(_idInput.text);
 
+                                _employeeSO.SetupID(FirebaseHandler.Instance.LoggedID);
+
                                 GoToMainMenu();
                             }
                         }
@@ -190,7 +194,9 @@ namespace EPRA.Utilities
                             {
                                 FirebaseHandler.SetCompany(_company);
 
-                                FirebaseHandler.SetLoggedID(_idInput.text); 
+                                FirebaseHandler.SetLoggedID(_idInput.text);
+
+                                _employeeSO.SetupID(FirebaseHandler.Instance.LoggedID);
 
                                 GoToMainMenu();
                             }
