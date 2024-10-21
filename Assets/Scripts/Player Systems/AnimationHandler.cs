@@ -6,7 +6,9 @@ namespace CIPA
     public class AnimationHandler : MonoBehaviour
     {
         [SerializeField] private AudioSource _audioSource;
+
         [SerializeField] private AudioClipCollection _stepSFX;
+        [SerializeField] private GameObject _collisionVFXPrefab;
 
         [SerializeField] private Animator _animator;
         [SerializeField] private Player _player;
@@ -77,6 +79,15 @@ namespace CIPA
         public void CallSFX()
         {
             AudioManager.Instance.PlayRandomSFX(_stepSFX, _audioSource);
+        }
+
+        public void CallCollisionVFX()
+        {
+            GameObject virtualEntity = InputHandler.Instance.CurrentMovementSystem.gameObject;
+
+            GameObject vfx = Instantiate(_collisionVFXPrefab, virtualEntity.transform.position, virtualEntity.transform.rotation, virtualEntity.transform.parent);
+
+            Destroy(vfx, 1f);
         }
     }
 }

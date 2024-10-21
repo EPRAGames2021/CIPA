@@ -47,6 +47,10 @@ namespace CIPA
             }
         }
 
+        public MovementSystem CurrentMovementSystem => _movementSystem;
+
+        public event System.Action<GameObject> OnMovementSystemChanged;
+
 
 
         private void Awake()
@@ -91,6 +95,8 @@ namespace CIPA
         public void SetMovementSystem(MovementSystem system)
         {
             _movementSystem = system;
+
+            OnMovementSystemChanged?.Invoke(_movementSystem.gameObject);
         }
 
         private void HandleMovement()

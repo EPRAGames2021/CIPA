@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerVehicle : MonoBehaviour
 {
+    [SerializeField] private Animator _animator;
+    [SerializeField] private string _cargoParameterName;
+
     [SerializeField] private CargoType _cargoType;
 
     [SerializeField] private List<GameObject> _trunkContent;
@@ -36,6 +39,8 @@ public class PlayerVehicle : MonoBehaviour
         {
             OnCarryingChanged?.Invoke(IsCarrying);
         }
+
+        _animator.SetBool(_cargoParameterName, IsCarrying);
 
         for (int i = 0; i < _trunkContent.Count; i++)
         {

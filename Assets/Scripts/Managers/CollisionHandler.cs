@@ -37,6 +37,13 @@ namespace CIPA
                 RewardAndPenaltyManager.Instance.PlayerHasBumpedIntoObject();
             }
 
+            AnimationHandler animationHandler = player.GetComponentInChildren<AnimationHandler>();
+
+            if (animationHandler != null)
+            {
+                animationHandler.CallCollisionVFX();
+            }
+
             bumpableObject.TryGetComponent(out NPC npc);
 
             if (npc != null && !JobAreaManager.Instance.ArrivedAtMinigameLocation)

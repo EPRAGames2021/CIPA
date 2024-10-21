@@ -1,3 +1,4 @@
+using CIPA;
 using UnityEngine;
 
 namespace EPRA.Utilities
@@ -10,6 +11,8 @@ namespace EPRA.Utilities
 
         [SerializeField] private AudioSource _fxAudioSource;
         [SerializeField] private AudioSource _musicAudioSource;
+
+        [SerializeField] private AudioListener _currentListener;
 
         [Header("Currently playing")]
         [SerializeField] private AudioClipCollection _musicCollection;
@@ -36,6 +39,11 @@ namespace EPRA.Utilities
             Init();
         }
 
+        private void OnDestroy()
+        {
+            Finish();
+        }
+
         private void Update()
         {
             PlayMusic();
@@ -57,6 +65,30 @@ namespace EPRA.Utilities
         private void Init()
         {
             _configuration.InitializeMixers();
+
+            InputHandler.Instance.OnMovementSystemChanged += ChangeListener;
+        }
+
+        private void Finish()
+        {
+            InputHandler.Instance.OnMovementSystemChanged -= ChangeListener;
+        }
+
+
+        private void ChangeListener(GameObject gameObject)
+        {
+            if (_currentListener != null)
+            {
+                AudioListener audioListener = _currentListener.GetComponent<AudioListener>();
+
+                if (audioListener != null)
+                {
+                    Destroy(audioListener);
+                }
+            }
+
+            gameObject.AddComponent<AudioListener>();
+            _currentListener = gameObject.GetComponent<AudioListener>();
         }
     
     
