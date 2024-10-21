@@ -130,7 +130,8 @@ namespace CIPA
             {
                 foreach (Rigidbody rigidbody in _bodies)
                 {
-                    if (rigidbody != null) rigidbody.velocity = new Vector3(0, 0, -1) * _speed;
+                    //if (rigidbody != null) rigidbody.velocity = new Vector3(0, 0, -1) * _speed;
+                    if (rigidbody != null) rigidbody.velocity = transform.right *- _speed;
                 }
             }
         }
