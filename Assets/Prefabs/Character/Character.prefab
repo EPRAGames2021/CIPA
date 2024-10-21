@@ -730,7 +730,7 @@ GameObject:
   - component: {fileID: 2476488292293007181}
   - component: {fileID: 5013262876071584104}
   m_Layer: 0
-  m_Name: Spark Mask
+  m_Name: Face Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1226,6 +1226,18 @@ MonoBehaviour:
   - _equipped: 0
     _object: {fileID: 9021842318062347627}
     _equipmentType: 8
+  - _equipped: 0
+    _object: {fileID: 4708498553886566019}
+    _equipmentType: 9
+  - _equipped: 0
+    _object: {fileID: 2729578305629512270}
+    _equipmentType: 10
+  - _equipped: 0
+    _object: {fileID: 1170757731832371281}
+    _equipmentType: 11
+  - _equipped: 0
+    _object: {fileID: 3419716988162185970}
+    _equipmentType: 12
 --- !u!114 &7508475094570260518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1437,6 +1449,10 @@ PrefabInstance:
     - target: {fileID: -9048794901157447202, guid: ace0d774ada705c4ab8f4da1551be57d, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8930915053731649774, guid: ace0d774ada705c4ab8f4da1551be57d, type: 3}
+      propertyPath: m_Name
+      value: PVCJacket
       objectReference: {fileID: 0}
     - target: {fileID: -8930915053731649774, guid: ace0d774ada705c4ab8f4da1551be57d, type: 3}
       propertyPath: m_IsActive
@@ -1727,6 +1743,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4270854579375924657, guid: ace0d774ada705c4ab8f4da1551be57d, type: 3}
+      propertyPath: m_Name
+      value: SteelTipBoots
+      objectReference: {fileID: 0}
+    - target: {fileID: 4270854579375924657, guid: ace0d774ada705c4ab8f4da1551be57d, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -1864,6 +1884,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 058b7be99abe9dd48b374b09ffa21127, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ace0d774ada705c4ab8f4da1551be57d, type: 3}
+--- !u!1 &1170757731832371281 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -8930915053731649774, guid: ace0d774ada705c4ab8f4da1551be57d, type: 3}
+  m_PrefabInstance: {fileID: 1454761532017344323}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1421695587144079528 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ace0d774ada705c4ab8f4da1551be57d, type: 3}
@@ -1992,6 +2017,11 @@ MonoBehaviour:
   _animator: {fileID: 4997531372555551442}
   _player: {fileID: 8773940894981897254}
   _movementSystem: {fileID: 6853027721232337912}
+--- !u!1 &3419716988162185970 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4270854579375924657, guid: ace0d774ada705c4ab8f4da1551be57d, type: 3}
+  m_PrefabInstance: {fileID: 1454761532017344323}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &4997531372555551442 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: ace0d774ada705c4ab8f4da1551be57d, type: 3}

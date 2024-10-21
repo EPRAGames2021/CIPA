@@ -6,6 +6,7 @@ using EPRA.Utilities;
 public class EmployeeSO : ScriptableObject
 {
     [SerializeField] private string _lastID;
+    [SerializeField] private List<JobSectorAreaSO> _sectors;
 
     [SerializeField] private List<JobAreaReport> _jobAreaReports;
 
@@ -25,6 +26,8 @@ public class EmployeeSO : ScriptableObject
     private void SetID(string id)
     {
         _lastID = id;
+
+        DataManager.SaveData<string>("LastID", _lastID);
     }
 
     public void SetupID(string id)
@@ -32,6 +35,11 @@ public class EmployeeSO : ScriptableObject
         if (_lastID != FirebaseHandler.Instance.LoggedID)
         {
             _jobAreaReports = new();
+
+            foreach (JobSectorAreaSO sector in _sectors)
+            {
+                sector.ResetDays();
+            }
         }
 
         SetID(id);

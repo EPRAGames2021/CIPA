@@ -50,6 +50,12 @@ namespace EPRA.Utilities
             SaveData();
         }
 
+        public void ResetDays()
+        {
+            _day = 0;
+
+            SaveData();
+        }
 
         private void LoadData()
         {

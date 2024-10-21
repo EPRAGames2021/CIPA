@@ -37,6 +37,7 @@ namespace EPRA.Utilities
         public bool IsAdminAccount { get { return _isAdminAccount; } set { _isAdminAccount = value; } }
 
 
+
         private async void Awake()
         {
             InitSingleton();
