@@ -9,32 +9,53 @@ namespace CIPA
 
         [SerializeField] private float _delay;
 
+        private Coroutine _coroutine;
+
+
+        private void Awake()
+        {
+            Init();
+        }
+
+        private void Init()
+        {
+            _coroutine = null;
+        }
+
 
         public void InitiateFadeSequence()
         {
-            StartCoroutine(FadeSequenceDelay());
+            if (_coroutine == null)
+            {
+                _coroutine = StartCoroutine(FadeSequenceDelay());
+            }
+            else
+            {
+                Debug.Log("Fade sequence already running");
+            }
         }
 
         private IEnumerator FadeSequenceDelay()
         {
-            FadeIn();
-
-            FadeOut();
+            FadeIn(true);
+            FadeOut(true);
 
             yield return new WaitForSeconds(_delay);
 
-            _animator.SetBool("FadeIn", false);
-            _animator.SetBool("FadeOut", false);
+            FadeIn(false);
+            FadeOut(false);
+
+            _coroutine = null;
         }
 
-        private void FadeIn()
+        private void FadeIn(bool fade)
         {
-            _animator.SetBool("FadeIn", true);
+            _animator.SetBool("FadeIn", fade);
         }
 
-        private void FadeOut()
+        private void FadeOut(bool fade)
         {
-            _animator.SetBool("FadeOut", true);
+            _animator.SetBool("FadeOut", fade);
         }
 
     }
